@@ -33,6 +33,7 @@
 <div class="wrapper">
   <!-- Navbar -->
     @include('includes.navbar');
+    @include('sweetalert::alert')
   <!-- /.navbar -->
     @include('includes.sidebar');
 

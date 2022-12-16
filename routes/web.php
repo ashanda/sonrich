@@ -24,9 +24,11 @@ Auth::routes();
    
 Route::middleware(['auth'])->group(function () {
 Route::middleware(['2fa'])->group(function () {
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/super_admin', [HomeController::class, 'superadmin'])->name('super_admin');
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
+Route::resource('/package', KycController::class);
 Route::resource('/kyc', KycController::class);
 Route::post('/2fa', function () {
 
@@ -48,4 +50,5 @@ Route::post('/2fa', function () {
 
 });
 });
+
 Route::get('/complete-registration', [RegisterController::class, 'completeRegistration'])->name('complete.registration');
