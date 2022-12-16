@@ -196,20 +196,6 @@ class RegisterController extends Controller
 
         $request->merge(session('registration_data'));
 
-        if (auth()->user()->role == 2) {
-
-            return redirect(route('super_admin'));
-
-        }elseif(auth()->user()->role == 1){ 
-
-            return redirect(route('admin'));
-
-        }else{
-
-            return redirect(route('user'));
-
-        }
-
         return $this->registration($request);
 
     }

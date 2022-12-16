@@ -1,9 +1,9 @@
 <?php
+use Monarobase\CountryList\CountryListFacade;
 
-function productImagePath($image_name)
+function getCountryList(){
+    $countries = CountryListFacade::getList('en');
+    return $countries;
+} 
 
-{
 
-    return public_path('images/products/'.$image_name);
-
-}
