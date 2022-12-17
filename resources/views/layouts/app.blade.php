@@ -34,12 +34,8 @@
   <div class="wrapper">
     <!-- Navbar -->
     @include('includes.navbar');
-<<<<<<< HEAD
-    <!-- /.navbar -->
-=======
     @include('sweetalert::alert')
-  <!-- /.navbar -->
->>>>>>> 2836dd7ae835c0ae8fdaeae29d7ec16bd87f1dd1
+
     @include('includes.sidebar');
 
     <!-- Content Wrapper. Contains page content -->
