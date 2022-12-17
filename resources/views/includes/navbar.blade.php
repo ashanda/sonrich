@@ -4,11 +4,11 @@
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
-    
+
     </li>
 
   </ul>
-  
+
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <!-- Navbar Search -->
@@ -110,7 +110,7 @@
           <span class="float-right text-muted text-sm">12 hours</span>
         </a>
         <div class="dropdown-divider"></div>
-        
+
         <a href="#" class="dropdown-item">
           <i class="fas fa-file mr-2"></i> 3 new reports
           <span class="float-right text-muted text-sm">2 days</span>
@@ -124,10 +124,13 @@
         <i class="fas fa-expand-arrows-alt"></i>
       </a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
         <i class="fas fa-th-large"></i>
       </a>
+    </li> -->
+    <li class="nav-link">
+      <i class="fas fa-moon drkMode" onclick="drkMode()" id="drkMode"></i>
     </li>
     <li class="nav-item">
       <form method="POST" class="mb-0" action="{{ route('logout') }}">
@@ -136,5 +139,6 @@
         </a>
       </form>
     </li>
+
   </ul>
 </nav>
