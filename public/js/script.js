@@ -84,6 +84,12 @@ function getComboA(selectObject) {
         document.getElementById("crypto_wall").style.display = "block";
     } else {
         document.getElementById("crypto_wall").style.display = "none";
-        document.getElementById('cryWall').value = '';
+        document.getElementById("cryWall").value = "";
     }
 }
+
+// darkmode
+function drkMode() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+ }
