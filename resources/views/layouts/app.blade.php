@@ -1,11 +1,11 @@
-
 </html>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- CSRF Token -->
+  <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -29,53 +29,63 @@
   * sidebar-collapse
   * sidebar-mini
 -->
+
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  <!-- Navbar -->
+  <div class="wrapper">
+    <!-- Navbar -->
     @include('includes.navbar');
+<<<<<<< HEAD
+    <!-- /.navbar -->
+=======
     @include('sweetalert::alert')
   <!-- /.navbar -->
+>>>>>>> 2836dd7ae835c0ae8fdaeae29d7ec16bd87f1dd1
     @include('includes.sidebar');
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content -->
-    @yield('content')
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; <script type="text/javascript">document.write(new Date().getFullYear());</script> <a href="https://adminlte.io">Company Name</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content -->
+      @yield('content')
+      <!-- /.content -->
     </div>
-  </footer>
-</div>
-<!-- ./wrapper -->
+    <!-- /.content-wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 
-<!-- jQuery -->
-<script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap -->
-<script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE -->
-<script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; <script type="text/javascript">
+          document.write(new Date().getFullYear());
+        </script> <a href="https://adminlte.io">Company Name</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0
+      </div>
+    </footer>
+  </div>
+  <!-- ./wrapper -->
 
-<!-- OPTIONAL SCRIPTS -->
-<script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('adminlte/dist/js/pages/dashboard3.js') }}"></script>
+  <!-- REQUIRED SCRIPTS -->
+
+  <!-- jQuery -->
+  <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
+  <!-- Bootstrap -->
+  <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <!-- AdminLTE -->
+  <script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
+
+  <!-- OPTIONAL SCRIPTS -->
+  <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="{{ asset('adminlte/dist/js/pages/dashboard3.js') }}"></script>
+  <!-- Custom script -->
+  <script src="{{ asset('js/script.js') }}"></script>
 </body>
+
 </html>
