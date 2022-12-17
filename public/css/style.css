@@ -2,3 +2,42 @@
 .lh-1 {
     line-height: 1;
 }
+
+/* Mark input boxes that gets an error on validation: */
+.stepregForm input.invalid {
+    background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.stepregForm .tab {
+    display: none;
+}
+
+.stepregForm button:hover {
+    opacity: 0.8;
+}
+
+.stepregForm #prevBtn {
+    background-color: #bbbbbb;
+}
+
+/* Make circles that indicate the steps of the form: */
+.stepregForm .step {
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.stepregForm .step.active {
+    opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.stepregForm .step.finish {
+    background-color: #000000;
+}

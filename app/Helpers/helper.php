@@ -1,9 +1,9 @@
 <?php
-use Monarobase\CountryList\CountryListFacade;
+// use Monarobase\CountryList\CountryListFacade;
 
-function getCountryList(){
-    $countries = CountryListFacade::getList('en');
-    return $countries;
-} 
+// function getCountryList(){
+//     $countries = CountryListFacade::getList('en');
+//     return $countries;
+// } 
 
 
