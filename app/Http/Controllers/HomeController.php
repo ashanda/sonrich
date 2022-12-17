@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,8 +30,24 @@ class HomeController extends Controller
      public function index()
 
      {
- 
-         return view('home');
+        $role=Auth::user()->role;
+        if($role==2){
+
+            return view('userModule.super_admin.superadminHome');
+
+        }elseif($role == 1){
+
+            return view('userModule.admin.adminHome');
+
+        }elseif($role == 0){
+
+            return view('userModule.user.userHome');
+
+        }else{
+            
+            return view('home');
+        }  
+         
  
      }
  

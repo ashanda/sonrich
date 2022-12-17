@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Monarobase\CountryList\CountryListServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
     ],
 
@@ -231,6 +232,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Countries' => Monarobase\CountryList\CountryListFacade::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
     ],
 

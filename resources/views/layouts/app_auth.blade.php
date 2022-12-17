@@ -22,7 +22,7 @@
 
   <!-- /.login-logo -->
   
-
+      @include('sweetalert::alert')
       @yield('content')
 
 
