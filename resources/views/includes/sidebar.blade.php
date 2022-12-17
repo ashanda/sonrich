@@ -18,6 +18,14 @@ $role = auth()->user()->role;
         </div>
         <div class="info">
           <a href="#" class="d-block">User Name</a>
+          @if (Auth::user()->role == 2)
+          <p class="text-white" style="font-size: 10px;">{{ 'Super Admin' }}</p>
+          @elseif (Auth::user()->role == 1)
+          <p class="text-white" style="font-size: 10px;">{{ 'Admin' }}</p>
+          @else
+          <p class="text-white" style="font-size: 10px;">{{ 'User' }}</p>
+          @endif
+          
         </div>
       </div>
 

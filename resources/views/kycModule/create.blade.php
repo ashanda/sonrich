@@ -20,12 +20,12 @@
             <div class="form-group">
                 <label for="country" class="form-label">Country Selected</label>
                 <br>
+                
                 <select class="form-select p-1 w-100" name="country" aria-label="Default select example">
-                    <option selected>Select Country</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                    @foreach (getCountryList() as $country)
+                        <option value="{{ $country }}">{{ $country }}</option>
+                    @endforeach
+                </select>    
             </div>
         </div>
         <div class="tab pb-3">

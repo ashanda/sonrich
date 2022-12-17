@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class LoginController extends Controller
 {
@@ -56,7 +57,14 @@ class LoginController extends Controller
 
         ]);
 
-   
+        
+        function authenticated(Request $request, $user)
+        {
+           $user->update([
+             'last_login_at' => Carbon::now()->toDateTimeString(),
+             'last_login_ip_address' => $request->getClientIp()
+           ]);
+        }
 
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
 
