@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Package;
+use App\Models\level_commission_log;
 use Illuminate\Http\Request;
 
-class PackageController extends Controller
+class LevelCommissionLogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PackageController extends Controller
      */
     public function index()
     {
-        return view('packageModule.index');
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        return view('packageModule.create');
+        //
     }
 
     /**
@@ -35,51 +35,51 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        return view('kycModule.create');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Package  $package
+     * @param  \App\Models\level_commission_log  $level_commission_log
      * @return \Illuminate\Http\Response
      */
-    public function show(Package $package)
+    public function show(level_commission_log $level_commission_log)
     {
-        return view('packageModule.show');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Package  $package
+     * @param  \App\Models\level_commission_log  $level_commission_log
      * @return \Illuminate\Http\Response
      */
-    public function edit(Package $package)
+    public function edit(level_commission_log $level_commission_log)
     {
-        return view('packageModule.edit');
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Package  $package
+     * @param  \App\Models\level_commission_log  $level_commission_log
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $request, level_commission_log $level_commission_log)
     {
-        return view('packageModule.edit');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Package  $package
+     * @param  \App\Models\level_commission_log  $level_commission_log
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Package $package)
+    public function destroy(level_commission_log $level_commission_log)
     {
-       
+        //
     }
 }
