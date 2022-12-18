@@ -17,7 +17,7 @@
                         </div>
                     @endif
 
-                    
+                    {{ 'http://127.0.0.1:8000/register?ref_id='.Auth::user()->id }}
                     <br>
                     {{ __('You are normal user.') }}
                 </div>

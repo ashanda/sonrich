@@ -55,16 +55,15 @@ $role = auth()->user()->role;
             </a>  
           </li>
           <li class="nav-item">
-            <a href="kyc" class="nav-link">
+            <a href="/kyc" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Kyc
-                
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/product" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Products
@@ -75,7 +74,7 @@ $role = auth()->user()->role;
             <ul class="nav nav-treeview">
             @if ($role == 2 )
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="/product" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Products</p>
                 </a>
@@ -85,7 +84,7 @@ $role = auth()->user()->role;
             @elseif ($role == 2 || $role == 1)  
            
             <li class="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+              <a href="/product" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Activate Package</p>
               </a>

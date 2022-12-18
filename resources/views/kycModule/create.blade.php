@@ -5,17 +5,23 @@
 
 <!-- Step by stem form -->
 <div class="container-fluid">
-    <form id="stepregForm" class="stepregForm PT-3" action="">
+    <div class="pull-right">
+
+        <a class="btn btn-primary" href="{{ route('kyc.index') }}"> Back</a>
+
+    </div>
+
+    <form id="stepregForm" class="stepregForm PT-3" action="{{ route('kyc.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- One "tab" for each step in the form: -->
         <div class="tab pb-3">
             <div class="form-group">
                 <label for="mobNo1" class="form-label">Mobile No 01</label>
-                <input class="form-control" placeholder="" name="mobNo1">
+                <input class="form-control" placeholder="" name="mobile_number1">
             </div>
             <div class="form-group">
                 <label for="mobNo2" class="form-label">Mobile No 02</label>
-                <input class="form-control" placeholder="" name="mobNo2">
+                <input class="form-control" placeholder="" name="mobile_number2">
             </div>
             <div class="form-group">
                 <label for="country" class="form-label">Country Selected</label>
@@ -30,28 +36,45 @@
         </div>
         <div class="tab pb-3">
             <div class="form-group">
-                <label for="formFileLg" class="form-label">Id/Driving License/Passport</label>
-                <input class="form-control form-control-lg" id="formFileLg" type="file" />
+                <label for="formFileLg" class="form-label">ID/Driving License/Passport</label>
+                <select class="form-select p-2 ml-2" name="id_docs_type">
+                    <option value="">Select Yes/No</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="bankAcc" class="form-label">Address</label>
+                <input class="form-control" placeholder="" name="address">
+            </div>
+            <div class="form-group">
+                <label for="bankAcc" class="form-label">Docs Front</label>
+                <input class="form-control" placeholder="" name="id_doc_front">
+            </div>
+            <div class="form-group">
+                <label for="bankAcc" class="form-label">Docs Back</label>
+                <input class="form-control" placeholder="" name="id_doc_back">
             </div>
 
         </div>
         <div class="tab pb-3">
             <div class="form-group">
                 <label for="bankName" class="form-label">Bank Name</label>
-                <input class="form-control" placeholder="" name="bankName">
+                <input class="form-control" placeholder="" name="bank_name">
             </div>
             <div class="form-group">
                 <label for="branchName" class="form-label">Branch Name</label>
-                <input class="form-control" placeholder="" name="branchName">
+                <input class="form-control" placeholder="" name="branch_name">
             </div>
             <div class="form-group">
                 <label for="bankAcc" class="form-label">Bank Account Details</label>
-                <input class="form-control" placeholder="" name="bankAcc">
+                <input class="form-control" placeholder="" name="bank_acount_number">
             </div>
+
             <!-- checkbox -->
             <div class="form-group">
                 <label for="selectCtz" class="form-label">Are you Sri Lankan Citizen</label>
-                <select class="form-select p-2 ml-2" id="comboA" onchange="getComboA(this)" name="selectCtz">
+                <select class="form-select p-2 ml-2" id="comboA" onchange="getComboA(this)" name="citizen">
                     <option value="">Select Yes/No</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -59,7 +82,9 @@
             </div>
             <div id="crypto_wall" style="display: none;" class="form-group">
                 <label for="cryWall" class="form-label">Crypto Walet address</label>
-                <input id="cryWall" class="form-control" placeholder="" name="cryWall">
+                <input id="cryWall" class="form-control" placeholder="" name="crypto_wallet">
+                <input type="hidden" class="form-control" name="status" value="0">
+                <input type="hidden" class="form-control" name="user_id" value="{{ Auth::user()->id }}">
             </div>
         </div>
         <div style="overflow:auto;">
@@ -79,92 +104,7 @@
 </div>
 <!-- Step by stem form -->
 
-<div class="row">
-
-    <div class="col-lg-12 margin-tb">
-
-        <div class="pull-left">
-
-            <h2>Add New Product</h2>
-
-        </div>
-
-        <div class="pull-right">
-
-            <a class="btn btn-primary" href="{{ route('kyc.index') }}"> Back</a>
-
-        </div>
-
-    </div>
-
-</div>
 
 
-
-@if ($errors->any())
-
-<div class="alert alert-danger">
-
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-    <ul>
-
-        @foreach ($errors->all() as $error)
-
-        <li>{{ $error }}</li>
-
-        @endforeach
-
-    </ul>
-
-</div>
-
-@endif
-
-
-
-<form action="{{ route('kyc.store') }}" method="POST">
-
-    @csrf
-
-
-
-    <div class="row">
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Name:</strong>
-
-                <input type="text" name="name" class="form-control" placeholder="Name">
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Detail:</strong>
-
-                <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-
-        </div>
-
-    </div>
-
-
-
-</form>
 
 @endsection

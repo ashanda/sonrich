@@ -26,10 +26,12 @@ class CreateKycsTable extends Migration
             $table->string('branch_name');
             $table->string('bank_acount_number');
             $table->string('citizen');
+            $table->string('address');
             $table->string('crypto_wallet')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps(); 
-            
+  
+
         });
     }
 

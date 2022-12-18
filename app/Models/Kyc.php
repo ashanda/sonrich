@@ -16,9 +16,16 @@ class Kyc extends Model
         'id_doc_front',
         'id_doc_back',
         'country',
+        'address', 
         'bank_name',
         'branch_name',
         'bank_acount_number',
         'citizen',
+    ];
+
+    protected $hidden = [
+        'user_id',
+        'status',
+        'remember_token',
     ];
 }

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Kyc;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class KycController extends Controller
 {
     /**
@@ -13,7 +14,19 @@ class KycController extends Controller
      */
     public function index()
     {
-        return view('kycModule.index');
+        $role=Auth::user()->role;
+        if($role==1 || $role==2){
+
+            $data = DB::table('users')
+            ->join('kycs', 'kycs.user_id', '=', 'users.id')
+            ->orderBy('kycs.created_at', 'desc')
+            ->get();
+            return view('kycModule.index',compact('data'));
+        }
+        if($role==0){
+            return view('kycModule.index');
+        }
+        
     }
 
     /**
@@ -36,20 +49,20 @@ class KycController extends Controller
     {
         $request->validate([
 
-            'uid' => 'required',
-            'email' => 'required',
-            'fname' => 'required',
-            'lname' => 'required',
-            'mobile_no_one' => 'required|numeric|digits:10',
-            'mobile_no_two' => 'required|numeric|digits:10',
-            'id_doc' => 'required',
+            'user_id' => 'required',
+            'mobile_number1' => 'required',
+            'mobile_number2' => 'required',
+            'id_docs_type' => 'required',
             'id_doc_front' => 'required',
             'id_doc_back' => 'required',
             'country' => 'required',
+            'address' => 'required',
             'bank_name' => 'required',
             'branch_name' => 'required',
-            'account_number' => 'required|numeric',
-            'citizen_srilanka' => 'required',
+            'bank_acount_number' => 'required',
+            'citizen' => 'required',
+            'address' => 'required',
+            'status' => 'required',
         ]);
 
     
@@ -58,9 +71,7 @@ class KycController extends Controller
 
      
 
-        return redirect()->route('products.index')
-
-                        ->with('success','Product created successfully.');
+        return redirect()->route('kyc.index')->with('success','Product created successfully.');
     }
 
     /**
@@ -80,9 +91,18 @@ class KycController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $kyc, $id)
     {
-        //
+        $role=Auth::user()->role;
+        if($role==1 || $role==2){
+            $kyc = kyc::find($id);
+            return view('kycModule.edit',compact('kyc','id'));
+        }
+        if($role==0){
+            $user_id = Auth::id();
+            $kyc = DB::table('kycs')->where('user_id', $user_id)->get();  
+            return view('kycModule.edit',compact('kyc','id'));
+        }
     }
 
     /**
@@ -94,7 +114,64 @@ class KycController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role=Auth::user()->role;
+        if($role==1 || $role==2){
+            $request->validate([
+                
+                'status' => 'required',
+                ]);
+                $kyc = kyc::find($id);
+                
+                $kyc->status = $request->status;
+                $kyc->save();
+                return redirect()->route('kyc.index');
+        }
+        if($role==0){
+            $request->validate([
+                'user_id' => 'required',
+                'mobile_number1' => 'required',
+                'mobile_number2' => 'required',
+                'id_docs_type' => 'required',
+                'id_doc_front' => 'required',
+                'id_doc_back' => 'required',
+                'country' => 'required',
+                'address' => 'required',
+                'bank_name' => 'required',
+                'branch_name' => 'required',
+                'bank_acount_number' => 'required',
+                'citizen' => 'required',
+                'address' => 'required',
+                'status' => 'required',
+                ]);
+                $kyc = kyc::find($id);
+               
+                if($request->file('id_doc_front')){
+                    $file= $request->file('id_doc_front');
+                    $filename= date('YmdHi').$file->getClientOriginalName();
+                    $file-> move(public_path('/kycs/img'), $filename);
+                    $kyc->id_front_image = $filename;
+                }
+                if($request->file('id_doc_back')){
+                    $file= $request->file('id_doc_back');
+                    $filename= date('YmdHi').$file->getClientOriginalName();
+                    $file-> move(public_path('/kycs/img'), $filename);
+                    $kyc->id_back_image = $filename;
+                }
+                $kyc->user_id = $request->user_id;
+                $kyc->mobile_number1 = $request->mobile_number1;
+                $kyc->mobile_number2 = $request->mobile_number2;
+                $kyc->id_docs_type = $request->id_docs_type;
+                $kyc->country = $request->country;
+                $kyc->address = $request->address;
+                $kyc->bank_name = $request->bank_name;
+                $kyc->branch_name = $request->branch_name;
+                $kyc->bank_acount_number = $request->bank_acount_number;
+                $kyc->citizen = $request->citizen;
+                $kyc->address = $request->address;
+                $kyc->status = $request->status;
+                $kyc->save(); 
+                return redirect()->route('kyc.index');
+        }
     }
 
     /**
