@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDailyCommissionLogsTable extends Migration
+class CreateProductBuyRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateDailyCommissionLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('daily_commission_logs', function (Blueprint $table) {
-            $table->integer('id');
-            $table->integer('user_id');
-            $table->double('amount', 8, 2);
-            $table->integer('oder_id');
+        Schema::create('product_buy_requests', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');  
+            $table->integer('sponsor_id'); 
+            $table->integer('product_id');
+            $table->double('request_amount', 8, 2);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateDailyCommissionLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('daily_commission_logs');
+        Schema::dropIfExists('product_buy_requests');
     }
 }

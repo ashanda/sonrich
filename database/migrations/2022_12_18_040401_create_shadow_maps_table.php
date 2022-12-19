@@ -14,15 +14,15 @@ class CreateShadowMapsTable extends Migration
     public function up()
     {
         Schema::create('shadow_maps', function (Blueprint $table) {
-            $table->id();
-            $table->biginteger('y');
-            $table->biginteger('x');
-            $table->biginteger('user_id');
+            $table->integer('id');
+            $table->integer('y');
+            $table->integer('x');
+            $table->integer('user_id');
             $table->integer('status');
-            $table->biginteger('parent_node');
+            $table->integer('parent_node');
             $table->integer('reference_node_side');
-            $table->biginteger('x_max');
-            $table->biginteger('x_count');  
+            $table->integer('x_max');
+            $table->integer('x_count');  
             $table->timestamps();
         });
     }

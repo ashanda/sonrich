@@ -14,12 +14,12 @@ class CreateLevelCommissionLogsTable extends Migration
     public function up()
     {
         Schema::create('level_commission_logs', function (Blueprint $table) {
-            $table->id();
-            $table->biginteger('user_id');
+            $table->integer('id');
+            $table->integer('user_id');
             $table->double('amount', 8, 2);
-            $table->biginteger('oder_id');
-            $table->biginteger('reference_oder_id');
-            $table->biginteger('relative_level');
+            $table->integer('oder_id');
+            $table->integer('reference_oder_id');
+            $table->integer('relative_level');
             $table->timestamps();
         });
     }

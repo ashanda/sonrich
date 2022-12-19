@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KycController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\EditUserController;
+use App\Http\Controllers\UserBuyController;
+use App\Http\Controllers\WalletController;
+use App\Http\Controllers\PayoutController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -23,11 +28,17 @@ Route::get('/', function () {
 Auth::routes();
    
 Route::middleware(['auth'])->group(function () {
+   
 Route::middleware(['2fa'])->group(function () {
+Route::resource('/edit-profile',EditUserController::class); 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/super_admin', [HomeController::class, 'superadmin'])->name('super_admin');
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
+Route::resource('/buy_package', UserBuyController::class);
+Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
+Route::get('/friend_request', [PayoutController::class, 'index'])->name('friend_request');
+Route::get('/p2p', [PayoutController::class, 'index'])->name('p2p');
 Route::resource('/package', KycController::class);
 Route::resource('/kyc', KycController::class);
 Route::resource('/product', ProductController::class);

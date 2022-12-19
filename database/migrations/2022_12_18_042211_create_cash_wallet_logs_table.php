@@ -15,11 +15,11 @@ class CreateCashWalletLogsTable extends Migration
     {
         Schema::create('cash_wallet_logs', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('user_id');
+            $table->integer('user_id');
             $table->double('amount', 8, 2);
-            $table->biginteger('oder_id');
-            $table->biginteger('reference_oder_id');
-            $table->biginteger('trx_direction');
+            $table->integer('oder_id');
+            $table->integer('reference_oder_id');
+            $table->integer('trx_direction');
             $table->string('description');
             $table->timestamps();
         });

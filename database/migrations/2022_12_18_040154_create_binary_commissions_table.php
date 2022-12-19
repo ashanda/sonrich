@@ -14,10 +14,10 @@ class CreateBinaryCommissionsTable extends Migration
     public function up()
     {
         Schema::create('binary_commissions', function (Blueprint $table) {
-            $table->id();
-            $table->biginteger('user_id');
-            $table->biginteger('left_total');
-            $table->biginteger('right_total');
+            $table->integer('id');
+            $table->integer('user_id');
+            $table->integer('left_total');
+            $table->integer('right_total');
             $table->timestamps();
         });
     }

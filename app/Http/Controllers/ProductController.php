@@ -19,11 +19,14 @@ class ProductController extends Controller
             $role=Auth::user()->role;
             if($role==1 || $role == 2){  
                 $data = DB::table('products')->get();        
-                return view('packageModule.index',compact('data'));
+                return view('productModule.index',compact('data'));
             }
             if($role==0){
-                $data = DB::table('products')->get();        
-                return view('packageModule.index',compact('data'));
+                $data =DB::table('oders')
+                ->join('products', 'oders.product_id', '=', 'products.id')
+                ->where('oders.user_id', '=', Auth::user()->id)
+                ->get();        
+                return view('productModule.index',compact('data'));
             }
         }
 
@@ -50,47 +53,47 @@ class ProductController extends Controller
         public function store(Request $request)
         {
         $request->validate([
-        'package_name' => 'required',
-        'package_value' => 'required',
-        'package_category' => 'required',
-        'package_duration' => 'required',
-        'package_description' => 'required',
-        'package_image' => 'required',
-        'package_status' => 'required',
+        'product_name' => 'required',
+        'product_value' => 'required',
+        'product_category' => 'required',
+        'product_duration' => 'required',
+        'product_description' => 'required',
+        'product_image' => 'required',
+        'product_status' => 'required',
         ]);
-        $package = new Package();
-        $package->package_name = $request->package_name;
-        $package->package_value = $request->package_value;
-        $package->package_category = $request->package_category;
-        $package->package_duration = $request->package_duration;
-        $package->package_description = $request->package_description;
+        $product = new Package();
+        $product->product_name = $request->product_name;
+        $product->product_value = $request->product_value;
+        $product->product_category = $request->product_category;
+        $product->product_duration = $request->product_duration;
+        $product->product_description = $request->product_description;
         ;
-        if($request->file('package_image')){
-            $file= $request->file('package_image');
+        if($request->file('product_image')){
+            $file= $request->file('product_image');
             $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('/packages/img'), $filename);
-            $package->package_image = $filename;
+            $file-> move(public_path('/products/img'), $filename);
+            $product->product_image = $filename;
         }
         
-        $package->package_status = $request->package_status;
-        $package->save();
+        $product->product_status = $request->product_status;
+        $product->save();
         Alert::Alert('Success', 'Package has been created successfully.')->persistent(true,false);
-        return redirect()->route('package.index');
+        return redirect()->route('product.index');
         }
         /**
         * Display the specified resource.
         *
-        * @param  \App\package  $package
+        * @param  \App\product  $product
         * @return \Illuminate\Http\Response
         */
-        public function show(Package $package)
+        public function show(Package $product)
         {
-        return view('admin.package.show',compact('package'));
+        return view('productModule.show',compact('product'));
         } 
         /**
         * Show the form for editing the specified resource.
         *
-        * @param  \App\Company  $package
+        * @param  \App\Company  $product
         * @return \Illuminate\Http\Response
         */
         public function edit(Request $product,$id)
@@ -106,44 +109,44 @@ class ProductController extends Controller
         * Update the specified resource in storage.
         *
         * @param  \Illuminate\Http\Request  $request
-        * @param  \App\package  $package
+        * @param  \App\product  $product
         * @return \Illuminate\Http\Response
         */
         public function update(Request $request, $id)
         {
         $request->validate([
-            'package_name' => 'required',
-            'package_value' => 'required',
-            'package_category' => 'required',
-            'package_duration' => 'required',
-            'package_description' => 'required',
-            'package_status' => 'required',
+            'product_name' => 'required',
+            'product_value' => 'required',
+            'product_category' => 'required',
+            'product_duration' => 'required',
+            'product_description' => 'required',
+            'product_status' => 'required',
         ]);
-        $package = Package::find($id);
-        $package->package_name = $request->package_name;
-        $package->package_value = $request->package_value;
-        $package->package_category = $request->package_category;
-        $package->package_duration = $request->package_duration;
-        $package->package_description = $request->package_description;
+        $product = Package::find($id);
+        $product->product_name = $request->product_name;
+        $product->product_value = $request->product_value;
+        $product->product_category = $request->product_category;
+        $product->product_duration = $request->product_duration;
+        $product->product_description = $request->product_description;
         ;
-        if($request->file('package_image')){
-            $file= $request->file('package_image');
+        if($request->file('product_image')){
+            $file= $request->file('product_image');
             $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('/packages/img'), $filename);
-            $package->package_image = $filename;
+            $file-> move(public_path('/products/img'), $filename);
+            $product->product_image = $filename;
         }
         
-        $package->package_status = $request->package_status;
-        $package->save();
+        $product->product_status = $request->product_status;
+        $product->save();
         Alert::Alert('Success', 'Package has been updated successfully.')->persistent(true,false);
-        return redirect()->route('package.index');
+        return redirect()->route('product.index');
         }
         
-        public function destroy(Package $package)
+        public function destroy(Package $product)
         {
-        $package->delete();
+        $product->delete();
         Alert::Alert('Success', 'Package has been deleted successfully.')->persistent(true,false);
-        return redirect()->route('package.index');
+        return redirect()->route('product.index');
         }
 
         

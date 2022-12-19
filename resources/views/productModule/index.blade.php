@@ -71,64 +71,38 @@
         @endif
    
     <div class="row">
-    @foreach ( $data as $product)
-    <div class="col-xl-3 col-lg-3 col-sm-4">
-        <div class="card">
-            <div class="card-body">
+  
 
-                <div class="new-arrival-product">
-                    <div class="new-arrivals-img-contnent">
-                        <img class="img-fluid" src="{{ asset('products/img/'.$product->product_image) }}" alt="">
-                    </div>
-                    <div class="new-arrival-content text-center mt-3">
-                        <h4>{{ $product->product_title  }}</h4>
-                        <ul class="star-rating">
-                            <span class="pkg_duration">Product Points : {{ $product->point_value }}</span>
-                            <span class="pkg_desc">{{ $product->product_description }}</span>
-                        </ul>
-
-                        
-                        <span class="price">{{ $product->product_price }}</span>
-                        <?php /*
-                        <span class="userMsg">{{ ' (Will be charged $10 as a service charge)' }}</span>
-                        */ ?>
-                        <h3>Buy product</h3>
-
-                        <input type="hidden" name="product_id" value="{{ $product->id  }}">
-                        
-                        <div>
-                            
-                           <?php /* 
-                            @if (user_product_count() == 0)
-                            <a class="btn btn-primary ml-3" href="buy_product/{{ $product->id }}/progress" role="button">Using Crypto</a>
-                            @else
-                            <a class="btn btn-primary ml-3 mb-2" href="buy_product/{{ $product->id }}/progress" role="button">Using Crypto</a>
-                            <a class="btn btn-primary ml-3" href="buy_product/{{ $product->id }}/wallet_buy" role="button">Using Wallet</a>
-                            @endif
-
-                            */ ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
+        <table class="table table-bordered">
+            <tr>
+            <th>S.No</th>
+            <th>product Name</th>
+            <th>product price</th>
+            <th>product points value</th>
+            <th width="280px">Action</th>
+            </tr>
+            @foreach ($data as $oder)
+            <tr>
+            <td>{{ $oder->id }}</td>
+            <td>{{ $oder->product_title }}</td>
+            <td>{{ $oder->product_price }}</td>
+            <td>{{ $oder->point_value }}</td>
+            <td>
+               @if ($oder->status == 1)
+                {{ 'Active' }}
+               @elseif ($oder->status == 2)
+               {{ 'Completed' }}
+               @elseif ($oder->status == 0)
+               {{ 'Pending' }}
+               @else
+               {{ 'Cancel' }}
+               @endif
+            </td>
+            </tr>
+            @endforeach
+            </table>
     </div>
-    @endforeach
+
 
 
 

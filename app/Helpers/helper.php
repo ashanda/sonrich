@@ -1,8 +1,10 @@
 <?php
 use Monarobase\CountryList\CountryListFacade;
 Use App\Models\Kyc;
+Use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
  function getCountryList(){
     $countries = CountryListFacade::getList('en');
@@ -18,5 +20,8 @@ use Illuminate\Support\Facades\Auth;
     
     return $kyc;
  }
+
+
+
 
 

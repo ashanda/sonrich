@@ -15,9 +15,9 @@ class CreateCashWalletsTable extends Migration
     {
         Schema::create('cash_wallets', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('user_id');
-            $table->biginteger('hold_amount');
-            $table->biginteger('wallet_balance');
+            $table->integer('user_id');
+            $table->integer('hold_amount');
+            $table->integer('wallet_balance');
             $table->timestamps();
         });
     }

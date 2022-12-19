@@ -15,10 +15,10 @@ class CreateDirectCommissionLogsTable extends Migration
     {
         Schema::create('direct_commission_logs', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('user_id');
+            $table->integer('user_id');
             $table->double('amount', 8, 2);
-            $table->biginteger('oder_id');
-            $table->biginteger('reference_oder_id');
+            $table->integer('oder_id');
+            $table->integer('reference_oder_id');
             $table->timestamps();
         });
     }
