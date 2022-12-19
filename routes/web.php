@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KycController;
-use App\Http\Controllers\PackageController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -29,8 +28,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/super_admin', [HomeController::class, 'superadmin'])->name('super_admin');
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
-Route::resource('/product', PackageController::class);
+Route::resource('/package', KycController::class);
 Route::resource('/kyc', KycController::class);
+Route::resource('/product', ProductController::class);
 Route::post('/2fa', function () {
 
         

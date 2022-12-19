@@ -9,19 +9,23 @@ class Kyc extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'uid',
-        'email',
-        'fname',
-        'lname',
-        'phone_number_one',
-        'phone_number_two',
-        'id_doc',
-        'id_front_image',
-        'id_back_image',
+        'user_id',
+        'mobile_number1',
+        'mobile_number2',
+        'id_docs_type',
+        'id_doc_front',
+        'id_doc_back',
         'country',
+        'address', 
         'bank_name',
         'branch_name',
-        'acount_number',
-        'citizen_srilanka',
+        'bank_acount_number',
+        'citizen',
+    ];
+
+    protected $hidden = [
+        'user_id',
+        'status',
+        'remember_token',
     ];
 }

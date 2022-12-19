@@ -33,10 +33,10 @@
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
     <!-- Navbar -->
-    @include('includes.navbar');
+    @include('includes.navbar')
     @include('sweetalert::alert')
 
-    @include('includes.sidebar');
+    @include('includes.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
