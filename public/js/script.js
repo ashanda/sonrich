@@ -39,6 +39,8 @@ function nextPrev(n) {
     showTab(currentTab);
 }
 
+// section by section for for Kyc verification
+
 function validateForm() {
     // This function deals with validation of the form fields
     var x,
@@ -46,7 +48,7 @@ function validateForm() {
         i,
         valid = true;
     x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
+    y = x[currentTab].getElementsByClassName("vali");
     // A loop that checks every input field in the current tab:
     for (i = 0; i < y.length; i++) {
         // If a field is empty...
@@ -85,6 +87,7 @@ function getComboA(selectObject) {
     } else {
         document.getElementById("crypto_wall").style.display = "none";
         document.getElementById("cryWall").value = "";
+        document.getElementById("cryWall").classList.remove("invalid");
     }
 }
 
@@ -92,4 +95,4 @@ function getComboA(selectObject) {
 function drkMode() {
     var element = document.body;
     element.classList.toggle("dark-mode");
- }
+}
