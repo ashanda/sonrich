@@ -15,7 +15,6 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->biginteger('oder_id');
             $table->biginteger('product_price');
             $table->biginteger('point_value');
             $table->string('product_title');
