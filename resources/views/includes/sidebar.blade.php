@@ -73,32 +73,38 @@ $role = auth()->user()->role;
             </a>
             <ul class="nav nav-treeview">
             @if ($role == 2 )
+           
               <li class="nav-item">
-                <a href="/product" class="nav-link">
+                <a href="/product/create" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Products</p>
                 </a>
               </li>
-              
+              @endif 
             
-            @elseif ($role == 2 || $role == 1)  
-           
+            @if ($role == 2 || $role == 1)  
             <li class="nav-item">
               <a href="/product" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Activate Package</p>
+                <p>All Products</p>
               </a>
             </li>
-            @else
-            
+            <li class="nav-item">
+              <a href="/product" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Activate Product</p>
+              </a>
+            </li>
+            @endif
+            @if ($role == 0) 
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="/product" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Purchesed Product</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="/product" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Buy Products</p>
                 </a>
