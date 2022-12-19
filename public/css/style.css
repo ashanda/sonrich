@@ -41,3 +41,6 @@
 .stepregForm .step.finish {
     background-color: #000000;
 }
+.content-wrapper {
+    padding: 20px;
+}
