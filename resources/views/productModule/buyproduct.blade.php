@@ -43,7 +43,7 @@
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id  }}">
                                 <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
-                                <input type="hidden" name="point_value" value="{{ $product->point_value  }}">
+                                <input type="hidden" name="product_point" value="{{ $product->point_value  }}">
                                 <input type="hidden" name="status" value="0">
                                  <button type="submit" class="btn btn-primary">Real Cash</button>
                             </form>
@@ -53,6 +53,7 @@
                                 <label>Sponsor ID</label>
                                 <input type="number" name="sponsor_id" value="">
                                 <input type="hidden" name="product_id" value="{{ $product->id  }}">
+                                <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
                                 <input type="hidden" name="status" value="0">
                                 <button type="submit" class="btn btn-primary">Using Sponser Funds</button>
                             </form>
@@ -63,7 +64,7 @@
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id  }}">
                                 <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
-                                <input type="hidden" name="point_value" value="{{ $product->point_value  }}">
+                                <input type="hidden" name="product_point" value="{{ $product->point_value  }}">
                                 <input type="hidden" name="status" value="0">
                                  <button type="submit" class="btn btn-primary">Using Product Wallet</button>
                             </form>
@@ -73,7 +74,7 @@
                                 <input type="hidden" name="amount" value="">
                                 <input type="hidden" name="product_id" value="{{ $product->id  }}">
                                 <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
-                                <input type="hidden" name="point_value" value="{{ $product->point_value  }}">
+                                <input type="hidden" name="product_point" value="{{ $product->point_value  }}">
                                 <input type="hidden" name="status" value="0">
                                  <button type="submit" class="btn btn-primary">Using Product Wallet + Cash</button>
                             </form>

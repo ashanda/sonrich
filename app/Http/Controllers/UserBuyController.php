@@ -25,15 +25,23 @@ class UserBuyController extends Controller
                 return view('productModule.buyproduct',compact('data'));
             
         }
+
+        if($role==0){
+            $data =DB::table('products')->get();
+                return view('productModule.buyproduct',compact('data'));
+            
+        }
     }
 
     public function real_cash(Request $request){
         $oder = new oder;
         $oder->user_id = Auth::user()->id;
         $oder->product_id = $request->product_id;
-        $oder->price = $request->product_price;
+        $oder->product_value = $request->product_price;
+        $oder->product_point = $request->product_point;
         $oder->payment_method = 'Real Cash';
         $oder->cash_pay_amount = $request->product_price;
+        $oder->wallet_pay_amount = 0;
         $oder->max_value = $request->product_price*3;
         $oder->status = $request->status;
         $oder->save();
@@ -60,9 +68,9 @@ class UserBuyController extends Controller
     public function sponsor_funds(Request $request){
         $oder = new ProductBuyRequest;
         $oder->user_id = Auth::user()->id;
-        $oder->user_id = $request->sponsor_id;
+        $oder->sponsor_id = $request->sponsor_id;
         $oder->product_id = $request->product_id;
-        $oder->request_amount = $request->request_amount;
+        $oder->request_amount = $request->product_price;
         $oder->status = $request->status;
         $oder->save();
 
@@ -81,19 +89,20 @@ class UserBuyController extends Controller
             ['oder_id'=> $oder_id,
             'count'=>$oder_count+1]);
 
-        return redirect('buy_product')->with('status', 'Blog Post Form Data Has Been inserted');
+        return redirect('buy_product')->with('success', 'please wait for approve!');
         
     }
 
     public function wallet_and_cash(Request $request){
+        $product_wallet = DB::table('product_wallets')->where('user_id', Auth::user()->id)->first();
+        $cash_pay_amount = $request->product_price - $product_wallet->wallet_balance;
         $oder = new oder;
         $oder->user_id = Auth::user()->id;
-        $oder->user_id = $request->sponsor_id;
         $oder->product_id = $request->product_id;
-        $oder->price = $request->product_price;
-        $oder->wallet_pay_amount = $request->product_price;
-        $oder->cash_pay_amount = $request->product_price;
-        $oder->request_amount = $request->request_amount;
+        $oder->product_value = $request->product_price;
+        $oder->wallet_pay_amount = $product_wallet->wallet_balance;
+        $oder->product_point = $request->product_point;
+        $oder->cash_pay_amount = $cash_pay_amount;
         $oder->payment_method = 'Wallet + Cash';
         $oder->max_value = $request->product_price*3;
         $oder->status = $request->status;
@@ -114,16 +123,21 @@ class UserBuyController extends Controller
             ['oder_id'=> $oder_id,
             'count'=>$oder_count+1]);
 
-        return redirect('buy_product')->with('status', 'Blog Post Form Data Has Been inserted');
+        $new_product_wallet_balance = DB::table('product_wallets')->updateOrInsert(
+                ['user_id'=>Auth::user()->id],
+                ['wallet_balance'=> 0]);
+        return redirect('buy_product')->with('success', 'Product buy Successfully wait for admin approve!');
     }
 
     public function product_wallet(Request $request){
-        var_dump($request);
+        
         $oder = new oder;
         $oder->user_id = Auth::user()->id;
         $oder->product_id = $request->product_id;
         $oder->wallet_pay_amount = $request->product_price;
-        $oder->price = $request->product_price;
+        $oder->cash_pay_amount = 0;
+        $oder->product_value = $request->product_price;
+        $oder->product_point = $request->product_point;
         $oder->payment_method = 'Product Wallet';
         $oder->max_value = $request->product_price*3;
         $oder->status = $request->status;
@@ -143,8 +157,14 @@ class UserBuyController extends Controller
             ['user_id'=>Auth::user()->id],
             ['oder_id'=> $oder_id,
             'count'=>$oder_count+1]);
+        $product_wallet_balance_detils = DB::table('product_wallets')->where('user_id', Auth::user()->id)->first();
+        
+        $new_product_wallet_balance = DB::table('product_wallets')->updateOrInsert(
+                ['user_id'=>Auth::user()->id],
+                ['wallet_balance'=> 0]);
 
-        return redirect('buy_product')->with('status', 'Blog Post Form Data Has Been inserted');
+               
+        return redirect('buy_product')->with('success', 'Product buy Successfully wait for admin approve!');
     }
 
     /**

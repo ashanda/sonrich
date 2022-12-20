@@ -41,8 +41,8 @@ Route::post('/buy_product/sponsor_funds', [UserBuyController::class, 'sponsor_fu
 Route::post('/buy_product/wallet_and_cash', [UserBuyController::class, 'wallet_and_cash'])->name('wallet_and_cash');
 Route::post('/buy_product/product_wallet', [UserBuyController::class, 'product_wallet'])->name('product_wallet');
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
-Route::get('/friend_request', [PayoutController::class, 'index'])->name('friend_request');
-Route::get('/p2p', [PayoutController::class, 'index'])->name('p2p');
+Route::resource('/friend_request', PayoutController::class);
+
 Route::resource('/package', KycController::class);
 Route::resource('/kyc', KycController::class);
 Route::resource('/product', ProductController::class);
