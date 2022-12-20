@@ -104,7 +104,7 @@ $role = auth()->user()->role;
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/buy_package" class="nav-link">
+                <a href="/buy_product" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Ready to buy products</p>
                 </a>

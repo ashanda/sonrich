@@ -19,6 +19,7 @@ class CreateProductBuyRequestsTable extends Migration
             $table->integer('sponsor_id'); 
             $table->integer('product_id');
             $table->double('request_amount', 8, 2);
+            $table->integer('status');
             $table->timestamps();
         });
     }

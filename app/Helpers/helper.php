@@ -22,8 +22,19 @@ use Illuminate\Support\Facades\Crypt;
  }
 
 function user_product_count(){
-    $user_count = DB::table('user_oder_counts')->where('user_id',Auth::user()->id)->first();
+    $user_data = DB::table('user_oder_counts')->where('user_id',Auth::user()->id)->get();
+    $user_count = $user_data->count();
     return $user_count;
+}
+
+function product_wallet_balance(){
+    $product_wallet_balance_data = DB::table('product_wallets')->where('user_id',Auth::user()->id)->first();
+    if($product_wallet_balance_data != NULL){
+        $product_wallet_balance = $product_wallet_balance_data->wallet_balance;
+    }else{
+        $product_wallet_balance = 0;
+    }
+    return $product_wallet_balance;
 }
 
 
