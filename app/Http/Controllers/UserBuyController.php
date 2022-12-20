@@ -27,6 +27,27 @@ class UserBuyController extends Controller
         }
     }
 
+    public function real_cash($request){
+        $oder = new oder;
+        $oder->user_id = $request->user_id;
+        $oder->product_id = $request->product_id;
+        $oder->status = $request->status;
+        $post->save();
+        return redirect('buy_product/real_cash')->with('status', 'Blog Post Form Data Has Been inserted');
+    }
+
+    public function sponser_funds($request){
+        return view('userModule.user.userHome');
+    }
+
+    public function wallet_and_cash($request){
+        return view('userModule.user.userHome');
+    }
+
+    public function product_wallet($request){
+        return view('userModule.user.userHome');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

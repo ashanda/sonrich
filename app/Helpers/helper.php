@@ -21,7 +21,10 @@ use Illuminate\Support\Facades\Crypt;
     return $kyc;
  }
 
-
+function user_product_count(){
+    $user_count = DB::table('user_oder_counts')->where('user_id',Auth::user()->id)->first();
+    return $user_count;
+}
 
 
 

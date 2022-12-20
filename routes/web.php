@@ -36,6 +36,8 @@ Route::get('/super_admin', [HomeController::class, 'superadmin'])->name('super_a
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
 Route::resource('/buy_package', UserBuyController::class);
+Route::get('/buy_product/real_cash', [UserBuyController::class, 'real_cash'])->name('real_cash');
+
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 Route::get('/friend_request', [PayoutController::class, 'index'])->name('friend_request');
 Route::get('/p2p', [PayoutController::class, 'index'])->name('p2p');

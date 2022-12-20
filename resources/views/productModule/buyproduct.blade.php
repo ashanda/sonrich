@@ -37,15 +37,16 @@
                         
                         <div>
                             
-                           <?php /* 
+                           
                             @if (user_product_count() == 0)
-                            <a class="btn btn-primary ml-3" href="buy_product/{{ $product->id }}/progress" role="button">Using Crypto</a>
+                            <a class="btn btn-primary ml-3" href="buy_product/real_cash" role="button">Real Cash</a>
+                            <a class="btn btn-primary ml-3" href="buy_product/sponser_funds" role="button">Using Sponser Funds</a>
                             @else
-                            <a class="btn btn-primary ml-3 mb-2" href="buy_product/{{ $product->id }}/progress" role="button">Using Crypto</a>
-                            <a class="btn btn-primary ml-3" href="buy_product/{{ $product->id }}/wallet_buy" role="button">Using Wallet</a>
+                            <a class="btn btn-primary ml-3 mb-2" href="buy_product/wallet_and_cash" role="button">Using Product Wallet + Cash</a>
+                            <a class="btn btn-primary ml-3" href="buy_product/product_wallet" role="button">Using Product Wallet</a>
                             @endif
 
-                            */ ?>
+                            
 
                         </div>
                     </div>
