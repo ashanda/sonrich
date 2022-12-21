@@ -14,7 +14,7 @@ class CreateProductBuyRequestsTable extends Migration
     public function up()
     {
         Schema::create('product_buy_requests', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('user_id');  
             $table->integer('sponsor_id'); 
             $table->integer('product_id');

@@ -14,7 +14,7 @@ class CreateUserOderCountsTable extends Migration
     public function up()
     {
         Schema::create('user_oder_counts', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->integer('user_id');
             $table->integer('oder_id');
             $table->integer('count');

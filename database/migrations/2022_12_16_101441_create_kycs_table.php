@@ -14,7 +14,7 @@ class CreateKycsTable extends Migration
     public function up()
     {
         Schema::create('kycs', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->integer('user_id');
             $table->string('mobile_number1');
             $table->string('mobile_number2');

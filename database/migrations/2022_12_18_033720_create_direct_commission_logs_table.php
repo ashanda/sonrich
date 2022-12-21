@@ -14,7 +14,7 @@ class CreateDirectCommissionLogsTable extends Migration
     public function up()
     {
         Schema::create('direct_commission_logs', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('user_id');
             $table->double('amount', 8, 2);
             $table->integer('oder_id');
