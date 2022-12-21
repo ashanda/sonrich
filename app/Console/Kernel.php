@@ -13,9 +13,16 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+    protected $commands = [
+
+        Commands\DailyCommissionCron::class,
+
+    ];
+
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('dailycommission:cron')->dailyAt('00:00');;
     }
 
     /**

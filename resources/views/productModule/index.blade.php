@@ -37,7 +37,9 @@
     <th>product Name</th>
     <th>product price</th>
     <th>product points value</th>
+    @if (Auth::user()->role == 2)
     <th width="280px">Action</th>
+    @endif
     </tr>
     @foreach ($data as $product)
     <tr>
@@ -45,6 +47,7 @@
     <td>{{ $product->product_title }}</td>
     <td>{{ $product->product_price }}</td>
     <td>{{ $product->point_value }}</td>
+    @if (Auth::user()->role == 2)
     <td>
         <form action="{{ route('product.destroy',$product->id) }}" method="POST">
         <a class="btn btn-primary" href="{{ route('product.edit',$product->id) }}">Edit</a>
@@ -53,6 +56,7 @@
         <button type="submit" class="btn btn-danger">Delete</button>
         </form>
     </td>
+    @endif
     </tr>
     @endforeach
     </table>

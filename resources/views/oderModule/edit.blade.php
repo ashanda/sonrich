@@ -54,7 +54,7 @@
                         <div class="form-group">
                             <strong>Package Status:</strong>
                             <div class="dropdown bootstrap-select form-control default-select">
-                                <select class="form-control default-select" tabindex="-98" name="package_status">
+                                <select class="form-control default-select" tabindex="-98" name="oder_status">
                                   
                                     @if ($oder[0]->status == '0')
                                     <option value="1">Active</option>
@@ -72,7 +72,7 @@
                                   
                               </select>
                               
-                              <input type="hidden" name="uid" value="{{ $oder[0]->uid }}">
+                              <input type="hidden" name="user_id" value="{{ $oder[0]->uid }}">
                               <input type="hidden" name="product_value" value="{{ ($oder[0]->product_value) }}"> 
                               <input type="hidden" name="point_value" value="{{ $oder[0]->product_point }}">
                               

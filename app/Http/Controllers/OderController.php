@@ -21,13 +21,41 @@ class OderController extends Controller
 
             $data = DB::table('oders')
             ->join('users', 'users.id', '=', 'oders.user_id')
+            ->where('oders.status',0)
             ->orderBy('oders.created_at', 'desc')
             ->select('users.id as uid','users.fname','users.lname','oders.*')
+
+            ->get();
+            return view('oderModule.index',compact('data'));
+        }
+
+        if($role==0){
+
+            $data = DB::table('oders')
+            ->join('users', 'users.id', '=', 'oders.user_id')
+            
+            ->where('users.id',Auth::user()->id)
+            ->orderBy('oders.created_at', 'desc')
+            ->select('users.id as uid','users.fname','users.lname','oders.*')
+
             ->get();
             return view('oderModule.index',compact('data'));
         }
     }
 
+    public function all_oders()
+    {
+        $role=Auth::user()->role;
+        if($role==1 || $role==2){
+
+            $data = DB::table('oders')
+            ->join('users', 'users.id', '=', 'oders.user_id')
+            ->orderBy('oders.created_at', 'desc')
+            ->select('users.id as uid','users.fname','users.lname','oders.*')
+            ->get();
+            return view('oderModule.all',compact('data'));
+        }
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -87,9 +115,25 @@ class OderController extends Controller
      * @param  \App\Models\oder  $oder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, oder $oder)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'oder_status' => 'required',
+            'point_value' => 'required',
+            'product_value' => 'required',
+        ]);
+
+        $package = oder::find($id);
+        $package->status = $request->oder_status;
+        $package->save();
+        $child_id = $request->user_id;
+        $binary_points = $request->point_value;
+        $product_value = $request->product_value;
+        $level_commission = (master_data()->level * $product_value);
+        $level_points = $level_commission;  
+       // Call Stored Procedure
+        //$getPost = DB::select('ShadowMapCommissions('.$child_id.','.$binary_points.','.$level_points.')');
+        return redirect('oders')->with('success', 'Oder Approved Successfully!');
     }
 
     /**

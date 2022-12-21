@@ -89,20 +89,9 @@ $role = auth()->user()->role;
                 <p>All Products</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="/product" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Activate Product</p>
-              </a>
-            </li>
+            
             @endif
             @if ($role == 0) 
-              <li class="nav-item">
-                <a href="/product" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Purchesed product</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a href="/buy_product" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -127,31 +116,31 @@ $role = auth()->user()->role;
             <li class="nav-item">
               <a href="/oders" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
+                <p>Pending Oders</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/all-oders" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
                 <p>All Oders</p>
               </a>
             </li>
-            
             @endif
             @if ($role == 0) 
               <li class="nav-item">
-                <a href="/product" class="nav-link">
+                <a href="/oders" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Purchesed product</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="/buy_product" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ready to buy products</p>
-                </a>
-              </li>
+              
             
             @endif
           </ul> 
           </li>
           @if ($role == 1 || $role == 0)
           <li class="nav-item">
-            <a href="kyc" class="nav-link">
+            <a href="/genealogy" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Genealogy
@@ -159,18 +148,20 @@ $role = auth()->user()->role;
             </a>
           </li>
           @endif
-          
-          
+          @if ($role == 1)
           <li class="nav-item">
             <a href="/wallet" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Wallet
-               
+                
+                
               </p>
             </a>
+            
           </li>
-
+          @endif
+          @if ($role == 0) 
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-columns"></i>
@@ -194,6 +185,44 @@ $role = auth()->user()->role;
               </li>
             </ul>
           </li>
+          @endif
+          @if ($role == 1 || $role == 2)
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-columns"></i>
+              <p>
+                Reports
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/friend_request" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Total Binary Points Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/p2p" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Total Direct Points Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/p2p" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Total Level Points Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/p2p" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Total Daily Points Reports</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cash;
 use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
-class EditUserController extends Controller
+class CashController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class EditUserController extends Controller
      */
     public function index()
     {
-        return view('userModule.user.userProfile');
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class EditUserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Cash  $cash
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cash $cash)
     {
         //
     }
@@ -53,10 +52,10 @@ class EditUserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Cash  $cash
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Cash $cash)
     {
         //
     }
@@ -65,37 +64,24 @@ class EditUserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Cash  $cash
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Cash $cash)
     {
-        $request->validate([
-            'fname' =>'required|string|max:255',
-            'lname' =>'required|string|max:255',
-            'email'=>'required|email|string|max:255'
-        ]);
-
-        $user =  User::find($id);
-        $user->fname = $request['fname'];
-        $user->lname = $request['lname'];
-        $user->email = $request['email'];
-       
-        if($request['password'] != null){
-            $user->password = Hash::make($request['password']);
-        }
-        
-        $user->save();
-        return back()->with('message','Profile Updated');
+        $package = Cash::find($id);
+        $package->status = $request->oder_status;
+        $package->save();
+        return redirect('cash')->with('success', 'cash Approved Successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Cash  $cash
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cash $cash)
     {
         //
     }

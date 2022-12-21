@@ -24,11 +24,13 @@
                         <tr>
                             <th>User id</th>
                             <th>User Name</th>
-                            <th>Package Value</th>
+                            <th>Product Value</th>
                             <th>Payment Methode</th>
                             <th>Created at</th>
                             <th>Package status</th>
+                            @if(Auth::user()->role == 1||Auth::user()->role == 2)
                             <th width="280px">Action</th>
+                            @endif
                         </tr>
                            
                     </thead>
@@ -49,12 +51,14 @@
             @else
             <td>{{ 'Rejected' }}</td>
             @endif
+            @if(Auth::user()->role == 1||Auth::user()->role == 2)
             <td>
                 
                 <a class="btn btn-primary" href="{{ route('oders.edit',$oder->id) }}">View</a>
                 <a href="#myModal" class="btn btn-danger" id="aButton" data-toggle="modal">Delete</a>
                 
             </td>
+            @endif
             <!-- Modal HTML -->
             <div id="myModal" class="modal fade">
                 <div class="modal-dialog modal-confirm">

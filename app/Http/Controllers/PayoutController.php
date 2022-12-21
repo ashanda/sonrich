@@ -26,14 +26,23 @@ class PayoutController extends Controller
         }
     }
 
-    public function edit(Request $id)
+    public function edit(Request $buy_requests,$id)
     {
         $role=Auth::user()->role;
         if($role==0){
            
-            $buy_requests = DB::table('product_buy_requests')->where('id', 2)->get(); 
+            $buy_requests = DB::table('product_buy_requests')->where('id', $id)->get(); 
             
             return view('payModule.user_requests_edit',compact('buy_requests','id'));
         }
+    }
+
+    public function update(Request $request, $id){
+
+        $package = ProductBuyRequest::find($id);
+        $package->status = 1;
+        $package->save();
+        return redirect('p2p')->with('success', 'p2p Approved Successfully!');
+   
     }
 }

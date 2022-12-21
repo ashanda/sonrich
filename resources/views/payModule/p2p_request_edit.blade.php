@@ -12,7 +12,7 @@
 
                     </div>
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="{{ route('friend_request.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('p2p.index') }}"> Back</a>
                     </div>
                 </div>
             </div>
@@ -22,20 +22,20 @@
             </div>
             @endif
            
-            <form action="{{ route('friend_request.update',$id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('p2p.update',$id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
 
-                    
+                  
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Request Value:</strong>
-                            <input type="text" name="requset_value" class="form-control" value="{{ $buy_requests[0]->request_amount }}" readonly>
                            
-                            @error('product_price')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                            @enderror
+                           
+                            <strong>Request Value:</strong>
+                            <input type="number" name="requset_value" class="form-control" value="{{ $p2p[0]->request_amount }}" readonly>
+                            <input type="hidden" name="oder_status"  value="1" readonly>
+                            
                         </div>
                     </div>
                     
