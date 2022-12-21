@@ -9,6 +9,7 @@ use App\Http\Controllers\EditUserController;
 use App\Http\Controllers\UserBuyController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\PayoutController;
+use App\Http\Controllers\OderController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -36,11 +37,13 @@ Route::get('/super_admin', [HomeController::class, 'superadmin'])->name('super_a
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
 Route::resource('/buy_product', UserBuyController::class);
+Route::resource('/oders', OderController::class);
 Route::post('/buy_product/real_cash', [UserBuyController::class, 'real_cash'])->name('real_cash');
 Route::post('/buy_product/sponsor_funds', [UserBuyController::class, 'sponsor_funds'])->name('sponsor_funds');
 Route::post('/buy_product/wallet_and_cash', [UserBuyController::class, 'wallet_and_cash'])->name('wallet_and_cash');
 Route::post('/buy_product/product_wallet', [UserBuyController::class, 'product_wallet'])->name('product_wallet');
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
+
 Route::resource('/friend_request', PayoutController::class);
 
 Route::resource('/package', KycController::class);

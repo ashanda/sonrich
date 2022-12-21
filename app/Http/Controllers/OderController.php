@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\oder;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 class OderController extends Controller
 {
     /**
@@ -14,7 +16,16 @@ class OderController extends Controller
      */
     public function index()
     {
-        //
+        $role=Auth::user()->role;
+        if($role==1 || $role==2){
+
+            $data = DB::table('oders')
+            ->join('users', 'users.id', '=', 'oders.user_id')
+            ->orderBy('oders.created_at', 'desc')
+            ->select('users.id as uid','users.fname','users.lname','oders.*')
+            ->get();
+            return view('oderModule.index',compact('data'));
+        }
     }
 
     /**
@@ -55,9 +66,18 @@ class OderController extends Controller
      * @param  \App\Models\oder  $oder
      * @return \Illuminate\Http\Response
      */
-    public function edit(oder $oder)
+    public function edit(Request $oder,$id)
     {
-        //
+        $role=Auth::user()->role;
+            if($role==1 || $role==2){
+                $oder = DB::table('oders')
+                ->join('users', 'users.id', '=', 'oders.user_id')
+                ->where('oders.id', $id)
+                ->orderBy('oders.created_at', 'desc')
+                ->select('users.id as uid','users.fname','users.lname','oders.*')
+                ->get();
+                return view('oderModule.edit',compact('oder','id'));
+            }
     }
 
     /**
