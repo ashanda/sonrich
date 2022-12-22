@@ -148,7 +148,7 @@ $role = auth()->user()->role;
             </a>
           </li>
           @endif
-          @if ($role == 1)
+          @if ($role == 0 || $role == 1)
           <li class="nav-item">
             <a href="/wallet" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>

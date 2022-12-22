@@ -132,7 +132,7 @@ class OderController extends Controller
         $level_commission = (master_data()->level * $product_value);
         $level_points = $level_commission;  
        // Call Stored Procedure
-        //$getPost = DB::select('ShadowMapCommissions('.$child_id.','.$binary_points.','.$level_points.')');
+        //$getPost = DB::select(' CALL ShadowMapCommissions('.$child_id.','.$binary_points.','.$level_points.')');
         return redirect('oders')->with('success', 'Oder Approved Successfully!');
     }
 

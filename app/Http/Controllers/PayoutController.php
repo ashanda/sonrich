@@ -42,6 +42,9 @@ class PayoutController extends Controller
         $package = ProductBuyRequest::find($id);
         $package->status = 1;
         $package->save();
+
+        
+
         return redirect('p2p')->with('success', 'p2p Approved Successfully!');
    
     }

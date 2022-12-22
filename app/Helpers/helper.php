@@ -198,8 +198,32 @@ function geneology( $target_parent){
     
   }
   
-
-  function master_data(){
+function master_data(){
     $master_data = DB::table('master')->first();
     return $master_data;
-  }
+}
+
+function product_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description){
+  $product_wallet_log = DB::table('product_wallet_logs')->insert(
+    ['user_id' => $user_id, 'amount' => $amount, 'oder_id' => $oder_id,'reference_oder_id' => $reference_oder_id,'trx_direction' => $trx_direction ,'description'=> $description]
+  );
+}
+
+function cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description){
+  $cash_wallet_log = DB::table('cash_wallet_logs')->insert(
+    ['user_id' => $user_id, 'amount' => $amount, 'oder_id' => $oder_id,'reference_oder_id' => $reference_oder_id,'trx_direction' => $trx_direction ,'description'=> $description]
+  );
+}
+
+function cash_wallet($user_id){
+  $cash_wallet = DB::table('cash_wallets')->where('user_id',$user_id)->first(); 
+ 
+  return $cash_wallet;
+
+}
+
+function product_wallet(){
+  $product_wallet = DB::table('cash_wallets')->where('user_id',Auth::user()->id)->first();
+  return $product_wallet;
+
+}

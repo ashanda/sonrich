@@ -163,7 +163,14 @@ class UserBuyController extends Controller
                 ['user_id'=>Auth::user()->id],
                 ['wallet_balance'=> 0]);
 
-               
+        $user_id  =  Auth::user()->id ; 
+        $amount = $request->product_price;
+        $oder_id = $oder->id;
+        $reference_oder_id;
+        $trx_direction = 'Out';
+        $description = 'product wallet buy';
+        product_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description);    
+              
         return redirect('buy_product')->with('success', 'Product buy Successfully wait for admin approve!');
     }
 

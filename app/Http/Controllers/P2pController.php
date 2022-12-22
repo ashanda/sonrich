@@ -91,7 +91,20 @@ class P2pController extends Controller
         $package = p2p::find($id);
         $package->status = $request->oder_status;
         $package->save();
-        return redirect('p2p')->with('success', 'p2p Approved Successfully!');
+
+        $last_cash_wallet = cash_wallet($package->request_user_id);
+        $wallet = cash_wallet::find($last_cash_wallet->id);  
+        $wallet->wallet_balance  = $package->request_amount - $request->request_amount;
+        $wallet->save();
+
+        $user_id  =  $package->user_id; 
+        $amount = $package->request_amount;
+        $oder_id = $package->request_user_id;
+        $reference_oder_id;
+        $trx_direction = 'Out';
+        $description = 'P2P withdraw';
+        cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
+        return redirect('p2p')->with('success', 'Approved Successfully!');
 
     }
 
