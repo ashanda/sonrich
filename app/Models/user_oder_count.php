@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class user_oder_count extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id'
+        
+    ];
 }

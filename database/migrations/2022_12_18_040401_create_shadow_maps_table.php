@@ -14,7 +14,7 @@ class CreateShadowMapsTable extends Migration
     public function up()
     {
         Schema::create('shadow_maps', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->integer('y');
             $table->integer('x');
             $table->integer('user_id');

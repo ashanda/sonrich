@@ -14,7 +14,7 @@ class CreateDailyCommissionLogsTable extends Migration
     public function up()
     {
         Schema::create('daily_commission_logs', function (Blueprint $table) {
-            $table->integer('id');
+            $table->increments('id');
             $table->integer('user_id');
             $table->double('amount', 8, 2);
             $table->integer('oder_id');

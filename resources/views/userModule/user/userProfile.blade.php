@@ -51,7 +51,7 @@
                          </div>
                          <div class="form-group">
                             <label for="password"><strong>password:</strong></label>
-                            <input type="password" class="form-control" id ="password" value="{{ Auth::user()->password }}" name="password">
+                            <input type="password" class="form-control" id ="password" value="" name="password">
                         </div>
                           <button class="btn btn-primary" type="submit">Update Profile</button>
                      </form>

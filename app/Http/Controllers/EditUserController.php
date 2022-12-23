@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class EditUserController extends Controller
 {
@@ -73,11 +75,16 @@ class EditUserController extends Controller
             'lname' =>'required|string|max:255',
             'email'=>'required|email|string|max:255'
         ]);
-        
+
+        $user =  User::find($id);
         $user->fname = $request['fname'];
         $user->lname = $request['lname'];
         $user->email = $request['email'];
-        $user->password = Hash::make($request['password']);
+       
+        if($request['password'] != null){
+            $user->password = Hash::make($request['password']);
+        }
+        
         $user->save();
         return back()->with('message','Profile Updated');
     }

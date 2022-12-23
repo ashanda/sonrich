@@ -14,7 +14,7 @@ class CreateProductWalletsTable extends Migration
     public function up()
     {
         Schema::create('product_wallets', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->integer('user_id');
             $table->integer('wallet_balance');
             $table->timestamps();

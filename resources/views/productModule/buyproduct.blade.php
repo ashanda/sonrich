@@ -33,17 +33,56 @@
                         */ ?>
                         <h3>Buy product</h3>
 
-                        <input type="hidden" name="product_id" value="{{ $product->id  }}">
+                        
                         
                         <div>
                             
                            
                             @if (user_product_count() == 0)
-                            <a class="btn btn-primary ml-3" href="buy_product/real_cash" role="button">Real Cash</a>
-                            <a class="btn btn-primary ml-3" href="buy_product/sponser_funds" role="button">Using Sponser Funds</a>
+                            <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/real_cash')}}">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id  }}">
+                                <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
+                                <input type="hidden" name="product_point" value="{{ $product->point_value  }}">
+                                <input type="hidden" name="status" value="0">
+                                 <button type="submit" class="btn btn-primary">Real Cash</button>
+                            </form>
+
+                           <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/sponsor_funds')}}">
+                                @csrf
+                                <label>Sponsor ID</label>
+                                <input type="number" name="sponsor_id" value="">
+                                <input type="hidden" name="product_id" value="{{ $product->id  }}">
+                                <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
+                                <input type="hidden" name="status" value="0">
+                                <button type="submit" class="btn btn-primary">Using Sponser Funds</button>
+                            </form>
+                           
                             @else
-                            <a class="btn btn-primary ml-3 mb-2" href="buy_product/wallet_and_cash" role="button">Using Product Wallet + Cash</a>
-                            <a class="btn btn-primary ml-3" href="buy_product/product_wallet" role="button">Using Product Wallet</a>
+                            @if (product_wallet_balance() >= $product->product_price)
+                            <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/product_wallet')}}">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id  }}">
+                                <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
+                                <input type="hidden" name="product_point" value="{{ $product->point_value  }}">
+                                <input type="hidden" name="status" value="0">
+                                 <button type="submit" class="btn btn-primary">Using Product Wallet</button>
+                            </form>
+                            @else
+                            <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/wallet_and_cash')}}">
+                                @csrf
+                                <input type="hidden" name="amount" value="">
+                                <input type="hidden" name="product_id" value="{{ $product->id  }}">
+                                <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
+                                <input type="hidden" name="product_point" value="{{ $product->point_value  }}">
+                                <input type="hidden" name="status" value="0">
+                                 <button type="submit" class="btn btn-primary">Using Product Wallet + Cash</button>
+                            </form>
+                            @endif
+                           
+                           
+                            
+                            
                             @endif
 
                             

@@ -9,6 +9,10 @@ use App\Http\Controllers\EditUserController;
 use App\Http\Controllers\UserBuyController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\PayoutController;
+use App\Http\Controllers\OderController;
+use App\Http\Controllers\WithdrawalController;
+use App\Http\Controllers\P2pController;
+use App\Http\Controllers\GenealogyController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -35,12 +39,27 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/super_admin', [HomeController::class, 'superadmin'])->name('super_admin');
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
-Route::resource('/buy_package', UserBuyController::class);
-Route::get('/buy_product/real_cash', [UserBuyController::class, 'real_cash'])->name('real_cash');
+Route::get('/all-oders', [OderController::class, 'all_oders'])->name('all-oders');
+Route::resource('/buy_product', UserBuyController::class);
+Route::resource('/p2p', P2pController::class);
+Route::resource('/oders', OderController::class);
+Route::get('/withdrawal', [WithdrawalController::class, 'index'])->name('withdrawal');
+Route::resource('/withdraw', WithdrawalController::class);
+Route::post('cash/trans', [WithdrawalController::class, 'cash_trans'])->name('withdrawal');
+Route::post('p2p/trans', [WithdrawalController::class, 'p2p_trans'])->name('withdrawal');
 
+Route::get('trans/cash', [WithdrawalController::class, 'cash'])->name('withdrawal');
+Route::get('trans/p2p', [WithdrawalController::class, 'p2p'])->name('withdrawal');
+
+
+Route::post('/buy_product/real_cash', [UserBuyController::class, 'real_cash'])->name('real_cash');
+Route::post('/buy_product/sponsor_funds', [UserBuyController::class, 'sponsor_funds'])->name('sponsor_funds');
+Route::post('/buy_product/wallet_and_cash', [UserBuyController::class, 'wallet_and_cash'])->name('wallet_and_cash');
+Route::post('/buy_product/product_wallet', [UserBuyController::class, 'product_wallet'])->name('product_wallet');
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
-Route::get('/friend_request', [PayoutController::class, 'index'])->name('friend_request');
-Route::get('/p2p', [PayoutController::class, 'index'])->name('p2p');
+Route::get('/pending_request', [WalletController::class, 'index'])->name('wallet');
+Route::resource('/friend_request', PayoutController::class);
+Route::get('/genealogy' , [GenealogyController::class,'index'])->name('genealogy');
 Route::resource('/package', KycController::class);
 Route::resource('/kyc', KycController::class);
 Route::resource('/product', ProductController::class);
