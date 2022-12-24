@@ -33,7 +33,9 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
-        "files": ["app/Helpers/helpers.php",
+        "files": ["app/Helpers/BinaryCommissionCalc.php",
+                  "app/Helpers/LevelCommissionCalc.php",
+                  "app/Helpers/ShadowMapCommissions.php",
                   "app/Helpers/helper.php"
                  ]
     },

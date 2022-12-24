@@ -2,10 +2,13 @@
 use Monarobase\CountryList\CountryListFacade;
 Use App\Models\Kyc;
 Use App\Models\User;
+Use App\Models\cash_wallet;
+Use App\Models\shadow_map;
 Use App\Models\daily_commission_log;
 Use App\Models\direct_commission_log;
 Use App\Models\binary_commission_log;
 Use App\Models\level_commission_log;
+use App\Models\product_wallet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -198,23 +201,28 @@ function geneology( $target_parent){
     
   }
   
+// All Master Data
+
 function master_data(){
     $master_data = DB::table('master')->first();
     return $master_data;
 }
 
+// product wallet log
 function product_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description){
   $product_wallet_log = DB::table('product_wallet_logs')->insert(
     ['user_id' => $user_id, 'amount' => $amount, 'oder_id' => $oder_id,'reference_oder_id' => $reference_oder_id,'trx_direction' => $trx_direction ,'description'=> $description]
   );
 }
 
+// cash wallet log
 function cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description){
   $cash_wallet_log = DB::table('cash_wallet_logs')->insert(
     ['user_id' => $user_id, 'amount' => $amount, 'oder_id' => $oder_id,'reference_oder_id' => $reference_oder_id,'trx_direction' => $trx_direction ,'description'=> $description]
   );
 }
 
+//cash Wallet Update
 function cash_wallet($user_id){
   $cash_wallet = DB::table('cash_wallets')->where('user_id',$user_id)->first(); 
  
@@ -222,8 +230,59 @@ function cash_wallet($user_id){
 
 }
 
+//product wallet Update
 function product_wallet(){
   $product_wallet = DB::table('cash_wallets')->where('user_id',Auth::user()->id)->first();
   return $product_wallet;
 
+}
+
+//user oder count
+function user_oder_count($user_id){
+  $user_oder_count = DB::table('user_oder_counts')->where('user_id',$user_id)->first();
+  return $user_oder_count;
+}
+
+//cash wallet Update
+function cash_wallet_update($amount,$user_id,$currentorderid,$reference_oder_id){
+  $store_amount = (2/3) * $amount;
+  $update_cash_wallet = cash_wallet::updateOrInsert(
+    ['user_id' => $user_id],
+    ['wallet_balance' => $store_amount]);
+    
+    $trx_direction = 'IN';
+    $description = '2/3 Binary commission';
+  
+  cash_wallet_log($user_id,$amount,$currentorderid,$reference_oder_id,$trx_direction,$description);
+
+  return $update_cash_wallet;
+}
+
+///product wallet Update
+function product_wallet_update($amount,$current_user_id,$currentorderid,$reference_oder_id){
+
+  $store_amount = (1/3) * $amount;
+  
+  $update_product_wallet = product_wallet::updateOrInsert(
+    ['user_id' => $current_user_id],
+    ['wallet_balance' => $store_amount]
+  );
+
+
+
+    $trx_direction = 'IN';
+    $description = '1/3 Binary commission';
+
+    product_wallet_log($current_user_id,$amount,$currentorderid,$reference_oder_id,$trx_direction,$description);
+
+  return $update_product_wallet;
+}
+
+
+//shadow map parent node check
+
+function shadow_map_parent_node_check($child_id){
+  $nodeparent_map = shadow_map::where('user_id', $child_id)->first();
+
+  return $nodeparent_map;
 }

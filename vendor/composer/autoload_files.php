@@ -37,6 +37,8 @@ return array(
     '37a3dc5111fe8f707ab4c132ef1dbc62' => $vendorDir . '/guzzlehttp/guzzle/src/functions_include.php',
     'ec07570ca5a812141189b1fa81503674' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
     '6b34c85f7b1ad6faa15aa12109e030f2' => $vendorDir . '/realrashid/sweet-alert/src/functions.php',
-    'd21d43db5f6e840ee7b10744ec7fdf66' => $baseDir . '/app/Helpers/helpers.php',
+    'ca83ca576483a475f90e087fec9b8ff9' => $baseDir . '/app/Helpers/BinaryCommissionCalc.php',
+    '859427d23d2561f016617e8a4c3c1cb4' => $baseDir . '/app/Helpers/LevelCommissionCalc.php',
+    '9e0cc206d65852c02d2a57502e90dfe9' => $baseDir . '/app/Helpers/ShadowMapCommissions.php',
     'ef157334f1067da991ff8953983afdb3' => $baseDir . '/app/Helpers/helper.php',
 );

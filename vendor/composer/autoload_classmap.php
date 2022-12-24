@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\DailyCommissionCron' => $baseDir . '/app/Console/Commands/DailyCommissionCron.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -66,6 +67,7 @@ return array(
     'App\\Models\\product_wallet' => $baseDir . '/app/Models/product_wallet.php',
     'App\\Models\\product_wallet_log' => $baseDir . '/app/Models/product_wallet_log.php',
     'App\\Models\\shadow_map' => $baseDir . '/app/Models/shadow_map.php',
+    'App\\Models\\shadow_map_model' => $baseDir . '/app/Models/shadow_map_model.php',
     'App\\Models\\user_oder_count' => $baseDir . '/app/Models/user_oder_count.php',
     'App\\Models\\withdrawal' => $baseDir . '/app/Models/withdrawal.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

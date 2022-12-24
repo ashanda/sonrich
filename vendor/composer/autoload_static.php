@@ -38,7 +38,9 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '6b34c85f7b1ad6faa15aa12109e030f2' => __DIR__ . '/..' . '/realrashid/sweet-alert/src/functions.php',
-        'd21d43db5f6e840ee7b10744ec7fdf66' => __DIR__ . '/../..' . '/app/Helpers/helpers.php',
+        'ca83ca576483a475f90e087fec9b8ff9' => __DIR__ . '/../..' . '/app/Helpers/BinaryCommissionCalc.php',
+        '859427d23d2561f016617e8a4c3c1cb4' => __DIR__ . '/../..' . '/app/Helpers/LevelCommissionCalc.php',
+        '9e0cc206d65852c02d2a57502e90dfe9' => __DIR__ . '/../..' . '/app/Helpers/ShadowMapCommissions.php',
         'ef157334f1067da991ff8953983afdb3' => __DIR__ . '/../..' . '/app/Helpers/helper.php',
     );
 
@@ -575,6 +577,7 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\DailyCommissionCron' => __DIR__ . '/../..' . '/app/Console/Commands/DailyCommissionCron.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -635,6 +638,7 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
         'App\\Models\\product_wallet' => __DIR__ . '/../..' . '/app/Models/product_wallet.php',
         'App\\Models\\product_wallet_log' => __DIR__ . '/../..' . '/app/Models/product_wallet_log.php',
         'App\\Models\\shadow_map' => __DIR__ . '/../..' . '/app/Models/shadow_map.php',
+        'App\\Models\\shadow_map_model' => __DIR__ . '/../..' . '/app/Models/shadow_map_model.php',
         'App\\Models\\user_oder_count' => __DIR__ . '/../..' . '/app/Models/user_oder_count.php',
         'App\\Models\\withdrawal' => __DIR__ . '/../..' . '/app/Models/withdrawal.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
