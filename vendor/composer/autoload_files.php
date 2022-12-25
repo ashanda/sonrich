@@ -40,5 +40,6 @@ return array(
     'ca83ca576483a475f90e087fec9b8ff9' => $baseDir . '/app/Helpers/BinaryCommissionCalc.php',
     '859427d23d2561f016617e8a4c3c1cb4' => $baseDir . '/app/Helpers/LevelCommissionCalc.php',
     '9e0cc206d65852c02d2a57502e90dfe9' => $baseDir . '/app/Helpers/ShadowMapCommissions.php',
+    'ad2e8b6e007f449cc671010da93394b0' => $baseDir . '/app/Helpers/UserPositioning.php',
     'ef157334f1067da991ff8953983afdb3' => $baseDir . '/app/Helpers/helper.php',
 );

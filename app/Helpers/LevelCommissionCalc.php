@@ -56,6 +56,23 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
         cash_wallet_update($new_level_points,$current_user_id,$currentorderid,$reference_oder_id);
     }else{
 
+        $oder_update = oder::find($currentorderid);
+        $oder_update->total_package_earnings = $level_points;
+        $oder_update->save();
+
+        // 1/3 product wallet
+        product_wallet_update($level_points,$current_user_id,$currentorderid,$reference_oder_id);
+
+        // 2/3 cash wallet
+        cash_wallet_update($level_points,$current_user_id,$currentorderid,$reference_oder_id);
+
+        $level_commission_logs = new level_commission_log;
+        $level_commission_logs->user_id = $currentuser;
+        $level_commission_logs->amount = $level_points;
+        $level_commission_logs->oder_id = $currentorderid;
+        $level_commission_logs->reference_oder_id = $reference_oder_id;
+        $level_commission_logs->relative_level = $relative_level;
+        $level_commission_logs->save();
 
     }
 

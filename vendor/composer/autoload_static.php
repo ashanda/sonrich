@@ -41,6 +41,7 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
         'ca83ca576483a475f90e087fec9b8ff9' => __DIR__ . '/../..' . '/app/Helpers/BinaryCommissionCalc.php',
         '859427d23d2561f016617e8a4c3c1cb4' => __DIR__ . '/../..' . '/app/Helpers/LevelCommissionCalc.php',
         '9e0cc206d65852c02d2a57502e90dfe9' => __DIR__ . '/../..' . '/app/Helpers/ShadowMapCommissions.php',
+        'ad2e8b6e007f449cc671010da93394b0' => __DIR__ . '/../..' . '/app/Helpers/UserPositioning.php',
         'ef157334f1067da991ff8953983afdb3' => __DIR__ . '/../..' . '/app/Helpers/helper.php',
     );
 
@@ -606,6 +607,7 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
         'App\\Http\\Controllers\\ProductWalletController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductWalletController.php',
         'App\\Http\\Controllers\\ProductWalletLogController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductWalletLogController.php',
         'App\\Http\\Controllers\\ShadowMapController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShadowMapController.php',
+        'App\\Http\\Controllers\\ShadowMapModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShadowMapModelController.php',
         'App\\Http\\Controllers\\UserBuyController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserBuyController.php',
         'App\\Http\\Controllers\\UserOderCountController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserOderCountController.php',
         'App\\Http\\Controllers\\WalletController' => __DIR__ . '/../..' . '/app/Http/Controllers/WalletController.php',

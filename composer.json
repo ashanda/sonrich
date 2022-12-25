@@ -36,6 +36,7 @@
         "files": ["app/Helpers/BinaryCommissionCalc.php",
                   "app/Helpers/LevelCommissionCalc.php",
                   "app/Helpers/ShadowMapCommissions.php",
+                  "app/Helpers/UserPositioning.php",
                   "app/Helpers/helper.php"
                  ]
     },

@@ -35,6 +35,7 @@ return array(
     'App\\Http\\Controllers\\ProductWalletController' => $baseDir . '/app/Http/Controllers/ProductWalletController.php',
     'App\\Http\\Controllers\\ProductWalletLogController' => $baseDir . '/app/Http/Controllers/ProductWalletLogController.php',
     'App\\Http\\Controllers\\ShadowMapController' => $baseDir . '/app/Http/Controllers/ShadowMapController.php',
+    'App\\Http\\Controllers\\ShadowMapModelController' => $baseDir . '/app/Http/Controllers/ShadowMapModelController.php',
     'App\\Http\\Controllers\\UserBuyController' => $baseDir . '/app/Http/Controllers/UserBuyController.php',
     'App\\Http\\Controllers\\UserOderCountController' => $baseDir . '/app/Http/Controllers/UserOderCountController.php',
     'App\\Http\\Controllers\\WalletController' => $baseDir . '/app/Http/Controllers/WalletController.php',

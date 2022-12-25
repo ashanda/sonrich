@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
-function ShadowMapCommissions($current_user_id,$binary_points,$level_points,$reference_oder_id){
+function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $direct_point, $reference_oder_id){
     $currentuser;
     $nodeparent;
     $parentside;
@@ -28,8 +28,7 @@ function ShadowMapCommissions($current_user_id,$binary_points,$level_points,$ref
     $parent_node = $currentuser_map->parent_node;
     $currentuser = shadow_map::where('user_id', $parent_node)->where('status',1)->first();
     
-    //Direct Commission
-    //DirectCommissionCalc($parent_node);
+    
 
 
     //loop
@@ -41,8 +40,13 @@ function ShadowMapCommissions($current_user_id,$binary_points,$level_points,$ref
         if($currentuser->status != 1){
             break;
         }
-      //binary Commission
-      BinaryCommissionCalc($currentuser,$binary_points,$reference_oder_id);
+        //binary Commission
+        BinaryCommissionCalc($currentuser,$binary_points,$reference_oder_id);
+
+     if($i <= 1){
+         //Direct Commission
+        DirectCommissionCalc($currentuser, $direct_point);
+     }
 
       //level commission
       if( $i <= 10){
