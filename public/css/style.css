@@ -44,3 +44,27 @@
 .content-wrapper {
     padding: 20px;
 }
+
+.bg-primary {
+    background-color: #128143; 
+}
+.primary {
+    color: #128143;
+}
+.btn-primary {
+    background-color: #128143;
+    border-color: #128143;
+}
+.btn-primary:hover {
+    opacity: 0.8;
+    background-color: #128143;
+    border-color: #128143;
+}
+.btn-primary:active {
+    background-color: #128143;
+    border-color: #128143;
+}
+.sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
+.sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
+    background-color: #128143;
+}

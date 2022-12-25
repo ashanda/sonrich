@@ -4,7 +4,7 @@
 
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        <a href=""><b>Register</b></a>
     </div>
 
     <div class="card">
