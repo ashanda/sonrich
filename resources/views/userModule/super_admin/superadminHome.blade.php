@@ -20,6 +20,8 @@
                     {{ __('You are logged in!') }}
                     <br>
                     {{ __('You are super user') }}
+                    
+                    {{ LevelCommissionCalc( 2, 5, 1)}}
                 </div>
             </div>
         </div>

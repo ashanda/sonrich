@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class level_commission_log extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id'
+        
+    ];
 }

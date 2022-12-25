@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductWalletsTable extends Migration
+class CreateShadowMapModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateProductWalletsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_wallets', function (Blueprint $table) {
+        Schema::create('shadow_map_models', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->double('wallet_balance', 8,2);
+            $table->integer('virtual_level');
+            $table->json('value_array');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateProductWalletsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_wallets');
+        Schema::dropIfExists('shadow_map_models');
     }
 }
