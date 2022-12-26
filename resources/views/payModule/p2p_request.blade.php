@@ -3,7 +3,7 @@
 
 <div class="content-body">
     <div class="container-fluid">
-<div class="container mt-2">
+<div class="mt-2">
     <div class="row">
 
     </div>
@@ -12,7 +12,7 @@
     <p>{{ $message }}</p>
     </div>
     @endif
-    <table class="table table-bordered">
+    <table class="table table-bordered table-striped dataTable dtr-inline">
     <tr>
     <th>S.No</th>
     <th>User Name</th>

@@ -4,7 +4,7 @@
 @if (Auth::user()->role == 1 || Auth::user()->role == 2)
 <div class="content-body">
     <div class="container-fluid">
-<div class="container mt-2">
+<div class="mt-2">
     <div class="row">
     @if (Auth::user()->role == 1)
     <div class="col-lg-12 margin-tb">
@@ -31,7 +31,7 @@
     <p>{{ $message }}</p>
     </div>
     @endif
-    <table class="table table-bordered">
+    <table class="table table-bordered table-striped dataTable dtr-inline">
     <tr>
     <th>S.No</th>
     <th>product Name</th>
@@ -67,7 +67,7 @@
 @else
 <div class="row product-section" style="margin-top: 85px;padding:20px;">
 
-    <div class="container mt-2">
+    <div class="mt-2">
         @if ($message = Session::get('success'))
             <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -77,7 +77,7 @@
     <div class="row">
   
 
-        <table class="table table-bordered">
+        <table class="table table-bordered table-striped dataTable dtr-inline">
             <tr>
             <th>S.No</th>
             <th>product Name</th>
