@@ -2,9 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-
-
-    <h4 class="text-bold">
+    <h4>
         {{ __('User Dashboard') }}
     </h4>
     @if (session('status'))
@@ -19,16 +17,12 @@
                 <button class="btn btn-primary" onclick="copyContent()">Copy!</button>
                 <div id="mess" style="display: none;" class="alert alert-success py-2 px-4 ml-3" role="alert">Copied!</div>
             </div>
-
         </div>
         <!-- <div class="col-md-6 col-sm-12">
             <div class="alert alert-secondary py-2" role="alert">
                 {{ __('You are normal user.') }}
             </div>
         </div> -->
-        <div class="col-md-6">
-
-        </div>
     </div>
 </div>
 <script>

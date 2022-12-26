@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -19,7 +19,7 @@
                     <br>
                     {{ __('You are super user') }}
 
-                    <!-- {{ LevelCommissionCalc( 2, 5, 1)}} -->
+                    {{ LevelCommissionCalc( 2, 5, 1)}}
 
                     {{ user_positioning(5) }}
 
