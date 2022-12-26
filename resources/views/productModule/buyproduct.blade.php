@@ -68,7 +68,9 @@
                                 <input type="hidden" name="status" value="0">
                                  <button type="submit" class="btn btn-primary">Using Product Wallet</button>
                             </form>
-                            @else
+                            @endif
+                            
+                            @if (product_wallet_balance() >= 20000)
                             <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/wallet_and_cash')}}">
                                 @csrf
                                 <input type="hidden" name="amount" value="">
