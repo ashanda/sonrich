@@ -17,13 +17,18 @@
             <div class="copy_text py-2">
                 <span class="mr-4">Ref Link - <span id="refLink"> {{ 'http://127.0.0.1:8000/register?ref_id='.Auth::user()->id }}</span></span>
                 <button class="btn btn-primary" onclick="copyContent()">Copy!</button>
+                <div id="mess" style="display: none;" class="alert alert-success py-2 px-4 ml-3" role="alert">Copied!</div>
             </div>
+
         </div>
         <!-- <div class="col-md-6 col-sm-12">
             <div class="alert alert-secondary py-2" role="alert">
                 {{ __('You are normal user.') }}
             </div>
         </div> -->
+        <div class="col-md-6">
+
+        </div>
     </div>
 </div>
 <script>
@@ -31,7 +36,9 @@
     const copyContent = async () => {
         try {
             await navigator.clipboard.writeText(text);
-            alert("Content copied to clipboard");
+            // alert("Content copied to clipboard");
+            document.getElementById("mess").style.display = "inline";
+            $("#mess").fadeOut();
         } catch (err) {
             alert("Failed to copy: ", err);
         }
