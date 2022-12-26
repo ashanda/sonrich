@@ -4,7 +4,7 @@ $role = auth()->user()->role;
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
+  <a href="/home" class="brand-link">
     <img src="{{asset('adminlte/dist/img/logo.png')}}" alt="AdminLTE Logo" class="w-100" style="opacity: .8">
     <!-- <span class="brand-text font-weight-light">SONRICH</span> -->
   </a>

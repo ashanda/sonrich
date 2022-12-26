@@ -7,9 +7,7 @@
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left mb-2">
                         <h2>approve Request</h2>
-                        
-                        
-
+               
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-primary" href="{{ route('p2p.index') }}"> Back</a>

@@ -64,6 +64,10 @@
     background-color: #128143;
     border-color: #128143;
 }
+.btn-primary.focus, .btn-primary:focus{
+    background-color: #128143;
+    border-color: #128143;
+}
 .sidebar-dark-primary .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
     background-color: #128143;

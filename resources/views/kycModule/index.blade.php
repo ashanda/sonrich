@@ -20,7 +20,7 @@
             </div>
             @endif
 
-            <div class="table-responsive">
+            <div class="table table-bordered table-striped dataTable dtr-inline">
                 <table id="example2" class="display" style="width:100%">
                     <thead>
                         <tr>

@@ -16,8 +16,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 
-<<<<<<< HEAD
-=======
     <title>{{ config('app.name', 'Laravel') }} </title>
 
     <!-- Fonts -->
@@ -415,7 +413,6 @@
             font-family: 'Nunito', sans-serif;
         }
     </style>
->>>>>>> 2eac3103d3805bdf464039b1a134f6319b089b34
 </head>
 
 <body id="page-top">
