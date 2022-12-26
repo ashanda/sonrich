@@ -89,7 +89,7 @@ class UserBuyController extends Controller
             ['oder_id'=> $oder_id,
             'count'=>$oder_count+1]);
 
-        return redirect('buy_product')->with('success', 'please wait for approve!');
+        return redirect('buy_product')->with('success', 'Waiting for admins approval.');
         
     }
 
@@ -126,7 +126,7 @@ class UserBuyController extends Controller
         $new_product_wallet_balance = DB::table('product_wallets')->updateOrInsert(
                 ['user_id'=>Auth::user()->id],
                 ['wallet_balance'=> 0]);
-        return redirect('buy_product')->with('success', 'Product buy Successfully wait for admin approve!');
+        return redirect('buy_product')->with('success', 'You have place the order successfully. Waiting for admins approval.');
     }
 
     public function product_wallet(Request $request){
@@ -171,7 +171,7 @@ class UserBuyController extends Controller
         $description = 'product wallet buy';
         product_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description);    
               
-        return redirect('buy_product')->with('success', 'Product buy Successfully wait for admin approve!');
+        return redirect('buy_product')->with('success', 'You have place the order successfully. Waiting for admins approval.');
     }
 
     /**

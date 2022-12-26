@@ -100,7 +100,7 @@ class KycController extends Controller
         }
         if($role==0){
             $user_id = Auth::id();
-            $kyc = DB::table('kycs')->where('user_id', $user_id)->get();  
+            $kyc = DB::table('kycs')->where('user_id', $user_id)->first();  
             return view('kycModule.edit',compact('kyc','id'));
         }
     }
