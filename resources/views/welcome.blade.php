@@ -16,8 +16,6 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
 
-<<<<<<< HEAD
-=======
     <title>{{ config('app.name', 'Laravel') }} </title>
 
     <!-- Fonts -->

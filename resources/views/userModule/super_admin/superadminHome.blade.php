@@ -11,9 +11,7 @@
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
-
-                                
-                           
+ 
                         </div>
                     @endif
 
@@ -21,7 +19,7 @@
                     <br>
                     {{ __('You are super user') }}
                     
-                    {{ LevelCommissionCalc( 2, 5, 1)}}
+                    <!-- {{ LevelCommissionCalc( 2, 5, 1)}} -->
                 </div>
             </div>
         </div>
