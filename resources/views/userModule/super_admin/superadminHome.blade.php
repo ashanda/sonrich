@@ -18,7 +18,7 @@
                     <br>
                     {{ __('You are super user') }}
                     
-                    {{ user_positioning(5) }}
+                    {{ place_user(4) }}
                 </div>
             </div>
         </div>

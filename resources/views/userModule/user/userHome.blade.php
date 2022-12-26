@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <div class="copy_text py-2">
-                <span class="mr-4">Ref Link - <span id="refLink"> {{ 'http://127.0.0.1:8000/register?ref_id='.Auth::user()->id }}</span></span>
+                <span class="mr-4">Ref Link - <span id="refLink"> {{ 'https://future.sonrich.net/register?ref_id='.Auth::user()->id }}</span></span>
                 <button class="btn btn-primary" onclick="copyContent()">Copy!</button>
             </div>
         </div>
