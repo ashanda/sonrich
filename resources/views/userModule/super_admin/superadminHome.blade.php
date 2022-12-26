@@ -19,7 +19,7 @@
                     <br>
                     {{ __('You are super user') }}
 
-                    {{ LevelCommissionCalc( 2, 5, 1)}}
+                    <!-- {{ LevelCommissionCalc( 2, 5, 1)}} -->
 
                     {{ user_positioning(5) }}
 
