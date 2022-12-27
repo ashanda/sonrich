@@ -46,7 +46,7 @@
 }
 
 .bg-primary {
-    background-color: #128143; 
+    background-color: #128143;
 }
 .primary {
     color: #128143;
@@ -64,7 +64,8 @@
     background-color: #128143;
     border-color: #128143;
 }
-.btn-primary.focus, .btn-primary:focus{
+.btn-primary.focus,
+.btn-primary:focus {
     background-color: #128143;
     border-color: #128143;
 }
@@ -73,13 +74,13 @@
     background-color: #128143;
 }
 
-.active_bg{
+.active_bg {
     background-color: green;
 }
-.nonactive_bg{
+.nonactive_bg {
     background-color: orange;
 }
-.acti{
+.acti {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -87,14 +88,42 @@
 
 /* stepregForm */
 .stepregForm #frame1,
-.stepregForm #frame2{
+.stepregForm #frame2 {
     max-width: 200px;
 }
 
 /* transparent background */
-.pw_show{
+.pw_show {
     border: 1px solid #ced4da;
     border-left: none;
     border-right: none;
     background-color: #ffff;
+}
+
+.pro_img {
+    max-width: 200px;
+    margin: auto;
+}
+
+span.pkg_duration {
+    position: absolute;
+    background: red;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    margin-left: -20px;
+    margin-top: -10px;
+    line-height: 1;
+    border-radius: 50%;
+    padding-top: 5px;   
+}
+.new-arrival-content form{
+    margin-bottom: 10px;
+}
+.copy_text{
+    text-align: center;
+}
+.copy_text .ref_content{
+    max-width: 500px;
+    margin: auto;
 }
