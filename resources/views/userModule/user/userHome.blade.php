@@ -70,7 +70,7 @@
             <div class="card text-center p-3">
                 <h5>Contact Support</h5>
                 <span><i class="fa fa-phone"></i></span>
-                <span><a href="" class="btn">Contact Us</a></span>
+                <span><a href="" class="btn text-dark">Contact Us</a></span>
             </div>
         </div>
     </div>
