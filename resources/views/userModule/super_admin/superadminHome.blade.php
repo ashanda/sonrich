@@ -19,7 +19,7 @@
                     <br>
                     {{ __('You are super user') }}
                     
-                    {{ place_user(4) }}
+                    {{ user_positioning(4) }}
 
 
                     
