@@ -80,7 +80,21 @@
     background-color: orange;
 }
 .acti{
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
+}
+
+/* stepregForm */
+.stepregForm #frame1,
+.stepregForm #frame2{
+    max-width: 200px;
+}
+
+/* transparent background */
+.pw_show{
+    border: 1px solid #ced4da;
+    border-left: none;
+    border-right: none;
+    background-color: #ffff;
 }
