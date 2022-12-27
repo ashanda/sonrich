@@ -175,7 +175,7 @@ function place_user($current_node){
 
             //rearrange 
 
-
+/*
      $a = 0;
 
      $current_level_map_model = DB::table('shadow_map_models')->where('virtual_level', 1)->get();
@@ -189,7 +189,8 @@ function place_user($current_node){
 
         // Since array count starts from 0 and map model table's starting value is 1,  
         // We need to get one minus to the original value
-        $new_map_node = $map_model[0]->value_array -1; 
+   /*     //dd($map_model->value_array);
+        $new_map_node = array(1,2) -1; 
          
          $rearrange_current_level_map[$a] = array($current_level_nodes[$new_map_node] );
 
@@ -206,7 +207,7 @@ function place_user($current_node){
       
         return ([-1,-1]); // which means we don't have empty node at this entire level
      }
-
+*/
 }
 
 }
