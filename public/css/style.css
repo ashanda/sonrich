@@ -72,3 +72,15 @@
 .sidebar-light-primary .nav-sidebar > .nav-item > .nav-link.active {
     background-color: #128143;
 }
+
+.active_bg{
+    background-color: green;
+}
+.nonactive_bg{
+    background-color: orange;
+}
+.acti{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}

@@ -3,19 +3,42 @@
 @section('content')
 <div class="container-fluid">
     <h4>
-        {{ __('User Dashboard') }}
+        {{ __('Dashboard') }}
     </h4>
+
+
+    <h5>Welcome to Sonrich Asset Plan</h5>
+
     @if (session('status'))
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
     </div>
+
     @endif
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-sm-6 py-3">
+            <div class="card text-center p-3">
+                <h5>Total BV Points</h5>
+                <h1 class="pb-2 pt-1">1395.22</h1>
+            </div>
+        </div>
+        <div class="col-sm-6 p-3">
+            <div class="card text-center p-3">
+                <h5>Active Package</h5>
+                <h6>Package Name</h6>
+                <h3>30,000</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
             <div class="copy_text py-2">
-                <span class="mr-4">Ref Link - <span id="refLink"> {{ 'https://future.sonrich.net/register?ref_id='.Auth::user()->id }}</span></span>
-                <button class="btn btn-primary" onclick="copyContent()">Copy!</button>
-                <div id="mess" style="display: none;" class="alert alert-success py-2 px-4 ml-3" role="alert">Copied!</div>
+                <h5>Ref Link</h5>
+                <div class="ref_content bg-secondary p-3">
+                    <span id="refLink" class="mr-3"> {{ 'https://future.sonrich.net/register?ref_id='.Auth::user()->id }}</span></span>
+                    <button class="btn btn-primary" onclick="copyContent()">Copy!</button>
+                    <div id="mess" style="display: none;" class="alert alert-success py-2 px-4 ml-3" role="alert">Copied!</div>
+                </div>
             </div>
         </div>
         <!-- <div class="col-md-6 col-sm-12">
@@ -23,6 +46,24 @@
                 {{ __('You are normal user.') }}
             </div>
         </div> -->
+    </div>
+    <div class="row">
+        <div class="col-sm-6 py-3">
+            <div class="card text-center p-3">
+                <h5>User Account Status</h5>
+                <div class="row">
+                    <div class="col text-end"><div class="acti active_bg"></div></div>
+                    <div class="col text-left"><span>Active</span></div>
+                </div>                
+            </div>
+        </div>
+        <div class="col-sm-6 p-3">
+            <div class="card text-center p-3">
+                <h5>Contact Support</h5>
+               <span><i class="fa fa-phone"></i></span>
+               <span></span>
+            </div>
+        </div>
     </div>
 </div>
 <script>

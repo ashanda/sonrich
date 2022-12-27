@@ -106,62 +106,64 @@
                     <p>{{ $message }}</p>
                 </div>
                 @endif
-                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>User Name</th>
-                            <th>User ID</th>
-                            <th>Requested Amount</th>
-                            <th>Campany Fee</th>
-                            <th>Tranfer Amount</th>
-                            <th>Withdrawel status</th>
-                            @if (Auth::user()->role == 1)
-                            <th>Action</th>
-                            @endif
-                        </tr>
-                    </thead>
-                    @php
-                    $i = 1;
-                    @endphp
-                    <tbody>
-                        @foreach ($data as $withdrawel)
-                        <tr>
-                            <td>{{ $i }}</td>
-                            <td>{{ $withdrawel->fname ." ".$withdrawel->lname }}</td>
-                            <td>{{ $withdrawel->uid }}</td>
-                            <td>BV {{ $withdrawel->request_amount }}</td>
-                            <td>BV {{ $withdrawel->company_fee}}</td>
-                            <td>BV {{ $withdrawel->tranfer_amount}}</td>
-
-                            @if ($withdrawel->status=='0')
-                            <td>{{ 'Pending' }}</td>
-                            @elseif($withdrawel->status=='1')
-                            <td>{{ 'Approve' }}</td>
-                            @elseif($withdrawel->status=='2')
-                            <td>{{ 'reject' }}</td>
-                            @endif
-                            <td>
+                <div class="table-responsive">
+                    <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>User Name</th>
+                                <th>User ID</th>
+                                <th>Requested Amount</th>
+                                <th>Campany Fee</th>
+                                <th>Tranfer Amount</th>
+                                <th>Withdrawel status</th>
                                 @if (Auth::user()->role == 1)
-                            <td>
-                                <form action="{{ route('withdraw.update',$withdrawel->id) }}" method="POST">
-
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-danger">Approve</button>
-                                </form>
-                            </td>
-                            @endif
-
-
-
-                        </tr>
+                                <th>Action</th>
+                                @endif
+                            </tr>
+                        </thead>
                         @php
-                        $i++;
+                        $i = 1;
                         @endphp
-                        @endforeach
-                    </tbody>
-                </table>
+                        <tbody>
+                            @foreach ($data as $withdrawel)
+                            <tr>
+                                <td>{{ $i }}</td>
+                                <td>{{ $withdrawel->fname ." ".$withdrawel->lname }}</td>
+                                <td>{{ $withdrawel->uid }}</td>
+                                <td>BV {{ $withdrawel->request_amount }}</td>
+                                <td>BV {{ $withdrawel->company_fee}}</td>
+                                <td>BV {{ $withdrawel->tranfer_amount}}</td>
+
+                                @if ($withdrawel->status=='0')
+                                <td>{{ 'Pending' }}</td>
+                                @elseif($withdrawel->status=='1')
+                                <td>{{ 'Approve' }}</td>
+                                @elseif($withdrawel->status=='2')
+                                <td>{{ 'reject' }}</td>
+                                @endif
+                                <td>
+                                    @if (Auth::user()->role == 1)
+                                <td>
+                                    <form action="{{ route('withdraw.update',$withdrawel->id) }}" method="POST">
+
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-danger">Approve</button>
+                                    </form>
+                                </td>
+                                @endif
+
+
+
+                            </tr>
+                            @php
+                            $i++;
+                            @endphp
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
