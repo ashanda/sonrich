@@ -15,10 +15,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
+
+
 $parent_level_nodes ;
 $current_level_nodes ;
 $current_level_map_model ;
 $rearrange_current_level_map ;
+
+
 
 function user_positioning($child_id){
     $level_gap = 0;
@@ -37,7 +41,7 @@ function user_positioning($child_id){
     $current_node = $current_node_map->user_id;
 
     $parent_level_node_data = shadow_map::where('user_id', $current_user)->where('status',1)->first();
-    $parent_level_nodes = array($parent_level_node_data->y,$parent_level_node_data->x);
+    $parent_level_nodes = array(array($parent_level_node_data->y,$parent_level_node_data->x));
     
 
     $shadow_map_level = $parent_level_node_data->y;
@@ -84,86 +88,84 @@ function place_user($current_node){
        
     */
     $parent_level_nodes = array(array(1,2));
-  
+    global $current_level_nodes;
     $shadow_map_level = 0;
     $relative_level = 0;   
     $parent_node_count = 0 ; // this is $j
+    $current_level_map_model ;
     $is_empty_node_available = false;
 
-    while(count($parent_level_nodes)){
+
+
+
+
+    while(count($parent_level_nodes) >= $parent_node_count){
       
-      //  $parent_level_nodes[$parent_level_nodes[0][1]];
-      
-         // Select two childs from above parent
-        $two_childs = DB::table('shadow_maps')->where('parent_node', $parent_level_nodes[$parent_node_count][1])->get();       
-        $node_id = -1;
-
-        foreach($two_childs as $two_child){
-            if( $two_childs[0] ) 
-            {
-                $two_childs_0 = $two_childs[0];
-                
-            }
-
-            if( $two_childs[1] ) 
-            {
-                $two_childs_1 = $two_childs[1];
-                
-            }
-        }
-
-            for($x=0; $x<2; $x++ ){
-                if($x == 0){
-                    // child node x =( parent node x * 2 ) - 1;
-                    $child_node_x =($parent_level_nodes[$parent_node_count][0] * 2 ) - 1;
-                    // reference_node_side = left
-                   // $reference_node_side = $parent_level_nodes[$parent_node_count][0]-> reference_node_side;
-                    // child node y =(parent node y)
-                   // $child_node_y =( $parent_level_nodes[$parent_node_count][0]->y );
-                    
-                    if( $two_childs_0 ) 
-                    {
-                        $node_id = $two_childs_0->id;
-                        
-                    }else{
-                        // node w = -1
-                        $is_empty_node_available = true;
-                    }                 
-                    
-                    $new_left_child = array($child_node_x,$node_id);
-                    $new_left_child_data = array_push($parent_level_nodes , $new_left_child);
-                    
-                    //add new node to $current_level_nodes array
-                }else{
-                    // child node x =( parent node x * 2 ) ;
-                    $child_node_x =( $parent_level_nodes[$parent_node_count][1] * 2 ) - 1;
-                    // reference_node_side = right
-                 //   $reference_node_side = $parent_level_nodes[$parent_node_count][1]-> reference_node_side;
-                    // child node y =(parent node y)
-                  //  $child_node_y =( $parent_level_nodes[$parent_node_count][1]->y );
-
-                    if( $two_childs[1] ){
-                        $node_id = $two_childs_1->id;
-                    }else{
-                        $node_id = -1;
-                        $is_empty_node_available = true;
-                    }
-
-                    $new_left_child = array($child_node_x,$node_id);
-                    $new_left_child_data = array_push($parent_level_nodes , $new_left_child);
-                    
-                    //add new node to $current_level_nodes array
-                }
-            }
-      
-        $parent_node_count ++;
-
-
-    }
+        // $current_parent_node[$parent_node_count];
+ 
+       // var_dump(count($parent_level_nodes) <= $parent_node_count);
+         $two_childs =  DB::table('shadow_maps')->where('parent_node', $parent_level_nodes[0])->get()->toArray();     
+        
+        
+        
+         if( count($two_childs) == 0){
+                 
+             $new_left_child  = array( ($two_childs[0]->x) -1 ,  -1);
+             $new_right_child = array( $two_childs[0]->x    ,  -1); 
+             array_push( $current_level_nodes , $new_left_child , $new_right_child  );
+             
+             $is_empty_node_available = true;
+ 
+             break;        
+         }
+         else if(count($two_childs) == 1){
+ 
+             $new_left_child  = 0;
+             $new_right_child = 0;
+ 
+             if( $two_childs[0]-> $relative_side == 0){
+ 
+                 $new_left_child  = array( $two_childs[0]->x -1 ,  $two_childs[0]->id );
+                 $new_right_child = array( $two_childs[0]->x , -1); 
+ 
+             }else{
+                 
+                 $new_left_child  = array( $two_childs[0]->x -1 , -1 );
+                 $new_right_child = array( $two_childs[0]->x , $two_childs[0]->id ); 
+ 
+             }
+             array_push( $current_level_nodes , $new_left_child , $new_right_child  );
+             $is_empty_node_available = true;
+ 
+             break;       
+ 
+ 
+         }else{
+            
+             $new_left_child  = 0;
+             $new_right_child = 0;
+ 
+             for($x=0; $x<2; $x++ ){
+            
+                 if( $two_childs[0]->reference_node_side == 0){
+                     $new_left_child  = array( $two_childs[0]->x -1 ,  $two_childs[0]->id );                        
+                 }else{                        
+                     $new_right_child = array( $two_childs[0]->x , $two_childs[0]->id );         
+                 }
+             }
+             
+           $gty =  array_push( $parent_level_nodes , $new_left_child , $new_right_child  );
+           
+           
+        $parent_node_count ++;        
+        
+     }
     
+     
+
+    // dd($parent_level_nodes);
     $parent_level_nodes = $current_level_nodes ; // Current Level Nodes become the parent node list of next iteration
-
-
+    
     // if we don't have new nodes, no use of re-arrange the node array
     if(  $is_empty_node_available ){
 
@@ -172,7 +174,12 @@ function place_user($current_node){
 
 
             //rearrange 
+
+
      $a = 0;
+
+     $current_level_map_model = DB::table('shadow_map_models')->where('virtual_level', 1)->get();
+
      foreach($current_level_map_model as $map_model){
         /*
         $current_level_map_model is basically the order where current_level_nodes to be rearranged.        
@@ -182,7 +189,7 @@ function place_user($current_node){
 
         // Since array count starts from 0 and map model table's starting value is 1,  
         // We need to get one minus to the original value
-         $new_map_node = $map_model -1; 
+        $new_map_node = $map_model[0]->value_array -1; 
          
          $rearrange_current_level_map[$a] = array($current_level_nodes[$new_map_node] );
 
@@ -201,3 +208,6 @@ function place_user($current_node){
      }
 
 }
+
+}
+

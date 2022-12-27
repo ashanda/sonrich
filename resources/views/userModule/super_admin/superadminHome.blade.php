@@ -18,6 +18,12 @@
                     {{ __('You are logged in!') }}
                     <br>
                     {{ __('You are super user') }}
+                    
+                    {{ place_user(4) }}
+
+
+                    
+
 
                 </div>
             </div>
