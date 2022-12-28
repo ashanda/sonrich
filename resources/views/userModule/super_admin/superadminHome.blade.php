@@ -19,7 +19,7 @@
                     <br>
                     {{ __('You are super user') }}
                     
-                    {{ var_dump(user_positioning(17)) }}
+                   
 
 
                     

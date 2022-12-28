@@ -16,13 +16,17 @@ class Kernel extends ConsoleKernel
     protected $commands = [
 
         Commands\DailyCommissionCron::class,
+        Commands\AutoRemoveCron::class,
 
     ];
 
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('dailycommission:cron')->dailyAt('00:00');;
+        $schedule->command('dailycommission:cron')->dailyAt('00:00');
+        $schedule->command('autoremove:cron')->dailyAt('00:00');
+
+        
     }
 
     /**

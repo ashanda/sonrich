@@ -20,14 +20,24 @@
         <div class="col-sm-6 pb-3 pt-3">
             <div class="card text-center p-3">
                 <h5>Total BV Points</h5>
-                <h1 class="pb-2 pt-1">1395.22</h1>
+                @if (product_wallet() == null)
+                    
+                @else
+                <h1 class="pb-2 pt-1">{{ product_wallet()->wallet_balance + product_wallet()->wallet_balance}}</h1>
+                @endif
+                
             </div>
         </div>
         <div class="col-sm-6 pb-3 pt-0 pt-sm-3">
             <div class="card text-center p-3">
                 <h5>Active Package</h5>
-                <h6>Package Name</h6>
-                <h3>30,000</h3>
+                @if (current_user_active_package() == null)
+                    
+                @else
+                <h6>{{ current_user_active_package()->product_title }}</h6>
+                <h3>{{ current_user_active_package()->product_value }}</h3>
+                @endif
+                
             </div>
         </div>
     </div>
@@ -55,7 +65,12 @@
                 <!-- if active -->
                 <p id="stIcon" class="acti mx-auto mt-1 my-0"></p>
                 <!-- if not active -->
+                @if (Auth::user()->status == 0 )
+                <p id="sts" class="my-1">Deactive</p>
+                @else
                 <p id="sts" class="my-1">Active</p>
+                @endif
+                
                 <script>
                     var d = document.getElementById("stIcon");
                     var x = document.getElementById("sts").textContent;
