@@ -55,7 +55,7 @@
                                     <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
                                     <input type="hidden" name="product_point" value="{{ $product->point_value  }}">
                                     <input type="hidden" name="status" value="0">
-                                    <button type="submit" class="btn btn-primary mt-2 w-75">Using Product Wallet</button>
+                                    <button type="submit" class="btn btn-primary mt-2 w-75">Revolve Using Product Wallet</button>
                                 </form>
                                 @endif
 
@@ -67,7 +67,7 @@
                                     <input type="hidden" name="product_price" value="{{ $product->product_price  }}">
                                     <input type="hidden" name="product_point" value="{{ $product->point_value  }}">
                                     <input type="hidden" name="status" value="0">
-                                    <button type="submit" class="btn btn-primary mt-2 w-75">Using Product Wallet + Cash</button>
+                                    <button type="submit" class="btn btn-primary mt-2 w-75">Revolve Using Product Wallet + Cash</button>
                                 </form>
                                 @endif
 
