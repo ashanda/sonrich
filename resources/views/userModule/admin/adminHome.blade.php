@@ -6,7 +6,7 @@
         {{ __('Dashboard') }}
     </h4>
 
-
+    {{ user_positioning(17)}}
     <h5>Welcome to Sonrich Asset Plan</h5>
 
     @if (session('status'))

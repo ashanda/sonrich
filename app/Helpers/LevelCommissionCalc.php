@@ -76,5 +76,5 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
 
     }
 
-    return $countries;
+    
 } 

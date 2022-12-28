@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->timestamp('last_login_at')->nullable();
             $table->string('last_login_ip_address')->nullable();
+            $table->integer('status')->default('1');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -139,7 +139,7 @@ $role = auth()->user()->role;
           </ul>
         </li>
         @if ($role == 1 || $role == 0)
-        <? /*<li class="nav-item">
+        <?php /*<li class="nav-item">
           <a href="/genealogy" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>
             <p>

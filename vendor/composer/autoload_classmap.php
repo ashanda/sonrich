@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\AutoRemoveCron' => $baseDir . '/app/Console/Commands/AutoRemoveCron.php',
     'App\\Console\\Commands\\DailyCommissionCron' => $baseDir . '/app/Console/Commands/DailyCommissionCron.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',

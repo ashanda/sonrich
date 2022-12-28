@@ -12,6 +12,7 @@ use App\Models\product_wallet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 
  function getCountryList(){
     $countries = CountryListFacade::getList('en');
@@ -223,8 +224,8 @@ function cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direc
 }
 
 //cash Wallet Update
-function cash_wallet($user_id){
-  $cash_wallet = DB::table('cash_wallets')->where('user_id',$user_id)->first(); 
+function cash_walle(){
+  $cash_wallet = DB::table('cash_wallets')->where('user_id',Auth::user()->id)->first(); 
  
   return $cash_wallet;
 
@@ -285,4 +286,15 @@ function shadow_map_parent_node_check($child_id){
   $nodeparent_map = shadow_map::where('user_id', $child_id)->first();
 
   return $nodeparent_map;
+}
+
+//user current active package 
+function current_user_active_package(){
+  $current_user_active_package = DB::table("oders")
+  ->Join('products','oders.product_id','=','products.id')
+  ->where("oders.status", "=", 1)
+  ->where("oders.user_id", "=", auth::user()->id)
+  ->first();
+  
+  return $current_user_active_package;
 }

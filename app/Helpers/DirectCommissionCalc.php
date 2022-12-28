@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
-function DirectCommissionCalc($current_user_id, $direct_point){
+function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id){
 
     $nodeparent_map = shadow_map_parent_node_check($current_user_id);
 
@@ -44,12 +44,12 @@ function DirectCommissionCalc($current_user_id, $direct_point){
         $oder_update->save();
 
         $level_commission_logs = new direct_commission_log;
-        $level->user_id = $currentuser;
-        $level->amount = $new_direct_points;
-        $level->side = $parentside;
-        $level->oder_id = $currentorderid;
-        $level->reference_oder_id = $reference_oder_id;
-        $dataClient->save();
+        $level_commission_logs->user_id = $currentuser;
+        $level_commission_logs->amount = $new_direct_points;
+        $level_commission_logs->side = $parentside;
+        $level_commission_logs->oder_id = $currentorderid;
+        $level_commission_logs->reference_oder_id = $reference_oder_id;
+        $level_commission_logs->save();
 
         // 1/3 product wallet
         product_wallet_update($new_direct_points,$current_user_id,$currentorderid,$reference_oder_id);
@@ -79,7 +79,7 @@ function DirectCommissionCalc($current_user_id, $direct_point){
 
     }
 
-    return $countries;
+    
 
    
 

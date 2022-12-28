@@ -578,6 +578,7 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\AutoRemoveCron' => __DIR__ . '/../..' . '/app/Console/Commands/AutoRemoveCron.php',
         'App\\Console\\Commands\\DailyCommissionCron' => __DIR__ . '/../..' . '/app/Console/Commands/DailyCommissionCron.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',

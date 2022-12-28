@@ -126,9 +126,14 @@ class OderController extends Controller
         $package = oder::find($id);
         $package->status = $request->oder_status;
         $package->save();
+
+
         $reference_oder_id = $package->id;
 
         $child_id = $request->user_id;
+        
+        //user pyrmide positions passing child id and set coodinate and save db shadow maps 
+        ;
         
         $product_value = $request->product_value;
 
@@ -142,7 +147,11 @@ class OderController extends Controller
         $level_points = (master_data()->level * $product_value);
           
        // Call Commission helpers
-        ShadowMapCommissions($child_id, $binary_points, $level_points, $direct_point, $reference_oder_id);
+       user_positioning($child_id);
+        
+       //ShadowMapCommissions(9, $binary_points, $level_points, $direct_point, $reference_oder_id);
+       
+        
         return redirect('oders')->with('success', 'Oder Approved Successfully!');
     }
 

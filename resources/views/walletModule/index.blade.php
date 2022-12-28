@@ -38,7 +38,12 @@
                                     <span class="left">Product Wallet</span>
                                 </div>
                                 <div class="col-5">
-                                    <span class="right">BV 335.39</span>
+                                    @if (product_wallet() == null )
+                                    <span class="right">BV 0</span>
+                                    @else
+                                    <span class="right">BV {{ product_wallet()->wallet_balance }}</span>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
@@ -50,7 +55,12 @@
                                     <span class="left">Cash Wallet</span>
                                 </div>
                                 <div class="col-5">
-                                    <span class="right">BV 7675.39</span>
+                                    @if (cash_walle() == null )
+                                    <span class="right">BV 0</span>
+                                    @else
+                                    <span class="right">BV {{ cash_walle()->wallet_balance }}</span>
+                                    @endif
+                                    
                                 </div>
                             </div>
                         </div>
