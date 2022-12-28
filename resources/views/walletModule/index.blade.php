@@ -111,12 +111,13 @@
                 </div>
 
             </div>
-            <div class="text-center blue p-3">
-                Transaction History
-            </div>
             @if (Auth::user()->role == 0)
             <h5><a class="btn btn-primary" href="/withdrawal">Withdrawal</a></h5>
             @endif
+            <div class="text-center blue p-3">
+                Transaction History
+            </div>
+
         </div>
 
     </div>
