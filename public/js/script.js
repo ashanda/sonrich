@@ -97,4 +97,24 @@ function drkMode() {
     element.classList.toggle("dark-mode");
 }
 
+// imput file upload functions
+// file upload 1
+function preview1() {
+    frame1.src = URL.createObjectURL(event.target.files[0]);
+}
+
+function clearImage1() {
+    document.getElementById("formFile1").value = null;
+    frame1.src = "";
+}
+// file upload 2
+function preview2() {
+    frame2.src = URL.createObjectURL(event.target.files[0]);
+}
+
+function clearImage2() {
+    document.getElementById("formFile2").value = null;
+    frame2.src = "";
+}
+
 

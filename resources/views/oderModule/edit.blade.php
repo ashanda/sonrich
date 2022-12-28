@@ -53,7 +53,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Package Status:</strong>
-                            <div class="dropdown bootstrap-select form-control default-select">
+                            <div class="dropdown bootstrap-select default-select">
                                 <select class="form-control default-select" tabindex="-98" name="oder_status">
                                   
                                     @if ($oder[0]->status == '0')

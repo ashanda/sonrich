@@ -12,13 +12,54 @@
             <h4 class="font-w600 mb-0 mr-auto mb-2">My Wallet</h4>
         </div>
         <div class="wall_sec">
-            @if (Auth::user()->role == 0)
-            <h5><a href="/withdrawal">Withdrawal</a></h5>
-            @endif
+
             <div class="data_sec mt-3">
                 <div class="row">
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="card p-2">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="card p-5 w-75 mx-auto">
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <h2 class="left text-bold">Total Earnings</h2>
+                                </div>
+                                <div class="col-12">
+                                    <h2 class="right text-bold">BV {{ direct_total() + level_total() + binary_total() + daily_total()}} </h2>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newly aded section -->
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12 pt-2">
+                        <div class="card p-3 mr-0 mr-md-5">
+                            <div class="row">
+                                <div class="col-7">
+                                    <span class="left">Product Wallet</span>
+                                </div>
+                                <div class="col-5">
+                                    <span class="right">BV 335.39</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12 pt-2">
+                        <div class="card p-3 ml-0 ml-md-5">
+                            <div class="row">
+                                <div class="col-7">
+                                    <span class="left">Cash Wallet</span>
+                                </div>
+                                <div class="col-5">
+                                    <span class="right">BV 7675.39</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newly aded section -->
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12 pt-2">
+                        <div class="card p-3 mr-0 mr-md-5">
                             <div class="row">
                                 <div class="col-7">
                                     <span class="left">Daily Commission</span>
@@ -29,8 +70,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="card p-2">
+                    <div class="col-sm-6 col-xs-12 pt-2">
+                        <div class="card p-3 ml-0 ml-md-5">
                             <div class="row">
                                 <div class="col-7">
                                     <span class="left">Binary Commission</span>
@@ -43,8 +84,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="card p-2">
+                    <div class="col-sm-6 col-xs-12 pt-2">
+                        <div class="card p-3 mr-0 mr-md-5">
                             <div class="row">
                                 <div class="col-7">
                                     <span class="left">Level Commission</span>
@@ -55,8 +96,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="card p-2">
+                    <div class="col-sm-6 col-xs-12 pt-2">
+                        <div class="card p-3 ml-0 ml-md-5">
                             <div class="row">
                                 <div class="col-7">
                                     <span class="left">Direct Sale Commission</span>
@@ -68,26 +109,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="card p-2">
-                            <div class="row">
-                                <div class="col-7">
-                                    <span class="left">Total Earnings</span>
-                                </div>
-                                <div class="col-5">
-                                    <span class="right">{{ direct_total() + level_total() + binary_total() + daily_total()}} </span>
-                                </div>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="text-center blue p-3">
                 Transaction History
             </div>
-
+            @if (Auth::user()->role == 0)
+            <h5><a class="btn btn-primary" href="/withdrawal">Withdrawal</a></h5>
+            @endif
         </div>
 
     </div>
@@ -153,8 +182,6 @@
                                     </form>
                                 </td>
                                 @endif
-
-
 
                             </tr>
                             @php

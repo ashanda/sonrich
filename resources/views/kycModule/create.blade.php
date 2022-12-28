@@ -50,14 +50,32 @@
                         <input class="form-control vali" placeholder="" name="address">
                     </div>
                     <div class="form-group">
-                        <label for="bankAcc" class="form-label">Docs Front</label>
-                        <input class="form-control vali" placeholder="" name="id_doc_front">
+                        <!-- <label for="bankAcc" class="form-label">Docs Front</label>
+                        <input class="form-control vali" placeholder="" name="id_doc_front"> -->
+
+                        <!-- test -->
+                        <div class="mb-4">
+                            <label for="bankAcc" class="form-label">Docs Front</label>
+                            <input class="form-control" type="file" id="formFile1" name="id_doc_front" onchange="preview1()">
+                            <button onclick="clearImage1()" class="btn btn-primary mt-3">Clear Image</button>
+                        </div>
+                        <img id="frame1" src="" class="img-fluid" />
+
+                        <!-- test -->
                     </div>
                     <div class="form-group">
-                        <label for="bankAcc" class="form-label">Docs Back</label>
-                        <input class="form-control vali" placeholder="" name="id_doc_back">
+                        <div class="mb-4">
+                            <label for="bankAcc" class="form-label">Docs Back</label>
+                            <input class="form-control" type="file" id="formFile2" name="id_doc_back" onchange="preview2()">
+                            <button onclick="clearImage2()" class="btn btn-primary mt-3">Clear Image</button>
+                        </div>
+                        <img id="frame2" src="" class="img-fluid" />
+                        <!-- <label for="bankAcc" class="form-label">Docs Back</label>
+                        <input class="form-control vali" placeholder="" name="id_doc_back"> -->
                     </div>
-
+                    <script>
+                        
+                    </script>
                 </div>
                 <div class="tab pb-3">
                     <div class="form-group">
