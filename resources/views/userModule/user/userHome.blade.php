@@ -2,13 +2,20 @@
 
 @section('content')
 <div class="container-fluid">
-    <h4>
-        {{ __('Dashboard') }}
-    </h4>
-
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>
+                {{ __('Dashboard') }}
+            </h4>
+        </div>
+        <div class="col-sm-6 text-right">
+            <div class="dUid ml-auto py-3 py-sm-0">
+                <h5 class="px-4 py-2 bg-primary">User Id - 001</h5>
+            </div>
+        </div>
+    </div>
     <h5>Welcome to Sonrich Asset Plan</h5>
 
-    <h5>User Id - </h5>
 
     @if (session('status'))
     <div class="alert alert-success" role="alert">
@@ -21,23 +28,23 @@
             <div class="card text-center p-3">
                 <h5>Total BV Points</h5>
                 @if (product_wallet() == null)
-                    
+
                 @else
                 <h1 class="pb-2 pt-1">{{ product_wallet()->wallet_balance + product_wallet()->wallet_balance}}</h1>
                 @endif
-                
+
             </div>
         </div>
         <div class="col-sm-6 pb-3 pt-0 pt-sm-3">
             <div class="card text-center p-3">
                 <h5>Active Package</h5>
                 @if (current_user_active_package() == null)
-                    
+
                 @else
                 <h6>{{ current_user_active_package()->product_title }}</h6>
                 <h3>{{ current_user_active_package()->product_value }}</h3>
                 @endif
-                
+
             </div>
         </div>
     </div>
@@ -70,7 +77,7 @@
                 @else
                 <p id="sts" class="my-1">Active</p>
                 @endif
-                
+
                 <script>
                     var d = document.getElementById("stIcon");
                     var x = document.getElementById("sts").textContent;

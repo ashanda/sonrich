@@ -2,9 +2,18 @@
 
 @section('content')
 <div class="container-fluid">
-    <h4>
-        {{ __('Dashboard') }}
-    </h4>
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>
+                {{ __('Dashboard') }}
+            </h4>
+        </div>
+        <div class="col-sm-6 text-right">
+            <div class="dUid ml-auto py-3 py-sm-0">
+                <h5 class="px-4 py-2 bg-primary">User Id - 001</h5>
+            </div>
+        </div>
+    </div>
 
     {{ user_positioning(17)}}
     <h5>Welcome to Sonrich Asset Plan</h5>

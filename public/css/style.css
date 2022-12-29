@@ -46,7 +46,7 @@
 }
 
 .bg-primary {
-    background-color: #128143;
+    background-color: #128143 !important;
 }
 .primary {
     color: #128143;
@@ -115,15 +115,26 @@ span.pkg_duration {
     margin-top: -10px;
     line-height: 1;
     border-radius: 50%;
-    padding-top: 5px;   
+    padding-top: 5px;
 }
-.new-arrival-content form{
+.new-arrival-content form {
     margin-bottom: 10px;
 }
-.copy_text{
+.copy_text {
     text-align: center;
 }
-.copy_text .ref_content{
+.copy_text .ref_content {
     max-width: 500px;
     margin: auto;
+}
+.dUid {
+    max-width: 200px;
+    text-align: center;
+}
+
+@media screen and (max-width: 576px) {
+    .dUid {
+        max-width: 100%;
+    }
+    
 }
