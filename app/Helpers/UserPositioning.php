@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -42,7 +42,7 @@ function user_positioning($child_id){
     
     //$current_node = $current_node_map->user_id;
 
-    $parent_level_node_data = shadow_map::where('user_id', $current_user)->where('status',1)->first();
+    $parent_level_node_data = shadow_map::where('user_id', $current_user)->first();
     $parent_level_nodes = array(array($parent_level_node_data->x,$parent_level_node_data->id));
     
     
@@ -53,14 +53,15 @@ function user_positioning($child_id){
   
     $shadow_map_x = $parent_level_node_data->x;
     $shadow_map_id = $parent_level_node_data->id; 
-    $level_gap = $shadow_map_level - $relative_level;
+    $level_gap = $shadow_map_level + $relative_level;
    
     
 
     
-
+    
     $new_user_coordinates_found = 0;
     
+
     while($new_user_coordinates_found == 0){
          
         /*
@@ -75,31 +76,39 @@ function user_positioning($child_id){
        
     */
      
-    $current_level_nodes = array(array());
+    $current_level_nodes = array();
     $parent_node_count = 0 ; // this is $j
     $current_level_map_model = 0 ;
     $is_empty_node_available = false;
-   
+    //$test_array = array(array (),array ( 3 , 6 ), array ( 4 , 7) ,array (3)); 
+   // $test_array_2 = array(array ( 3 , 6 ), array ( 4 , 7) ,array (3)); 
     while(count($parent_level_nodes) > $parent_node_count){
+             
+        $child_node_x = $parent_level_nodes[$parent_node_count][0];
 
-         $child_node_x = $parent_level_nodes[$parent_node_count][0];
-         
-         
        // var_dump(count($parent_level_nodes) <= $parent_node_count);
-       $two_childs = DB::table('shadow_maps')->where('parent_node', $parent_level_nodes[$parent_node_count][1])->get();     
-       $node_parent_id = $two_childs[0]->parent_node;
+       $two_childs = DB::table('shadow_maps')->where('parent_node', $parent_level_nodes[$parent_node_count][1])->get();  
+       
+             
+        $node_parent_id = $parent_level_nodes[$parent_node_count][1];
+      
+      
+        
+        
+        
+       
        
          if( count($two_childs) == 0){
             
              $new_left_child  = array( ($child_node_x * 2)  -1 ,  -1 , $node_parent_id);
              $new_right_child = array( $child_node_x * 2 , -1 , $node_parent_id); 
              
-             if(count($current_level_nodes) == 0){
+             if( count($current_level_nodes) == 0 ){
                 $current_level_nodes = array( $new_left_child , $new_right_child);
             }else{
-               array_push( $current_level_nodes , $new_left_child , $new_right_child);
+                $current_level_nodes[] = array_push($new_left_child, $new_right_child);
             }
-             
+           
              $is_empty_node_available = true;
 
          }elseif(count($two_childs) == 1){
@@ -114,10 +123,10 @@ function user_positioning($child_id){
                  $new_left_child  = array( ($child_node_x * 2)  -1 , -1 ,$node_parent_id );
                  $new_right_child = array( $child_node_x * 2 , $two_childs[0]->id ); 
              }
-            if(count($current_level_nodes) == 0){
+            if( count($current_level_nodes) == 0 ){
                 $current_level_nodes = array( $new_left_child , $new_right_child);
             }else{    
-               array_push( $current_level_nodes , $new_left_child , $new_right_child);
+                $current_level_nodes[] = array_push($new_left_child, $new_right_child);
             }
             
              $is_empty_node_available = true;
@@ -127,27 +136,32 @@ function user_positioning($child_id){
              $new_right_child = array();            
              for($x=0; $x<2; $x++ ){       
                  
-                 if( $two_childs[$x]->reference_node_side == 0){                    
-                     $new_left_child  = array( ($child_node_x * 2)-1 ,  $two_childs[$x]->id ); 
-                     $new_right_child = array( $child_node_x * 2 , -1 , $node_parent_id);                                          
-                 }else{                                            
-                     $new_right_child = array($child_node_x * 2 , $two_childs[$x]->id ); 
-                     $new_right_child = array( $child_node_x * 2 , $two_childs[0]->id );  
+                 if( $two_childs[$x]->reference_node_side == 0){   
+                    $new_left_child  = array( ($child_node_x * 2)-1 ,  $two_childs[$x]->id );                   
+                                                             
+                 }else{       
+                    $new_right_child = array($child_node_x * 2 , $two_childs[$x]->id);                                        
+                 
                             
                  }
              }  
                        
-           if(empty($current_level_nodes)){
-               $current_level_nodes = array( $new_left_child , $new_right_child, $node_parent_id);
+           if(count($current_level_nodes) == 0){
+            
+                $current_level_nodes =  array( $new_left_child , $new_right_child);
+               
            }else{
-              array_push($current_level_nodes, $new_left_child, $new_right_child, $node_parent_id);
-             
-           }     
+            $current_level_nodes[] = array_push($new_left_child, $new_right_child);
+               
+           }  
+         
            
-           
-     }
+          
+          }
      $parent_node_count ++;
+     
     }
+    
     
    $parent_level_nodes = $current_level_nodes ; // Current Level Nodes become the parent node list of next iteration
    
@@ -156,9 +170,11 @@ function user_positioning($child_id){
     // if we don't have new nodes, no use of re-arrange the node array
     if(  !$is_empty_node_available ){
         $new_user_coordinates = array(-1,-1);
-        break;
+       
          // which means we don't have empty node at this entire level
-    }
+    }else{
+
+    
     
      //rearrange 
 
@@ -178,46 +194,57 @@ function user_positioning($child_id){
         $rearrange_current_level_map[$a] = array($current_level_nodes[$map_model] );
         
         if($current_level_nodes [ $map_model][1] == -1){
-         $current_node_x = $current_level_nodes [ $map_model][0];
+
+     //  shadow_map_model table has values starting from 1, But when an array counts from zero. 
+     //So we need to reduce 1 from the map_model value
+       
+     $current_node_x = $current_level_nodes [ $map_model][0]-1;
+     
         
-         // Ashan : get the parent element's node id from shadow map table
-         $new_child_coordinates = [($relative_level+1), $current_level_nodes[$current_node_x ][0], $current_level_nodes[$current_node_x ][2]];
          
+             $new_user_coordinates_store = new shadow_map;
+              $new_user_coordinates_store->y =  $level_gap;
+              $new_user_coordinates_store->x = $current_node_x;
+              $new_user_coordinates_store->user_id = $child_id;
+              $new_user_coordinates_store->status = 1;
+              $new_user_coordinates_store->parent_node = $current_level_nodes [ $map_model][2];
+
+              //  shadow_map_model table has values starting from 1, But when an array counts from zero. 
+                 //So we need to reduce 1 from the map_model value
+              $new_user_coordinates_store->reference_node_side = ($current_node_x+1) % 2 ;
+              $new_user_coordinates_store->save();
+              
+              
+       
+      
+       
+         
+        
          $new_user_coordinates_found=1;
-         $new_user_coordinates = $new_child_coordinates;
+        
+        return 1;
+         break;
         
        
          
          
-            print_r($new_user_coordinates);
-          if( $new_user_coordinates[0]  != -1){
-              
-              $new_user_coordinates_store = new shadow_map;
-              $new_user_coordinates_store->y = $new_user_coordinates[0];
-              $new_user_coordinates_store->x = $new_user_coordinates[1];
-              $reference_node_side = $new_user_coordinates_store->x % 2;
-              $new_user_coordinates_store->user_id = $child_id;
-              $new_user_coordinates_store->status = 1;
-              $new_user_coordinates_store->parent_node = $new_user_coordinates[2];
-              $new_user_coordinates_store->reference_node_side =$reference_node_side;
-              $new_user_coordinates_store->save();
-            
-          } 
+           // print_r($new_user_coordinates);
           
-         exit;
+          
+         
         }
        // $new_user_coordinates = array(-1,-1);
 
      // which means we don't have empty node at this entire level
      $a++;
     }
-
+        $shadow_map_level++;
+        $relative_level ++;
     }
        
        
         
-        $shadow_map_level++;
-        $relative_level ++;
+    }     
 
 
         

@@ -133,7 +133,7 @@ class OderController extends Controller
         $child_id = $request->user_id;
         
         //user pyrmide positions passing child id and set coodinate and save db shadow maps 
-        ;
+        
         
         $product_value = $request->product_value;
 
@@ -147,9 +147,14 @@ class OderController extends Controller
         $level_points = (master_data()->level * $product_value);
           
        // Call Commission helpers
-       user_positioning($child_id);
+       if(user_positioning($child_id) == 1){
+
+        ShadowMapCommissions($child_id, $binary_points, $level_points, $direct_point, $reference_oder_id);
+
+       }
+       
         
-       //ShadowMapCommissions(9, $binary_points, $level_points, $direct_point, $reference_oder_id);
+       
        
         
         return redirect('oders')->with('success', 'Oder Approved Successfully!');
