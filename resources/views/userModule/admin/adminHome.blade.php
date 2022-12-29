@@ -7,7 +7,7 @@
     </h4>
 
     {{ ShadowMapCommissions(17, 2, 200, 2000, 7); }}
-    <h5>User Id - </h5>
+    <h5>User Id - {{ Auth::user()->id }} </h5>
 
     @if (session('status'))
     <div class="alert alert-success" role="alert">
