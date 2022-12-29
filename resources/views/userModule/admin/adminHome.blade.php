@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    {{ user_positioning(17)}}
+    {{ DirectCommissionCalc(5, 10,7)}}
     <h5>Welcome to Sonrich Asset Plan</h5>
 
     @if (session('status'))

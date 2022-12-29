@@ -41,5 +41,6 @@ return array(
     '859427d23d2561f016617e8a4c3c1cb4' => $baseDir . '/app/Helpers/LevelCommissionCalc.php',
     '9e0cc206d65852c02d2a57502e90dfe9' => $baseDir . '/app/Helpers/ShadowMapCommissions.php',
     'ad2e8b6e007f449cc671010da93394b0' => $baseDir . '/app/Helpers/UserPositioning.php',
+    '2f90f60a73e61b74b3ce8832b9ccb250' => $baseDir . '/app/Helpers/DirectCommissionCalc.php',
     'ef157334f1067da991ff8953983afdb3' => $baseDir . '/app/Helpers/helper.php',
 );

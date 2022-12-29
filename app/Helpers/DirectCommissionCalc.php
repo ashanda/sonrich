@@ -17,14 +17,16 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
 
     $nodeparent_map = shadow_map_parent_node_check($current_user_id);
 
-    $nodeparent = $nodeparent_map-> parent_node;
-    $parentside = $nodeparent_map-> reference_node_side;
+    $nodeparent = $nodeparent_map->parent_node;
+    $parentside = $nodeparent_map->reference_node_side;
     $currentmapid = $nodeparent_map-> id;
-
-    $currentuser_map = shadow_map::where('user_id', $current_user_id)->first();
-    $parent_node = $currentuser_map->parent_node;
+    
+    $currentuser_map = shadow_map::where('id', $nodeparent)->first();
+    
+    $parent_node = $currentuser_map->user_id;
     
     $oders_map = oder::where('user_id', $parent_node)->where('status',1)->first();
+    
     $currentuserearningmax = $oders_map->max_value;
     $currentuserearningtotal = $oders_map->total_package_earnings;
     $currentuser = $oders_map->user_id;
@@ -46,7 +48,7 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
         $level_commission_logs = new direct_commission_log;
         $level_commission_logs->user_id = $currentuser;
         $level_commission_logs->amount = $new_direct_points;
-        $level_commission_logs->side = $parentside;
+      
         $level_commission_logs->oder_id = $currentorderid;
         $level_commission_logs->reference_oder_id = $reference_oder_id;
         $level_commission_logs->save();
@@ -66,7 +68,7 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
         $level_commission_logs = new direct_commission_log;
         $level_commission_logs->user_id = $currentuser;
         $level_commission_logs->amount = $direct_point;
-        $level_commission_logs->side = $parentside;
+        
         $level_commission_logs->oder_id = $currentorderid;
         $level_commission_logs->reference_oder_id = $reference_oder_id;
         $level_commission_logs->save();

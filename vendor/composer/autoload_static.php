@@ -42,6 +42,7 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
         '859427d23d2561f016617e8a4c3c1cb4' => __DIR__ . '/../..' . '/app/Helpers/LevelCommissionCalc.php',
         '9e0cc206d65852c02d2a57502e90dfe9' => __DIR__ . '/../..' . '/app/Helpers/ShadowMapCommissions.php',
         'ad2e8b6e007f449cc671010da93394b0' => __DIR__ . '/../..' . '/app/Helpers/UserPositioning.php',
+        '2f90f60a73e61b74b3ce8832b9ccb250' => __DIR__ . '/../..' . '/app/Helpers/DirectCommissionCalc.php',
         'ef157334f1067da991ff8953983afdb3' => __DIR__ . '/../..' . '/app/Helpers/helper.php',
     );
 
