@@ -48,13 +48,13 @@ function user_positioning($child_id){
     
    //$parent_level_node_data->y gets the parent's Y level. But for the shadow map level, we need current level, so we need to add +1 to the value.
     
-    $shadow_map_level = $parent_level_node_data->y+1;
+    //$shadow_map_level = $parent_level_node_data->y+1;
     
-  
+    
     $shadow_map_x = $parent_level_node_data->x;
     $shadow_map_id = $parent_level_node_data->id; 
     $level_gap = $shadow_map_level + $relative_level;
-   
+    
     
 
     
@@ -62,8 +62,13 @@ function user_positioning($child_id){
     $new_user_coordinates_found = 0;
     
 
+    
+
+    $parent_y = $parent_level_node_data->y;
+    
+
     while($new_user_coordinates_found == 0){
-         
+           
         /*
 
        In this function, you get parent nodes list array and get each and every nod. Then find both 
@@ -75,7 +80,9 @@ function user_positioning($child_id){
        empty node and return the x,y values back. 
        
     */
-     
+    $shadow_map_level = 0;
+    $relative_level = $parent_level_node_data->y;
+
     $current_level_nodes = array();
     $parent_node_count = 0 ; // this is $j
     $current_level_map_model = 0 ;
@@ -104,11 +111,15 @@ function user_positioning($child_id){
              $new_right_child = array( $child_node_x * 2 , -1 , $node_parent_id); 
              
              if( count($current_level_nodes) == 0 ){
+                
                 $current_level_nodes = array( $new_left_child , $new_right_child);
             }else{
-                $current_level_nodes[] = array_push($new_left_child, $new_right_child);
+                array_push($current_level_nodes,$new_left_child, $new_right_child);
+                
+                
             }
            
+
              $is_empty_node_available = true;
 
          }elseif(count($two_childs) == 1){
@@ -159,18 +170,18 @@ function user_positioning($child_id){
           
           }
      $parent_node_count ++;
-     
+     $shadow_map_level++;
+    $relative_level ++;
     }
     
     
    $parent_level_nodes = $current_level_nodes ; // Current Level Nodes become the parent node list of next iteration
-   
-   
+  
 
     // if we don't have new nodes, no use of re-arrange the node array
     if(  !$is_empty_node_available ){
         $new_user_coordinates = array(-1,-1);
-       
+         
          // which means we don't have empty node at this entire level
     }else{
 
@@ -179,9 +190,12 @@ function user_positioning($child_id){
      //rearrange 
 
      $a = 0;
-     $current_level_map_model = DB::table('shadow_map_models')->select('value_array')->where('virtual_level', ($relative_level))->get();
+     $current_level_map_model = DB::table('shadow_map_models')->select('value_array')->where('virtual_level', ($shadow_map_level))->get();
      
      $current_level_map_model =  json_decode($current_level_map_model[0]->value_array);
+     //var_dump($current_level_nodes);
+     
+
      foreach($current_level_map_model as $map_model){
         /*
         $current_level_map_model is basically the order where current_level_nodes to be rearranged.        
@@ -193,24 +207,27 @@ function user_positioning($child_id){
         // We need to get one minus to the original value
         $rearrange_current_level_map[$a] = array($current_level_nodes[$map_model] );
         
+            
+        //$current_level_nodes [ $map_model][1];
+          
+          
+           
         if($current_level_nodes [ $map_model][1] == -1){
 
      //  shadow_map_model table has values starting from 1, But when an array counts from zero. 
      //So we need to reduce 1 from the map_model value
        
-     $current_node_x = $current_level_nodes [ $map_model][0]-1;
-     
-        
-         
+     $current_node_x = $current_level_nodes [ $map_model][0];
+      
              $new_user_coordinates_store = new shadow_map;
-              $new_user_coordinates_store->y =  $level_gap;
+              $new_user_coordinates_store->y =  $shadow_map_level + $parent_y;
               $new_user_coordinates_store->x = $current_node_x;
               $new_user_coordinates_store->user_id = $child_id;
               $new_user_coordinates_store->status = 1;
               $new_user_coordinates_store->parent_node = $current_level_nodes [ $map_model][2];
 
               //  shadow_map_model table has values starting from 1, But when an array counts from zero. 
-                 //So we need to reduce 1 from the map_model value
+              // So we need to reduce 1 from the map_model value
               $new_user_coordinates_store->reference_node_side = ($current_node_x+1) % 2 ;
               $new_user_coordinates_store->save();
               
@@ -220,9 +237,9 @@ function user_positioning($child_id){
        
          
         
-         $new_user_coordinates_found=1;
+         
         
-        return 1;
+         $new_user_coordinates_found=1; 
          break;
         
        
@@ -238,8 +255,7 @@ function user_positioning($child_id){
      // which means we don't have empty node at this entire level
      $a++;
     }
-        $shadow_map_level++;
-        $relative_level ++;
+        
     }
        
        

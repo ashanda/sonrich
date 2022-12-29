@@ -16,7 +16,7 @@
     </div>
 
    
-    
+    {{ user_positioning(16) }}
 
     @if (session('status'))
     <div class="alert alert-success" role="alert">
