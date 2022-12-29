@@ -2,12 +2,21 @@
 
 @section('content')
 <div class="container-fluid">
-    <h4>
-        {{ __('Dashboard') }}
-    </h4>
+    <div class="row">
+        <div class="col-sm-6">
+            <h4>
+                {{ __('Dashboard') }}
+            </h4>
+        </div>
+        <div class="col-sm-6 text-right">
+            <div class="dUid ml-auto py-3 py-sm-0">
+                <h5 class="px-4 py-2 bg-primary">User Id - {{ Auth::user()->id }}</h5>
+            </div>
+        </div>
+    </div>
 
-    {{ ShadowMapCommissions(17, 2, 200, 2000, 7); }}
-    <h5>User Id - {{ Auth::user()->id }} </h5>
+   
+    
 
     @if (session('status'))
     <div class="alert alert-success" role="alert">
