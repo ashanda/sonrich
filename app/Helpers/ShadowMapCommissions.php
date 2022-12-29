@@ -17,8 +17,9 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
     $currentuser_map = shadow_map::where('user_id', $current_user_id)->first();
     
     $parent_node = $currentuser_map->parent_node;
-    $currentuser = shadow_map::where('user_id', $parent_node)->where('status',1)->first();
+    $currentuser = shadow_map::where('id', $parent_node)->where('status',1)->first();
     
+
     $direct_parent = User::where('id', $current_user_id)->first();
     $direct_parent_id = $direct_parent->parent;
 
