@@ -37,6 +37,7 @@
                   "app/Helpers/LevelCommissionCalc.php",
                   "app/Helpers/ShadowMapCommissions.php",
                   "app/Helpers/UserPositioning.php",
+                  "app/Helpers/DirectCommissionCalc.php",
                   "app/Helpers/helper.php"
                  ]
     },
