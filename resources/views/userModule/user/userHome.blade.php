@@ -5,9 +5,10 @@
     <h4>
         {{ __('Dashboard') }}
     </h4>
-    
 
     <h5>Welcome to Sonrich Asset Plan</h5>
+
+    <h5>User Id - </h5>
 
     @if (session('status'))
     <div class="alert alert-success" role="alert">
