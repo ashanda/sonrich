@@ -22,7 +22,7 @@ class OderController extends Controller
             $data = DB::table('oders')
             ->join('users', 'users.id', '=', 'oders.user_id')
             ->where('oders.status',0)
-            ->orderBy('oders.created_at', 'desc')
+            ->orderBy('oders.created_at', 'asc')
             ->select('users.id as uid','users.fname','users.lname','oders.*')
 
             ->get();
@@ -35,7 +35,7 @@ class OderController extends Controller
             ->join('users', 'users.id', '=', 'oders.user_id')
             
             ->where('users.id',Auth::user()->id)
-            ->orderBy('oders.created_at', 'desc')
+            ->orderBy('oders.created_at', 'asc')
             ->select('users.id as uid','users.fname','users.lname','oders.*')
 
             ->get();
