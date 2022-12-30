@@ -241,7 +241,7 @@ function product_wallet(){
 //user oder count
 function user_oder_count($user_id){
   $user_oder_count = DB::table('user_oder_counts')->where('user_id',$user_id)->first();
-  return $user_oder_count;
+  return $user_oder_count->count;
 }
 
 //cash wallet Update
@@ -297,4 +297,14 @@ function current_user_active_package(){
   ->first();
   
   return $current_user_active_package;
+}
+
+function current_user_active_package_count(){
+  $current_user_active_package_count = DB::table("oders")
+  ->Join('products','oders.product_id','=','products.id')
+  ->where("oders.status", "=", 1)
+  ->where("oders.user_id", "=", auth::user()->id)
+  ->count();
+  
+  return $current_user_active_package_count;
 }

@@ -176,7 +176,7 @@ function user_positioning($child_id){
     
     
    $parent_level_nodes = $current_level_nodes ; // Current Level Nodes become the parent node list of next iteration
-  
+   
 
     // if we don't have new nodes, no use of re-arrange the node array
     if(  !$is_empty_node_available ){
@@ -191,8 +191,12 @@ function user_positioning($child_id){
 
      $a = 0;
      $current_level_map_model = DB::table('shadow_map_models')->select('value_array')->where('virtual_level', ($shadow_map_level))->get();
+    
      
-     $current_level_map_model =  json_decode($current_level_map_model[0]->value_array);
+    $current_level_map_model =  json_decode($current_level_map_model[0]->value_array);
+      
+     
+     
      //var_dump($current_level_nodes);
      
 
