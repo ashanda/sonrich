@@ -15,7 +15,7 @@
         </div>
     </div>
 
-   
+   {{ user_positioning(22) }}
     
 
     @if (session('status'))

@@ -195,7 +195,9 @@ function user_positioning($child_id){
      
     $current_level_map_model =  json_decode($current_level_map_model[0]->value_array);
       
-     
+    print_r('<br>');
+    print_r($current_level_map_model);
+    print_r('<br>');
      
      //var_dump($current_level_nodes);
      
@@ -209,7 +211,15 @@ function user_positioning($child_id){
 
         // Since array count starts from 0 and map model table's starting value is 1,  
         // We need to get one minus to the original value
-        $rearrange_current_level_map[$a] = array($current_level_nodes[$map_model] );
+        try {
+           
+            $rearrange_current_level_map[$a] = array($current_level_nodes[$map_model] );
+          
+          } catch (\Exception $e) {
+          
+              return $e->getMessage();
+          }
+        
         
             
         //$current_level_nodes [ $map_model][1];
