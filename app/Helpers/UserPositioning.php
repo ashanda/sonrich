@@ -196,13 +196,29 @@ function user_positioning($child_id){
     $current_level_map_model =  json_decode($current_level_map_model[0]->value_array);
       
     print_r('<br>');
+    print_r('current_level_map_model');
     print_r($current_level_map_model);
     print_r('<br>');
-     
+
+    print_r('<br>');
+    print_r('shadow_map_level');
+    print_r($shadow_map_level);
+    print_r('<br>'); 
+
+    print_r('<br>');
+    print_r('current node');
+    print_r($current_level_nodes);
+    print_r('<br>'); 
+    
+    
      //var_dump($current_level_nodes);
      
 
      foreach($current_level_map_model as $map_model){
+        print_r('<br>');
+        print_r('map_model top');
+        print_r($map_model);
+        print_r('<br>');
         /*
         $current_level_map_model is basically the order where current_level_nodes to be rearranged.        
         We have the model of how this level should be arranged in our database.We take it 
@@ -211,14 +227,12 @@ function user_positioning($child_id){
 
         // Since array count starts from 0 and map model table's starting value is 1,  
         // We need to get one minus to the original value
-        try {
+        $map_model_index = $map_model-1;
+        
            
-            $rearrange_current_level_map[$a] = array($current_level_nodes[$map_model] );
+            $rearrange_current_level_map[$a] = array($current_level_nodes[$map_model_index] );
           
-          } catch (\Exception $e) {
           
-              return $e->getMessage();
-          }
         
         
             
@@ -226,24 +240,25 @@ function user_positioning($child_id){
           
           
            
-        if($current_level_nodes [ $map_model][1] == -1){
+        if($current_level_nodes [ $map_model_index][1] == -1){
 
      //  shadow_map_model table has values starting from 1, But when an array counts from zero. 
      //So we need to reduce 1 from the map_model value
        
-     $current_node_x = $current_level_nodes [ $map_model][0];
-      
-             $new_user_coordinates_store = new shadow_map;
-              $new_user_coordinates_store->y =  $shadow_map_level + $parent_y;
-              $new_user_coordinates_store->x = $current_node_x;
-              $new_user_coordinates_store->user_id = $child_id;
-              $new_user_coordinates_store->status = 1;
-              $new_user_coordinates_store->parent_node = $current_level_nodes [ $map_model][2];
+     $current_node_x = $current_level_nodes [ $map_model_index][0];
+
+
+            $new_user_coordinates_store = new shadow_map;
+            $new_user_coordinates_store->y =  $shadow_map_level + $parent_y;
+            $new_user_coordinates_store->x = $current_node_x;
+            $new_user_coordinates_store->user_id = $child_id;
+            $new_user_coordinates_store->status = 1;
+            $new_user_coordinates_store->parent_node = $current_level_nodes [ $map_model_index][2];
 
               //  shadow_map_model table has values starting from 1, But when an array counts from zero. 
               // So we need to reduce 1 from the map_model value
-              $new_user_coordinates_store->reference_node_side = ($current_node_x+1) % 2 ;
-              $new_user_coordinates_store->save();
+            $new_user_coordinates_store->reference_node_side = ($current_node_x+1) % 2 ;
+            $new_user_coordinates_store->save();
               
               
        
@@ -254,7 +269,7 @@ function user_positioning($child_id){
          
         
          $new_user_coordinates_found=1; 
-         break;
+         exit;
         
        
          
