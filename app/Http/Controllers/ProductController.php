@@ -6,7 +6,7 @@ use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class ProductController extends Controller
 {
     /**
@@ -61,7 +61,7 @@ class ProductController extends Controller
         'product_image' => 'required',
         'product_status' => 'required',
         ]);
-        $product = new Package();
+        $product = new product();
         $product->product_name = $request->product_name;
         $product->product_value = $request->product_value;
         $product->product_category = $request->product_category;
@@ -86,7 +86,7 @@ class ProductController extends Controller
         * @param  \App\product  $product
         * @return \Illuminate\Http\Response
         */
-        public function show(Package $product)
+        public function show(product $product)
         {
         return view('productModule.show',compact('product'));
         } 
@@ -122,7 +122,7 @@ class ProductController extends Controller
             'product_description' => 'required',
             'product_status' => 'required',
         ]);
-        $product = Package::find($id);
+        $product = product::find($id);
         $product->product_name = $request->product_name;
         $product->product_value = $request->product_value;
         $product->product_category = $request->product_category;
@@ -142,7 +142,7 @@ class ProductController extends Controller
         return redirect()->route('product.index');
         }
         
-        public function destroy(Package $product)
+        public function destroy(product $product)
         {
         $product->delete();
         Alert::Alert('Success', 'Package has been deleted successfully.')->persistent(true,false);

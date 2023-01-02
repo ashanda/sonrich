@@ -92,7 +92,7 @@ function geneology( $target_parent){
  
  
     $parent_details = DB::table("users")
-                    ->where("users.uid", "=", $target_parent) 
+                    ->where("users.id", "=", $target_parent) 
                     ->get();
     
     if($parent_details->isEmpty()){
@@ -109,7 +109,7 @@ function geneology( $target_parent){
       
                     
                     <span class='geneology_child_info'>
-                      <lable>User id - ".$parent_details[0]->system_id." </lable>
+                      <lable>User id - ".$parent_details[0]->id." </lable>
                     </span><br/>
                     <span class='geneology_child_info'>
                     <lable>Name - ".$parent_details[0]->fname." ".$parent_details[0]->lname." </lable>
@@ -121,11 +121,11 @@ function geneology( $target_parent){
                  
       </a>";
               
-      
+      $parent_node_id = DB::table('shadow_maps')->where('user_id',$target_parent)->get();
       $geneology = DB::table('users')
-      ->join('shadow_maps', 'shadow_maps.uid', '=', 'users.uid')
-      ->where('user__parents.virtual_parent','=' ,$target_parent)
-      ->select('user__parents.uid','users.fname','users.lname',"users.system_id", "users.email",'user__parents.ref_s' , 'users.fname' , 'users.email' , 'users.created_at')
+      ->join('shadow_maps', 'shadow_maps.user_id', '=', 'users.id')
+      ->where('shadow_maps.parent_node','=' ,$parent_node_id[0]->id)
+      ->select('shadow_maps.user_id','users.fname','users.lname', "users.email",'shadow_maps.reference_node_side' , 'users.fname' , 'users.email' , 'users.created_at')
       ->get();
       if($geneology->isEmpty()){
         echo '
@@ -142,13 +142,11 @@ function geneology( $target_parent){
           foreach($geneology as $geneology_data){
               
               
-              if($geneology_data->ref_s == 0){
+              if($geneology_data->reference_node_side == 0){
                 $left_child = 
                 "<li class='left_child'>
-                    <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
-                    <span class='geneology_child_info'>
-                      <lable>User id - ".$geneology_data->system_id." </lable>
-                    </span><br/>
+                    <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
+                    
                     <span class='geneology_child_info'>
                       <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
                     </span><br/>
@@ -163,10 +161,8 @@ function geneology( $target_parent){
               }else{
                 $right_child = 
                 "<li class='right_child'>
-                    <a href='/genealogy/?parent=$geneology_data->uid' title='User Details'>
-                    <span class='geneology_child_info'>
-                      <lable>User id - ".$geneology_data->system_id." </lable>
-                    </span><br/>
+                    <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
+                    
                     <span class='geneology_child_info'>
                       <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
                     </span><br/>
@@ -224,7 +220,7 @@ function cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direc
 }
 
 //cash Wallet Update
-function cash_walle(){
+function cash_wallet(){
   $cash_wallet = DB::table('cash_wallets')->where('user_id',Auth::user()->id)->first(); 
  
   return $cash_wallet;
@@ -233,7 +229,7 @@ function cash_walle(){
 
 //product wallet Update
 function product_wallet(){
-  $product_wallet = DB::table('cash_wallets')->where('user_id',Auth::user()->id)->first();
+  $product_wallet = DB::table('product_wallets')->where('user_id',Auth::user()->id)->first();
   return $product_wallet;
 
 }

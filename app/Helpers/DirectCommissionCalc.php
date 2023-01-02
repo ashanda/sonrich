@@ -27,7 +27,7 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
     $parent_node = $currentuser_map->user_id;
     */
     $oders_map = oder::where('user_id', $current_user_id)->where('status',1)->first();
-    
+  
     $currentuserearningmax = $oders_map->max_value;
     $currentuserearningtotal = $oders_map->total_package_earnings;
     $currentuser = $oders_map->user_id;

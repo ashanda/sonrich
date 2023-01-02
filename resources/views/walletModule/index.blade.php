@@ -55,10 +55,10 @@
                                     <span class="left">Cash Wallet</span>
                                 </div>
                                 <div class="col-5">
-                                    @if (cash_walle() == null )
+                                    @if (cash_wallet() == null )
                                     <span class="right">BV 0</span>
                                     @else
-                                    <span class="right">BV {{ cash_walle()->wallet_balance }}</span>
+                                    <span class="right">BV {{ cash_wallet()->wallet_balance }}</span>
                                     @endif
                                     
                                 </div>

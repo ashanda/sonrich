@@ -13,6 +13,7 @@ use App\Http\Controllers\OderController;
 use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\P2pController;
 use App\Http\Controllers\GenealogyController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,7 @@ Route::post('/buy_product/real_cash', [UserBuyController::class, 'real_cash'])->
 Route::post('/buy_product/sponsor_funds', [UserBuyController::class, 'sponsor_funds'])->name('sponsor_funds');
 Route::post('/buy_product/wallet_and_cash', [UserBuyController::class, 'wallet_and_cash'])->name('wallet_and_cash');
 Route::post('/buy_product/product_wallet', [UserBuyController::class, 'product_wallet'])->name('product_wallet');
+
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 Route::get('/pending_request', [WalletController::class, 'index'])->name('wallet');
 Route::resource('/friend_request', PayoutController::class);
@@ -63,6 +65,12 @@ Route::get('/genealogy' , [GenealogyController::class,'index'])->name('genealogy
 Route::resource('/package', KycController::class);
 Route::resource('/kyc', KycController::class);
 Route::resource('/product', ProductController::class);
+
+Route::get('/binary_report', [ReportController::class, 'binary_report'])->name('binary_report');
+Route::get('/direct_report', [ReportController::class, 'direct_report'])->name('direct_report');
+Route::get('/level_report', [ReportController::class, 'level_report'])->name('level_report');
+Route::get('/daily_report', [ReportController::class, 'daily_report'])->name('daily_report');
+
 Route::post('/2fa', function () {
 
         

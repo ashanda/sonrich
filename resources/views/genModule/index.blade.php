@@ -150,7 +150,7 @@ right connector from last child*/
 
 
 							if (array_key_exists('get_geneology', $_GET)) {
-								geneology(Auth::user()->uid);
+								geneology(Auth::user()->id);
 							} elseif (array_key_exists('parent', $_GET)) {
 								geneology(request()->get('parent'));
 							}
