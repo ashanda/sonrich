@@ -51,9 +51,9 @@ function user_positioning($child_id){
     //$shadow_map_level = $parent_level_node_data->y+1;
     
     
-    $shadow_map_x = $parent_level_node_data->x;
-    $shadow_map_id = $parent_level_node_data->id; 
-    $level_gap = $shadow_map_level + $relative_level;
+   // $shadow_map_x = $parent_level_node_data->x;
+   // $shadow_map_id = $parent_level_node_data->id; 
+   // $level_gap = $shadow_map_level + $relative_level;
     
     
 
@@ -81,7 +81,7 @@ function user_positioning($child_id){
        
     */
     $shadow_map_level = 0;
-    $relative_level = $parent_level_node_data->y;
+   // $relative_level = $parent_level_node_data->y;
 
     $current_level_nodes = array();
     $parent_node_count = 0 ; // this is $j
@@ -89,24 +89,33 @@ function user_positioning($child_id){
     $is_empty_node_available = false;
     //$test_array = array(array (),array ( 3 , 6 ), array ( 4 , 7) ,array (3)); 
    // $test_array_2 = array(array ( 3 , 6 ), array ( 4 , 7) ,array (3)); 
+   
     while(count($parent_level_nodes) > $parent_node_count){
-             
-        $child_node_x = $parent_level_nodes[$parent_node_count][0];
+        
+       //try {
+           
+            $child_node_x = $parent_level_nodes[$parent_node_count][0];
+          
+        //  } catch (\Exception $e) {
+          
+        //      return $e->getMessage();
+        //  }       
+       
 
        // var_dump(count($parent_level_nodes) <= $parent_node_count);
        $two_childs = DB::table('shadow_maps')->where('parent_node', $parent_level_nodes[$parent_node_count][1])->get();  
        
              
         $node_parent_id = $parent_level_nodes[$parent_node_count][1];
-      
-      
+          
+        
         
         
         
        
        
          if( count($two_childs) == 0){
-            
+           
              $new_left_child  = array( ($child_node_x * 2)  -1 ,  -1 , $node_parent_id);
              $new_right_child = array( $child_node_x * 2 , -1 , $node_parent_id); 
              
@@ -117,13 +126,14 @@ function user_positioning($child_id){
                 array_push($current_level_nodes,$new_left_child, $new_right_child);
                 
                 
+                
             }
            
 
              $is_empty_node_available = true;
 
          }elseif(count($two_childs) == 1){
- 
+          
              $new_left_child  = array();
              $new_right_child = array();
             
@@ -137,12 +147,22 @@ function user_positioning($child_id){
             if( count($current_level_nodes) == 0 ){
                 $current_level_nodes = array( $new_left_child , $new_right_child);
             }else{    
-                $current_level_nodes[] = array_push($new_left_child, $new_right_child);
+                array_push($current_level_nodes,$new_left_child, $new_right_child);
             }
             
+           /* print_r('$new_left_child');
+            print_r($new_left_child);
+            print_r('<br>');
+            print_r('$new_left_child');
+            print_r($new_left_child);
+            print_r('<br>');
+            print_r($current_level_nodes);
+            print_r('<br>');
+            */
              $is_empty_node_available = true;
             
-         }else{           
+         }else{    
+                
              $new_left_child  = array();
              $new_right_child = array();            
              for($x=0; $x<2; $x++ ){       
@@ -155,23 +175,43 @@ function user_positioning($child_id){
                  
                             
                  }
-             }  
-                       
+             }
+           /*  print_r('$node_parent_id');
+             print_r($node_parent_id);
+             print_r('<br>');    
+             print_r('$new_left_child');
+             print_r($new_left_child);
+             print_r('<br>');
+             print_r('$new_right_child');
+             print_r($new_right_child);
+             print_r('<br>');  */
+
            if(count($current_level_nodes) == 0){
-            
+          //  print_r('if');
                 $current_level_nodes =  array( $new_left_child , $new_right_child);
                
            }else{
-            $current_level_nodes[] = array_push($new_left_child, $new_right_child);
+           // print_r('ELESE');
+          //  print_r($current_level_nodes);
+            
+           // print_r('<br>'); 
+            array_push($current_level_nodes,$new_left_child, $new_right_child);
                
            }  
          
-           
+          
+         /* print_r($current_level_nodes);
+           print_r('<br>'); 
+           */
           
           }
-     $parent_node_count ++;
+          
+     $parent_node_count++;
+     
+     
      $shadow_map_level++;
-    $relative_level ++;
+     
+     
     }
     
     
@@ -190,35 +230,20 @@ function user_positioning($child_id){
      //rearrange 
 
      $a = 0;
-     $current_level_map_model = DB::table('shadow_map_models')->select('value_array')->where('virtual_level', ($shadow_map_level))->get();
+     $current_level_map_model = DB::table('shadow_map_models')->select('value_array')->where('virtual_level', ($relative_level))->get();
     
      
     $current_level_map_model =  json_decode($current_level_map_model[0]->value_array);
-      
     print_r('<br>');
-    print_r('current_level_map_model');
-    print_r($current_level_map_model);
-    print_r('<br>');
-
-    print_r('<br>');
-    print_r('shadow_map_level');
-    print_r($shadow_map_level);
-    print_r('<br>'); 
-
-    print_r('<br>');
-    print_r('current node');
-    print_r($current_level_nodes);
-    print_r('<br>'); 
+    print_r($current_level_map_model); 
+    
     
     
      //var_dump($current_level_nodes);
      
 
      foreach($current_level_map_model as $map_model){
-        print_r('<br>');
-        print_r('map_model top');
-        print_r($map_model);
-        print_r('<br>');
+        
         /*
         $current_level_map_model is basically the order where current_level_nodes to be rearranged.        
         We have the model of how this level should be arranged in our database.We take it 
@@ -228,9 +253,21 @@ function user_positioning($child_id){
         // Since array count starts from 0 and map model table's starting value is 1,  
         // We need to get one minus to the original value
         $map_model_index = $map_model-1;
-        
-           
+        try {
+           // print_r($current_level_nodes);
+           // print_r($map_model);
+           // print_r('<br>');
+           // print_r($current_level_nodes);
             $rearrange_current_level_map[$a] = array($current_level_nodes[$map_model_index] );
+           
+            print_r('<br>');
+            print_r($rearrange_current_level_map);
+          } catch (\Exception $e) {
+          
+              return $e->getMessage();
+          } 
+           
+            
           
           
         
@@ -246,10 +283,10 @@ function user_positioning($child_id){
      //So we need to reduce 1 from the map_model value
        
      $current_node_x = $current_level_nodes [ $map_model_index][0];
-
-
+           // print_r($shadow_map_level);
+           // print_r($parent_y);
             $new_user_coordinates_store = new shadow_map;
-            $new_user_coordinates_store->y =  $shadow_map_level + $parent_y;
+            $new_user_coordinates_store->y =  $relative_level + $parent_y;
             $new_user_coordinates_store->x = $current_node_x;
             $new_user_coordinates_store->user_id = $child_id;
             $new_user_coordinates_store->status = 1;
@@ -287,8 +324,8 @@ function user_positioning($child_id){
         
     }
        
-       
-        
+    $relative_level++;   
+    
     }     
 
 

@@ -15,7 +15,7 @@
         </div>
     </div>
 
-   {{ user_positioning(22) }}
+   {{ ShadowMapCommissions(15, 20, 200, 2000, 13) }}
     
 
     @if (session('status'))

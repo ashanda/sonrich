@@ -23,11 +23,15 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
     $direct_parent = User::where('id', $current_user_id)->first();
     $direct_parent_id = $direct_parent->parent;
 
+
+     //Direct Commission
+     DirectCommissionCalc($direct_parent_id, $direct_point,$reference_oder_id);
+
     //loop
     $i = 1;
 
     while ($currentuser->user_id==0) {    
-        
+      print_r($currentuser->user_id);  
         
         if($currentuser->status != 1){
             break;
@@ -35,10 +39,7 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
         //binary Commission
         BinaryCommissionCalc($currentuser->user_id,$binary_points,$reference_oder_id);
 
-     if($i <= 1){
-         //Direct Commission
-        DirectCommissionCalc($currentuser->user_id, $direct_point,$reference_oder_id);
-     }
+     
 
       //level commission
       if( $i <= 10){

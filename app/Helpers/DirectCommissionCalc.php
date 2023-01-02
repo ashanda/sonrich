@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Crypt;
 
 function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id){
 
+    /*
     $nodeparent_map = shadow_map_parent_node_check($current_user_id);
 
     $nodeparent = $nodeparent_map->parent_node;
@@ -24,8 +25,8 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
     $currentuser_map = shadow_map::where('id', $nodeparent)->first();
     
     $parent_node = $currentuser_map->user_id;
-    
-    $oders_map = oder::where('user_id', $parent_node)->where('status',1)->first();
+    */
+    $oders_map = oder::where('user_id', $current_user_id)->where('status',1)->first();
     
     $currentuserearningmax = $oders_map->max_value;
     $currentuserearningtotal = $oders_map->total_package_earnings;
@@ -35,6 +36,11 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
     if( $direct_point >= ( $currentuserearningmax - $currentuserearningtotal ) ){
 
         $new_direct_points = ($currentuserearningmax - $currentuserearningtotal);
+
+        $nodeparent_map = shadow_map_parent_node_check($current_user_id);
+        $nodeparent = $nodeparent_map->parent_node;
+        $nodeparent = shadow_map::where('id', $nodeparent)->first();
+        $currentmapid = $nodeparent_map-> id;
 
         $oder_update = oder::find($currentorderid);
         $oder_update->status = 2;

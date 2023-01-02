@@ -73,7 +73,7 @@ function globle_send_mail($html)
   $to = Auth::user()->email ;
   $subject= 'Sonrich Product Buy';
   $formEmail = 'support@sonrich.com' ;
-  $formName = 'LemacoNet';
+  $formName = 'SONRICH';
 
   Mail::send([], [], function($message) use($html, $plain, $to, $subject, $formEmail, $formName){
     $message->from($formEmail, $formName);
@@ -123,7 +123,7 @@ function geneology( $target_parent){
               
       
       $geneology = DB::table('users')
-      ->join('user__parents', 'user__parents.uid', '=', 'users.uid')
+      ->join('shadow_maps', 'shadow_maps.uid', '=', 'users.uid')
       ->where('user__parents.virtual_parent','=' ,$target_parent)
       ->select('user__parents.uid','users.fname','users.lname',"users.system_id", "users.email",'user__parents.ref_s' , 'users.fname' , 'users.email' , 'users.created_at')
       ->get();
