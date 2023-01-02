@@ -241,16 +241,29 @@ function user_oder_count($user_id){
 }
 
 //cash wallet Update
-function cash_wallet_update($amount,$user_id,$currentorderid,$reference_oder_id){
+function cash_wallet_update($amount,$current_user_id,$currentorderid,$reference_oder_id){
+
+  $old_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
+
   $store_amount = (2/3) * $amount;
-  $update_cash_wallet = cash_wallet::updateOrInsert(
-    ['user_id' => $user_id],
-    ['wallet_balance' => $store_amount]);
+
+  if($old_wallet == NULL){
+    $update_cash_wallet = cash_wallet::updateOrInsert(
+      ['user_id' => $current_user_id],
+      ['wallet_balance' => $store_amount]
+     );
+  }else{
+    $update_cash_wallet = cash_wallet::updateOrInsert(
+      ['user_id' => $current_user_id],
+      ['wallet_balance' => $old_wallet->wallet_balance + $store_amount]
+     );
+  }
+  
     
     $trx_direction = 'IN';
     $description = '2/3 Binary commission';
   
-  cash_wallet_log($user_id,$amount,$currentorderid,$reference_oder_id,$trx_direction,$description);
+  cash_wallet_log($current_user_id,$amount,$currentorderid,$reference_oder_id,$trx_direction,$description);
 
   return $update_cash_wallet;
 }
@@ -258,12 +271,21 @@ function cash_wallet_update($amount,$user_id,$currentorderid,$reference_oder_id)
 ///product wallet Update
 function product_wallet_update($amount,$current_user_id,$currentorderid,$reference_oder_id){
 
+  $old_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
+
   $store_amount = (1/3) * $amount;
+  if($old_wallet == NULL){
+    $update_product_wallet = product_wallet::updateOrInsert(
+      ['user_id' => $current_user_id],
+      ['wallet_balance' => $store_amount]
+    );
+  }else{
+    $update_product_wallet = product_wallet::updateOrInsert(
+      ['user_id' => $current_user_id],
+      ['wallet_balance' => $old_wallet->wallet_balance + $store_amount]
+    );
+  }
   
-  $update_product_wallet = product_wallet::updateOrInsert(
-    ['user_id' => $current_user_id],
-    ['wallet_balance' => $store_amount]
-  );
 
 
 

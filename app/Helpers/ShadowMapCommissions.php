@@ -25,38 +25,31 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
 
 
      //Direct Commission
-    // DirectCommissionCalc($direct_parent_id, $direct_point,$reference_oder_id);
-
+      DirectCommissionCalc($direct_parent_id, $direct_point,$reference_oder_id);
+    
     //loop
     $i = 1;
      
-    while ($currentuser->id == 0) {    
-      print_r($currentuser->id);  
-      print_r('<br>');   
-        if($currentuser->status != 1){
+    while ( $parent_node > 0) {    
+        
+
+          if($currentuser->status != 1){
             break;
-        }
+          }
+        
+        
+        
         //binary Commission
-       // BinaryCommissionCalc($currentuser->user_id,$binary_points,$reference_oder_id);
+        BinaryCommissionCalc($currentuser->user_id,$binary_points,$reference_oder_id);
 
-     
-
-      //level commission
-      if( $i <= 10){
-        $relative_level = $i;
-       // LevelCommissionCalc($currentuser->user_id,$level_points,$reference_oder_id,$relative_level);
-      }
+        //level commission
+        if( $i <= 10){
+          $relative_level = $i;
+        LevelCommissionCalc($currentuser->user_id,$level_points,$reference_oder_id,$relative_level);
+        }
       
       $currentuser_map = shadow_map::where('id', $currentuser->id)->where('status',1)->first();  
-      try {
-
-        $parent_node = $currentuser_map->parent_node;  
-      
-      } catch (\Exception $e) {
-      
-          return $e->getMessage();
-      }  
-             
+      $parent_node = $currentuser_map->parent_node;         
       $currentuser = shadow_map::where('id', $parent_node)->first();
      
       $i++;

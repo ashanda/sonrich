@@ -32,7 +32,8 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     
     
     $binary_commissions = binary_commission::where('user_id', $current_user_id)->first();
-    if($binary_commissions == NULL){
+
+   if($binary_commissions == NULL){
         $binary_commissions = new binary_commission();
         $binary_commissions->user_id = $current_user_id;
         $binary_commissions->left_total = 0;
@@ -59,7 +60,7 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
      
      /*SELECT @binarycommissiontableid;*/
  
-        if($leftbalance < $rightbalance) {
+       if($leftbalance < $rightbalance) {
         $binarycommission = $rightbalance - $leftbalance;
         $rightbalance = $binarycommission;
         $leftbalance = 0;
@@ -71,13 +72,14 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
         $rightbalance = 0;
         }else{
         $binarycommission =  $leftbalance; /* WHEN LB == RB */
-        $leftbalance = 0;
-        $rightbalance = 0;
+         $leftbalance = 0;
+         $rightbalance = 0;
         }
 
         /* If the commission is greater than  1:3, assign the possible amount and deactivate the order, remove the user from shadow map  */
-if($binarycommission >= ( $currentuserearningmax - $currentuserearningtotal ) ){
 
+ if($binarycommission >= ( $currentuserearningmax - $currentuserearningtotal ) ){
+    
     $new_binarycommission = ($currentuserearningmax - $currentuserearningtotal);
     if($leftbalance < $rightbalance){
 
@@ -113,23 +115,46 @@ if($binarycommission >= ( $currentuserearningmax - $currentuserearningtotal ) ){
     $binary_commission_logs->reference_oder_id = $reference_oder_id;
     $binary_commission_logs->save();
 
-    // 1/3 product wallet
-    product_wallet_update($new_binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
-
-    // 2/3 cash wallet
-    cash_wallet_update($new_binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
+    
 
 
 }else{
 
-    $binarycommission =  ( $currentuserearningmax - $currentuserearningtotal );
+    if($leftbalance < $rightbalance) {
+        $binarycommission = $rightbalance - $leftbalance;
+        $rightbalance = $binarycommission;
+        $leftbalance = 0;
+
+        }elseif($leftbalance > $rightbalance){
+
+        $binarycommission =  $leftbalance - $rightbalance;
+        $leftbalance = $binarycommission;
+        $rightbalance = 0;
+        }else{
+        $binarycommission =  $leftbalance; /* WHEN LB == RB */
+         $leftbalance = 0;
+         $rightbalance = 0;
+      }
+
+    
     $binarycommission_update = binary_commission::find($binarycommissiontableid);
     $binarycommission_update->left_total = $leftbalance;
     $binarycommission_update->right_total = $rightbalance;
     $binarycommission_update->save();
 
+    $oder_update = oder::find($currentorderid);
+    $oder_update->status = 1;
+    $oder_update->total_package_earnings = ($currentuserearningtotal + $binarycommission);
+    $oder_update->save();
+
+    // 1/3 product wallet
+    product_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
+
+    // 2/3 cash wallet
+    cash_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
+
 }
 
 
-    return $binary_commissions;
+   
 } 
