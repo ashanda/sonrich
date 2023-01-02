@@ -306,7 +306,8 @@ function user_positioning($child_id){
          
         
          $new_user_coordinates_found=1; 
-         exit;
+         return 1;
+         break;
         
        
          
