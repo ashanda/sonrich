@@ -15,7 +15,7 @@
         </div>
     </div>
 
-   {{ ShadowMapCommissions(22, 20, 200, 2000, 13) }} 
+  
     
 
     @if (session('status'))
