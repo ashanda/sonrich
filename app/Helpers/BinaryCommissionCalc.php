@@ -61,17 +61,18 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
      /*SELECT @binarycommissiontableid;*/
  
        if($leftbalance < $rightbalance) {
-        $binarycommission = $rightbalance - $leftbalance;
-        $rightbalance = $binarycommission;
+
+        $binarycommission = $leftbalance;
+        $rightbalance = $rightbalance - $leftbalance;
         $leftbalance = 0;
 
         }elseif($leftbalance > $rightbalance){
 
-        $binarycommission =  $leftbalance - $rightbalance;
-        $leftbalance = $binarycommission;
+        $binarycommission = $rightbalance ;
+        $leftbalance = $leftbalance - $rightbalance;
         $rightbalance = 0;
         }else{
-        $binarycommission =  $leftbalance; /* WHEN LB == RB */
+         $binarycommission =  $leftbalance; /* WHEN LB == RB */
          $leftbalance = 0;
          $rightbalance = 0;
         }
@@ -80,17 +81,18 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
 
  if($binarycommission >= ( $currentuserearningmax - $currentuserearningtotal ) ){
     
-    $new_binarycommission = ($currentuserearningmax - $currentuserearningtotal);
+    $binarycommission = ($currentuserearningmax - $currentuserearningtotal);
     if($leftbalance < $rightbalance){
 
-        $rightbalance = $new_binarycommission;
+        $rightbalance = $binarycommission;
 
     }else{
 
-        $leftbalance = $new_binarycommission;
+        $leftbalance = $binarycommission;
     }
     
-    $binarycommission =  ( $currentuserearningmax - $currentuserearningtotal );
+   // $binarycommission =  ( $currentuserearningmax - $currentuserearningtotal );
+
     $binarycommission_update = binary_commission::find($binarycommissiontableid);
     $binarycommission_update->left_total  = $leftbalance;
     $binarycommission_update->right_total = $rightbalance;
@@ -109,7 +111,7 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     
     $binary_commission_logs = new binary_commission_log;
     $binary_commission_logs->user_id = $currentuser;
-    $binary_commission_logs->amount = $new_binarycommission;
+    $binary_commission_logs->amount = $binarycommission;
     $binary_commission_logs->side = $parentside;
     $binary_commission_logs->oder_id = $currentorderid;
     $binary_commission_logs->reference_oder_id = $reference_oder_id;
@@ -120,21 +122,7 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
 
 }else{
 
-    if($leftbalance < $rightbalance) {
-        $binarycommission = $rightbalance - $leftbalance;
-        $rightbalance = $binarycommission;
-        $leftbalance = 0;
-
-        }elseif($leftbalance > $rightbalance){
-
-        $binarycommission =  $leftbalance - $rightbalance;
-        $leftbalance = $binarycommission;
-        $rightbalance = 0;
-        }else{
-        $binarycommission =  $leftbalance; /* WHEN LB == RB */
-         $leftbalance = 0;
-         $rightbalance = 0;
-      }
+    
 
     
     $binarycommission_update = binary_commission::find($binarycommissiontableid);
@@ -147,14 +135,14 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     $oder_update->total_package_earnings = ($currentuserearningtotal + $binarycommission);
     $oder_update->save();
 
-    // 1/3 product wallet
-    product_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
-
-    // 2/3 cash wallet
-    cash_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
+    
 
 }
+        // 1/3 product wallet
+        product_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
 
+        // 2/3 cash wallet
+        cash_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
 
    
 } 
