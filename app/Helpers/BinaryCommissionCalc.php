@@ -78,7 +78,7 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
         }
 
         /* If the commission is greater than  1:3, assign the possible amount and deactivate the order, remove the user from shadow map  */
-
+        $binarycommission =  $binarycommission * 1000 ;
  if($binarycommission >= ( $currentuserearningmax - $currentuserearningtotal ) ){
     
     $binarycommission = ($currentuserearningmax - $currentuserearningtotal);
@@ -138,12 +138,12 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     
 
 }
-        $store_bc = $binarycommission * 1000 ; 
+        
         // 1/3 product wallet
-        product_wallet_update($store_bc,$current_user_id,$currentorderid,$reference_oder_id);
+        product_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
 
         // 2/3 cash wallet
-        cash_wallet_update($store_bc,$current_user_id,$currentorderid,$reference_oder_id);
+        cash_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
 
    
 } 
