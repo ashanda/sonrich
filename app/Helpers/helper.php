@@ -328,6 +328,23 @@ function current_user_active_package_count(){
 }
 
 
+function user_oder_count_update($user_id,$oder_id){
+  $oder_counts_detils = DB::table('user_oder_counts')->where('user_id', $user_id)->first();
+        if($oder_counts_detils != NULL){
+            $oder_counts_detils->count;
+            $oder_count = $oder_counts_detils->count;
+        }else{
+            $oder_count = 0;
+        }
+        
+        
+        
+         $oder_counts = DB::table('user_oder_counts')->updateOrInsert(
+                        ['user_id'=>$user_id],
+                        ['oder_id'=> $oder_id,
+                        'count'=>$oder_count+1]);
+}
+
 function daily_commission_cal(){
   
   $oders = DB::table('oders')->where('status',1)->where('total_package_earnings','<=','max_value')->get();

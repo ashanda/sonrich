@@ -108,24 +108,7 @@ class UserBuyController extends Controller
         $oder->status = $request->status;
         $oder->save();
 
-        $oder_counts_detils = DB::table('user_oder_counts')->where('user_id', Auth::user()->id)->first();
-        if($oder_counts_detils != NULL){
-            $oder_counts_detils->count;
-            $oder_count = $oder_counts_detils->count;
-        }else{
-            $oder_count = 0;
-        }
-        $oder_id = $oder->id;
         
-        
-         $oder_counts = DB::table('user_oder_counts')->updateOrInsert(
-            ['user_id'=>Auth::user()->id],
-            ['oder_id'=> $oder_id,
-            'count'=>$oder_count+1]);
-
-        $new_product_wallet_balance = DB::table('product_wallets')->updateOrInsert(
-                ['user_id'=>Auth::user()->id],
-                ['wallet_balance'=> 0]);
         return redirect('buy_product')->with('success', 'You have place the order successfully. Waiting for admins approval.');
     }
 
@@ -143,20 +126,7 @@ class UserBuyController extends Controller
         $oder->status = $request->status;
         $oder->save();
         
-        $oder_counts_detils = DB::table('user_oder_counts')->where('user_id', Auth::user()->id)->first();
-        if($oder_counts_detils != NULL){
-            $oder_counts_detils->count;
-            $oder_count = $oder_counts_detils->count;
-        }else{
-            $oder_count = 0;
-        }
-        $oder_id = $oder->id;
         
-        
-         $oder_counts = DB::table('user_oder_counts')->updateOrInsert(
-            ['user_id'=>Auth::user()->id],
-            ['oder_id'=> $oder_id,
-            'count'=>$oder_count+1]);
         $product_wallet_balance_detils = DB::table('product_wallets')->where('user_id', Auth::user()->id)->first();
         
         $new_product_wallet_balance = DB::table('product_wallets')->updateOrInsert(
@@ -166,7 +136,7 @@ class UserBuyController extends Controller
         $user_id  =  Auth::user()->id ; 
         $amount = $request->product_price;
         $oder_id = $oder->id;
-        $reference_oder_id;
+        $reference_oder_id = 0;
         $trx_direction = 'Out';
         $description = 'product wallet buy';
         product_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description);    

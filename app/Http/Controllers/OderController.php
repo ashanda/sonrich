@@ -150,6 +150,7 @@ class OderController extends Controller
        if(user_positioning($child_id) == 1){
 
         ShadowMapCommissions($child_id, $binary_points, $level_points, $direct_point, $reference_oder_id);
+        user_oder_count_update($child_id,$reference_oder_id);
 
        }
        
