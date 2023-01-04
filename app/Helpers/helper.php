@@ -9,10 +9,12 @@ Use App\Models\direct_commission_log;
 Use App\Models\binary_commission_log;
 Use App\Models\level_commission_log;
 use App\Models\product_wallet;
+use App\Models\oder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+
 
  function getCountryList(){
     $countries = CountryListFacade::getList('en');
@@ -306,6 +308,14 @@ function shadow_map_parent_node_check($child_id){
   return $nodeparent_map;
 }
 
+//shadow map nodes activation check
+
+function shadow_map_node_check($user_id){
+  $shadow_map_node_check = shadow_map::where('user_id', $user_id)->where('status',1)->first();
+
+  return $shadow_map_node_check;
+}
+
 //user current active package 
 function current_user_active_package(){
   $current_user_active_package = DB::table("oders")
@@ -317,6 +327,7 @@ function current_user_active_package(){
   return $current_user_active_package;
 }
 
+//user active package count 
 function current_user_active_package_count(){
   $current_user_active_package_count = DB::table("oders")
   ->Join('products','oders.product_id','=','products.id')
@@ -327,7 +338,7 @@ function current_user_active_package_count(){
   return $current_user_active_package_count;
 }
 
-
+//user oder count update 
 function user_oder_count_update($user_id,$oder_id){
   $oder_counts_detils = DB::table('user_oder_counts')->where('user_id', $user_id)->first();
         if($oder_counts_detils != NULL){
@@ -345,16 +356,3 @@ function user_oder_count_update($user_id,$oder_id){
                         'count'=>$oder_count+1]);
 }
 
-function daily_commission_cal(){
-  
-  $oders = DB::table('oders')->where('status',1)->where('total_package_earnings','<=','max_value')->get();
-  $daily_point = 0;
-  foreach($oders as $oder){
-
-    $daily_point = (master_data()->daily * $oder->product_value);
-    print_r('<br>');
-    print_r($daily_point);
-    
-  }
-  
-}

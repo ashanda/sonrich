@@ -55,6 +55,15 @@ class ReportController extends Controller
 
     public function daily_report()
     {
-        //
+        $role=Auth::user()->role;
+        if($role==1 || $role==2){
+
+            $data = DB::table('daily_commission_logs')
+            ->join('users', 'users.id', '=', 'daily_commission_logs.user_id')
+            ->orderBy('daily_commission_logs.created_at', 'desc')
+            ->select('users.id as uid','users.fname','users.lname','daily_commission_logs.*')
+            ->get();
+            return view('reportModule.daily',compact('data'));
+        }
     }
 }

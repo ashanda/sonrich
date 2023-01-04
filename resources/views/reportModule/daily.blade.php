@@ -24,10 +24,10 @@
                         <tr>
                             <th>User id</th>
                             <th>User Name</th>
-                            <th>Package Value</th>
-                            <th>Payment Methode</th>
+                            <th>Daily Commission</th>
+                            <th>Oder ID</th>
                             <th>Created at</th>
-                            <th>Package status</th>
+                            
                             
                         </tr>
                            
@@ -38,20 +38,9 @@
             
             <td>{{ $oder->uid}}</td>
             <td>{{ $oder->fname ." ".$oder->lname}}</td>
-            <td>{{ $oder->product_value}}</td>
-            <td>{{ $oder->payment_method}}</td>
+            <td>{{ $oder->amount}}</td>
+            <td>{{ $oder->oder_id}}</td>
             <td>{{ $oder->created_at}}</td>
-            
-            @if ($oder->status==0)
-            <td>{{ 'Pending' }}</td>
-            @elseif($oder->status==1)
-            <td>{{ 'Activate' }}</td>
-            @elseif($oder->status==2)
-            <td>{{ 'Complete' }}</td>
-            @else
-            <td>{{ 'Canceled' }}</td>
-            @endif
-
             </tr>
            
             @endforeach

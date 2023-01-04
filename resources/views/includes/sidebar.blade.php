@@ -216,7 +216,7 @@ $role = auth()->user()->role;
               </a>
             </li>
             <li class="nav-item">
-              <a href="/p2p" class="nav-link">
+              <a href="/daily_report" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Total Daily Points Reports</p>
               </a>

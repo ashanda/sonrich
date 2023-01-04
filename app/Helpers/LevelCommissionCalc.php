@@ -30,8 +30,6 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
 
         $new_level_points = ($currentuserearningmax - $currentuserearningtotal);
 
-        
-       
         $level_commission_logs = new level_commission_log;
         $level_commission_logs->user_id = $currentuser;
         $level_commission_logs->amount = $new_level_points;
