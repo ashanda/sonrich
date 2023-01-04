@@ -3,6 +3,10 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\User;
 
 class DailyCommissionCron extends Command
 {
@@ -45,6 +49,8 @@ class DailyCommissionCron extends Command
            Item::create(['name'=>'hello new']);
 
         */
-        return 0;
+        // getting not complete 1:3 oders
+        $oders = DB::table('oders')->where('status',1)->where('total_package_earnings','<=','max_value')->get();
+        
     }
 }

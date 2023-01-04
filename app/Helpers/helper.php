@@ -326,3 +326,18 @@ function current_user_active_package_count(){
   
   return $current_user_active_package_count;
 }
+
+
+function daily_commission_cal(){
+  
+  $oders = DB::table('oders')->where('status',1)->where('total_package_earnings','<=','max_value')->get();
+  $daily_point = 0;
+  foreach($oders as $oder){
+
+    $daily_point = (master_data()->daily * $oder->product_value);
+    print_r('<br>');
+    print_r($daily_point);
+    
+  }
+  
+}

@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 
-function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder_id){
+function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder_id,$reference_node_side){
     
 
     $nodeparent_map = shadow_map_parent_node_check($current_user_id);
 
     $nodeparent = $nodeparent_map-> parent_node;
-    $parentside = $nodeparent_map-> reference_node_side;
+    $parentside = $reference_node_side;
     $currentmapid = $nodeparent_map-> id;
-
+   
     
     $oders_map = oder::where('user_id', $current_user_id)->where('status',1)->first();
     $currentuserearningmax = $oders_map->max_value;
@@ -77,8 +77,12 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
          $rightbalance = 0;
         }
 
-        /* If the commission is greater than  1:3, assign the possible amount and deactivate the order, remove the user from shadow map  */
+        //binary point multiply 1000
         $binarycommission =  $binarycommission * 1000 ;
+
+    /* If the commission is greater than  1:3, assign the possible amount and deactivate the order, remove the user from shadow map  */
+        
+        
  if($binarycommission >= ( $currentuserearningmax - $currentuserearningtotal ) ){
     
     $binarycommission = ($currentuserearningmax - $currentuserearningtotal);
@@ -91,7 +95,7 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
         $leftbalance = $binarycommission;
     }
     
-   // $binarycommission =  ( $currentuserearningmax - $currentuserearningtotal );
+    $binarycommission =  ( $currentuserearningmax - $currentuserearningtotal );
 
     $binarycommission_update = binary_commission::find($binarycommissiontableid);
     $binarycommission_update->left_total  = $leftbalance;
@@ -125,16 +129,26 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     
 
     
+   
     $binarycommission_update = binary_commission::find($binarycommissiontableid);
     $binarycommission_update->left_total = $leftbalance;
     $binarycommission_update->right_total = $rightbalance;
     $binarycommission_update->save();
+
+    $binary_commission_logs = new binary_commission_log;
+    $binary_commission_logs->user_id = $currentuser;
+    $binary_commission_logs->amount = $binarycommission;
+    $binary_commission_logs->side = $parentside;
+    $binary_commission_logs->oder_id = $currentorderid;
+    $binary_commission_logs->reference_oder_id = $reference_oder_id;
+    $binary_commission_logs->save();
 
     $oder_update = oder::find($currentorderid);
     $oder_update->status = 1;
     $oder_update->total_package_earnings = ($currentuserearningtotal + $binarycommission);
     $oder_update->save();
 
+    
     
 
 }

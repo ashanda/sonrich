@@ -40,7 +40,7 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
         
         
         //binary Commission
-        BinaryCommissionCalc($currentuser->user_id,$binary_points,$reference_oder_id);
+        BinaryCommissionCalc($currentuser->user_id,$binary_points,$reference_oder_id,$currentuser_map->reference_node_side);
 
         //level commission
         if( $i <= 10){
