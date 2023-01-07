@@ -27,6 +27,7 @@
                             <th>User Name</th>
                             <th>Package Value</th>
                             <th>Payment Methode</th>
+                            <th>Earnings</th>
                             <th>Created at</th>
                             <th>Package status</th>
                             
@@ -42,6 +43,7 @@
             <td>{{ $oder->fname ." ".$oder->lname}}</td>
             <td>{{ $oder->product_value}}</td>
             <td>{{ $oder->payment_method}}</td>
+            <td>{{ $oder->total_package_earnings}}</td>
             <td>{{ $oder->created_at}}</td>
             
             @if ($oder->status==0)
