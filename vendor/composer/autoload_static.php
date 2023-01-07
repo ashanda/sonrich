@@ -580,7 +580,6 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
 
     public static $classMap = array (
         'App\\Console\\Commands\\AutoRemoveCron' => __DIR__ . '/../..' . '/app/Console/Commands/AutoRemoveCron.php',
-        'App\\Console\\Commands\\DailyCommissionCron' => __DIR__ . '/../..' . '/app/Console/Commands/DailyCommissionCron.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -608,6 +607,7 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
         'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\ProductWalletController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductWalletController.php',
         'App\\Http\\Controllers\\ProductWalletLogController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductWalletLogController.php',
+        'App\\Http\\Controllers\\ReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReportController.php',
         'App\\Http\\Controllers\\ShadowMapController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShadowMapController.php',
         'App\\Http\\Controllers\\ShadowMapModelController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShadowMapModelController.php',
         'App\\Http\\Controllers\\UserBuyController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserBuyController.php',

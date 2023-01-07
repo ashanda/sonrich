@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Console\\Commands\\AutoRemoveCron' => $baseDir . '/app/Console/Commands/AutoRemoveCron.php',
-    'App\\Console\\Commands\\DailyCommissionCron' => $baseDir . '/app/Console/Commands/DailyCommissionCron.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -35,6 +34,7 @@ return array(
     'App\\Http\\Controllers\\ProductController' => $baseDir . '/app/Http/Controllers/ProductController.php',
     'App\\Http\\Controllers\\ProductWalletController' => $baseDir . '/app/Http/Controllers/ProductWalletController.php',
     'App\\Http\\Controllers\\ProductWalletLogController' => $baseDir . '/app/Http/Controllers/ProductWalletLogController.php',
+    'App\\Http\\Controllers\\ReportController' => $baseDir . '/app/Http/Controllers/ReportController.php',
     'App\\Http\\Controllers\\ShadowMapController' => $baseDir . '/app/Http/Controllers/ShadowMapController.php',
     'App\\Http\\Controllers\\ShadowMapModelController' => $baseDir . '/app/Http/Controllers/ShadowMapModelController.php',
     'App\\Http\\Controllers\\UserBuyController' => $baseDir . '/app/Http/Controllers/UserBuyController.php',

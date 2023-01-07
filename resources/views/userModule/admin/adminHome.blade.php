@@ -14,16 +14,18 @@
             </div>
         </div>
     </div>
-
-  
     
-
     @if (session('status'))
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
     </div>
 
     @endif
+    
+    <a href="{{ route('daily_commission')}}" class="btn btn-warning">Daily Commission</a>
+   
+
+    
     <div class="row">
         <div class="col-sm-6 pb-3 pt-3">
             <div class="card text-center p-3">

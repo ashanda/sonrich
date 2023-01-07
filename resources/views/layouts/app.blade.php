@@ -34,12 +34,13 @@
   <div class="wrapper">
     <!-- Navbar -->
     @include('includes.navbar')
-    @include('sweetalert::alert')
+    
 
     @include('includes.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+      @include('sweetalert::alert')
       <!-- Content -->
       @yield('content')
       <!-- /.content -->
@@ -82,6 +83,7 @@
   <script src="{{ asset('adminlte/dist/js/pages/dashboard3.js') }}"></script>
   <!-- Custom script -->
   <script src="{{ asset('js/script.js') }}"></script>
+  
 </body>
 
 </html>

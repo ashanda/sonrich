@@ -101,7 +101,11 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     $binarycommission_update->left_total  = $leftbalance;
     $binarycommission_update->right_total = $rightbalance;
     $binarycommission_update->save();
-
+    
+    //checking 7 admin heads
+    if(admin_head_check($currentmapid) == 1){
+            
+    }else{
     $oder_update = oder::find($currentorderid);
     $oder_update->status = 2;
     $oder_update->total_package_earnings = $currentuserearningmax;
@@ -110,7 +114,7 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     $oder_update = shadow_map::find($currentmapid);
     $oder_update->status = 0;
     $oder_update->save();
-
+    }
 
     
     $binary_commission_logs = new binary_commission_log;

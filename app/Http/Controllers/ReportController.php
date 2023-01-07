@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\DB;
 class ReportController extends Controller
 {
     //
+
+    public function users_report()
+    {
+        $role=Auth::user()->role;
+        if($role==1 || $role==2){
+            $data = DB::table('users')->where('role',0)->get();
+            
+        } 
+        return view('reportModule.user',compact('data'));
+    }
+
+
+
     public function binary_report()
     {
         $role=Auth::user()->role;

@@ -37,19 +37,29 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
         
         $new_direct_points = ($currentuserearningmax - $currentuserearningtotal);
 
+        
+
         $nodeparent_map = shadow_map_parent_node_check($current_user_id);
         $nodeparent = $nodeparent_map->parent_node;
         $nodeparent = shadow_map::where('id', $nodeparent)->first();
         $currentmapid = $nodeparent_map-> id;
 
-        $oder_update = oder::find($currentorderid);
-        $oder_update->status = 2;
-        $oder_update->total_package_earnings = $currentuserearningmax;
-        $oder_update->save();
+        //checking 7 admin heads
+        if(admin_head_check($currentmapid) == 1){
+            
+        }else{
 
-        $oder_update = shadow_map::find($currentmapid);
-        $oder_update->status = 0;
-        $oder_update->save();
+            $oder_update = oder::find($currentorderid);
+            $oder_update->status = 2;
+            $oder_update->total_package_earnings = $currentuserearningmax;
+            $oder_update->save();
+    
+            $oder_update = shadow_map::find($currentmapid);
+            $oder_update->status = 0;
+            $oder_update->save();
+
+        }
+        
 
         $level_commission_logs = new direct_commission_log;
         $level_commission_logs->user_id = $currentuser;

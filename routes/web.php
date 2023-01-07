@@ -14,6 +14,7 @@ use App\Http\Controllers\WithdrawalController;
 use App\Http\Controllers\P2pController;
 use App\Http\Controllers\GenealogyController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\DailyCommissionLogController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,7 @@ Route::post('p2p/trans', [WithdrawalController::class, 'p2p_trans'])->name('with
 Route::get('trans/cash', [WithdrawalController::class, 'cash'])->name('withdrawal');
 Route::get('trans/p2p', [WithdrawalController::class, 'p2p'])->name('withdrawal');
 
+Route::get('/daily_commission', [DailyCommissionLogController::class, 'daily_commission'])->name('daily_commission');
 
 Route::post('/buy_product/real_cash', [UserBuyController::class, 'real_cash'])->name('real_cash');
 Route::post('/buy_product/sponsor_funds', [UserBuyController::class, 'sponsor_funds'])->name('sponsor_funds');
@@ -70,6 +72,7 @@ Route::get('/binary_report', [ReportController::class, 'binary_report'])->name('
 Route::get('/direct_report', [ReportController::class, 'direct_report'])->name('direct_report');
 Route::get('/level_report', [ReportController::class, 'level_report'])->name('level_report');
 Route::get('/daily_report', [ReportController::class, 'daily_report'])->name('daily_report');
+Route::get('/users_report', [ReportController::class, 'users_report'])->name('users_report');
 
 Route::post('/2fa', function () {
 

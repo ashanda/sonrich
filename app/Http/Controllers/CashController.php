@@ -67,7 +67,7 @@ class CashController extends Controller
      * @param  \App\Models\Cash  $cash
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cash $cash)
+    public function update(Request $request, $id)
     {
         $package = Cash::find($id);
         $package->status = $request->oder_status;

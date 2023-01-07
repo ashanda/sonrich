@@ -356,3 +356,20 @@ function user_oder_count_update($user_id,$oder_id){
                         'count'=>$oder_count+1]);
 }
 
+
+// admin 7 head check 
+
+function admin_head_check($user_node_id){
+  if($user_node_id == 2 || $user_node_id == 3 || $user_node_id == 4 || $user_node_id == 5 || $user_node_id == 6 || $user_node_id == 7 || $user_node_id == 8){
+
+    return 1;
+  }else{
+
+    return 0;
+  }
+}
+
+
+
+
+

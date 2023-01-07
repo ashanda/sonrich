@@ -4,6 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\daily_commission_log;
 use Illuminate\Http\Request;
+use Monarobase\CountryList\CountryListFacade;
+Use App\Models\Kyc;
+Use App\Models\User;
+Use App\Models\cash_wallet;
+Use App\Models\shadow_map;
+Use App\Models\direct_commission_log;
+Use App\Models\binary_commission_log;
+Use App\Models\level_commission_log;
+use App\Models\product_wallet;
+use App\Models\oder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 
 class DailyCommissionLogController extends Controller
 {
@@ -12,9 +26,101 @@ class DailyCommissionLogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function daily_commission()
     {
         //
+         //after 7 days
+         $date = date('Y-m-d H:i:s');
+         $date = strtotime($date);
+         $date = strtotime("-9 day", $date);
+         $new_date = date('Y-m-d H:i:s', $date);
+ 
+ 
+         // getting not complete 1:3 oders
+         $oders = DB::table('oders')->where('status', '=', 1)->whereColumn('total_package_earnings', '<', 'max_value')->get();
+
+         $daily_points = 0;
+         foreach($oders as $oder){
+       
+           //if need check top 7 nodes and getting direct sales 2 double of daily commission
+           
+           $daily_points = (master_data()->daily * $oder->product_value);
+           
+       
+           if( $daily_points >= ( $oder->max_value - $oder->total_package_earnings ) ){
+             
+             $new_daily_points = ($oder->max_value - $oder->total_package_earnings);
+ 
+             $node_check = shadow_map_node_check($oder->user_id);
+ 
+             //checking 7 admin heads
+             if(admin_head_check($node_check->id) == 1){
+             
+             }else{
+             $daily_commission_logs = new daily_commission_log;
+             $daily_commission_logs->user_id = $oder->user_id;
+             $daily_commission_logs->amount = $new_daily_points ;
+             $daily_commission_logs->oder_id = $oder->id;
+             $daily_commission_logs->save();
+ 
+             $oder_update = oder::find($oder->id);
+             $oder_update->status = 2;
+             $oder_update->total_package_earnings = $oder->max_value;
+             $oder_update->save();
+             
+             $oder_update = shadow_map::find($node_check->id);
+             $oder_update->status = 0;
+             $oder_update->save();
+ 
+             // 1/3 product wallet
+             product_wallet_update($new_daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+       
+             // 2/3 cash wallet
+             cash_wallet_update($new_daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+             }
+             
+             
+         }else{
+ 
+             $node_check = shadow_map_node_check($oder->user_id);
+ 
+             //checking 7 admin heads
+             if(admin_head_check($node_check->id) == 1){
+             
+             }else{
+            
+             $oder_update = oder::find($oder->id);
+             $oder_update->total_package_earnings = $daily_points;
+             $oder_update->save();
+       
+             
+       
+             $oder_update = oder::find($oder->id);
+             $oder_update->status = 1;
+             $oder_update->total_package_earnings = ($oder->total_package_earnings + $daily_points);
+             $oder_update->save();
+       
+             $daily_commission_logs = new daily_commission_log;
+             $daily_commission_logs->user_id = $oder->user_id;
+             $daily_commission_logs->amount = $daily_points ;
+             $daily_commission_logs->oder_id = $oder->id;
+             $daily_commission_logs->save();
+       
+             // 1/3 product wallet
+             product_wallet_update($daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+       
+             // 2/3 cash wallet
+             cash_wallet_update($daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+             
+             }
+         }
+           
+         
+       
+         }
+        alert()->success('Success','Daily Commission Shared Successfully!');
+        return redirect()->route('admin');
+        
     }
 
     /**

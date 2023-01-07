@@ -38,6 +38,10 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
         $level_commission_logs->relative_level = $relative_level;
         $level_commission_logs->save();
 
+        //checking 7 admin heads
+        if(admin_head_check($currentmapid) == 1){
+            
+        }else{
         $oder_update = oder::find($currentorderid);
         $oder_update->status = 2;
         $oder_update->total_package_earnings = $currentuserearningmax;
@@ -46,7 +50,7 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
         $oder_update = shadow_map::find($currentmapid);
         $oder_update->status = 0;
         $oder_update->save();
-
+        }
         // 1/3 product wallet
         product_wallet_update($new_level_points,$current_user_id,$currentorderid,$reference_oder_id);
 
