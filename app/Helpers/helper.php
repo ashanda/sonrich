@@ -148,7 +148,9 @@ function geneology( $target_parent){
                 $left_child = 
                 "<li class='left_child'>
                     <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
-                    
+                    <span class='geneology_child_info'>
+                      <lable>User id - ".$geneology_data->user_id." </lable>
+                    </span><br/>
                     <span class='geneology_child_info'>
                       <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
                     </span><br/>
@@ -164,7 +166,9 @@ function geneology( $target_parent){
                 $right_child = 
                 "<li class='right_child'>
                     <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
-                    
+                    <span class='geneology_child_info'>
+                      <lable>User id - ".$geneology_data->user_id." </lable>
+                    </span><br/>
                     <span class='geneology_child_info'>
                       <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
                     </span><br/>
