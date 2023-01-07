@@ -38,13 +38,29 @@ class DailyCommissionLogController extends Controller
  
          // getting not complete 1:3 oders
          $oders = DB::table('oders')->where('status', '=', 1)->whereColumn('total_package_earnings', '<', 'max_value')->get();
-
+         
          $daily_points = 0;
          foreach($oders as $oder){
-       
+            var_dump($oder->user_id);
            //if need check top 7 nodes and getting direct sales 2 double of daily commission
+           $direct_sale_count=DB::table('users')
+            ->join('oders','users.id','=','oders.user_id')
+            ->where('users.parent',$oder->user_id)
+            ->where('oders.status','!=','0')
+            ->select('users.id')
+            ->count();
+            
+            if($direct_sale_count > 1){
+                $daily_points = ((master_data()->daily *2) * $oder->product_value);
+                
+            }else{
+                $daily_points = (master_data()->daily * $oder->product_value);
+                
+            }
+
            
-           $daily_points = (master_data()->daily * $oder->product_value);
+
+
            
        
            if( $daily_points >= ( $oder->max_value - $oder->total_package_earnings ) ){
@@ -54,14 +70,16 @@ class DailyCommissionLogController extends Controller
              $node_check = shadow_map_node_check($oder->user_id);
  
              //checking 7 admin heads
+             
+
              if(admin_head_check($node_check->id) == 1){
              
              }else{
-             $daily_commission_logs = new daily_commission_log;
-             $daily_commission_logs->user_id = $oder->user_id;
-             $daily_commission_logs->amount = $new_daily_points ;
-             $daily_commission_logs->oder_id = $oder->id;
-             $daily_commission_logs->save();
+            $daily_commission_logs = new daily_commission_log;
+            $daily_commission_logs->user_id = $oder->user_id;
+            $daily_commission_logs->amount = $new_daily_points ;
+            $daily_commission_logs->oder_id = $oder->id;
+            $daily_commission_logs->save();
  
              $oder_update = oder::find($oder->id);
              $oder_update->status = 2;
@@ -81,19 +99,18 @@ class DailyCommissionLogController extends Controller
              
              
          }else{
- 
-             $node_check = shadow_map_node_check($oder->user_id);
- 
-             //checking 7 admin heads
-             if(admin_head_check($node_check->id) == 1){
+            
+            $node_check = shadow_map_node_check($oder->user_id);
+
+            if(admin_head_check($node_check->id) == 1){
              
-             }else{
+            }else{
+             
+            
             
              $oder_update = oder::find($oder->id);
              $oder_update->total_package_earnings = $daily_points;
-             $oder_update->save();
-       
-             
+             $oder_update->save(); 
        
              $oder_update = oder::find($oder->id);
              $oder_update->status = 1;
@@ -111,9 +128,10 @@ class DailyCommissionLogController extends Controller
        
              // 2/3 cash wallet
              cash_wallet_update($daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+            }
              
-             }
          }
+         
            
          
        

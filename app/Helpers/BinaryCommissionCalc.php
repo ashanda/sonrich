@@ -95,6 +95,9 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
         $leftbalance = $binarycommission;
     }
     
+    //line 109 admin head 7 we can't assign ( $currentuserearningmax - $currentuserearningtotal )this calculation
+    $exit_binary = $binarycommission;
+
     $binarycommission =  ( $currentuserearningmax - $currentuserearningtotal );
 
     $binarycommission_update = binary_commission::find($binarycommissiontableid);
@@ -104,7 +107,13 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     
     //checking 7 admin heads
     if(admin_head_check($currentmapid) == 1){
-            
+
+    $oder_update = oder::find($currentorderid);
+    $oder_update->total_package_earnings = $currentuserearningtotal + $exit_binary;
+    $oder_update->save();
+
+    $binarycommission = $exit_binary;
+
     }else{
     $oder_update = oder::find($currentorderid);
     $oder_update->status = 2;

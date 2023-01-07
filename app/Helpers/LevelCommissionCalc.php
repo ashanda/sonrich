@@ -41,6 +41,10 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
         //checking 7 admin heads
         if(admin_head_check($currentmapid) == 1){
             
+        $oder_update = oder::find($currentorderid);
+        $oder_update->total_package_earnings = $currentuserearningtotal + $level_points;
+        $oder_update->save();
+
         }else{
         $oder_update = oder::find($currentorderid);
         $oder_update->status = 2;

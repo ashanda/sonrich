@@ -46,6 +46,10 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
 
         //checking 7 admin heads
         if(admin_head_check($currentmapid) == 1){
+
+            $oder_update = oder::find($currentorderid);
+            $oder_update->total_package_earnings = $currentuserearningtotal + $direct_point;
+            $oder_update->save();
             
         }else{
 
