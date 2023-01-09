@@ -11,6 +11,8 @@
         <div class="col-sm-6 text-right">
             <div class="dUid ml-auto py-3 py-sm-0">
                 <h5 class="px-4 py-2 bg-primary">User Id - {{ Auth::user()->id }}</h5>
+                <!-- user name -->
+                {{ Auth::user()->fname.' '.Auth::user()->lname }}
             </div>
         </div>
     </div>

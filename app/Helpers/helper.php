@@ -132,7 +132,7 @@ function geneology( $target_parent){
       if($geneology->isEmpty()){
         echo '
         <div class="alert alert-warning" role="alert">
-           No KYCS approved user yet
+            End of the Line.
         </div>';
       }
   $child_elements='';  
