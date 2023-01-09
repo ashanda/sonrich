@@ -128,13 +128,15 @@ span.pkg_duration {
     margin: auto;
 }
 .dUid {
-    max-width: 200px;
-    text-align: center;
+    /* max-width: 200px; */
+    /* text-align: center; */
 }
 
 @media screen and (max-width: 576px) {
     .dUid {
         max-width: 100%;
+        text-align: left;
+        margin-bottom: 10px;
     }
 }
 
