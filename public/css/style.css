@@ -136,5 +136,12 @@ span.pkg_duration {
     .dUid {
         max-width: 100%;
     }
-    
+}
+
+/* tree responsive */
+@media screen and (max-width: 768px) {
+    .current_parent li.left_child,
+    .current_parent li.right_child {
+        max-width: 50%;
+    }
 }
