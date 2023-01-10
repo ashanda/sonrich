@@ -374,6 +374,20 @@ function admin_head_check($user_node_id){
 }
 
 
+// admin and other 6 gas fee collect
+function gas_fee_collect(){
+  
+
+$data = DB::table("oders")
+
+->whereIn("user_id", [2, 3, 4, 5, 6, 7, 8])
+->join('users','users.id', '=', 'oders.user_id')
+->whereColumn("max_value", "<", 'total_package_earnings')
+->get();
+
+return $data;
+}
+
 
 
 
