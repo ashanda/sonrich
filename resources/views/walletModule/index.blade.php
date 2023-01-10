@@ -121,7 +121,7 @@
                 </div>
 
             </div>
-            @if (Auth::user()->role == 0 || Auth::user()->role == 1)
+            @if (Auth::user()->role == 0 || Auth::user()->role == 2)
             <h5><a class="btn btn-primary" href="/withdrawal">Withdrawal</a></h5>
             @endif
             <div class="text-center blue p-3">
