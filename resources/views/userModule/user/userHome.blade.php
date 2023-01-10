@@ -10,18 +10,13 @@
         </div>
         <div class="col-sm-6 text-right">
             <div class="dUid ml-auto py-3 py-sm-0">
-                <h5 class="px-4 py-2 bg-primary">User Id - {{ Auth::user()->id }}</h5>
+                <span class="text-bold">{{ Auth::user()->fname.' '.Auth::user()->lname }}</span>
+                <h6 class="px-4 py-2 bg-primary d-inline ml-2">User Id - {{ Auth::user()->id }}</h6>
                 <!-- user name -->
-                {{ Auth::user()->fname.' '.Auth::user()->lname }}
             </div>
         </div>
     </div>
     <h5>Welcome to Sonrich Asset Plan</h5>
-
-
-    
-
-
 
     @if (session('status'))
     <div class="alert alert-success" role="alert">
@@ -73,10 +68,10 @@
         </div> -->
     </div>
     @else
-        
+
     @endif
-    
-    
+
+
     <div class="row">
         <div class="col-sm-6 pb-3 pt-4">
             <div class="card text-center p-3">
