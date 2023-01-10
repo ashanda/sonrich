@@ -17,7 +17,7 @@ class WithdrawalController extends Controller
     public function index()
     {
         $role = Auth::user()->role;
-        if($role==0){
+        if($role==0 || $role==1){
             return view('withdrawalModule.index');
         }
     }
@@ -25,7 +25,7 @@ class WithdrawalController extends Controller
     public function cash()
     {
         $role = Auth::user()->role;
-        if($role==0){
+        if($role==0 || $role==1){
             return view('withdrawalModule.cash');
         }
     }
@@ -63,7 +63,7 @@ class WithdrawalController extends Controller
         $fee = $request->request_amount* master_data()->cash;
         $tranfer_amount = $request->request_amount - $fee;
         $role = Auth::user()->role;
-        if($role==0){
+        if($role==0 || $role==1){
             $request->validate([
                 'request_amount' => 'required',     
             ]);
@@ -143,18 +143,20 @@ class WithdrawalController extends Controller
 
         $last_cash_wallet = cash_wallet($package->user_id);
         $wallet = cash_wallet::find($last_cash_wallet->id);  
-        $wallet->hold_amount  = $package->request_amount - $request->request_amount;
+        $request_val = floatval($request->request_amount);
+        $wallet->hold_amount  = $package->request_amount - $request_val;
+       
         $wallet->save();
 
         $user_id  =  $package->user_id; 
         $amount = $package->request_amount;
-        $oder_id = '';
-        $reference_oder_id = '';
+        $oder_id = '-1';
+        $reference_oder_id = '-1';
         $trx_direction = 'Out';
         $description = 'cash withdraw';
         cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
 
-        return redirect('wallet')->with('success', 'p2p Approved Successfully!');
+        return redirect('wallet')->with('success', 'Approved Successfully!');
     }
 
     /**

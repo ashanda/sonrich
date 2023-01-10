@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
+use App\Models\cash_wallet;
 
 class P2pController extends Controller
 {
@@ -100,7 +101,7 @@ class P2pController extends Controller
         $user_id  =  $package->user_id; 
         $amount = $package->request_amount;
         $oder_id = $package->request_user_id;
-        $reference_oder_id;
+        $reference_oder_id ='-1';
         $trx_direction = 'Out';
         $description = 'P2P withdraw';
         cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 

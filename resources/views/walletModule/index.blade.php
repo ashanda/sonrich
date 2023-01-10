@@ -121,7 +121,7 @@
                 </div>
 
             </div>
-            @if (Auth::user()->role == 0)
+            @if (Auth::user()->role == 0 || Auth::user()->role == 1)
             <h5><a class="btn btn-primary" href="/withdrawal">Withdrawal</a></h5>
             @endif
             <div class="text-center blue p-3">
@@ -189,6 +189,7 @@
 
                                         @csrf
                                         @method('PUT')
+                                        <input type="hidden" name="request_amount" value={{ $withdrawel->request_amount}} > 
                                         <button type="submit" class="btn btn-danger">Approve</button>
                                     </form>
                                 </td>
