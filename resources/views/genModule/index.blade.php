@@ -150,9 +150,25 @@ right connector from last child*/
 
 
 							if (array_key_exists('get_geneology', $_GET)) {
+								
 								geneology(Auth::user()->id);
+								
+
 							} elseif (array_key_exists('parent', $_GET)) {
-								geneology(request()->get('parent'));
+								$encryption = request()->get('parent');
+
+								$ciphering = "aes-128-cbc-hmac-sha256";
+								
+								// Non-NULL Initialization Vector for decryption
+								$decryption_iv = '1234567891011125';
+								$options = 0;
+								// Store the decryption key
+								$decryption_key = "geneology";
+
+								// Use openssl_decrypt() function to decrypt the data
+								$decryption=openssl_decrypt ($encryption, $ciphering,$decryption_key, $options, $decryption_iv);
+								
+								geneology($decryption);
 							}
 
 

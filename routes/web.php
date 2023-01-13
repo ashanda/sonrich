@@ -44,6 +44,9 @@ Route::get('/user', [HomeController::class, 'user'])->name('user');
 Route::get('/all-oders', [OderController::class, 'all_oders'])->name('all-oders');
 Route::resource('/buy_product', UserBuyController::class);
 Route::resource('/p2p', P2pController::class);
+
+Route::get('/p2p_history', [P2pController::class, 'show'])->name('p2p_history');
+
 Route::resource('/oders', OderController::class);
 Route::get('/withdrawal', [WithdrawalController::class, 'index'])->name('withdrawal');
 Route::resource('/withdraw', WithdrawalController::class);

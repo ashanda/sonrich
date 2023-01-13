@@ -89,9 +89,9 @@ function globle_send_mail($html)
 }
 
 
-function geneology( $target_parent){
+function geneology( $encryption ){
 
- 
+$target_parent = $encryption;
  
     $parent_details = DB::table("users")
                     ->where("users.id", "=", $target_parent) 
@@ -142,12 +142,27 @@ function geneology( $target_parent){
         echo '<ul>';
        
           foreach($geneology as $geneology_data){
-              
+            $simple_string = $geneology_data->user_id;
+            $ciphering = "aes-128-cbc-hmac-sha256";
+
+            // Use OpenSSl Encryption method
+            $iv_length = openssl_cipher_iv_length($ciphering);
+            $options = 0;
+           
+            // Non-NULL Initialization Vector for encryption
+            $encryption_iv = '1234567891011125';
+          
+            // Store the encryption key
+            $encryption_key = "geneology";
+          
+            // Use openssl_encrypt() function to encrypt the data
+            $encryption = openssl_encrypt($simple_string, $ciphering,
+            $encryption_key, $options, $encryption_iv);
               
               if($geneology_data->reference_node_side == 0){
                 $left_child = 
                 "<li class='left_child'>
-                    <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
+                    <a href='/genealogy/?parent=$encryption' title='User Details'>
                     <span class='geneology_child_info'>
                       <lable>User id - ".$geneology_data->user_id." </lable>
                     </span><br/>
@@ -165,7 +180,7 @@ function geneology( $target_parent){
               }else{
                 $right_child = 
                 "<li class='right_child'>
-                    <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
+                    <a href='/genealogy/?parent=$encryption' title='User Details'>
                     <span class='geneology_child_info'>
                       <lable>User id - ".$geneology_data->user_id." </lable>
                     </span><br/>
@@ -226,8 +241,8 @@ function cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direc
 }
 
 //cash Wallet Update
-function cash_wallet(){
-  $cash_wallet = DB::table('cash_wallets')->where('user_id',Auth::user()->id)->first(); 
+function cash_wallet($user_id){
+  $cash_wallet = DB::table('cash_wallets')->where('user_id',$user_id)->first(); 
  
   return $cash_wallet;
 

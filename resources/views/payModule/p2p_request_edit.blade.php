@@ -31,6 +31,7 @@
                            
                            
                             <strong>Request Value:</strong>
+                            
                             <input type="number" name="requset_value" class="form-control" value="{{ $p2p[0]->request_amount }}" readonly>
                             <input type="hidden" name="oder_status"  value="1" readonly>
                             

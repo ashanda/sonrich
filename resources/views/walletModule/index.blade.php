@@ -55,10 +55,10 @@
                                     <span class="left">Cash Wallet</span>
                                 </div>
                                 <div class="col-5">
-                                    @if (cash_wallet() == null )
+                                    @if (cash_wallet(Auth::user()->id) == null )
                                     <span class="right">BV 0</span>
                                     @else
-                                    <span class="right">BV {{ cash_wallet()->wallet_balance }}</span>
+                                    <span class="right">BV {{ cash_wallet(Auth::user()->id)->wallet_balance }}</span>
                                     @endif
                                     
                                 </div>
@@ -121,7 +121,7 @@
                 </div>
 
             </div>
-            @if (Auth::user()->role == 0 || Auth::user()->role == 2)
+            @if (Auth::user()->role == 0 || Auth::user()->role == 1)
             <h5><a class="btn btn-primary" href="/withdrawal">Withdrawal</a></h5>
             @endif
             <div class="text-center blue p-3">

@@ -24,9 +24,34 @@
 
     @endif
     
-    <a href="{{ route('daily_commission')}}" class="btn btn-warning">Daily Commission</a>
-   
+    
+    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-sm">
+        Daily Commission
+    </button>
+    <div class="modal fade" id="modal-sm" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">Daily Commission</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>Do your confirm distributions of daily commission</p>
+        </div>
+        <div class="modal-footer justify-content-between">
+        <a href="{{ route('daily_commission')}}" class="btn btn-primary">Yes</a>   
+        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        
+        </div>
+        </div>
+        
+        </div>
+        
+        </div>
 
+    
     
     <div class="row">
         <div class="col-sm-6 pb-3 pt-3">
@@ -109,6 +134,7 @@
         </div>
     </div>
 </div>
+
 <script>
     let text = document.getElementById("refLink").innerHTML;
     const copyContent = async () => {

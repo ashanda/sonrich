@@ -161,6 +161,18 @@ $role = auth()->user()->role;
           </a>
 
         </li>
+
+        <li class="nav-item">
+          <a href="/p2p_history" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              P2P History
+
+
+            </p>
+          </a>
+
+        </li>
         @endif
         @if ($role == 0)
         <li class="nav-item">

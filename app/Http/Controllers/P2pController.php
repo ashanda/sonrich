@@ -21,7 +21,7 @@ class P2pController extends Controller
         $role=Auth::user()->role;
         if($role==0){
             $data =DB::table('p2p_transection')
-                    ->join('users', 'users.id', '=', 'p2p_transection.user_id')
+                    ->join('users', 'users.id', '=', 'p2p_transection.request_user_id')
                     ->where('users.id', '=', Auth::user()->id)
                     ->where('p2p_transection.status', '=', 0)
                     ->select('p2p_transection.id','users.fname','users.lname','p2p_transection.request_amount')
@@ -60,7 +60,13 @@ class P2pController extends Controller
      */
     public function show(p2p $p2p)
     {
-        //
+        $data =DB::table('p2p_transection')
+        ->join('users', 'users.id', '=', 'p2p_transection.request_user_id')
+        ->where('p2p_transection.user_id', '=', Auth::user()->id)
+        ->where('p2p_transection.status', '=', 1)
+        ->select('p2p_transection.id','users.fname','users.lname','p2p_transection.request_amount')
+        ->get();
+         return view('payModule.p2p_show',compact('data'));
     }
 
     /**
@@ -94,9 +100,21 @@ class P2pController extends Controller
         $package->save();
 
         $last_cash_wallet = cash_wallet($package->request_user_id);
+
         $wallet = cash_wallet::find($last_cash_wallet->id);  
-        $wallet->wallet_balance  = $package->request_amount - $request->request_amount;
+        $request_val = floatval($request->requset_value);
+        $wallet->wallet_balance  = $last_cash_wallet->wallet_balance + $request_val;
+       
         $wallet->save();
+
+        $last_cash_wallet_rec = cash_wallet($package->user_id);
+
+        $wallet_rec = cash_wallet::find($last_cash_wallet_rec->id);  
+        $request_val = floatval($request->requset_value);
+        $wallet_rec->hold_amount  = $last_cash_wallet_rec->hold_amount - $request_val;
+        $wallet_rec->save();
+
+      
 
         $user_id  =  $package->user_id; 
         $amount = $package->request_amount;
@@ -104,7 +122,10 @@ class P2pController extends Controller
         $reference_oder_id ='-1';
         $trx_direction = 'Out';
         $description = 'P2P withdraw';
-        cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
+
+       cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
+
+
         return redirect('p2p')->with('success', 'Approved Successfully!');
 
     }
