@@ -15,6 +15,7 @@ use App\Http\Controllers\P2pController;
 use App\Http\Controllers\GenealogyController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DailyCommissionLogController;
+use App\Http\Controllers\GasFeeController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,7 @@ Route::post('/buy_product/product_wallet', [UserBuyController::class, 'product_w
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 Route::get('/pending_request', [WalletController::class, 'index'])->name('wallet');
 
+Route::resource('/gas_fee_collect', GasFeeController::class);
 Route::resource('/friend_request', PayoutController::class);
 
 Route::get('/genealogy' , [GenealogyController::class,'index'])->name('genealogy');

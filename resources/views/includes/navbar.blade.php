@@ -48,7 +48,7 @@
         <div class="dropdown-divider"></div>
         @foreach ( gas_fee_collect() as $data)
         <a href="#" class="dropdown-item">
-          <i class="fas fa-user mr-2"></i> {{ $data->fname." ".$data->lname }}
+          <i class="fas fa-user mr-2"></i> {{ $data->id}} - {{ $data->fname." ".$data->lname }}
           <span class="float-right text-muted text-sm">{{ $data->total_package_earnings }}</span>
         </a>
         <div class="dropdown-divider"></div>

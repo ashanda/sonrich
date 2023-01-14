@@ -626,6 +626,7 @@ class ComposerStaticInitfe7f7bfd6e42839a2cfd5d27e275abf8
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Listeners\\UserLoginAt' => __DIR__ . '/../..' . '/app/Listeners/UserLoginAt.php',
         'App\\Models\\Cash' => __DIR__ . '/../..' . '/app/Models/Cash.php',
+        'App\\Models\\GasFee' => __DIR__ . '/../..' . '/app/Models/GasFee.php',
         'App\\Models\\Kyc' => __DIR__ . '/../..' . '/app/Models/Kyc.php',
         'App\\Models\\ProductBuyRequest' => __DIR__ . '/../..' . '/app/Models/ProductBuyRequest.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

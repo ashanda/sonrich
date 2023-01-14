@@ -201,6 +201,18 @@ $role = auth()->user()->role;
         @endif
         @if ($role == 1 || $role == 2)
         <li class="nav-item">
+          <a href="/gas_fee_collect" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Gas Fee Collect
+
+
+            </p>
+          </a>
+
+        </li>
+
+        <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-columns"></i>
             <p>
