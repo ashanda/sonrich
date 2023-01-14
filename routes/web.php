@@ -65,7 +65,9 @@ Route::post('/buy_product/product_wallet', [UserBuyController::class, 'product_w
 
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
 Route::get('/pending_request', [WalletController::class, 'index'])->name('wallet');
+
 Route::resource('/friend_request', PayoutController::class);
+
 Route::get('/genealogy' , [GenealogyController::class,'index'])->name('genealogy');
 Route::resource('/package', KycController::class);
 Route::resource('/kyc', KycController::class);

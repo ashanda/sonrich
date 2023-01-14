@@ -404,5 +404,9 @@ return $data;
 }
 
 
-
+function find_product($product_id){
+  $product_data = DB::table('products')->where('id',$product_id)->first();
+  
+  return $product_data;
+}
 
