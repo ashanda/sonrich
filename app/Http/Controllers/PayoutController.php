@@ -16,7 +16,7 @@ class PayoutController extends Controller
         $role=Auth::user()->role;
         if($role==0){
             $data =DB::table('product_buy_requests')
-                    ->join('users', 'users.id', '=', 'product_buy_requests.user_id')
+                    ->join('users', 'users.id', '=', 'product_buy_requests.sponsor_id')
                     ->where('users.id', '=', Auth::user()->id)
                     ->where('product_buy_requests.status', '=', 0)
                     ->select('product_buy_requests.id','users.fname','users.lname','product_buy_requests.request_amount')
