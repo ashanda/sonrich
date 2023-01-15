@@ -51,7 +51,7 @@
                 <!-- <input class="form-control" type="file" value="{{ $kyc->id_doc_front }}" name="id_doc_front"> -->
                 <br>
                 <a href="{{ $kyc->id_doc_front }}">
-                    <img style="max-width: 250px;" src="{{ $kyc->id_doc_front }}" class="img-fluid" alt="Docs Front">
+                    <img style="max-width: 250px;" src="{{ $kyc->id_doc_front }}" class="w-100" alt="Docs Front">
                 </a>
             </div>
             <div class="form-group">
@@ -59,7 +59,7 @@
                 <!-- <input class="form-control" type="file" value="{{ $kyc->id_doc_back }}" name="id_doc_back"> -->
                 <br>
                 <a href="{{ $kyc->id_doc_back }}">
-                    <img style="max-width: 250px;" src="{{ $kyc->id_doc_back }}" class="img-fluid" alt="Docs Back">
+                    <img style="max-width: 250px;" src="{{ $kyc->id_doc_back }}" class="w-100" alt="Docs Back">
                 </a>
             </div>
 
