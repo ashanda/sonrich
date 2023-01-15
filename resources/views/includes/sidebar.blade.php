@@ -17,7 +17,7 @@ $role = auth()->user()->role;
         <img src="{{asset('adminlte/dist/img/user.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="/edit-profile" class="d-block">User Name</a>
+        <a href="/edit-profile" class="d-block">{{ Auth::user()->fname." ".Auth::user()->lname }}</a>
         @if (Auth::user()->role == 2)
         <p class="text-white" style="font-size: 10px;">{{ 'Super Admin' }}</p>
         @elseif (Auth::user()->role == 1)
@@ -174,7 +174,17 @@ $role = auth()->user()->role;
 
         </li>
         @endif
-        @if ($role == 0)
+        @if ($role == 2)
+        <li class="nav-item">
+          <a href="/commission_reports" class="nav-link">
+            <i class="nav-icon fas fa-columns"></i>
+            <p>
+              Commission Report
+            </p>
+          </a>
+
+        </li>
+
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-columns"></i>

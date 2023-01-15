@@ -35,6 +35,42 @@
                         <div class="card p-3 mr-0 mr-md-5">
                             <div class="row">
                                 <div class="col-7">
+                                    <span class="left">Binary Left</span>
+                                </div>
+                                <div class="col-5">
+                                    @if (binary_point(Auth::user()->id) == null )
+                                    <span class="right">BV 0</span>
+                                    @else
+                                    <span class="right">BV {{ binary_point(Auth::user()->id)->left_total }}</span>
+                                    @endif
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xs-12 pt-2">
+                        <div class="card p-3 ml-0 ml-md-5">
+                            <div class="row">
+                                <div class="col-7">
+                                    <span class="left">Binary Right</span>
+                                </div>
+                                <div class="col-5">
+                                    @if (binary_point(Auth::user()->id) == null )
+                                    <span class="right">BV 0</span>
+                                    @else
+                                    <span class="right">BV {{ binary_point(Auth::user()->id)->right_total }}</span>
+                                    @endif
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-xs-12 pt-2">
+                        <div class="card p-3 mr-0 mr-md-5">
+                            <div class="row">
+                                <div class="col-7">
                                     <span class="left">Product Wallet</span>
                                 </div>
                                 <div class="col-5">

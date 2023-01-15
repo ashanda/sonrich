@@ -79,4 +79,21 @@ class ReportController extends Controller
             return view('reportModule.daily',compact('data'));
         }
     }
+
+
+    public function commission_reports(){
+        $role=Auth::user()->role;
+        if($role==0){
+
+            $data = DB::table('daily_commission_logs')
+            ->leftJoin('binary_commission_logs', 'binary_commission_logs.user_id', '=', 'daily_commission_logs.user_id')
+            ->leftJoin('direct_commission_logs', 'direct_commission_logs.user_id', '=', 'daily_commission_logs.user_id')
+            ->leftJoin('level_commission_logs', 'level_commission_logs.user_id', '=', 'daily_commission_logs.user_id')
+            ->where('daily_commission_logs.user_id',Auth::user()->id)
+            ->orderBy('daily_commission_logs.created_at', 'desc')
+            ->select('direct_commission_logs.amount as damount','binary_commission_logs.amount as bamount','daily_commission_logs.amount as diamount','level_commission_logs.amount as lamount')
+            ->get();
+            return view('reportModule.commission',compact('data'));
+        }
+    }
 }

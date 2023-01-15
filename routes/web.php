@@ -75,6 +75,7 @@ Route::resource('/package', KycController::class);
 Route::resource('/kyc', KycController::class);
 Route::resource('/product', ProductController::class);
 
+Route::get('/commission_reports', [ReportController::class, 'commission_reports'])->name('commission_reports');
 Route::get('/binary_report', [ReportController::class, 'binary_report'])->name('binary_report');
 Route::get('/direct_report', [ReportController::class, 'direct_report'])->name('direct_report');
 Route::get('/level_report', [ReportController::class, 'level_report'])->name('level_report');

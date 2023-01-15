@@ -410,3 +410,8 @@ function find_product($product_id){
   return $product_data;
 }
 
+function binary_point($user_id){
+  $binary_point = DB::table('binary_commissions')->where('user_id',$user_id)->first();
+  return $binary_point;
+}
+
