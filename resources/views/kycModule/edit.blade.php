@@ -10,8 +10,8 @@
     </div>
 
     <form id="stepregForm" class="stepregForm PT-3" action="{{ route('kyc.update',$id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
+        @csrf
+        @method('PUT')
         <!-- One "tab" for each step in the form: -->
         <div class="tab pb-3">
             <div class="form-group">
@@ -25,12 +25,12 @@
             <div class="form-group">
                 <label for="country" class="form-label">Country Selected</label>
                 <br>
-                
+
                 <select class="form-select p-1 w-100" name="country" aria-label="Default select example">
                     @foreach (getCountryList() as $country)
-                        <option value="{{ $country }}">{{ $country }}</option>
+                    <option value="{{ $country }}">{{ $country }}</option>
                     @endforeach
-                </select>    
+                </select>
             </div>
         </div>
         <div class="tab pb-3">
@@ -49,12 +49,18 @@
             <div class="form-group">
                 <label for="bankAcc" class="form-label">Docs Front</label>
                 <!-- <input class="form-control" type="file" value="{{ $kyc->id_doc_front }}" name="id_doc_front"> -->
-                <img src="{{ $kyc->id_doc_front }}" class="img-fluid" alt="Docs Front">
+                <br>
+                <a href="{{ $kyc->id_doc_front }}">
+                    <img style="max-width: 250px;" src="{{ $kyc->id_doc_front }}" class="img-fluid" alt="Docs Front">
+                </a>
             </div>
             <div class="form-group">
                 <label for="bankAcc" class="form-label">Docs Back</label>
                 <!-- <input class="form-control" type="file" value="{{ $kyc->id_doc_back }}" name="id_doc_back"> -->
-                <img src="{{ $kyc->id_doc_back }}" class="img-fluid" alt="Docs Back">
+                <br>
+                <a href="{{ $kyc->id_doc_back }}">
+                    <img style="max-width: 250px;" src="{{ $kyc->id_doc_back }}" class="img-fluid" alt="Docs Back">
+                </a>
             </div>
 
         </div>
@@ -86,20 +92,20 @@
                 <select class="form-select p-2 ml-2" name="status">
                     @if ($kyc->status == 0)
                     <option value="1">Active</option>
-                    <option value="2">Reject</option>  
+                    <option value="2">Reject</option>
                     @elseif ($kyc->status == 1)
                     <option value="0">Pending</option>
-                    <option value="2">Reject</option> 
+                    <option value="2">Reject</option>
                     @else
                     <option value="0">Pending</option>
-                    <option value="1">Ative</option> 
+                    <option value="1">Ative</option>
                     @endif
                 </select>
             </div>
             <div id="crypto_wall" style="display: none;" class="form-group">
                 <label for="cryWall" class="form-label">Crypto Walet address</label>
                 <input id="cryWall" class="form-control" value="{{ $kyc->crypto_wallet }}" name="crypto_wallet">
-                
+
                 <input type="hidden" class="form-control" value="{{ $kyc->user_id }}" name="user_id">
             </div>
         </div>
