@@ -49,19 +49,14 @@
             <div class="form-group">
                 <label for="bankAcc" class="form-label">Docs Front</label>
                 <!-- <input class="form-control" type="file" value="{{ $kyc->id_doc_front }}" name="id_doc_front"> -->
-
-                <img style="max-width: 250px;" src="{{ asset('kycs/img/'.$kyc->id_doc_front) }}" class="img-fluid" alt="Docs Front">
-
-                
-
+                    <img style="max-width: 250px;" src="{{ asset('kycs/img/'.$kyc->id_doc_front) }}" class="w-100" alt="Docs Front">
+            
             </div>
             <div class="form-group">
                 <label for="bankAcc" class="form-label">Docs Back</label>
                 <!-- <input class="form-control" type="file" value="{{ $kyc->id_doc_back }}" name="id_doc_back"> -->
-
-                <img style="max-width: 250px;" src="{{ asset('kycs/img/'.$kyc->id_doc_back) }}" class="img-fluid" alt="Docs Back">
-
-
+                
+                    <img style="max-width: 250px;" src="{{ asset('kycs/img/'.$kyc->id_doc_back) }}" class="w-100" alt="Docs Back">
             </div>
 
         </div>
