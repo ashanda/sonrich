@@ -5,6 +5,7 @@ use App\Models\Kyc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 class KycController extends Controller
 {
     /**
@@ -64,14 +65,40 @@ class KycController extends Controller
             'address' => 'required',
             'status' => 'required',
         ]);
+         $kyc = new kyc;
+        if($request->file('id_doc_front')){
+            $file= $request->file('id_doc_front');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file->move(public_path('/kycs/img'), $filename);
+            $kyc->id_doc_front = $filename;
+            
+        }
+        if($request->file('id_doc_back')){
+            $file= $request->file('id_doc_back');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('/kycs/img'), $filename);
+            $kyc->id_doc_back = $filename;
+        }
 
-    
-
-        Kyc::create($request->all());
+        $kyc->user_id = $request->user_id;
+        $kyc->mobile_number1 = $request->mobile_number1;
+        $kyc->mobile_number2 = $request->mobile_number2;
+        $kyc->id_docs_type = $request->id_docs_type;
+        $kyc->country = $request->country;
+        $kyc->address = $request->address;
+        $kyc->bank_name = $request->bank_name;
+        $kyc->branch_name = $request->branch_name;
+        $kyc->bank_acount_number = $request->bank_acount_number;
+        $kyc->citizen = $request->citizen;
+        $kyc->crypto_wallet = $request->crypto_wallet;
+        $kyc->status = $request->status;        
+        $kyc->save();
+        
 
      
-
-        return redirect()->route('kyc.index')->with('success','Product created successfully.');
+        Alert::Alert('Success', 'KYC has been created successfully.')->persistent(true,false); 
+        return redirect()->route('kyc.index');
+       
     }
 
     /**
