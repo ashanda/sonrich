@@ -34,8 +34,8 @@
     </li> -->
 
     <!-- Messages Dropdown Menu -->
-    
-    <!-- Notifications Dropdown Menu -->
+    @if (Auth::user()->role == 1)
+       <!-- Notifications Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-bell"></i>
@@ -56,6 +56,8 @@
       
 
     </li>
+    @endif
+   
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen" href="#" role="button">
         <i class="fas fa-expand-arrows-alt"></i>
