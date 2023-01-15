@@ -62,7 +62,7 @@ class P2pController extends Controller
     {
         $data =DB::table('p2p_transection')
         ->join('users', 'users.id', '=', 'p2p_transection.request_user_id')
-        ->where('p2p_transection.user_id', '=', Auth::user()->id)
+        ->where('p2p_transection.request_user_id', '=', Auth::user()->id)
         ->where('p2p_transection.status', '=', 1)
         ->select('p2p_transection.id','users.fname','users.lname','p2p_transection.request_amount')
         ->get();
