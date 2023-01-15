@@ -89,135 +89,120 @@ function globle_send_mail($html)
 }
 
 
-function geneology( $encryption ){
+function geneology( $target_parent){
 
-$target_parent = $encryption;
  
-    $parent_details = DB::table("users")
-                    ->where("users.id", "=", $target_parent) 
-                    ->get();
+ 
+  $parent_details = DB::table("users")
+                  ->where("users.id", "=", $target_parent) 
+                  ->get();
+  
+  if($parent_details->isEmpty()){
+    echo '
+    <div class="alert alert-warning" role="alert">
+     <strong>Warning!</strong> No Geneology Found.
+    </div>';
     
-    if($parent_details->isEmpty()){
+  }else{
+echo "
+    
+        <li class='current_parent'>
+    <a  title='User Details'>
+    
+                  
+                  <span class='geneology_child_info'>
+                    <lable>User id - ".$parent_details[0]->id." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                  <lable>Name - ".$parent_details[0]->fname." ".$parent_details[0]->lname." </lable>
+                </span><br/>                
+                  <span class='geneology_child_info'>
+                    <lable>Registered Date - ".$parent_details[0]->created_at." </lable>
+                  </span><br/>
+                  </a>
+               
+    </a>";
+            
+    $parent_node_id = DB::table('shadow_maps')->where('user_id',$target_parent)->get();
+    $geneology = DB::table('users')
+    ->join('shadow_maps', 'shadow_maps.user_id', '=', 'users.id')
+    ->where('shadow_maps.parent_node','=' ,$parent_node_id[0]->id)
+    ->select('shadow_maps.user_id','users.fname','users.lname', "users.email",'shadow_maps.reference_node_side' , 'users.fname' , 'users.email' , 'users.created_at')
+    ->get();
+    if($geneology->isEmpty()){
       echo '
       <div class="alert alert-warning" role="alert">
-       <strong>Warning!</strong> No Geneology Found.
+          End of the Line.
       </div>';
-      
-    }else{
-  echo "
-      
-          <li class='current_parent'>
-      <a  title='User Details'>
-      
-                    
-                    <span class='geneology_child_info'>
-                      <lable>User id - ".$parent_details[0]->id." </lable>
-                    </span><br/>
-                    <span class='geneology_child_info'>
-                    <lable>Name - ".$parent_details[0]->fname." ".$parent_details[0]->lname." </lable>
-                  </span><br/>                
-                    <span class='geneology_child_info'>
-                      <lable>Registered Date - ".$parent_details[0]->created_at." </lable>
-                    </span><br/>
-                    </a>
-                 
-      </a>";
-              
-      $parent_node_id = DB::table('shadow_maps')->where('user_id',$target_parent)->get();
-      $geneology = DB::table('users')
-      ->join('shadow_maps', 'shadow_maps.user_id', '=', 'users.id')
-      ->where('shadow_maps.parent_node','=' ,$parent_node_id[0]->id)
-      ->select('shadow_maps.user_id','users.fname','users.lname', "users.email",'shadow_maps.reference_node_side' , 'users.fname' , 'users.email' , 'users.created_at')
-      ->get();
-      if($geneology->isEmpty()){
-        echo '
-        <div class="alert alert-warning" role="alert">
-            End of the Line.
-        </div>';
-      }
-  $child_elements='';  
-  $left_child='';
-  $right_child='';        
-      if(count($geneology)>0){
-        echo '<ul>';
-       
-          foreach($geneology as $geneology_data){
-            $simple_string = $geneology_data->user_id;
-            $ciphering = "aes-128-cbc-hmac-sha256";
-
-            // Use OpenSSl Encryption method
-            $iv_length = openssl_cipher_iv_length($ciphering);
-            $options = 0;
-           
-            // Non-NULL Initialization Vector for encryption
-            $encryption_iv = '1234567891011125';
-          
-            // Store the encryption key
-            $encryption_key = "geneology";
-          
-            // Use openssl_encrypt() function to encrypt the data
-            $encryption = openssl_encrypt($simple_string, $ciphering,
-            $encryption_key, $options, $encryption_iv);
-              
-              if($geneology_data->reference_node_side == 0){
-                $left_child = 
-                "<li class='left_child'>
-                    <a href='/genealogy/?parent=$encryption' title='User Details'>
-                    <span class='geneology_child_info'>
-                      <lable>User id - ".$geneology_data->user_id." </lable>
-                    </span><br/>
-                    <span class='geneology_child_info'>
-                      <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
-                    </span><br/>
-                    <span class='geneology_child_info'>
-                      <lable>Registered Date - ".$geneology_data->created_at." </lable>
-                    </span><br/>
-                    <span class='geneology_child_info'>
-                      <lable>User Side - LEFT </lable>
-                    </span><br/>
-                    </a>
-                  </li>";
-              }else{
-                $right_child = 
-                "<li class='right_child'>
-                    <a href='/genealogy/?parent=$encryption' title='User Details'>
-                    <span class='geneology_child_info'>
-                      <lable>User id - ".$geneology_data->user_id." </lable>
-                    </span><br/>
-                    <span class='geneology_child_info'>
-                      <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
-                    </span><br/>
-                    
-                    <span class='geneology_child_info'>
-                      <lable>Registered Date - ".$geneology_data->created_at." </lable>
-                    </span><br/>
-                    <span class='geneology_child_info'>
-                      <lable>User Side - RIGHT </lable>
-                    </span><br/>
-                    </a>
-                  </li>";;
-              }
-  
-            }
-            if($left_child != ''){
-              
-              echo $left_child;
-            }
-            if($right_child != ''){
-              
-              echo $right_child;
-            }
+    }
+$child_elements='';  
+$left_child='';
+$right_child='';        
+    if(count($geneology)>0){
+      echo '<ul>';
+     
+        foreach($geneology as $geneology_data){
             
+            
+            if($geneology_data->reference_node_side == 0){
+              $left_child = 
+              "<li class='left_child'>
+                  <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
+                  <span class='geneology_child_info'>
+                    <lable>User id - ".$geneology_data->user_id." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Registered Date - ".$geneology_data->created_at." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>User Side - LEFT </lable>
+                  </span><br/>
+                  </a>
+                </li>";
+            }else{
+              $right_child = 
+              "<li class='right_child'>
+                  <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
+                  <span class='geneology_child_info'>
+                    <lable>User id - ".$geneology_data->user_id." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>Name - ".$geneology_data->fname." ".$geneology_data->lname." </lable>
+                  </span><br/>
+                  
+                  <span class='geneology_child_info'>
+                    <lable>Registered Date - ".$geneology_data->created_at." </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>User Side - RIGHT </lable>
+                  </span><br/>
+                  </a>
+                </li>";;
+            }
+
+          }
+          if($left_child != ''){
+            
+            echo $left_child;
+          }
+          if($right_child != ''){
+            
+            echo $right_child;
+          }
           
-      }
-      echo '</ul>
-      </li>
-                              
-      
-    ';
-    }//end kyc check
+        
+    }
+    echo '</ul>
+    </li>
+                            
     
-  }
+  ';
+  }//end kyc check
+  
+}
   
 // All Master Data
 
@@ -413,5 +398,10 @@ function find_product($product_id){
 function binary_point($user_id){
   $binary_point = DB::table('binary_commissions')->where('user_id',$user_id)->first();
   return $binary_point;
+}
+
+function user_data_get($user_id){
+  $user_data = DB::table('users')->where('id',$user_id)->first();
+  return $user_data;
 }
 
