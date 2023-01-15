@@ -41,7 +41,7 @@
                                     @if (binary_point(Auth::user()->id) == null )
                                     <span class="right">BV 0</span>
                                     @else
-                                    <span class="right">BV {{ binary_point(Auth::user()->id)->left_total }}</span>
+                                    <span class="right">BV {{ binary_point(Auth::user()->id)->left_total*1000 }}</span>
                                     @endif
                                     
                                 </div>
@@ -58,7 +58,7 @@
                                     @if (binary_point(Auth::user()->id) == null )
                                     <span class="right">BV 0</span>
                                     @else
-                                    <span class="right">BV {{ binary_point(Auth::user()->id)->right_total }}</span>
+                                    <span class="right">BV {{ binary_point(Auth::user()->id)->right_total*1000 }}</span>
                                     @endif
                                     
                                 </div>
