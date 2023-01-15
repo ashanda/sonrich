@@ -48,11 +48,13 @@
             </div>
             <div class="form-group">
                 <label for="bankAcc" class="form-label">Docs Front</label>
-                <input class="form-control" value="{{ $kyc->id_doc_front }}" name="id_doc_front">
+                <input class="form-control" type="file" value="{{ $kyc->id_doc_front }}" name="id_doc_front">
+                <img src="{{ $kyc->id_doc_front }}" class="img-fluid" alt="Docs Front">
             </div>
             <div class="form-group">
                 <label for="bankAcc" class="form-label">Docs Back</label>
-                <input class="form-control" value="{{ $kyc->id_doc_back }}" name="id_doc_back">
+                <input class="form-control" type="file" value="{{ $kyc->id_doc_back }}" name="id_doc_back">
+                <img src="{{ $kyc->id_doc_back }}" class="img-fluid" alt="Docs Back">
             </div>
 
         </div>
