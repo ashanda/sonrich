@@ -147,7 +147,7 @@ $right_child='';
             if($geneology_data->reference_node_side == 0){
               $left_child = 
               "<li class='left_child'>
-                  <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
+                  <a href='/genealogy/?parent=".base64_encode($geneology_data->user_id)."' title='User Details'>
                   <span class='geneology_child_info'>
                     <lable>User id - ".$geneology_data->user_id." </lable>
                   </span><br/>
@@ -165,7 +165,7 @@ $right_child='';
             }else{
               $right_child = 
               "<li class='right_child'>
-                  <a href='/genealogy/?parent=$geneology_data->user_id' title='User Details'>
+                  <a href='/genealogy/?parent=".base64_encode($geneology_data->user_id)."' title='User Details'>
                   <span class='geneology_child_info'>
                     <lable>User id - ".$geneology_data->user_id." </lable>
                   </span><br/>
