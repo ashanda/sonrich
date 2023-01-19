@@ -85,7 +85,16 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
         
  if($binarycommission >= ( $currentuserearningmax - $currentuserearningtotal ) ){
     
-    $binarycommission = ($currentuserearningmax - $currentuserearningtotal);
+        // admin head 7 we can't assign ( $currentuserearningmax - $currentuserearningtotal )this calculation
+    if(admin_head_check($currentmapid) == 1){
+        $binarycommission = $binarycommission;
+        
+    }else{
+        $binarycommission = ($currentuserearningmax - $currentuserearningtotal);
+        
+    }
+
+    
     if($leftbalance < $rightbalance){
 
         $rightbalance = $binarycommission;
@@ -95,10 +104,10 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
         $leftbalance = $binarycommission;
     }
     
-    //line 109 admin head 7 we can't assign ( $currentuserearningmax - $currentuserearningtotal )this calculation
-    $exit_binary = $binarycommission;
 
-    $binarycommission =  ( $currentuserearningmax - $currentuserearningtotal );
+   
+
+   // $binarycommission =  ( $currentuserearningmax - $currentuserearningtotal );
 
     $binarycommission_update = binary_commission::find($binarycommissiontableid);
     $binarycommission_update->left_total  = $leftbalance;
@@ -109,12 +118,14 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     if(admin_head_check($currentmapid) == 1){
 
     $oder_update = oder::find($currentorderid);
-    $oder_update->total_package_earnings = $currentuserearningtotal + $exit_binary;
+    $oder_update->total_package_earnings = $currentuserearningtotal + $binarycommission;
     $oder_update->save();
 
-    $binarycommission = $exit_binary;
+    
 
     }else{
+    
+        
     $oder_update = oder::find($currentorderid);
     $oder_update->status = 2;
     $oder_update->total_package_earnings = $currentuserearningmax;
@@ -165,12 +176,12 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
     
 
 }
-        
+
         // 1/3 product wallet
         product_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
 
         // 2/3 cash wallet
         cash_wallet_update($binarycommission,$current_user_id,$currentorderid,$reference_oder_id);
 
-   
+       
 } 

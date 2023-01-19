@@ -27,8 +27,14 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
     $currentorderid = $oders_map->id;
 
     if( $level_points >= ( $currentuserearningmax - $currentuserearningtotal ) ){
-
-        $new_level_points = ($currentuserearningmax - $currentuserearningtotal);
+        if(admin_head_check($currentmapid) == 1){
+            $new_level_points = $level_points;
+            
+        }else{
+            $new_level_points = ($currentuserearningmax - $currentuserearningtotal);
+            
+        }
+        
 
         $level_commission_logs = new level_commission_log;
         $level_commission_logs->user_id = $currentuser;

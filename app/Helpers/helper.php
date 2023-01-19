@@ -268,8 +268,10 @@ function cash_wallet_update($amount,$current_user_id,$currentorderid,$reference_
     
     $trx_direction = 'IN';
     $description = '2/3 Binary commission';
-  
-  cash_wallet_log($current_user_id,$amount,$currentorderid,$reference_oder_id,$trx_direction,$description);
+
+    
+
+  cash_wallet_log($current_user_id,$store_amount,$currentorderid,$reference_oder_id,$trx_direction,$description);
 
   return $update_cash_wallet;
 }
@@ -298,7 +300,7 @@ function product_wallet_update($amount,$current_user_id,$currentorderid,$referen
     $trx_direction = 'IN';
     $description = '1/3 Binary commission';
 
-    product_wallet_log($current_user_id,$amount,$currentorderid,$reference_oder_id,$trx_direction,$description);
+    product_wallet_log($current_user_id,$store_amount,$currentorderid,$reference_oder_id,$trx_direction,$description);
 
   return $update_product_wallet;
 }

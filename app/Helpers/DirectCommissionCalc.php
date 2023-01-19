@@ -35,7 +35,14 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
     
     if( $direct_point >= ( $currentuserearningmax - $currentuserearningtotal ) ){
         
-        $new_direct_points = ($currentuserearningmax - $currentuserearningtotal);
+        if(admin_head_check($currentmapid) == 1){
+            $new_direct_points = $direct_point;
+            
+        }else{
+            $new_direct_points = ($currentuserearningmax - $currentuserearningtotal);
+            
+        }
+        
 
         
 
