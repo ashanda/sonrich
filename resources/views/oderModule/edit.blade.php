@@ -39,6 +39,15 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
+                            <strong>Oder Value:</strong>
+                            <input type="text" name="oder_value" readonly class="form-control" value="{{ $oder[0]->product_value }}">
+                            @error('user_name')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
                             <strong>Payment Methode:</strong>
                             <input type="text" name="payment_method" readonly class="form-control" value="{{ $oder[0]->payment_method }}">
                             @error('payment_method')
@@ -58,7 +67,7 @@
                                   
                                     @if ($oder[0]->status == '0')
                                     <option value="1">Active</option>
-                                    <option value="3">Cancel</option>
+                                    
                                    
                                     @else
                                     
@@ -84,7 +93,7 @@
                     </div>
                     
                     
-                    <button type="submit" class="btn btn-primary ml-3">Submit</button>
+                    <button type="submit" class="btn btn-primary ml-2">Activate Oder</button>
                 </div>
             </form>
         </div>

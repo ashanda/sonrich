@@ -27,6 +27,7 @@
                 <br>
 
                 <select class="form-select p-1 w-100" name="country" aria-label="Default select example">
+                    <option value="{{ $kyc->country }}" selected>{{ $kyc->country }}</option>
                     @foreach (getCountryList() as $country)
                     <option value="{{ $country }}">{{ $country }}</option>
                     @endforeach
@@ -37,6 +38,7 @@
             <div class="form-group">
                 <label for="formFileLg" class="form-label">ID/Driving License/Passport</label>
                 <select class="form-select p-2 ml-2" name="id_docs_type">
+                    <option value="{{ $kyc->id_docs_type }}" selected>{{ $kyc->id_docs_type }}</option>
                     <option value="ID">ID</option>
                     <option value="Driving License">Driving License</option>
                     <option value="Passport">Passport</option>
@@ -78,7 +80,8 @@
             <div class="form-group">
                 <label for="selectCtz" class="form-label">Are you Sri Lankan Citizen</label>
                 <select class="form-select p-2 ml-2" id="comboA" onchange="getComboA(this)" name="citizen">
-                    <option value="">Select Yes/No</option>
+                    <option value="{{ $kyc->citizen }}" selected>{{ $kyc->citizen }}</option>
+                    
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
