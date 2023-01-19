@@ -22,7 +22,7 @@
                                     <h2 class="left text-bold">Total Earnings</h2>
                                 </div>
                                 <div class="col-12">
-                                    <h2 class="right text-bold">BV {{ direct_total() + level_total() + binary_total() + daily_total()}} </h2>
+                                    <h2 class="right text-bold">BV {{ number_format(direct_total() + level_total() + binary_total() + daily_total(), 2, '.', ',') }} </h2>
                                 </div>
 
                             </div>
