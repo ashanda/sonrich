@@ -46,7 +46,8 @@ Route::get('/all-oders', [OderController::class, 'all_oders'])->name('all-oders'
 Route::resource('/buy_product', UserBuyController::class);
 Route::resource('/p2p', P2pController::class);
 
-Route::get('/p2p_history', [P2pController::class, 'show'])->name('p2p_history');
+Route::get('/p2p_history_credit', [P2pController::class, 'credit'])->name('p2p_history_credit');
+Route::get('/p2p_history_debit', [P2pController::class, 'debit'])->name('p2p_history_debit');
 
 Route::resource('/oders', OderController::class);
 Route::get('/withdrawal', [WithdrawalController::class, 'index'])->name('withdrawal');

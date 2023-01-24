@@ -163,15 +163,27 @@ $role = auth()->user()->role;
         </li>
 
         <li class="nav-item">
-          <a href="/p2p_history" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
               P2P History
-
-
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
-
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/p2p_history_credit" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>P2P Recived</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/p2p_history_debit" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>P2P Send</p>
+              </a>
+            </li>
+          </ul>
         </li>
         @endif
         @if ($role == 0  || $role == 1 )
