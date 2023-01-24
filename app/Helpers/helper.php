@@ -407,3 +407,8 @@ function user_data_get($user_id){
   return $user_data;
 }
 
+function spilled_package($user){
+  $check_oder_data = DB::table('oders')->where('user_id',$user)->where('status',1)->first();
+  return $check_oder_data;
+}
+

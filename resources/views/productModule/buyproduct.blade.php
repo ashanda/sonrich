@@ -48,7 +48,8 @@
                                 </form>
 
                                 @else
-                                @if (product_wallet_balance() >= $product->product_price)
+                              
+                                @if (product_wallet_balance() >= $product->product_price && spilled_package(Auth::user()->id)->total_package_earnings >= spilled_package(Auth::user()->id)->max_value)
                                 <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/product_wallet')}}">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id  }}">
@@ -59,7 +60,7 @@
                                 </form>
                                 @endif
 
-                                @if (product_wallet_balance() >= 20000)
+                                @if (product_wallet_balance() >= 20000 && spilled_package(Auth::user()->id)->total_package_earnings >= spilled_package(Auth::user()->id)->max_value)
                                 <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/wallet_and_cash')}}">
                                     @csrf
                                     <input type="hidden" name="amount" value="">
@@ -70,7 +71,7 @@
                                     <button type="submit" class="btn btn-primary mt-2 w-75">Revolve Using Product Wallet + Cash</button>
                                 </form>
                                 @endif
-
+ 
                                 @endif
 
                             </div>

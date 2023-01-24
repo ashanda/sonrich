@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-sm-6 pb-3 pt-3">
             <div class="card text-center p-3">
-                <h5>Total BV Points</h5>
+                <h5>Existing Total BV Wallet Points</h5>
                 @if (product_wallet() == null)
 
                 @else
