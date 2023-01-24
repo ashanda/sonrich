@@ -174,7 +174,7 @@ $role = auth()->user()->role;
 
         </li>
         @endif
-        @if ($role == 0)
+        @if ($role == 0  || $role == 1 )
      <!--   <li class="nav-item">
           <a href="/commission_reports" class="nav-link">
             <i class="nav-icon fas fa-columns"></i>

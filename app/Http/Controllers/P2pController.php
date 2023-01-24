@@ -19,7 +19,7 @@ class P2pController extends Controller
     public function index()
     {
         $role=Auth::user()->role;
-        if($role==0){
+        if($role==0 || $role==1){
             $data =DB::table('p2p_transection')
                     ->join('users', 'users.id', '=', 'p2p_transection.request_user_id')
                     ->where('users.id', '=', Auth::user()->id)
@@ -80,7 +80,7 @@ class P2pController extends Controller
     public function edit(Request $p2p,$id)
     {
         $role=Auth::user()->role;
-        if($role==0){
+        if($role==0 || $role==1){
            
             $p2p = DB::table('p2p_transection')->where('id', $id)->get(); 
             return view('payModule.p2p_request_edit',compact('p2p','id'));

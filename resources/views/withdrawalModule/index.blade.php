@@ -7,6 +7,7 @@
       <a class="btn btn-primary" href="/trans/cash" role="button">Cash Withdraw</a>
       <a class="btn btn-primary" href="/trans/p2p" role="button">P2P Transfer</a>
       @else
+      <a class="btn btn-primary" href="/trans/p2p" role="button">P2P Transfer</a>
       <a class="btn btn-primary" href="/trans/cash" role="button">Cash Withdraw</a>
       
       @endif

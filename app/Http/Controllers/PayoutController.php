@@ -15,7 +15,7 @@ class PayoutController extends Controller
 {
     public function index(){
         $role=Auth::user()->role;
-        if($role==0){
+        if($role==0 || $role==1){
             $data =DB::table('product_buy_requests')
                     ->join('users', 'users.id', '=', 'product_buy_requests.sponsor_id')
                     ->where('users.id', '=', Auth::user()->id)
@@ -30,7 +30,7 @@ class PayoutController extends Controller
     public function edit(Request $buy_requests,$id)
     {
         $role=Auth::user()->role;
-        if($role==0){
+        if($role==0 || $role==1){
            
             $buy_requests = DB::table('product_buy_requests')->where('id', $id)->get(); 
             
