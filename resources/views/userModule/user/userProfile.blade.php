@@ -40,7 +40,7 @@
                         
                         <div class="form-group">
                           <label for="sri_number"><strong>SRI Number:</strong></label>
-                          <input type="number" min="1" class="form-control" id ="sri_number" name="sri_number" value="{{Auth::user()->sri_number}}">
+                          <input type="text" class="form-control" id ="sri_number" name="sri_number" value="{{Auth::user()->sri_number}}">
                         </div>
                          <div class="form-group">
                              <label for="name"><strong>First Name:</strong></label>

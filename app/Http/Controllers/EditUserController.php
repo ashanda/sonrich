@@ -71,7 +71,7 @@ class EditUserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'sri_number' => 'required',
+            'sri_number' => 'required|integer|max:255',
             'fname' =>'required|string|max:255',
             'lname' =>'required|string|max:255',
             'email'=>'required|email|string|max:255'

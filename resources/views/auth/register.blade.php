@@ -19,7 +19,7 @@
                     
                 </div>
                 <div class="input-group mb-3">
-                    <input id="sri_number" type="number" min="1" class="form-control @error('sri_number') is-invalid @enderror" name="sri_number"
+                    <input id="sri_number" type="text" class="form-control @error('sri_number') is-invalid @enderror" name="sri_number"
                         value="{{ old('sri_number') }}" required autocomplete="sri_number" autofocus placeholder="SRI Number">
                     @error('sri_number')
                     <span class="invalid-feedback" role="alert">
