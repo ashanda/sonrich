@@ -24,6 +24,7 @@
                         <tr>
                             <th>User id</th>
                             <th>User Name</th>
+                            <th>SRI Number</th>
                             <th>Product Value</th>
                             <th>Payment Methode</th>
                             <th>Created at</th>
@@ -40,6 +41,7 @@
 
                             <td>{{ $oder->uid}}</td>
                             <td>{{ $oder->fname ." ".$oder->lname}}</td>
+                            <td>{{ $oder->sri_number }}</td>
                             <td>{{ $oder->product_value}}</td>
                             <td>{{ $oder->payment_method}}</td>
                             <td>{{ $oder->created_at}}</td>

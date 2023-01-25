@@ -25,6 +25,7 @@
                             <th>User id</th>
                             <th>Oder id</th>
                             <th>User Name</th>
+                            <th>SRI Number</th>
                             <th>Package Value</th>
                             <th>Payment Methode</th>
                             <th>Earnings</th>
@@ -41,6 +42,7 @@
             <td>{{ $oder->uid}}</td>
             <td>{{ $oder->id}}</td>
             <td>{{ $oder->fname ." ".$oder->lname}}</td>
+            <td>{{ $oder->sri_number}}</td>
             <td>{{ $oder->product_value}}</td>
             <td>{{ $oder->payment_method}}</td>
             <td>{{ $oder->total_package_earnings}}</td>

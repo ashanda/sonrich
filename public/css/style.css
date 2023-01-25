@@ -43,6 +43,7 @@
 }
 .content-wrapper {
     padding: 20px;
+    height: auto;
 }
 
 .bg-primary {

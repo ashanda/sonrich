@@ -23,7 +23,7 @@ class OderController extends Controller
             ->join('users', 'users.id', '=', 'oders.user_id')
             ->where('oders.status',0)
             ->orderBy('oders.created_at', 'asc')
-            ->select('users.id as uid','users.fname','users.lname','oders.*')
+            ->select('users.id as uid','users.fname','users.sri_number','users.lname','oders.*')
 
             ->get();
             return view('oderModule.index',compact('data'));
@@ -36,7 +36,7 @@ class OderController extends Controller
             
             ->where('users.id',Auth::user()->id)
             ->orderBy('oders.created_at', 'asc')
-            ->select('users.id as uid','users.fname','users.lname','oders.*')
+            ->select('users.id as uid','users.fname','users.sri_number','users.lname','oders.*')
 
             ->get();
             return view('oderModule.index',compact('data'));
@@ -51,7 +51,7 @@ class OderController extends Controller
             $data = DB::table('oders')
             ->join('users', 'users.id', '=', 'oders.user_id')
             ->orderBy('oders.created_at', 'desc')
-            ->select('users.id as uid','users.fname','users.lname','oders.*')
+            ->select('users.id as uid','users.fname','users.sri_number','users.lname','oders.*')
             ->get();
             return view('oderModule.all',compact('data'));
         }
