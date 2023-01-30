@@ -20,7 +20,7 @@
             @endif
             <h5><a class="btn btn-primary" href="{{ route('gas_fee_collect.create') }}">Add Gas Fee</a></h5>
             <div class="table table-bordered table-striped dataTable dtr-inline">
-                <table id="example2" class="display" style="width:100%">
+                <table id="example1" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>S.No</th>

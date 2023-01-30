@@ -21,7 +21,7 @@
             @endif
 
             <div class="table table-bordered table-striped dataTable dtr-inline">
-                <table id="example2" class="display" style="width:100%">
+                <table id="example1" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>S.No</th>
