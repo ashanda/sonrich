@@ -63,7 +63,7 @@
     <footer class="main-footer">
       <strong>Copyright &copy; <script type="text/javascript">
           document.write(new Date().getFullYear());
-        </script> <a href="https://adminlte.io">Company Name</a>.</strong>
+        </script> <a href="">Company Name</a>.</strong>
       All rights reserved.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0
@@ -104,11 +104,12 @@
   <!-- Custom script -->
   <script src="{{ asset('js/script.js') }}"></script>
   <script>
+
     $(function() {
       $("#example1")
         .DataTable({
           responsive: true,
-          lengthChange: false,
+          lengthChange: true,
           autoWidth: false,
           // buttons: ["copy", "excel", "pdf", "print", "colvis"],
         })
@@ -124,7 +125,15 @@
         autoWidth: false,
         responsive: true,
       });
+      $("#example3,#example4,#example5,#example6").DataTable({
+        responsive: true,
+          lengthChange: false,
+          autoWidth: false,
+          searching: false,
+      });
     });
+
+    // datatable time data
   </script>
 </body>
 
