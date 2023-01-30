@@ -82,6 +82,8 @@ Route::get('/direct_report', [ReportController::class, 'direct_report'])->name('
 Route::get('/level_report', [ReportController::class, 'level_report'])->name('level_report');
 Route::get('/daily_report', [ReportController::class, 'daily_report'])->name('daily_report');
 Route::get('/users_report', [ReportController::class, 'users_report'])->name('users_report');
+Route::get('/users_report_daily', [ReportController::class, 'users_report_daily'])->name('users_report_daily');
+
 
 Route::post('/2fa', function () {
 

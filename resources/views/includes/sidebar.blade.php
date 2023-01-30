@@ -285,6 +285,29 @@ $role = auth()->user()->role;
           </ul>
         </li>
         @endif
+
+        @if ($role == 0 )
+        
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-columns"></i>
+            <p>
+              Reports
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+              <a href="/users_report_daily" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Daily Reports</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        @endif
       </ul>
     </nav>
 
