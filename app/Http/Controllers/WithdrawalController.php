@@ -54,7 +54,7 @@ class WithdrawalController extends Controller
             
             $last_cash_wallet = cash_wallet(Auth::user()->id);
             $wallet = cash_wallet::find($last_cash_wallet->id);  
-            $wallet->hold_amount  = $request->request_amount;
+            $wallet->hold_amount  = ($last_cash_wallet->hold_amount + $request->request_amount);
             $wallet->wallet_balance  = ($last_cash_wallet->wallet_balance - $request->request_amount);
             $wallet->save();
             
