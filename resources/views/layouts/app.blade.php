@@ -19,9 +19,15 @@
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}" />
 
-  <!-- daterangepicker -->
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.css') }}">
 
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/dropzone/min/dropzone.min.css') }}">
 
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -82,8 +88,6 @@
   <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
   <!-- Bootstrap -->
   <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <!-- AdminLTE -->
-  <script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
 
   <!-- DataTables  & Plugins -->
   <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -99,12 +103,23 @@
   <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
   <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
-  <!-- include jQuery, Moment.js, and Date Range Picker library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script>
 
-  <!-- OPTIONAL SCRIPTS -->
-  <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
+  <!-- dropzonejs -->
+  <script src="{{ asset('adminlte/plugins/dropzone/min/dropzone.min.js') }}"></script>
+
+  <!-- InputMask -->
+  <script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
+  <script src="{{ asset('adminlte/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
+
+  <!-- Select2 -->
+  <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
+
+  <!-- AdminLTE -->
+  <script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
+  <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -118,12 +133,11 @@
           responsive: true,
           lengthChange: true,
           autoWidth: false,
-          // buttons: ["copy", "excel", "pdf", "print", "colvis"],
         })
         .buttons()
         .container()
         .appendTo("#example1_wrapper .col-md-6:eq(0)");
-      
+
       $("#example3,#example4,#example5,#example6").DataTable({
         responsive: true,
         lengthChange: false,
@@ -134,6 +148,7 @@
 
     // datatable time data
     $(function() {
+      // Initialize the date range picker
       $('#daterange-btn').daterangepicker({
         ranges: {
           'Today': [moment(), moment()],
@@ -146,7 +161,12 @@
         startDate: moment().subtract(29, 'days'),
         endDate: moment()
       }, function(start, end) {
-        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        // Update the date range on the button
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+
+        // Filter the data table based on the date range
+        var table = $('#example1').DataTable();
+        table.column(1).search(start.format('YYYY-MM-DD') + '|' + end.format('YYYY-MM-DD')).draw();
       });
     });
   </script>

@@ -50,7 +50,6 @@
       <div class="row">
         <div class="col-lg-12 margin-tb">
 
-
         </div>
       </div>
       @if ($message = Session::get('success'))
@@ -60,10 +59,10 @@
       @endif
       <div class="table-responsive">
         <!-- daterange picker button -->
-        <div class="form-group">
-          <button type="button" class="btn btn-default" id="daterange-btn">
-            <i class="fa fa-calendar"></i> Date range picker
-            <i class="fa fa-caret-down"></i>
+        <div class="input-group">
+          <button type="button" class="btn btn-default float-right" id="daterange-btn">
+            <i class="far fa-calendar-alt"></i> Date range picker
+            <i class="fas fa-caret-down"></i>
           </button>
         </div>
         <!-- daterange picker button -->
@@ -104,7 +103,7 @@
             </tr>
 
             @endforeach
-
+            
           </tbody>
 
         </table>
