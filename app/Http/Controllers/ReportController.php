@@ -25,10 +25,10 @@ class ReportController extends Controller
     {
         $role=Auth::user()->role;
         if($role==0){
-            $binary_data = DB::table('binary_commission_logs')->where('user_id',Auth::user()->id)->get();
-            $level_data = DB::table('level_commission_logs')->where('user_id',Auth::user()->id)->get();
-            $direct_data = DB::table('direct_commission_logs')->where('user_id',Auth::user()->id)->get();
-            $daily_data = DB::table('daily_commission_logs')->where('user_id',Auth::user()->id)->get();
+            $binary_data = DB::table('binary_commission_logs')->where('user_id',Auth::user()->id)->select('created_at', 'amount')->get();
+            $level_data = DB::table('level_commission_logs')->where('user_id',Auth::user()->id)->select('created_at', 'amount')->get();
+            $direct_data = DB::table('direct_commission_logs')->where('user_id',Auth::user()->id)->select('created_at', 'amount')->get();
+            $daily_data = DB::table('daily_commission_logs')->where('user_id',Auth::user()->id)->select('created_at', 'amount')->get();
         } 
         return view('reportModule.user_daily',compact('binary_data','level_data','direct_data','daily_data'));
     }

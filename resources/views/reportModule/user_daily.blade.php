@@ -58,25 +58,30 @@
         <p>{{ $message }}</p>
       </div>
       @endif
-      <div class="table-responsive">
-        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
-          <thead>
-            <tr>
-              <th>User id</th>
-              <th>User Name</th>
-              <th>Email</th>
-              <th>Google Auth Code</th>
-              <th>Status</th>
-              <th>Created at</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-      </div>
       <!-- new tables section -->
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
+          <h4>Matching Points</h4>
+          <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
+           
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ($binary_data as $user)
+              <tr>
+              <td>{{ $user->created_at}}</td>
+              <td>{{ $user->amount}}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
+          <h4>Daily BV</h4>
           <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
@@ -85,10 +90,17 @@
               </tr>
             </thead>
             <tbody>
+              @foreach ($daily_data as $user)
+              <tr>
+              <td>{{ $user->created_at}}</td>
+              <td>{{ $user->amount}}</td>
+              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
+          <h4>Level BV</h4>
           <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
@@ -97,22 +109,17 @@
               </tr>
             </thead>
             <tbody>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
-          <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
-            <thead>
+              @foreach ($level_data as $user)
               <tr>
-                <th>Date</th>
-                <th>Amount</th>
+              <td>{{ $user->created_at}}</td>
+              <td>{{ $user->amount}}</td>
               </tr>
-            </thead>
-            <tbody>
+              @endforeach
             </tbody>
           </table>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
+          <h4>Direct Sale BV</h4>
           <table id="example6" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
@@ -121,6 +128,12 @@
               </tr>
             </thead>
             <tbody>
+              @foreach ($direct_data as $user)
+              <tr>
+              <td>{{ $user->created_at}}</td>
+              <td>{{ $user->amount}}</td>
+              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
