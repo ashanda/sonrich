@@ -19,6 +19,10 @@
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}" />
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}" />
 
+  <!-- daterangepicker -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -95,6 +99,10 @@
   <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
   <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
+  <!-- include jQuery, Moment.js, and Date Range Picker library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
   <!-- OPTIONAL SCRIPTS -->
   <script src="{{ asset('adminlte/plugins/chart.js/Chart.min.js') }}"></script>
   <!-- AdminLTE for demo purposes -->
@@ -104,7 +112,6 @@
   <!-- Custom script -->
   <script src="{{ asset('js/script.js') }}"></script>
   <script>
-
     $(function() {
       $("#example1")
         .DataTable({
@@ -116,24 +123,32 @@
         .buttons()
         .container()
         .appendTo("#example1_wrapper .col-md-6:eq(0)");
-      $("#example2").DataTable({
-        paging: true,
-        lengthChange: false,
-        searching: false,
-        ordering: true,
-        info: true,
-        autoWidth: false,
-        responsive: true,
-      });
+      
       $("#example3,#example4,#example5,#example6").DataTable({
         responsive: true,
-          lengthChange: false,
-          autoWidth: false,
-          searching: false,
+        lengthChange: false,
+        autoWidth: false,
+        searching: false,
       });
     });
 
     // datatable time data
+    $(function() {
+      $('#daterange-btn').daterangepicker({
+        ranges: {
+          'Today': [moment(), moment()],
+          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month': [moment().startOf('month'), moment().endOf('month')],
+          'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate: moment()
+      }, function(start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      });
+    });
   </script>
 </body>
 
