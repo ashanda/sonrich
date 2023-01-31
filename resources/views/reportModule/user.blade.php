@@ -58,14 +58,6 @@
       </div>
       @endif
       <div class="table-responsive">
-        <!-- daterange picker button -->
-        <div class="input-group">
-          <button type="button" class="btn btn-default float-right" id="daterange-btn">
-            <i class="far fa-calendar-alt"></i> Date range picker
-            <i class="fas fa-caret-down"></i>
-          </button>
-        </div>
-        <!-- daterange picker button -->
         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
           <thead>
             <tr>
