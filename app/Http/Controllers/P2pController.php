@@ -110,38 +110,48 @@ class P2pController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        
         $package = p2p::find($id);
-        $package->status = $request->oder_status;
-        $package->save();
-
-        $last_cash_wallet = cash_wallet($package->request_user_id);
-
-        $wallet = cash_wallet::find($last_cash_wallet->id);  
+        
         $request_val = floatval($request->requset_value);
-        $wallet->wallet_balance  = $last_cash_wallet->wallet_balance + $request_val;
        
-        $wallet->save();
 
         $last_cash_wallet_rec = cash_wallet($package->user_id);
+        if( $last_cash_wallet_rec->hold_amount >= $request_val){
 
-        $wallet_rec = cash_wallet::find($last_cash_wallet_rec->id);  
-        $request_val = floatval($request->requset_value);
-        $wallet_rec->hold_amount  = $last_cash_wallet_rec->hold_amount - $request_val;
-        $wallet_rec->save();
+            $wallet_rec = cash_wallet::find($last_cash_wallet_rec->id);  
+            $wallet_rec->hold_amount  = $last_cash_wallet_rec->hold_amount - $request_val;
+            $wallet_rec->save();
+
+            $package->status = $request->oder_status;
+            $package->save();
+    
+            $last_cash_wallet = cash_wallet($package->request_user_id);
+            $wallet = cash_wallet::find($last_cash_wallet->id);  
+            $wallet->wallet_balance  = $last_cash_wallet->wallet_balance + $request_val;
+            $wallet->save();
+            
+            $user_id  =  $package->user_id; 
+            $amount = $package->request_amount;
+            $oder_id = $package->request_user_id;
+            $reference_oder_id ='-1';
+            $trx_direction = 'Out';
+            $description = 'P2P withdraw';
+
+        cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
+        Alert::Alert('Success','Approved Successfully!');
+        return redirect()->route('p2p.index');
+
+        }else{
+             Alert::Alert('Error','Your Holding Value Not Enough!');
+            return redirect()->route('p2p.index');
+        }
+        
 
       
 
-        $user_id  =  $package->user_id; 
-        $amount = $package->request_amount;
-        $oder_id = $package->request_user_id;
-        $reference_oder_id ='-1';
-        $trx_direction = 'Out';
-        $description = 'P2P withdraw';
-
-       cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
-
-
-        return redirect('p2p')->with('success', 'Approved Successfully!');
+        
 
     }
 
