@@ -59,11 +59,24 @@
       </div>
       @endif
       <!-- new tables section -->
+      <table border="0" cellspacing="5" cellpadding="5">
+        <tbody>
+          <tr>
+            <td>Minimum date:</td>
+            <td><input type="text" id="min" name="min"></td>
+          </tr>
+          <tr>
+            <td>Maximum date:</td>
+            <td><input type="text" id="max" name="max"></td>
+          </tr>
+        </tbody>
+      </table>
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
           <h4>Group sale income</h4>
+
           <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
-           
+
             <thead>
               <tr>
                 <th>Date</th>
@@ -73,8 +86,8 @@
             <tbody>
               @foreach ($binary_data as $user)
               <tr>
-              <td>{{ $user->created_at}}</td>
-              <td>{{ $user->amount}}</td>
+                <td>{{ $user->created_at}}</td>
+                <td>{{ $user->amount}}</td>
               </tr>
               @endforeach
             </tbody>
@@ -82,7 +95,8 @@
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
           <h4>Globle revenue income</h4>
-          <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
+
+          <table id="example4" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
                 <th>Date</th>
@@ -92,8 +106,8 @@
             <tbody>
               @foreach ($daily_data as $user)
               <tr>
-              <td>{{ $user->created_at}}</td>
-              <td>{{ $user->amount}}</td>
+                <td>{{ $user->created_at}}</td>
+                <td>{{ $user->amount}}</td>
               </tr>
               @endforeach
             </tbody>
@@ -101,7 +115,8 @@
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
           <h4>Team Income</h4>
-          <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
+
+          <table id="example5" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
                 <th>Date</th>
@@ -111,8 +126,8 @@
             <tbody>
               @foreach ($level_data as $user)
               <tr>
-              <td>{{ $user->created_at}}</td>
-              <td>{{ $user->amount}}</td>
+                <td>{{ $user->created_at}}</td>
+                <td>{{ $user->amount}}</td>
               </tr>
               @endforeach
             </tbody>
@@ -120,6 +135,7 @@
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
           <h4>Direct sale income</h4>
+
           <table id="example6" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
@@ -130,8 +146,8 @@
             <tbody>
               @foreach ($direct_data as $user)
               <tr>
-              <td>{{ $user->created_at}}</td>
-              <td>{{ $user->amount}}</td>
+                <td>{{ $user->created_at}}</td>
+                <td>{{ $user->amount}}</td>
               </tr>
               @endforeach
             </tbody>

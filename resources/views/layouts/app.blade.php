@@ -11,41 +11,38 @@
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- daterange picker -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- iCheck for checkboxes and radio inputs -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- Bootstrap Color Picker -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
   <!-- Tempusdominus Bootstrap 4 -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <!-- Select2 -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}"> -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
   <!-- Bootstrap4 Duallistbox -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css') }}">
   <!-- BS Stepper -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/bs-stepper/css/bs-stepper.min.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/bs-stepper/css/bs-stepper.min.css') }}">
   <!-- dropzonejs -->
-  <!-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/dropzone/min/dropzone.min.css') }}"> -->
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/dropzone/min/dropzone.min.css') }}">
   <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" />
-  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}" />
-  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}" />
-  <!-- IonIcons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}">
-
-  <!-- new data range picker styles -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
-
-
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
   <!-- Custom style -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+  <!-- test -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
+  <!-- test -->
 
 </head>
 <!--
@@ -98,23 +95,25 @@
 
   <!-- jQuery -->
   <script src="{{ asset('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-  <!-- Bootstrap -->
+  <!-- Bootstrap 4 -->
   <script src="{{ asset('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <!-- Select2 -->
-  <!-- <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script> -->
+  <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
   <!-- Bootstrap4 Duallistbox -->
-  <!-- <script src="{{ asset('adminlte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script> -->
-
+  <script src="{{ asset('adminlte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js') }}"></script>
+  <!-- InputMask -->
+  <script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
+  <script src="{{ asset('adminlte/plugins/inputmask/jquery.inputmask.min.js') }}"></script>
   <!-- date-range-picker -->
-  <!-- <script src="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script> -->
+  <script src="{{ asset('adminlte/plugins/daterangepicker/daterangepicker.js') }}"></script>
   <!-- bootstrap color picker -->
-  <!-- <script src="{{ asset('adminlte/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script> -->
+  <script src="{{ asset('adminlte/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
   <!-- Tempusdominus Bootstrap 4 -->
-  <!-- <script src="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> -->
+  <script src="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
   <!-- BS-Stepper -->
-  <!-- <script src="{{ asset('adminlte/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script> -->
+  <script src="{{ asset('adminlte/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
   <!-- dropzonejs -->
-  <!-- <script src="{{ asset('adminlte/plugins/dropzone/min/dropzone.min.js') }}"></script> -->
+  <script src="{{ asset('adminlte/plugins/dropzone/min/dropzone.min.js') }}"></script>
   <!-- DataTables  & Plugins -->
   <script src="{{ asset('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -128,27 +127,19 @@
   <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
   <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
   <script src="{{ asset('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+  <!-- AdminLTE App -->
+  <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
 
-  <!-- new data range picker styles -->
+  <!-- test -->
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
   <script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
+  <!-- test -->
 
-  <!-- InputMask -->
-  <!-- <script src="{{ asset('adminlte/plugins/moment/moment.min.js') }}"></script>
-  <script src="{{ asset('adminlte/plugins/inputmask/jquery.inputmask.min.js') }}"></script> -->
 
-  <!-- AdminLTE -->
-  <script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
-  <!-- <script src="{{ asset('adminlte/dist/js/adminlte.min.js') }}"></script> -->
-
-  <!-- AdminLTE for demo purposes -->
-  <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="{{ asset('adminlte/dist/js/pages/dashboard3.js') }}"></script>
-
-   
   <!-- Custom script -->
   <script src="{{ asset('js/script.js') }}"></script>
   <script>
@@ -158,6 +149,7 @@
           responsive: true,
           lengthChange: true,
           autoWidth: false,
+          paging: true,
         })
         .buttons()
         .container()
@@ -168,10 +160,12 @@
         lengthChange: false,
         autoWidth: false,
         searching: false,
+        paging: true,
       });
+
     });
 
-    // datatable time data
+    // daterange
     var minDate, maxDate;
 
     // Custom filtering function which will search data in column four between two values
@@ -179,7 +173,20 @@
       function(settings, data, dataIndex) {
         var min = minDate.val();
         var max = maxDate.val();
-        var date = new Date(data[4]);
+        // var date = new Date(data[5]);
+        var data;
+        var date;
+
+        if (data[5]) {
+          date = new Date(data[5]);
+        } else if (data[4]) {
+          date = new Date(data[4]);
+        } else if (data[0]) {
+          date = new Date(data[0]);
+        } else {
+          // throw an error or set date to a default value
+          console.error("Date not found in data array");
+        }
 
         if (
           (min === null && max === null) ||
@@ -203,7 +210,7 @@
       });
 
       // DataTables initialisation
-      var table = $('#example1').DataTable();
+      var table = $('#example1,#example3,#example4,#example5,#example6').DataTable();
 
       // Refilter the table
       $('#min, #max').on('change', function() {

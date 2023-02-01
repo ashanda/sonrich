@@ -1,12 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-<!-- test -->
-
-
-
-
-<!-- test -->
 
 <!--**********************************
             Content body start
@@ -16,8 +10,6 @@
         <div class="mt-2">
             <div class="row">
                 <div class="col-lg-12 margin-tb">
-
-
                 </div>
             </div>
             @if ($message = Session::get('success'))
@@ -26,18 +18,7 @@
             </div>
             @endif
             <div class="table-responsive">
-                <table border="0" cellspacing="5" cellpadding="5">
-                    <tbody>
-                        <tr>
-                            <td>Minimum date:</td>
-                            <td><input type="text" id="min" name="min"></td>
-                        </tr>
-                        <tr>
-                            <td>Maximum date:</td>
-                            <td><input type="text" id="max" name="max"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                
                 <table id="example1" class="table table-bordered table-hover">
                     <thead>
                         <tr>
@@ -52,10 +33,10 @@
                             <th>Package status</th>
                         </tr>
                     </thead>
+                    
                     <tbody>
                         @foreach ($data as $oder)
                         <tr>
-
                             <td>{{ $oder->uid}}</td>
                             <td>{{ $oder->id}}</td>
                             <td>{{ $oder->fname ." ".$oder->lname}}</td>
@@ -63,7 +44,7 @@
                             <td>{{ $oder->product_value}}</td>
                             <td>{{ $oder->payment_method}}</td>
                             <td>{{ $oder->total_package_earnings}}</td>
-                            <td>{{ $oder->created_at}}</td>
+                            <td>{{$oder->created_at}}</td>
 
                             @if ($oder->status==0)
                             <td>{{ 'Pending' }}</td>
@@ -78,13 +59,12 @@
                         @endforeach
 
                     </tbody>
-
                 </table>
+                
             </div>
 
         </div>
     </div>
 </div>
-
 
 @endsection
