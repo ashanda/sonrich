@@ -61,7 +61,7 @@
       <!-- new tables section -->
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
-          <h4>Matching Points</h4>
+          <h4>Group sale income</h4>
           <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
            
             <thead>
@@ -81,7 +81,7 @@
           </table>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
-          <h4>Daily BV</h4>
+          <h4>Globle revenue income</h4>
           <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
@@ -100,7 +100,7 @@
           </table>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
-          <h4>Level BV</h4>
+          <h4>Team Income</h4>
           <table id="example3" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
@@ -119,7 +119,7 @@
           </table>
         </div>
         <div class="col-sm-6 col-md-6 col-lg-3 pt-4 pt-sm-0">
-          <h4>Direct Sale BV</h4>
+          <h4>Direct sale income</h4>
           <table id="example6" class="table table-bordered table-striped dataTable dtr-inline" style="width:100%">
             <thead>
               <tr>
