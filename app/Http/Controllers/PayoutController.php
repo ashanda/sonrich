@@ -41,44 +41,53 @@ class PayoutController extends Controller
     public function update(Request $request, $id){
 
         $package = ProductBuyRequest::find($id);
-        $package->status = 1;
-        $package->save();
+        
 
-       $last_cash_wallet_rec = cash_wallet($package->sponsor_id);
-
-        $wallet_rec = cash_wallet::find($last_cash_wallet_rec->id);  
+        $last_cash_wallet_rec = cash_wallet($package->sponsor_id);
         $request_val = floatval($request->requset_value);
-        $wallet_rec->wallet_balance  = $last_cash_wallet_rec->wallet_balance - $request_val;
+
+if( $last_cash_wallet_rec->wallet_balance >= $request_val ){
+
+    $package->status = 1;
+    $package->save();
+
+    $wallet_rec = cash_wallet::find($last_cash_wallet_rec->id);  
+    $wallet_rec->wallet_balance  = $last_cash_wallet_rec->wallet_balance - $request_val;
+    $wallet_rec->save();
+
+    
+
+    $user_id  =  $package->user_id; 
+    $amount = $package->request_amount;
+    $oder_id = $package->request_user_id;
+    $reference_oder_id ='-1';
+    $trx_direction = 'Out';
+    $description = 'Friends withdraw';
+
+    cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
+    
+    $product_data = find_product($package->product_id);
+
+    $oder = new oder;
+    $oder->user_id = $package->user_id;
+    $oder->product_id = $product_data->id;
+    $oder->product_value = $product_data->product_price;
+    $oder->product_point = $product_data->point_value;
+    $oder->payment_method = 'Sponser Funds';
+    $oder->cash_pay_amount = $product_data->product_price;
+    $oder->wallet_pay_amount = 0;
+    $oder->max_value = $product_data->product_price*3;
+    $oder->status = '0';
+    $oder->save();
+
+    Alert::Alert('Success','Approved Successfully!');
+    return redirect('friend_request');
+
+}else{
+    Alert::Alert('Error','Your Cash Wallet Value Not Enough For This!');
+    return redirect('friend_request');
+}
         
-        $wallet_rec->save();
-
-        
-
-        $user_id  =  $package->user_id; 
-        $amount = $package->request_amount;
-        $oder_id = $package->request_user_id;
-        $reference_oder_id ='-1';
-        $trx_direction = 'Out';
-        $description = 'Friends withdraw';
-
-        cash_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
-        
-        $product_data = find_product($package->product_id);
-
-        $oder = new oder;
-        $oder->user_id = $package->user_id;
-        $oder->product_id = $product_data->id;
-        $oder->product_value = $product_data->product_price;
-        $oder->product_point = $product_data->point_value;
-        $oder->payment_method = 'Sponser Funds';
-        $oder->cash_pay_amount = $product_data->product_price;
-        $oder->wallet_pay_amount = 0;
-        $oder->max_value = $product_data->product_price*3;
-        $oder->status = '0';
-        $oder->save();
-
-        
-        return redirect('friend_request')->with('success', 'Friend Package Approved Successfully!');
    
     }
 }
