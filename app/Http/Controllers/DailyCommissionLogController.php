@@ -39,6 +39,7 @@ class DailyCommissionLogController extends Controller
          // getting not complete 1:3 oders
          $oders = DB::table('oders')->where('status', '=', 1)->whereColumn('total_package_earnings', '<', 'max_value')->get();
          
+         
          $daily_points = 0;
          foreach($oders as $oder){
             var_dump($oder->user_id);
@@ -82,6 +83,8 @@ class DailyCommissionLogController extends Controller
             $daily_commission_logs->save();
  
              $oder_update = oder::find($oder->id);
+             $currentuserearningmax = $oder_update->max_value;
+             $current_user_id = $oder_update->user_id ;
              $oder_update->status = 2;
              $oder_update->total_package_earnings = $oder->max_value;
              $oder_update->save();
@@ -89,12 +92,24 @@ class DailyCommissionLogController extends Controller
              $oder_update = shadow_map::find($node_check->id);
              $oder_update->status = 0;
              $oder_update->save();
- 
+
+             $description = 'Daily Commission';
+             $old_cash_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
+             $old_product_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
+
+             $expect_product_val = ($currentuserearningmax / 3) ;
+             $current_product_val = $old_product_wallet->wallet_balance;
+             $fixed_product_wallet_val = $expect_product_val - $current_product_val;
+             $fixed_cash_wallet_val = $new_direct_points - $fixed_product_wallet_val;
+             $spill = 1;
+
+             $currentorderid='';
+             $reference_oder_id = '';
              // 1/3 product wallet
-             product_wallet_update($new_daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+             product_wallet_update($fixed_product_wallet_val,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
        
              // 2/3 cash wallet
-             cash_wallet_update($new_daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+             cash_wallet_update($fixed_cash_wallet_val,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill);
              }
              
              
@@ -109,6 +124,8 @@ class DailyCommissionLogController extends Controller
             
             
              $oder_update = oder::find($oder->id);
+             $currentuserearningmax = $oder_update->max_value;
+             $current_user_id = $oder_update->user_id ;
              $oder_update->total_package_earnings = $daily_points;
              $oder_update->save(); 
        
@@ -123,11 +140,18 @@ class DailyCommissionLogController extends Controller
              $daily_commission_logs->oder_id = $oder->id;
              $daily_commission_logs->save();
        
+
+             $description = 'Daily Commission';
+             $old_cash_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
+             $old_product_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
+             $spill = 0;
+             $currentorderid = '';
+             $reference_oder_id= '';
              // 1/3 product wallet
-             product_wallet_update($daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+             product_wallet_update($daily_points,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
        
              // 2/3 cash wallet
-             cash_wallet_update($daily_points,$oder->user_id,$oder->user_id,$oder->user_id);
+             cash_wallet_update($daily_points,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill);
             }
              
          }

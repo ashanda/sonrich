@@ -247,27 +247,46 @@ function user_oder_count($user_id){
 }
 
 //cash wallet Update
-function cash_wallet_update($amount,$current_user_id,$currentorderid,$reference_oder_id){
+function cash_wallet_update($amount,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill){
 
-  $old_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
+  if($spill == 1){
+    $store_amount = $amount;
 
-  $store_amount = (2/3) * $amount;
-
-  if($old_wallet == NULL){
-    $update_cash_wallet = cash_wallet::updateOrInsert(
-      ['user_id' => $current_user_id],
-      ['wallet_balance' => $store_amount]
-     );
+    if($old_cash_wallet == NULL){
+      $update_cash_wallet = cash_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $store_amount]
+       );
+    }else{
+      $update_cash_wallet = cash_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $old_cash_wallet->wallet_balance + $store_amount]
+       );
+    }
   }else{
-    $update_cash_wallet = cash_wallet::updateOrInsert(
-      ['user_id' => $current_user_id],
-      ['wallet_balance' => $old_wallet->wallet_balance + $store_amount]
-     );
+
+    $store_amount = (2/3) * $amount;
+
+      if($old_cash_wallet == NULL){
+        $update_cash_wallet = cash_wallet::updateOrInsert(
+          ['user_id' => $current_user_id],
+          ['wallet_balance' => $store_amount]
+        );
+      }else{
+        $update_cash_wallet = cash_wallet::updateOrInsert(
+          ['user_id' => $current_user_id],
+          ['wallet_balance' => $old_cash_wallet->wallet_balance + $store_amount]
+        );
+      }
+
   }
+  
+
+  
   
     
     $trx_direction = 'IN';
-    $description = '2/3 Binary commission';
+    
 
     
 
@@ -277,22 +296,40 @@ function cash_wallet_update($amount,$current_user_id,$currentorderid,$reference_
 }
 
 ///product wallet Update
-function product_wallet_update($amount,$current_user_id,$currentorderid,$reference_oder_id){
+function product_wallet_update($amount,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill){
 
-  $old_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
+  if($spill == 1){
 
-  $store_amount = (1/3) * $amount;
-  if($old_wallet == NULL){
-    $update_product_wallet = product_wallet::updateOrInsert(
-      ['user_id' => $current_user_id],
-      ['wallet_balance' => $store_amount]
-    );
+    $store_amount = $amount;
+    if($old_product_wallet == NULL){
+      $update_product_wallet = product_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $store_amount]
+      );
+    }else{
+      $update_product_wallet = product_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $old_product_wallet->wallet_balance + $store_amount]
+      );
+    }
+
   }else{
-    $update_product_wallet = product_wallet::updateOrInsert(
-      ['user_id' => $current_user_id],
-      ['wallet_balance' => $old_wallet->wallet_balance + $store_amount]
-    );
+
+    $store_amount = (1/3) * $amount;
+    if($old_product_wallet == NULL){
+      $update_product_wallet = product_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $store_amount]
+      );
+    }else{
+      $update_product_wallet = product_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $old_product_wallet->wallet_balance + $store_amount]
+      );
+    }
   }
+
+ 
   
 
 
@@ -408,7 +445,7 @@ function user_data_get($user_id){
 }
 
 function spilled_package($user){
-  $check_oder_data = DB::table('oders')->where('user_id',$user)->where('status',1)->first();
+  $check_oder_data = DB::table('oders')->where('user_id',$user)->where('status',2)->first();
   return $check_oder_data;
 }
 

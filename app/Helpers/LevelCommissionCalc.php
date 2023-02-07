@@ -61,11 +61,23 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
         $oder_update->status = 0;
         $oder_update->save();
         }
+
+        $description = 'Level Commission';
+
+        $old_cash_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
+        $old_product_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
+
+        $expect_product_val = ($currentuserearningmax / 3) ;
+        $current_product_val = $old_product_wallet->wallet_balance;
+        $fixed_product_wallet_val = $expect_product_val - $current_product_val;
+        $fixed_cash_wallet_val = $new_direct_points - $fixed_product_wallet_val;
+        $spill = 1;
+
         // 1/3 product wallet
-        product_wallet_update($new_level_points,$current_user_id,$currentorderid,$reference_oder_id);
+        product_wallet_update($fixed_product_wallet_val,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
 
         // 2/3 cash wallet
-        cash_wallet_update($new_level_points,$current_user_id,$currentorderid,$reference_oder_id);
+        cash_wallet_update($fixed_cash_wallet_val,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill);
     }else{
 
         $oder_update = oder::find($currentorderid);
@@ -87,11 +99,16 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
         $level_commission_logs->relative_level = $relative_level;
         $level_commission_logs->save();
 
+        $description = 'Level Commission';
+
+        $old_cash_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
+        $old_product_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
+        $spill = 0;
         // 1/3 product wallet
-        product_wallet_update($level_points,$current_user_id,$currentorderid,$reference_oder_id);
+        product_wallet_update($level_points,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
 
         // 2/3 cash wallet
-        cash_wallet_update($level_points,$current_user_id,$currentorderid,$reference_oder_id);
+        cash_wallet_update($level_points,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill);
 
     }
 
