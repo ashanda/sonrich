@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="article">
-<h1>Our site is getting a little tune up and some love.</h1>
+<h1>Our site is getting a little tune.</h1>
 <div>
 <p>We apologize for the inconvenience, but we're performing some maintenance. We'll be back up soon!</p>
 <p>— Sonrich Development Team</p>
