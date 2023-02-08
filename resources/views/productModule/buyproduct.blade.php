@@ -49,7 +49,7 @@
 
                                 @else
                               
-                                @if(isset(spilled_package(Auth::user()->id)->total_package_earnings))
+                                @if(!isset(spilled_package(Auth::user()->id)->total_package_earnings))
                                 @if (spilled_package(Auth::user()->id)->total_package_earnings >= spilled_package(Auth::user()->id)->max_value)
                                     <p class="text-danger bg-secondary">Please Contact Admin</p>
                                 @endif
