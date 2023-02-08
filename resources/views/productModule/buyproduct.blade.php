@@ -49,10 +49,7 @@
 
                                 @else
                              
-                                @if(isset(spilled_package(Auth::user()->id)->total_package_earnings))
-                                @if (spilled_package(Auth::user()->id)->total_package_earnings >= spilled_package(Auth::user()->id)->max_value)
-                                    <p class="text-danger bg-secondary">Please Contact Admin</p>
-                                @endif
+                                
                                
                                 @if (product_wallet_balance() >= $product->product_price && spilled_package(Auth::user()->id)->total_package_earnings >= spilled_package(Auth::user()->id)->max_value)
                                 <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/product_wallet')}}">
@@ -76,7 +73,7 @@
                                     <button type="submit" class="btn btn-primary mt-2 w-75">Revolve Using Product Wallet + Cash</button>
                                 </form>
                                 @endif
-                                @endif
+                                
                                 @endif
 
                             </div>
