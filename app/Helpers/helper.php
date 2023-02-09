@@ -142,11 +142,15 @@ $right_child='';
       echo '<ul>';
      
         foreach($geneology as $geneology_data){
-            
+          if($geneology_data->status == 0){
+                $active = 'deactive';
+          }else{
+                $active = 'active';
+          }
             
             if($geneology_data->reference_node_side == 0){
               $left_child = 
-              "<li class='left_child'>
+              "<li class='left_child ".$active."'>
                   <a href='/genealogy/?parent=".base64_encode($geneology_data->user_id)."' title='User Details'>
                   <span class='geneology_child_info'>
                     <lable>User id - ".$geneology_data->user_id." </lable>
@@ -164,7 +168,7 @@ $right_child='';
                 </li>";
             }else{
               $right_child = 
-              "<li class='right_child'>
+              "<li class='right_child ".$active."'>
                   <a href='/genealogy/?parent=".base64_encode($geneology_data->user_id)."' title='User Details'>
                   <span class='geneology_child_info'>
                     <lable>User id - ".$geneology_data->user_id." </lable>
