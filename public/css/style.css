@@ -155,6 +155,24 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-input[type=number] {
+input[type="number"] {
     -moz-appearance: textfield;
+}
+
+/* tree acive deactive styles */
+.tree .active a {
+    background-color: #3b71ca;
+    color: #fff;
+}
+.tree .active a:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+.tree .deactive a {
+    background-color: #dc4c64;
+    color: #fff;
+}
+.tree .deactive a:hover{
+    background-color: #dc3545;
+    color: #d6d5d5;
 }
