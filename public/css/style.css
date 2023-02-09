@@ -160,19 +160,19 @@ input[type="number"] {
 }
 
 /* tree acive deactive styles */
-.tree .active a {
+.tree .active {
     background-color: #3b71ca;
     color: #fff;
 }
-.tree .active a:hover {
+.tree .active:hover {
     background-color: #0d6efd;
     color: #fff;
 }
-.tree .deactive a {
+.tree .deactive{
     background-color: #dc4c64;
     color: #fff;
 }
-.tree .deactive a:hover{
+.tree .deactive:hover{
     background-color: #dc3545;
     color: #d6d5d5;
 }
