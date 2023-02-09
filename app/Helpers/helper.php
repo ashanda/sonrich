@@ -144,8 +144,10 @@ $right_child='';
         foreach($geneology as $geneology_data){
           if($geneology_data->status == 0){
                 $active = 'deactive';
+                $status = 'Deactive';
           }else{
                 $active = 'active';
+                $status = 'Active';
           }
             
             if($geneology_data->reference_node_side == 0){
@@ -165,7 +167,7 @@ $right_child='';
                     <lable>User Side - LEFT </lable>
                   </span><br/>
                   <span class='geneology_child_info'>
-                    <lable>".$active." </lable>
+                    <lable>".$status." </lable>
                   </span><br/>
                   </a>
                 </li>";
@@ -187,7 +189,7 @@ $right_child='';
                     <lable>User Side - RIGHT </lable>
                   </span><br/>
                   <span class='geneology_child_info'>
-                    <lable>".$active." </lable>
+                    <lable>".$status." </lable>
                   </span><br/>
                   </a>
                 </li>";;
