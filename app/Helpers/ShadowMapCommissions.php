@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Crypt;
 function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $direct_point, $reference_oder_id){
     
 
-    $currentuser_map = shadow_map::where('user_id', $current_user_id)->first();
+    $currentuser_map = shadow_map::where('user_id', $current_user_id)->where('status',1)->first();
     
     $parent_node = $currentuser_map->parent_node;
     $currentuser = shadow_map::where('id', $parent_node)->where('status',1)->first();
