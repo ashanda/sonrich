@@ -146,7 +146,8 @@ right connector from last child*/
 						<ul>
 							<?php
 							if (array_key_exists('get_geneology', $_GET)) {
-								geneology(Auth::user()->id);
+								$get = DB::table("shadow_maps")->where("user_id", "=", Auth::user()->id)->where("staus", "=", 0)->first();
+								geneology($get->id);
 							} elseif (array_key_exists('parent', $_GET)) {
 								$decrypted_id = request()->get('parent');
 								geneology($decrypted_id);
