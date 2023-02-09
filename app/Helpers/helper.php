@@ -103,7 +103,7 @@ function geneology( $target_parent){
     
   }else{
       $parent_details = DB::table("users")->where("users.id", "=", $node_details[0]->user_id)->get();
-      if($$parent_details->isEmpty()){
+      if($parent_details->isEmpty()){
 echo "
     
         <li class='current_parent'>
