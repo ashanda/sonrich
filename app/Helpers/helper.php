@@ -123,11 +123,11 @@ echo "
                
     </a>";
             
-    $parent_node_id = DB::table('shadow_maps')->where('user_id',$target_parent)->get();
+    $parent_node_id = DB::table('shadow_maps')->where('id',$target_parent)->get();
     $geneology = DB::table('users')
     ->join('shadow_maps', 'shadow_maps.user_id', '=', 'users.id')
     ->where('shadow_maps.parent_node','=' ,$parent_node_id[0]->id)
-    ->select('shadow_maps.user_id','shadow_maps.status','users.fname','users.lname', "users.email",'shadow_maps.reference_node_side' , 'users.fname' , 'users.email' , 'users.created_at')
+    ->select('shadow_maps.user_id','shadow_maps.id','shadow_maps.status','users.fname','users.lname', "users.email",'shadow_maps.reference_node_side' , 'users.fname' , 'users.email' , 'users.created_at')
     ->get();
     if($geneology->isEmpty()){
       echo '
@@ -151,7 +151,7 @@ $right_child='';
             if($geneology_data->reference_node_side == 0){
               $left_child = 
               "<li class='left_child ".$active."'>
-                  <a href='/genealogy/?parent=".base64_encode($geneology_data->user_id)."' title='User Details'>
+                  <a href='/genealogy/?parent=".base64_encode($geneology_data->id)."' title='User Details'>
                   <span class='geneology_child_info'>
                     <lable>User id - ".$geneology_data->user_id." </lable>
                   </span><br/>
@@ -169,7 +169,7 @@ $right_child='';
             }else{
               $right_child = 
               "<li class='right_child ".$active."'>
-                  <a href='/genealogy/?parent=".base64_encode($geneology_data->user_id)."' title='User Details'>
+                  <a href='/genealogy/?parent=".base64_encode($geneology_data->id)."' title='User Details'>
                   <span class='geneology_child_info'>
                     <lable>User id - ".$geneology_data->user_id." </lable>
                   </span><br/>
