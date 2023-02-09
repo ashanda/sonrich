@@ -126,7 +126,7 @@ echo "
                     <lable>Registered Date - ".$parent_details[0]->created_at." </lable>
                   </span><br/>
                   <span class='geneology_child_info'>
-                    <lable>Registered Date - ".$status." </lable>
+                    <lable>".$status."</lable>
                   </span><br/>
                   </a>
                
