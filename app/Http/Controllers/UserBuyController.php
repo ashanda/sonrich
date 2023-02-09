@@ -94,6 +94,7 @@ class UserBuyController extends Controller
     }
 
     public function wallet_and_cash(Request $request){
+
         $product_wallet = DB::table('product_wallets')->where('user_id', Auth::user()->id)->first();
         $cash_pay_amount = $request->product_price - $product_wallet->wallet_balance;
         $oder = new oder;
@@ -102,13 +103,27 @@ class UserBuyController extends Controller
         $oder->product_value = $request->product_price;
         $oder->wallet_pay_amount = $product_wallet->wallet_balance;
         $oder->product_point = $request->product_point;
+        
         $oder->cash_pay_amount = $cash_pay_amount;
         $oder->payment_method = 'Wallet + Cash';
         $oder->max_value = $request->product_price*3;
         $oder->status = $request->status;
         $oder->save();
 
+        $product_wallet_balance_detils = DB::table('product_wallets')->where('user_id', Auth::user()->id)->first();
         
+        $new_product_wallet_balance = DB::table('product_wallets')->updateOrInsert(
+                                                ['user_id'=>Auth::user()->id],
+                                                ['wallet_balance'=> 0]);
+
+        $user_id  =  Auth::user()->id ; 
+        $amount = $request->product_price;
+        $oder_id = $oder->id;
+        $reference_oder_id = 0;
+        $trx_direction = 'Out';
+        $description = 'product wallet buy';
+        product_wallet_log($user_id,$amount,$oder_id,$reference_oder_id,$trx_direction,$description); 
+
         return redirect('buy_product')->with('success', 'You have place the order successfully. Waiting for admins approval.');
     }
 
@@ -130,8 +145,8 @@ class UserBuyController extends Controller
         $product_wallet_balance_detils = DB::table('product_wallets')->where('user_id', Auth::user()->id)->first();
         
         $new_product_wallet_balance = DB::table('product_wallets')->updateOrInsert(
-                ['user_id'=>Auth::user()->id],
-                ['wallet_balance'=> 0]);
+                                                ['user_id'=>Auth::user()->id],
+                                                ['wallet_balance'=> 0]);
 
         $user_id  =  Auth::user()->id ; 
         $amount = $request->product_price;
