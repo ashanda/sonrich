@@ -103,6 +103,7 @@ function geneology( $target_parent){
     
   }else{
       $parent_details = DB::table("users")->where("users.id", "=", $node_details[0]->user_id)->get();
+      if($$parent_details->isEmpty()){
 echo "
     
         <li class='current_parent'>
@@ -121,7 +122,7 @@ echo "
                   </a>
                
     </a>";
-            
+  } 
     $parent_node_id = DB::table('shadow_maps')->where('id',$target_parent)->get();
     $geneology = DB::table('users')
     ->join('shadow_maps', 'shadow_maps.user_id', '=', 'users.id')
