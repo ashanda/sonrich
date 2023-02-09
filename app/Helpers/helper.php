@@ -164,6 +164,9 @@ $right_child='';
                   <span class='geneology_child_info'>
                     <lable>User Side - LEFT </lable>
                   </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>".$active." </lable>
+                  </span><br/>
                   </a>
                 </li>";
             }else{
@@ -182,6 +185,9 @@ $right_child='';
                   </span><br/>
                   <span class='geneology_child_info'>
                     <lable>User Side - RIGHT </lable>
+                  </span><br/>
+                  <span class='geneology_child_info'>
+                    <lable>".$active." </lable>
                   </span><br/>
                   </a>
                 </li>";;
