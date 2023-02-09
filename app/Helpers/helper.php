@@ -127,7 +127,7 @@ echo "
     $geneology = DB::table('users')
     ->join('shadow_maps', 'shadow_maps.user_id', '=', 'users.id')
     ->where('shadow_maps.parent_node','=' ,$parent_node_id[0]->id)
-    ->select('shadow_maps.user_id','users.fname','users.lname', "users.email",'shadow_maps.reference_node_side' , 'users.fname' , 'users.email' , 'users.created_at')
+    ->select('shadow_maps.user_id','shadow_maps.status','users.fname','users.lname', "users.email",'shadow_maps.reference_node_side' , 'users.fname' , 'users.email' , 'users.created_at')
     ->get();
     if($geneology->isEmpty()){
       echo '
