@@ -145,8 +145,8 @@ class DailyCommissionLogController extends Controller
              $old_cash_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
              $old_product_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
              $spill = 0;
-             $currentorderid = '';
-             $reference_oder_id= '';
+             $currentorderid = '0';
+             $reference_oder_id= '0';
              // 1/3 product wallet
              product_wallet_update($daily_points,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
        
