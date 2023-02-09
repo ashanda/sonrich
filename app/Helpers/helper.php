@@ -126,7 +126,7 @@ echo "
     $parent_node_id = DB::table('shadow_maps')->where('id',$target_parent)->get();
     $geneology = DB::table('users')
     ->join('shadow_maps', 'shadow_maps.user_id', '=', 'users.id')
-    ->where('shadow_maps.parent_node','=' ,$parent_node_id[0]->id)
+    ->where('shadow_maps.parent_node','=' ,$target_parent)
     ->select('shadow_maps.user_id','shadow_maps.id','shadow_maps.status','users.fname','users.lname', "users.email",'shadow_maps.reference_node_side' , 'users.fname' , 'users.email' , 'users.created_at')
     ->get();
     if($geneology->isEmpty()){
