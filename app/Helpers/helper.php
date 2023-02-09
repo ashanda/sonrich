@@ -93,17 +93,16 @@ function geneology( $target_parent){
 
  
  
-  $parent_details = DB::table("users")
-                  ->where("users.id", "=", $target_parent) 
-                  ->get();
+  $node_details = DB::table("shadow_maps")->where("id", "=", $target_parent)->get();
   
-  if($parent_details->isEmpty()){
+  if($node_details->isEmpty()){
     echo '
     <div class="alert alert-warning" role="alert">
      <strong>Warning!</strong> No Geneology Found.
     </div>';
     
   }else{
+      $parent_details = DB::table("users")->where("users.id", "=", $node_details[0]->user_id)->get();
 echo "
     
         <li class='current_parent'>
