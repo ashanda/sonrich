@@ -103,7 +103,7 @@ function geneology( $target_parent){
     
   }else{
       $parent_details = DB::table("users")->where("users.id", "=", $node_details[0]->user_id)->get();
-      if($node_details->status == 0){
+      if($node_details[0]->status == 0){
         $active = 'deactive';
         $status = 'Deactive';
   }else{
