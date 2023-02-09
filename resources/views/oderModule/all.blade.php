@@ -22,17 +22,17 @@
                 <table id="example1" class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>User id</th>
-                            <th>Oder id</th>
-                            <th>User Name</th>
-                            <th>SRI Number</th>
-                            <th>Package Value</th>
-                            <th>Pay by Wallet</th>
-                            <th>Pay by Cash</th>  
-                            <th>Payment Methode</th>
-                            <th>Earnings</th>
-                            <th>Created at</th>
-                            <th>Package status</th>
+                            <th style="min-width: 50px;">User id</th>
+                            <th style="min-width: 60px;">Oder id</th>
+                            <th style="min-width: 80px;">User Name</th>
+                            <th style="min-width: 90px;">SRI Number</th>
+                            <th style="min-width: 110px;">Package Value</th>
+                            <th style="min-width: 100px;">Pay by Wallet</th>
+                            <th style="min-width: 90px;">Pay by Cash</th>  
+                            <th style="min-width: 130px;">Payment Methode</th>
+                            <th style="min-width: 50px;">Earnings</th>
+                            <th style="min-width: 80px;">Created at</th>
+                            <th style="min-width: 120px;">Package status</th>
                         </tr>
                     </thead>
                     
