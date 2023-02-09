@@ -27,6 +27,8 @@
                             <th>User Name</th>
                             <th>SRI Number</th>
                             <th>Package Value</th>
+                            <th>Pay by Wallet</th>
+                            <th>Pay by Cash</th>  
                             <th>Payment Methode</th>
                             <th>Earnings</th>
                             <th>Created at</th>
@@ -42,6 +44,8 @@
                             <td>{{ $oder->fname ." ".$oder->lname}}</td>
                             <td>{{ $oder->sri_number}}</td>
                             <td>{{ $oder->product_value}}</td>
+                            <td>{{ $oder->wallet_pay_amount}}</td>
+                            <td>{{ $oder->cash_pay_amount}}</td>
                             <td>{{ $oder->payment_method}}</td>
                             <td>{{ $oder->total_package_earnings}}</td>
                             <td>{{$oder->created_at}}</td>
