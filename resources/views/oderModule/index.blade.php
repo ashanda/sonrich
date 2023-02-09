@@ -26,8 +26,8 @@
                             <th>User Name</th>
                             <th>SRI Number</th>
                             <th>Product Value</th>
-                            <th>Wallet Pay</th>
-                            <th>Cash pay</th>                            
+                            <th>Pay by Wallet</th>
+                            <th>Pay by Cash</th>                            
                             <th>Payment Methode</th>
                             <th>Created at</th>
                             <th>Package status</th>
