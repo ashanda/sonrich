@@ -42,7 +42,7 @@ class DailyCommissionLogController extends Controller
          
          $daily_points = 0;
          foreach($oders as $oder){
-            var_dump($oder->user_id);
+            
            //if need check top 7 nodes and getting direct sales 2 double of daily commission
            $direct_sale_count=DB::table('users')
             ->join('oders','users.id','=','oders.user_id')
