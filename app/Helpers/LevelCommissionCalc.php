@@ -70,7 +70,7 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
         $expect_product_val = ($currentuserearningmax / 3) ;
         $current_product_val = $old_product_wallet->wallet_balance;
         $fixed_product_wallet_val = $expect_product_val - $current_product_val;
-        $fixed_cash_wallet_val = $new_direct_points - $fixed_product_wallet_val;
+        $fixed_cash_wallet_val = $new_level_points - $fixed_product_wallet_val;
         $spill = 1;
 
         // 1/3 product wallet
