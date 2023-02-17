@@ -219,8 +219,8 @@
                                 <td>{{ 'reject' }}</td>
                                 @endif
                                 
-                                <td>
-                                    @if (Auth::user()->role == 1)
+                               
+                                @if (Auth::user()->role == 1)
                                 <td>
                                     <form action="{{ route('withdraw.update',$withdrawel->id) }}" method="POST">
 
