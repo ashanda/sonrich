@@ -23,7 +23,7 @@ class WalletController extends Controller
             $data = DB::table('withdrawals')
             ->join('users', 'users.id', '=', 'withdrawals.user_id')
             ->select('users.id as uid','users.fname','users.lname','withdrawals.*')
-            ->where('uid',Auth::user()->id)
+            ->where('users.id',Auth::user()->id)
             ->get();
             return view('walletModule.index',compact('data'));
         }
