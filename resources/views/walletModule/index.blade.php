@@ -210,7 +210,7 @@
                                 <td>BV {{ $withdrawel->request_amount }}</td>
                                 <td>BV {{ $withdrawel->company_fee}}</td>
                                 <td>BV {{ $withdrawel->tranfer_amount}}</td>
-                                @if (Auth::user()->role == 0)
+                                
                                 @if ($withdrawel->status=='0')
                                 <td>{{ 'Pending' }}</td>
                                 @elseif($withdrawel->status=='1')
@@ -218,7 +218,7 @@
                                 @elseif($withdrawel->status=='2')
                                 <td>{{ 'reject' }}</td>
                                 @endif
-                                @endif
+                                
                                 <td>
                                     @if (Auth::user()->role == 1)
                                 <td>
