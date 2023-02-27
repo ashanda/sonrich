@@ -10,6 +10,7 @@ Use App\Models\shadow_map;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
 
 function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $direct_point, $reference_oder_id){
     
@@ -17,7 +18,7 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
     $currentuser_map = shadow_map::where('user_id', $current_user_id)->where('status',1)->first();
     
     $parent_node = $currentuser_map->parent_node;
-    $currentuser = shadow_map::where('id', $parent_node)->where('status',1)->first();
+    $current_node = shadow_map::where('id', $parent_node)->where('status',1)->first();
     
 
     $direct_parent = User::where('id', $current_user_id)->first();
@@ -32,25 +33,28 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
      
     while ( $parent_node > 0) {    
         
-
-          if($currentuser->status != 1){
-            break;
+      
+          if($current_node->status != 1){
+            $currentuser_map = shadow_map::where('id', $current_node->id)->first();  
+            $parent_node = $currentuser_map->parent_node;       
+            $current_node = shadow_map::where('id', $parent_node)->first();
+            continue; // skip the rest of the code and continue the loop
           }
         
         
         
         //binary Commission
-        BinaryCommissionCalc($currentuser->user_id,$binary_points,$reference_oder_id,$currentuser_map->reference_node_side);
+        BinaryCommissionCalc($current_node->user_id,$binary_points,$reference_oder_id,$currentuser_map->reference_node_side);
 
         //level commission
         if( $i <= 10){
           $relative_level = $i;
-          LevelCommissionCalc($currentuser->user_id,$level_points,$reference_oder_id,$relative_level);
+          LevelCommissionCalc($current_node->user_id,$level_points,$reference_oder_id,$relative_level);
         }
       
-      $currentuser_map = shadow_map::where('id', $currentuser->id)->where('status',1)->first();  
-      $parent_node = $currentuser_map->parent_node;         
-      $currentuser = shadow_map::where('id', $parent_node)->first();
+      $currentuser_map = shadow_map::where('id', $current_node->id)->where('status',1)->first();  
+      $parent_node = $currentuser_map->parent_node;        
+      $current_node = shadow_map::where('id', $parent_node)->first();
       
       $i++;
       
