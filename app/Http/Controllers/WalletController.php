@@ -11,11 +11,19 @@ class WalletController extends Controller
     public function index()
     {
         $role=Auth::user()->role;
-        if($role==0 || $role==1){
+        if($role==1){
 
             $data = DB::table('withdrawals')
             ->join('users', 'users.id', '=', 'withdrawals.user_id')
             ->select('users.id as uid','users.fname','users.lname','withdrawals.*')
+            ->get();
+            return view('walletModule.index',compact('data'));
+        }
+        if($role==0){
+            $data = DB::table('withdrawals')
+            ->join('users', 'users.id', '=', 'withdrawals.user_id')
+            ->select('users.id as uid','users.fname','users.lname','withdrawals.*')
+            ->where('users.id',Auth::user()->id)
             ->get();
             return view('walletModule.index',compact('data'));
         }

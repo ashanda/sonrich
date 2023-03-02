@@ -279,7 +279,23 @@ function user_oder_count($user_id)
 function cash_wallet_update($amount, $current_user_id, $currentorderid, $reference_oder_id, $description, $old_cash_wallet, $spill)
 {
 
-  if ($spill == 1) {
+  if( admin_head_check($current_user_id) == 1 ){
+    $store_amount = (2 / 3) * $amount;
+
+    if ($old_cash_wallet == NULL) {
+      $update_cash_wallet = cash_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $store_amount]
+      );
+    } else {
+      $update_cash_wallet = cash_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $old_cash_wallet->wallet_balance + $store_amount]
+      );
+    }
+
+  }elseif ($spill == 1 ) {
+
     $store_amount = $amount;
 
     if ($old_cash_wallet == NULL) {
@@ -293,6 +309,8 @@ function cash_wallet_update($amount, $current_user_id, $currentorderid, $referen
         ['wallet_balance' => $old_cash_wallet->wallet_balance + $store_amount]
       );
     }
+  
+
   } else {
 
     $store_amount = (2 / 3) * $amount;
@@ -308,6 +326,7 @@ function cash_wallet_update($amount, $current_user_id, $currentorderid, $referen
         ['wallet_balance' => $old_cash_wallet->wallet_balance + $store_amount]
       );
     }
+
   }
 
 
@@ -327,8 +346,22 @@ function cash_wallet_update($amount, $current_user_id, $currentorderid, $referen
 ///product wallet Update
 function product_wallet_update($amount, $current_user_id, $currentorderid, $reference_oder_id, $description, $old_product_wallet, $spill)
 {
+  if( admin_head_check($current_user_id) == 1 ){
 
-  if ($spill == 1) {
+    $store_amount = (1 / 3) * $amount;
+    if ($old_product_wallet == NULL) {
+      $update_product_wallet = product_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $store_amount]
+      );
+    } else {
+      $update_product_wallet = product_wallet::updateOrInsert(
+        ['user_id' => $current_user_id],
+        ['wallet_balance' => $old_product_wallet->wallet_balance + $store_amount]
+      );
+    }
+
+  }elseif ($spill == 1) {
 
     $store_amount = $amount;
     if ($old_product_wallet == NULL) {

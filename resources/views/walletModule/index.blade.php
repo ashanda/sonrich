@@ -210,7 +210,7 @@
                                 <td>BV {{ $withdrawel->request_amount }}</td>
                                 <td>BV {{ $withdrawel->company_fee}}</td>
                                 <td>BV {{ $withdrawel->tranfer_amount}}</td>
-
+                                
                                 @if ($withdrawel->status=='0')
                                 <td>{{ 'Pending' }}</td>
                                 @elseif($withdrawel->status=='1')
@@ -218,8 +218,9 @@
                                 @elseif($withdrawel->status=='2')
                                 <td>{{ 'reject' }}</td>
                                 @endif
-                                <td>
-                                    @if (Auth::user()->role == 1)
+                                
+                               
+                                @if (Auth::user()->role == 1)
                                 <td>
                                     <form action="{{ route('withdraw.update',$withdrawel->id) }}" method="POST">
 
