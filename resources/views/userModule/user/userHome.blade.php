@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    @if (current_user_active_package_count() >0)
+    
     <div class="row">
         <div class="col-md-12 col-sm-12">
             <div class="copy_text py-2">
@@ -67,9 +67,9 @@
             </div>
         </div> -->
     </div>
-    @else
+   
 
-    @endif
+   
 
 
     <div class="row">
