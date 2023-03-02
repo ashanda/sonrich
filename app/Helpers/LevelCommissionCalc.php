@@ -20,7 +20,7 @@ function LevelCommissionCalc($current_user_id, $level_points, $reference_oder_id
     $parentside = $nodeparent_map-> reference_node_side;
     $currentmapid = $nodeparent_map-> id;
 
-    $oders_map = oder::where('user_id', $current_user_id)->where('status',1)->first();
+    $oders_map = oder::where('user_id','=', $current_user_id)->where('status','=',1)->first();
     $currentuserearningmax = $oders_map->max_value;
     $currentuserearningtotal = $oders_map->total_package_earnings;
     $currentuser = $oders_map->user_id;

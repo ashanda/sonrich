@@ -491,3 +491,30 @@ function spilled_package($user)
   $check_oder_data = DB::table('oders')->where('user_id', $user)->where('status', 2)->first();
   return $check_oder_data;
 }
+
+function find_node($level){
+
+  $z = array(1);
+
+  for ($i = 1; $i < $level; $i++) {
+      $y = $z;
+      for ($j = count($z) - 1; $j >= 0; $j--) {
+          array_splice($y, $j + 1, 0, $y[$j] + max($z));
+      }
+      $z = $y;
+  }
+  
+  $output = $z;
+echo json_encode( $output);
+$data = DB::table('shadow_maps')->where('x', $level-1)->pluck('y');
+echo json_encode( $data);
+// Define a separate array of values to compare with
+$exclude = json_encode( $output);
+
+// Compute the difference between the two arrays
+$difference = $data->diff($exclude);
+
+// Retrieve the second element of the resulting array
+$first_element = $difference->values()[0];
+return $first_element;
+}
