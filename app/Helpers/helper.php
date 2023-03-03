@@ -537,17 +537,21 @@ function find_node($level){
       $z = $y;
   }
   
-  $output = $z;
-echo json_encode( $output);
-$data = DB::table('shadow_maps')->where('x', $level-1)->pluck('y');
-echo json_encode( $data);
-// Define a separate array of values to compare with
-$exclude = json_encode( $output);
+$first_array = $z;
 
-// Compute the difference between the two arrays
-$difference = $data->diff($exclude);
+$second_array = DB::table('shadow_maps')->where('y', $level-1)->pluck('x')->toArray();
 
-// Retrieve the second element of the resulting array
-$first_element = $difference->values()[0];
-return $first_element;
+$result_array = array();
+
+foreach ($first_array as $value) {
+    if (!in_array($value, $second_array)) {
+        $result_array[] = $value;
+    }
+}
+
+$final_result = $result_array[0]; // Get the first element of the resulting array
+
+
+return $final_result;
+
 }
