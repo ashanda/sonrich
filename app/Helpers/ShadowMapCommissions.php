@@ -33,29 +33,32 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
      
     while ( $parent_node > 0) {    
         
-      Log::info($parent_node);
+          Log::info($parent_node. '- Node');
           if($current_node->status != 1){
+            Log::info($parent_node. '- Skip Nodes');
             $currentuser_map = shadow_map::where('id', $current_node->id)->first();  
             $parent_node = $currentuser_map->parent_node;       
             $current_node = shadow_map::where('id', $parent_node)->first();
             continue; // skip the rest of the code and continue the loop
-          }
-        
-        
-        
-        //binary Commission
-        BinaryCommissionCalc($current_node->user_id,$binary_points,$reference_oder_id,$currentuser_map->reference_node_side);
+            
+          }else{
+            Log::info($parent_node. '- Binary Node');
+            //binary Commission
+            BinaryCommissionCalc($current_node->user_id,$binary_points,$reference_oder_id,$currentuser_map->reference_node_side);
 
-        //level commission
-        if( $i <= 10){
-          $relative_level = $i;
-          LevelCommissionCalc($current_node->user_id,$level_points,$reference_oder_id,$relative_level);
-        }
-      
-      $currentuser_map = shadow_map::where('id', $current_node->id)->first();  
-      $parent_node = $currentuser_map->parent_node;        
-      $current_node = shadow_map::where('id', $parent_node)->first();
-      
+            //level commission
+            if( $i <= 10){
+              Log::info($parent_node. '- Level Node');
+              $relative_level = $i;
+              LevelCommissionCalc($current_node->user_id,$level_points,$reference_oder_id,$relative_level);
+            }
+
+            $currentuser_map = shadow_map::where('id', $current_node->id)->first();  
+            $parent_node = $currentuser_map->parent_node;        
+            $current_node = shadow_map::where('id', $parent_node)->first();
+
+          }
+
       $i++;
       
     } 
