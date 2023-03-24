@@ -240,8 +240,8 @@ function user_positioning($child_id){
     
      
     $current_level_map_model =  json_decode($current_level_map_model[0]->value_array);
-    print_r('<br>');
-    print_r($current_level_map_model); 
+    //print_r('<br>');
+   // print_r($current_level_map_model); 
     
     
     
@@ -266,8 +266,8 @@ function user_positioning($child_id){
            // print_r($current_level_nodes);
             $rearrange_current_level_map[$a] = array($current_level_nodes[$map_model_index] );
            
-            print_r('<br>');
-            print_r($rearrange_current_level_map);
+           // print_r('<br>');
+           // print_r($rearrange_current_level_map);
           } catch (\Exception $e) {
           
               return $e->getMessage();
