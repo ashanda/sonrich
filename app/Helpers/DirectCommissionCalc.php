@@ -26,9 +26,10 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
     
     $parent_node = $currentuser_map->user_id;
     */
-    $oders_map = oder::where('user_id', $current_user_id)->where('status',1)->first();
-  
-    $currentuserearningmax = $oders_map->max_value;
+
+    $oders_map = oder::where('user_id', $current_user_id)->first();
+    if($oders_map -> status == 1){
+        $currentuserearningmax = $oders_map->max_value;
     $currentuserearningtotal = $oders_map->total_package_earnings;
     $currentuser = $oders_map->user_id;
     $currentorderid = $oders_map->id;
@@ -123,13 +124,13 @@ function DirectCommissionCalc($current_user_id, $direct_point,$reference_oder_id
         product_wallet_update($fixed_product_wallet_val,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
 
         // 2/3 cash wallet
-        cash_wallet_update($fixed_cash_wallet_val,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill);
-        
-        
-       
-        
+        cash_wallet_update($fixed_cash_wallet_val,$current_user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill);    
 
     }
+    }else{
+        
+    }
+    
 
     
 
