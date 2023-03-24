@@ -75,6 +75,7 @@
             <tr>
               <th>User id</th>
               <th>User Name</th>
+              <th>Direct Parent id</th>
               <th>Email</th>
               <th>Google Auth Code</th>
               <th>Status</th>
@@ -87,6 +88,7 @@
 
               <td>{{ $user->id}}</td>
               <td>{{ $user->fname ." ".$user->lname}}</td>
+              <td>{{ $user->parent}}</td>
               <td>{{ $user->email}}</td>
               <td>
                 <div class="input-group">
