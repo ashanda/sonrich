@@ -41,8 +41,8 @@ function user_positioning($child_id){
     $current_user = $current_user_data->parent;
     
     //$current_node = $current_node_map->user_id;
-
-    $parent_level_node_data = shadow_map::where('user_id', $current_user)->first();
+    
+    $parent_level_node_data = shadow_map::where('user_id', $current_user)->where('status', 1)->first();
     Log::info('bug start');
     Log::info($current_user);
     Log::info('bug end');
