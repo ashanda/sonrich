@@ -103,8 +103,8 @@ class DailyCommissionLogController extends Controller
              $fixed_cash_wallet_val = $new_daily_points - $fixed_product_wallet_val;
              $spill = 1;
 
-             $currentorderid='';
-             $reference_oder_id = '';
+             $currentorderid=0;
+             $reference_oder_id = 0;
              // 1/3 product wallet
              product_wallet_update($fixed_product_wallet_val,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
        
