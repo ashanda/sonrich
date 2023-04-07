@@ -73,4 +73,8 @@ class User extends Authenticatable
          );
  
      }
+
+     public function user_oder(){
+        return $this->hasMany('App\Models\oder', 'user_id')->whereIn('status', [1, 2]);
+    }
 }

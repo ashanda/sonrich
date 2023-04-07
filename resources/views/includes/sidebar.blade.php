@@ -233,7 +233,14 @@ $role = auth()->user()->role;
           </a>
 
         </li>
-
+        <li class="nav-item">
+          <a href="/all_users" class="nav-link">
+            <i class="nav-icon fa fa-user-circle"></i>
+            <p>
+              Users
+            </p>
+          </a>
+        </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-columns"></i>
@@ -243,7 +250,12 @@ $role = auth()->user()->role;
             </p>
           </a>
           <ul class="nav nav-treeview">
-
+            <li class="nav-item">
+              <a href="/future_plan_sales" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Future Plan Sales</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="/users_report" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>

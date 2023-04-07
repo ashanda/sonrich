@@ -42,6 +42,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/super_admin', [HomeController::class, 'superadmin'])->name('super_admin');
 Route::get('/admin', [HomeController::class, 'admin'])->name('admin');
 Route::get('/user', [HomeController::class, 'user'])->name('user');
+Route::get('/all_users', [HomeController::class, 'all_user'])->name('all_users');
+Route::match(['get', 'post'],'edit_user/{id?}', [HomeController::class, 'edit_user'])->name('edit_user/{id?}');
+Route::match(['get', 'post'],'update_user/{id?}', [HomeController::class, 'update_user'])->name('update_user/{id?}');
 Route::get('/all-oders', [OderController::class, 'all_oders'])->name('all-oders');
 Route::resource('/buy_product', UserBuyController::class);
 Route::resource('/p2p', P2pController::class);
@@ -52,11 +55,11 @@ Route::get('/p2p_history_debit', [P2pController::class, 'debit'])->name('p2p_his
 Route::resource('/oders', OderController::class);
 Route::get('/withdrawal', [WithdrawalController::class, 'index'])->name('withdrawal');
 Route::resource('/withdraw', WithdrawalController::class);
-Route::post('cash/trans', [WithdrawalController::class, 'cash_trans'])->name('withdrawal');
-Route::post('p2p/trans', [WithdrawalController::class, 'p2p_trans'])->name('withdrawal');
+Route::post('cash/trans', [WithdrawalController::class, 'cash_trans'])->name('cash/trans');
+Route::post('p2p/trans', [WithdrawalController::class, 'p2p_trans'])->name('p2p/trans');
 
-Route::get('trans/cash', [WithdrawalController::class, 'cash'])->name('withdrawal');
-Route::get('trans/p2p', [WithdrawalController::class, 'p2p'])->name('withdrawal');
+Route::get('trans/cash', [WithdrawalController::class, 'cash'])->name('trans/cash');
+Route::get('trans/p2p', [WithdrawalController::class, 'p2p'])->name('wtrans/p2p');
 
 Route::get('/daily_commission', [DailyCommissionLogController::class, 'daily_commission'])->name('daily_commission');
 
@@ -66,7 +69,7 @@ Route::post('/buy_product/wallet_and_cash', [UserBuyController::class, 'wallet_a
 Route::post('/buy_product/product_wallet', [UserBuyController::class, 'product_wallet'])->name('product_wallet');
 
 Route::get('/wallet', [WalletController::class, 'index'])->name('wallet');
-Route::get('/pending_request', [WalletController::class, 'index'])->name('wallet');
+Route::get('/pending_request', [WalletController::class, 'index'])->name('pending_request');
 
 Route::resource('/gas_fee_collect', GasFeeController::class);
 Route::resource('/friend_request', PayoutController::class);
@@ -83,6 +86,11 @@ Route::get('/level_report', [ReportController::class, 'level_report'])->name('le
 Route::get('/daily_report', [ReportController::class, 'daily_report'])->name('daily_report');
 Route::get('/users_report', [ReportController::class, 'users_report'])->name('users_report');
 Route::get('/users_report_daily', [ReportController::class, 'users_report_daily'])->name('users_report_daily');
+
+
+// Route::get('/future_plan_sales', [ReportController::class, 'future_plan_sales'])->name('future_plan_sales');
+Route::get('/future_plan_sales', [ReportController::class, 'future_plan_sales'])->name('future_plan_sales');
+Route::get('/future_plan_sales/records', [ReportController::class, 'future_plan_sales_records'])->name('future_plan_sales/records');
 
 
 Route::post('/2fa', function () {

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use App\Models\User;
 class ReportController extends Controller
 {
     //
@@ -105,6 +107,64 @@ class ReportController extends Controller
             ->select('direct_commission_logs.amount as damount','binary_commission_logs.amount as bamount','daily_commission_logs.amount as diamount','level_commission_logs.amount as lamount')
             ->get();
             return view('reportModule.commission',compact('data'));
+        }
+    }
+
+    public function future_plan_sales()
+    {
+
+        return view('reportModule.future_plan_sales');
+    }
+ 
+    public function future_plan_sales_records (Request $request)
+    {
+        if ($request->ajax()) {
+ 
+            if ($request->input('start_date') && $request->input('end_date')) {
+ 
+                $start_date = Carbon::parse($request->input('start_date'));
+                $end_date = Carbon::parse($request->input('end_date'));
+ 
+                if ($end_date->greaterThan($start_date)) {
+                    $students  = User::select('users.sri_number','users.fname', 'users.lname', 'users.email', 'oders.srr_number', 'users.created_at')
+                    ->join('oders', 'users.id', '=', 'oders.user_id')
+                    ->whereColumn('oders.srr_number', '=', 'users.srr_number')
+                    ->whereBetween('users.created_at', [$start_date, $end_date])
+                    ->groupBy('users.sri_number','users.fname', 'users.lname', 'users.email', 'oders.srr_number', 'users.created_at')
+                    ->selectRaw('COUNT(CASE WHEN oders.product_id = 1 THEN 1 END) AS package1')
+                    ->selectRaw('COUNT(CASE WHEN oders.product_id = 2 THEN 1 END) AS package2')
+                    ->selectRaw('COUNT(CASE WHEN oders.product_id = 3 THEN 1 END) AS package3')
+                    ->selectRaw('COUNT(CASE WHEN oders.product_id = 4 THEN 1 END) AS package4')
+                    ->get();
+
+                } else {
+                    $students  = User::select('users.sri_number','users.fname', 'users.lname', 'users.email', 'oders.srr_number', 'users.created_at')
+                    ->join('oders', 'users.id', '=', 'oders.user_id')
+                    ->whereColumn('oders.srr_number', '=', 'users.srr_number')
+                    ->groupBy('users.sri_number','users.fname', 'users.lname', 'users.email', 'oders.srr_number', 'users.created_at')
+                    ->selectRaw('COUNT(CASE WHEN oders.product_id = 1 THEN 1 END) AS package1')
+                    ->selectRaw('COUNT(CASE WHEN oders.product_id = 2 THEN 1 END) AS package2')
+                    ->selectRaw('COUNT(CASE WHEN oders.product_id = 3 THEN 1 END) AS package3')
+                    ->selectRaw('COUNT(CASE WHEN oders.product_id = 4 THEN 1 END) AS package4')
+                    ->get();
+                }
+            } else {
+                $students = User::select('users.sri_number','users.fname', 'users.lname', 'users.email', 'oders.srr_number', 'users.created_at')
+                ->join('oders', 'users.id', '=', 'oders.user_id')
+                ->whereColumn('oders.srr_number', '=', 'users.srr_number')
+                ->groupBy('users.sri_number','users.fname', 'users.lname', 'users.email', 'oders.srr_number', 'users.created_at')
+                ->selectRaw('COUNT(CASE WHEN oders.product_id = 1 THEN 1 END) AS package1')
+                ->selectRaw('COUNT(CASE WHEN oders.product_id = 2 THEN 1 END) AS package2')
+                ->selectRaw('COUNT(CASE WHEN oders.product_id = 3 THEN 1 END) AS package3')
+                ->selectRaw('COUNT(CASE WHEN oders.product_id = 4 THEN 1 END) AS package4')
+                ->get();
+            }
+ 
+            return response()->json([
+                'students' => $students
+            ]);
+        } else {
+            abort(403);
         }
     }
 }
