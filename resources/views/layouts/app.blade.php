@@ -236,6 +236,7 @@
             $('#min, #max').on('change', function () {
                 table.draw();
             });
+            
         });
 
     </script>
@@ -276,9 +277,42 @@
                                 }
                             },
                             {
+                                "data": "user_id",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.user_id}`;
+                                }
+                            },
+                            {
                                 "data": "srr_number",
                                 "render": function (data, type, row, meta) {
                                     return `${row.srr_number}`;
+                                }
+                            },
+                            {
+                                "data": "RCT",
+                                
+                                "render": function (data, type, row, meta) {
+                                    //console.log(row.RCT);
+                                    return `${row.RCT}`;
+                                }
+                            },
+                            {
+                                "data": "SFT",
+                                "render": function (data, type, row, meta) {
+                                    // console.log(typeof row.SFT);
+                                    return `${row.SFT}`;
+                                }
+                            },
+                            {
+                                "data": "PWT",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.PWT}`;
+                                }
+                            },
+                            {
+                                "data": "WCT",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.WCT}`;
                                 }
                             },
                             {
@@ -305,6 +339,7 @@
                                     return `${row.package4}`;
                                 }
                             },
+
                             {
                                 "data": "sri_number",
                                 "render": function (data, type, row, meta) {
@@ -318,100 +353,234 @@
                                 }
                             },
                             {
-                                "data": "email",
-                                "render": function (data, type, row, meta) {
-                                    return `${row.email}`;
-                                }
+                            "data": null,
+                            "defaultContent": "",
+                            "className": "dt-right",
+                            "orderable": false,
+                            "searchable": false,
+                            "render": function(data, type, row, meta) {
+                                var total = parseInt(row.RCT) + parseInt(row.SFT) + parseInt(row.PWT) + parseInt(row.WCT);
+                                return total;
+                            }
                             },
+                                                        
 
 
                         ],
-                        "footer": true,
-                        "footerCallback": function (row, data, start, end, display) {
-                            var api = this.api(),
-                                data;
-
-                            // Sum over all pages for column 2
-                            var col2Sum = api
-                                .column(2)
-                                .data()
-                                .reduce(function (a, b) {
-                                    return parseInt(a) + parseInt(b);
-                                }, 0);
-
-                            // Sum over all pages for column 3
-                            var col3Sum = api
-                                .column(3)
-                                .data()
-                                .reduce(function (a, b) {
-                                    return parseInt(a) + parseInt(b);
-                                }, 0);
-
-                            // Sum over all pages for column 4
-                            var col4Sum = api
-                                .column(4)
-                                .data()
-                                .reduce(function (a, b) {
-                                    return parseInt(a) + parseInt(b);
-                                }, 0);
-
-                            var col5Sum = api
-                                .column(5)
-                                .data()
-                                .reduce(function (a, b) {
-                                    return parseInt(a) + parseInt(b);
-                                }, 0);
-
-                            $(api.column(0).footer()).html("Total");
-                            // Update footer for column 2
-                            $(api.column(2).footer()).html(col2Sum);
-
-                            // Update footer for column 3
-                            $(api.column(3).footer()).html(col3Sum);
-
-                            // Update footer for column 4
-                            $(api.column(4).footer()).html(col4Sum);
-
-                            $(api.column(5).footer()).html(col5Sum);
-                        },
+                        
                         dom: 'Bfrtip',
-                        "buttons": [
-        {
-            extend: 'copy',
-            title: $('title').text(),
-            filename: function () {
-                return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
-            }
-        },
-        {
-            extend: 'csv',
-            title: $('title').text(),
-            filename: function () {
-                return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
-            }
-        },
-        {
-            extend: 'excel',
-            title: $('title').text(),
-            filename: function () {
-                return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
-            }
-        },
-        {
-            extend: 'pdf',
-            title: $('title').text(),
-            filename: function () {
-                return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
-            }
-        },
-        {
-            extend: 'print',
-            title: $('title').text(),
-            filename: function () {
-                return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
-            }
-        }
-    ],
+                        "buttons": [{
+                                extend: 'copy',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            },
+                            {
+                                extend: 'csv',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            },
+                            {
+                                extend: 'excel',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            },
+                            {
+                                extend: 'pdf',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            },
+                            {
+                                extend: 'print',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            }
+                        ],
+
+                    });
+
+
+                    $('#records_table').DataTable({
+                        "data": data.students,
+                        // responsive
+                        "responsive": true,
+                        "columns": [
+                            
+                            {
+                                "data": "user_id",
+                                "render": function (data, type, row, meta) {
+                                    
+                                    return `${row.user_id}`;
+                                }
+                            },
+                            
+                            {
+                                "data": "srr_number",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.srr_number}`;
+                                }
+                            },
+                            
+                            {
+                                "data": "RC1",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.RC1}`;
+                                }
+                            },
+                            {
+                                "data": "SF1",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.SF1}`;
+                                }
+                            },
+                            {
+                                "data": "PW1",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.PW1}`;
+                                }
+                            },
+                            {
+                                "data": "WC1",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.WC1}`;
+                                }
+                            },
+                            
+                            {
+                                "data": "RC2",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.RC2}`;
+                                }
+                            },
+                            {
+                                "data": "SF2",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.SF2}`;
+                                }
+                            },
+                            {
+                                "data": "PW2",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.PW2}`;
+                                }
+                            },
+                            {
+                                "data": "WC2",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.WC2}`;
+                                }
+                            },
+                            
+                            {
+                                "data": "RC3",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.RC3}`;
+                                }
+                            },
+                            {
+                                "data": "SF3",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.SF3}`;
+                                }
+                            },
+                            {
+                                "data": "PW3",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.PW3}`;
+                                }
+                            },
+                            {
+                                "data": "WC3",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.WC3}`;
+                                }
+                            },
+                           
+                            {
+                                "data": "RC4",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.RC4}`;
+                                }
+                            },
+                            {
+                                "data": "SF4",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.SF4}`;
+                                }
+                            },
+                            {
+                                "data": "PW4",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.PW4}`;
+                                }
+                            },
+                            {
+                                "data": "WC4",
+                                "render": function (data, type, row, meta) {
+                                    return `${row.WC4}`;
+                                }
+                            },
+                            {
+                            "data": null,
+                            "defaultContent": "",
+                            "className": "dt-right",
+                            "orderable": false,
+                            "searchable": false,
+                            "render": function(data, type, row, meta) {
+                                var total = parseInt(row.RC1) + parseInt(row.RC2)+ parseInt(row.RC3)+ parseInt(row.RC4)+ parseInt(row.SF1)+ parseInt(row.SF2)+ parseInt(row.SF3)+ parseInt(row.SF4)+ parseInt(row.PW1)+ parseInt(row.PW2)+ parseInt(row.PW3)+ parseInt(row.PW4)+ parseInt(row.WC1)+ parseInt(row.WC2)+ parseInt(row.WC3)+ parseInt(row.WC4);
+                                return total;
+                            }
+                            },
+
+                        ],
+                        
+                        
+                        dom: 'Bfrtip',
+                        "buttons": [{
+                                extend: 'copy',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            },
+                            {
+                                extend: 'csv',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            },
+                            {
+                                extend: 'excel',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            },
+                            {
+                                extend: 'pdf',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            },
+                            {
+                                extend: 'print',
+                                title: $('title').text(),
+                                filename: function () {
+                                    return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
+                                }
+                            }
+                        ],
 
                     });
                 }
@@ -427,7 +596,9 @@
                 alert("Both date required");
             } else {
                 $('#records').DataTable().destroy();
+                $('#records_table').DataTable().destroy();
                 fetch(start_date, end_date);
+                
             }
         });
         // Reset
@@ -436,6 +607,7 @@
             $("#start_date").val(''); // empty value
             $("#end_date").val('');
             $('#records').DataTable().destroy();
+            $('#records_table').DataTable().destroy();
             fetch();
         });
 
