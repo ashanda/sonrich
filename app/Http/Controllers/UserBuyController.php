@@ -36,6 +36,7 @@ class UserBuyController extends Controller
     public function real_cash(Request $request){
         $oder = new oder;
         $oder->user_id = Auth::user()->id;
+        $oder->srr_number = Auth::user()->srr_number;
         $oder->product_id = $request->product_id;
         $oder->product_value = $request->product_price;
         $oder->product_point = $request->product_point;
@@ -68,6 +69,7 @@ class UserBuyController extends Controller
     public function sponsor_funds(Request $request){
         $oder = new ProductBuyRequest;
         $oder->user_id = Auth::user()->id;
+        $oder->srr_number = Auth::user()->srr_number;
         $oder->sponsor_id = $request->sponsor_id;
         $oder->product_id = $request->product_id;
         $oder->request_amount = $request->product_price;
@@ -99,6 +101,7 @@ class UserBuyController extends Controller
         $cash_pay_amount = $request->product_price - $product_wallet->wallet_balance;
         $oder = new oder;
         $oder->user_id = Auth::user()->id;
+        $oder->srr_number = Auth::user()->srr_number;
         $oder->product_id = $request->product_id;
         $oder->product_value = $request->product_price;
         $oder->wallet_pay_amount = $product_wallet->wallet_balance;
@@ -131,6 +134,7 @@ class UserBuyController extends Controller
         
         $oder = new oder;
         $oder->user_id = Auth::user()->id;
+        $oder->srr_number = Auth::user()->srr_number;
         $oder->product_id = $request->product_id;
         $oder->wallet_pay_amount = $request->product_price;
         $oder->cash_pay_amount = 0;
