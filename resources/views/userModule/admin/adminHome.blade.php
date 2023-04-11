@@ -8,9 +8,10 @@
                 {{ __('Dashboard') }}
             </h4>
         </div>
-        {{ find_node(4) }}
+        
         <div class="col-sm-6 text-right">
             <div class="dUid ml-auto py-3 py-sm-0">
+                
             <span class="text-bold">NO - SRI : {{ Auth::user()->sri_number }}</span>
                 <h6 class="px-4 py-2 bg-primary d-inline ml-2">User Id - {{ Auth::user()->id }}</h6>
                 <!-- user name -->
