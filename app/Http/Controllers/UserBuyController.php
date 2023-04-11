@@ -38,7 +38,7 @@ class UserBuyController extends Controller
         $oder = new oder;
         
         $oder->user_id = Auth::user()->id;
-        if(Auth::user()->id != null){
+        if(Auth::user()->srr_number != null){
             $oder->srr_number = Auth::user()->srr_number;
         }
         $oder->product_id = $request->product_id;
@@ -73,7 +73,7 @@ class UserBuyController extends Controller
     public function sponsor_funds(Request $request){
         $oder = new ProductBuyRequest;
         $oder->user_id = Auth::user()->id;
-        if(Auth::user()->id != null){
+        if(Auth::user()->srr_number != null){
             $oder->srr_number = Auth::user()->srr_number;
         }
         $oder->sponsor_id = $request->sponsor_id;
@@ -107,7 +107,7 @@ class UserBuyController extends Controller
         $cash_pay_amount = $request->product_price - $product_wallet->wallet_balance;
         $oder = new oder;
         $oder->user_id = Auth::user()->id;
-        if(Auth::user()->id != null){
+        if(Auth::user()->srr_number != null){
             $oder->srr_number = Auth::user()->srr_number;
         }
         $oder->product_id = $request->product_id;
@@ -142,7 +142,7 @@ class UserBuyController extends Controller
         
         $oder = new oder;
         $oder->user_id = Auth::user()->id;
-        if(Auth::user()->id != null){
+        if(Auth::user()->srr_number != null){
             $oder->srr_number = Auth::user()->srr_number;
         }
         $oder->product_id = $request->product_id;
