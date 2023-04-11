@@ -50,7 +50,7 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
             if( $i <= 10){
               Log::info($parent_node. '- Level Node');
               $relative_level = $i;
-              LevelCommissionCalc($current_node->user_id,$level_points,$reference_oder_id,$relative_level);
+             LevelCommissionCalc($current_node->user_id,$level_points,$reference_oder_id,$relative_level);
             }
 
             $currentuser_map = shadow_map::where('id', $current_node->id)->first();  
