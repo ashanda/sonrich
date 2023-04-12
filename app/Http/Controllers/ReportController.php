@@ -96,7 +96,7 @@ class ReportController extends Controller
 
     public function commission_reports(){
         $role=Auth::user()->role;
-        if($role==0){
+        if($role==1){
 
             $data = DB::table('daily_commission_logs')
             ->leftJoin('binary_commission_logs', 'binary_commission_logs.user_id', '=', 'daily_commission_logs.user_id')
