@@ -16,9 +16,9 @@
                 <div class="input-group mb-3">
                     
                     <input id="parent" type="hidden" class="form-control" name="parent" value="{{ request()->get('ref_id')}}" required >
-                    @if (!empty(request()->get('srr')))          
+                           
                     <input id="srr_number" type="hidden" class="form-control" name="srr_number" value="{{ request()->get('srr')}}" >
-                    @endif
+                    
 
                     
                 </div>
