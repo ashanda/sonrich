@@ -70,6 +70,11 @@ if( $last_cash_wallet_rec->wallet_balance >= $request_val ){
 
     $oder = new oder;
     $oder->user_id = $package->user_id;
+
+    if($package->srr_number != null) {
+        $oder->srr_number = $package->srr_number;
+    }
+    
     $oder->product_id = $product_data->id;
     $oder->product_value = $product_data->product_price;
     $oder->product_point = $product_data->point_value;
