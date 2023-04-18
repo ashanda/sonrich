@@ -206,7 +206,7 @@ input[type="number"] {
 .hov-th .hov {
     display: none;
     position: absolute;
-    margin-top: -70px;
+    margin-top: -80px;
     width: max-content;
     background-color: #fff;
     padding: 0 5px;
