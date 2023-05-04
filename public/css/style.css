@@ -168,11 +168,50 @@ input[type="number"] {
     background-color: #0d6efd;
     color: #fff;
 }
-.tree .deactive{
+.tree .deactive {
     background-color: #dc4c64;
     color: #fff;
 }
-.tree .deactive:hover{
+.tree .deactive:hover {
     background-color: #dc3545;
     color: #d6d5d5;
+}
+
+/* Reports section styles */
+.ui-datepicker {
+    background-color: #fff;
+    padding: 16px;
+}
+.ui-datepicker a {
+    padding-right: 15px;
+}
+.ui-datepicker .ui-datepicker-prev {
+    background-color: gray;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.ui-datepicker .ui-datepicker-next {
+    background-color: gray;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.ui-datepicker-title {
+    margin-top: 5px;
+}
+.hov-th .hov {
+    display: none;
+    position: absolute;
+    margin-top: -80px;
+    width: max-content;
+    background-color: #fff;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+.hov-th:hover .hov {
+    display: block;
 }
