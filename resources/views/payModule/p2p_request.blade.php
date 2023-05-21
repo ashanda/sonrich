@@ -16,7 +16,7 @@
     <tr>
     <th>S.No</th>
     <th>User Name</th>
-    <th>Request Amount</th>
+    <th>Amount</th>
     <th width="280px">Action</th>
     </tr>
     @foreach ($data as $user_data)
@@ -27,7 +27,7 @@
    
     <td>
         <form action="{{ route('p2p.destroy',$user_data->id) }}" method="POST">
-        <a class="btn btn-primary" href="{{ route('p2p.edit',$user_data->id) }}">Edit</a>
+        <a class="btn btn-primary" href="{{ route('p2p.edit',$user_data->id) }}">Approve</a>
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-danger">Delete</button>
