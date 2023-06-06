@@ -53,11 +53,9 @@ class DailyCommissionLogController extends Controller
             ->count();
             
             if($direct_sale_count > 1){
-                $daily_points = ((master_data()->daily *2) * $oder->product_value);
-                
+                $daily_points = ((master_data()->daily *2) * $oder->product_value);              
             }else{
-                $daily_points = (master_data()->daily * $oder->product_value);
-                
+                $daily_points = (master_data()->daily * $oder->product_value);  
             }
 
            

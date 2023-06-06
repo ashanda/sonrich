@@ -126,6 +126,7 @@ class OderController extends Controller
     
             $package = oder::find($id);
             $package->status = $request->oder_status;
+            $package->active_date = date('Y-m-d H:i:s');
             $package->save();
     
     
