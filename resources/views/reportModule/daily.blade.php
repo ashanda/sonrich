@@ -68,3 +68,10 @@
         </div>
 
  @endsection
+ @push('styles')
+    <style>
+        .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
+            display: none;
+        }
+    </style>
+@endpush
