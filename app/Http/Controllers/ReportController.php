@@ -88,7 +88,7 @@ class ReportController extends Controller
             ->join('users', 'users.id', '=', 'daily_commission_logs.user_id')
             ->orderBy('daily_commission_logs.created_at', 'desc')
             ->select('users.id as uid','users.fname','users.lname','daily_commission_logs.*')
-            ->get();
+            ->paginate(20);
             return view('reportModule.daily',compact('data'));
         }
     }

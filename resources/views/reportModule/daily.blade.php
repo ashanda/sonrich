@@ -54,12 +54,13 @@
             <td>{{ $oder->oder_id}}</td>
             <td>{{ $oder->created_at}}</td>
             </tr>
-           
+            
             @endforeach
                         
                     </tbody>
                    
                 </table>
+                {{ $data->links() }}
             </div>
             
         </div>
