@@ -215,3 +215,6 @@ input[type="number"] {
 .hov-th:hover .hov {
     display: block;
 }
+.hidden {
+    display: none!important;
+  }
