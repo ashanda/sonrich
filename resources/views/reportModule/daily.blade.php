@@ -70,8 +70,8 @@
  @endsection
  @push('styles')
     <style>
-        .hidden.sm\:flex-1.sm\:flex.sm\:items-center.sm\:justify-between {
-            display: none;
+        .hidden {
+            display: none!important;
         }
     </style>
 @endpush
