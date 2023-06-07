@@ -3,7 +3,7 @@
 
 @section('content')
 
-@if (Auth::user()->role == 2)
+
 <div class="content-body">
     <div class="container-fluid">
             <div class="row">
@@ -47,6 +47,15 @@
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
+                                    <strong>Product Face Value:</strong>
+                                    <input type="number" min="20000" name="product_face_price" class="form-control" placeholder="Product Face Value">
+                                    @error('product_price')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
                                     <strong>Product Points:</strong>
                                     <input type="text" name="point_value" class="form-control" placeholder="Product Point">
                                     @error('point_value')
@@ -57,8 +66,8 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Product Description:</strong>
-                                    <textarea name="product_description" class="form-control" placeholder="Product Description">
-                            </textarea>
+                                    <input type="text" name="product_description" class="form-control" placeholder="Product Description">
+                           
                                     @error('product_description')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -83,6 +92,6 @@
             </div>    
     </div>
 </div>
-@endif
+
 
 @endsection

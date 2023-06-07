@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\oder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class HomeController extends Controller
@@ -137,5 +138,14 @@ class HomeController extends Controller
         $user->save();
         
         return back()->with('message','Profile Updated');
+    }
+
+    public function change_doller(Request $request){
+
+        $user = DB::table('master')->where('id', '=', 1)
+        ->update(['doller_rate' => $request->dollarRate]);
+
+        alert()->success('Success','Change Dollar rate Successfully!');
+        return redirect()->route('admin');
     }
 }

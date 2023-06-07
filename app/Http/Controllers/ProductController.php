@@ -55,6 +55,7 @@ class ProductController extends Controller
         $request->validate([
         'product_name' => 'required',
         'product_value' => 'required',
+        'product_face_price' => 'required',
         'product_category' => 'required',
         'product_duration' => 'required',
         'product_description' => 'required',
@@ -64,10 +65,11 @@ class ProductController extends Controller
         $product = new product();
         $product->product_name = $request->product_name;
         $product->product_value = $request->product_value;
+        $product->product_face_price = $request->product_face_price;
         $product->product_category = $request->product_category;
         $product->product_duration = $request->product_duration;
         $product->product_description = $request->product_description;
-        ;
+        
         if($request->file('product_image')){
             $file= $request->file('product_image');
             $filename= date('YmdHi').$file->getClientOriginalName();
@@ -99,7 +101,7 @@ class ProductController extends Controller
         public function edit(Request $product,$id)
         {
             $role=Auth::user()->role;
-            if($role==2){
+            if($role==1){
                 $product = DB::table('products')->where('id', $id)->get();
                 return view('productModule.edit',compact('product','id'));
             }
@@ -114,21 +116,15 @@ class ProductController extends Controller
         */
         public function update(Request $request, $id)
         {
-        $request->validate([
-            'product_name' => 'required',
-            'product_value' => 'required',
-            'product_category' => 'required',
-            'product_duration' => 'required',
-            'product_description' => 'required',
-            'product_status' => 'required',
-        ]);
+        
+        
         $product = product::find($id);
-        $product->product_name = $request->product_name;
-        $product->product_value = $request->product_value;
-        $product->product_category = $request->product_category;
-        $product->product_duration = $request->product_duration;
+        $product->product_title = $request->product_title;
+        $product->product_price = $request->product_price;
+        $product->product_face_price = $request->product_face_price;
+        $product->point_value = $request->point_value;
         $product->product_description = $request->product_description;
-        ;
+        
         if($request->file('product_image')){
             $file= $request->file('product_image');
             $filename= date('YmdHi').$file->getClientOriginalName();
@@ -136,8 +132,9 @@ class ProductController extends Controller
             $product->product_image = $filename;
         }
         
-        $product->product_status = $request->product_status;
+        
         $product->save();
+        
         Alert::Alert('Success', 'Package has been updated successfully.')->persistent(true,false);
         return redirect()->route('product.index');
         }

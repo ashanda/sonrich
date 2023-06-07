@@ -612,6 +612,17 @@
         });
 
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.price.usd').hide();
+            
+            $('#currencySelect').change(function() {
+                var currency = $(this).find(':selected').data('currency');
+                $('.price').hide();
+                $('.price.' + currency).show();
+            });
+        });
+    </script>
 
 </body>
 

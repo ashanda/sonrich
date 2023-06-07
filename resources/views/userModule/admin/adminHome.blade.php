@@ -27,9 +27,27 @@
     @endif
     
     
-    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-sm">
-        Daily Commission
-    </button>
+    <div class="row">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-sm">
+                Daily Commission
+            </button>
+        </div>
+        <div class="col-md-6">
+            <div class="row justify-content-center">
+                <h5 class="pr-3 my-auto">Today Dollar Rate: {{ master_data()->doller_rate }}</h5>
+                {{-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal1-sm">
+                    Change Dollar Rate
+                </button> --}}
+            </div>
+            
+        </div>
+    </div>
+    
+    
+   
+
+
     <div class="modal fade" id="modal-sm" style="display: none;" aria-hidden="true">
         <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -53,6 +71,35 @@
         
         </div>
 
+        <div class="modal fade" id="modal1-sm" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">Change Dollar Rate</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <p>Do your confirm Change Dollar rate</p>
+            <form id="changeRateForm" action="{{ route('change-rate') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="dollarRate">New Dollar Rate</label>
+                    <input type="text" min="100" step="0.00" name="dollarRate" id="dollarRate" value="{{ master_data()->doller_rate }}" class="form-control" required>
+                </div>
+            
+            </div>
+            <div class="modal-footer justify-content-between">
+            <button type="submit" class="btn btn-primary">Yes</button>   
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </form>
+            </div>
+            </div>
+            
+            </div>
+            
+            </div>
     
     
     <div class="row">

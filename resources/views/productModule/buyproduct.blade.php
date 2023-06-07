@@ -8,7 +8,14 @@
         <p>{{ $message }}</p>
     </div>
     @endif
-
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <select name="currencySelect" id="currencySelect" class="btn btn-success">
+                <option data-currency="lkr" selected>LKR</option>
+                <option data-currency="usd">USD</option>
+            </select>
+        </div>
+    </div>
     <div class="row">
         @foreach ($data as $product)
         <div class="col-sm-6 col-md-4">
@@ -17,7 +24,6 @@
                     <div class="new-arrival-product">
                         <div class="new-arrivals-img-contnent text-center">
                             <img class="img-fluid pro_img" src="{{ asset('products/img/'.$product->product_image) }}" alt="">
-                            <img src="{{ asset('img/sample_product.png') }}" alt="" class="img-fluid pro_img">
                             <span class="pkg_duration">{{ $product->point_value }} Points</span>
                         </div>
                         <div class="new-arrival-content text-center mt-3">
@@ -25,7 +31,11 @@
                             <!-- <ul class="star-rating p-0">
                                 <span class="pkg_desc">{{ $product->product_description }}</span>
                             </ul> -->
-                            <span class="price">LKR {{ $product->product_price }}</span>
+                            <span class="price lkr">{{ 'LKR '.$product->product_face_price }}</span>
+                            @php
+                               $dollar_value =  $product->product_face_price / master_data()->doller_rate ; 
+                            @endphp
+                            <span class="price usd">{{ 'USD '.$dollar_value }}</span>
                             <?php /* <span class="userMsg">{{ ' (Will be charged $10 as a service charge)' }}</span>*/ ?>
                             <div>
                                 @if (user_product_count() == 0)

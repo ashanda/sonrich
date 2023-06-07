@@ -7,8 +7,6 @@
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left mb-2">
                         <h2>Edit Package</h2>
-                        
-                        
 
                     </div>
                     <div class="pull-right">
@@ -47,7 +45,16 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Package Duration:</strong>
+                            <strong>Package Face Value:</strong>
+                            <input type="text" name="product_face_price" class="form-control" value="{{ $product[0]->product_face_price }}">
+                            @error('product_face_price')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Product Points:</strong>
                             <input type="text" name="point_value" class="form-control" value="{{ $product[0]->point_value }}">
                             @error('point_value')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -57,9 +64,9 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Package Description:</strong>
-                            <textarea name="product_description" class="form-control" >
-                                {{ $product[0]->product_description }}
-                            </textarea>
+                            <input type="text" name="product_description" class="form-control" value=" {{ $product[0]->product_description }}">
+                               
+                           
                             @error('product_description')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
@@ -84,5 +91,6 @@
                 </div>
             </form>
         </div>
-   
+    </div>
+</div>
 @endsection
