@@ -89,12 +89,7 @@ $role = auth()->user()->role;
                 <p>All Products</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="/product/create" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Add Products</p>
-              </a>
-            </li>
+            
 
             @endif
             @if ($role == 0)
