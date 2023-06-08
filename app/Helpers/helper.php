@@ -10,6 +10,8 @@ use App\Models\direct_commission_log;
 use App\Models\binary_commission_log;
 use App\Models\level_commission_log;
 use App\Models\product_wallet;
+use App\Models\product_wallet_log;
+use App\Models\cash_wallet_log;
 use App\Models\oder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -240,17 +242,39 @@ function master_data()
 // product wallet log
 function product_wallet_log($user_id, $amount, $oder_id, $reference_oder_id, $trx_direction, $description)
 {
-  $product_wallet_log = DB::table('product_wallet_logs')->insert(
-    ['user_id' => $user_id, 'amount' => $amount, 'oder_id' => $oder_id, 'reference_oder_id' => $reference_oder_id, 'trx_direction' => $trx_direction, 'description' => $description]
-  );
+
+  $productWalletLog = new product_wallet_log;
+
+  // Set the values for the new record
+  $productWalletLog->user_id = $user_id;
+  $productWalletLog->amount = $amount;
+  $productWalletLog->oder_id = $oder_id;
+  $productWalletLog->reference_oder_id = $reference_oder_id;
+  $productWalletLog->trx_direction = $trx_direction;
+  $productWalletLog->description = $description;
+
+  // Save the new record to the database
+  $productWalletLog->save();
+ 
 }
 
 // cash wallet log
 function cash_wallet_log($user_id, $amount, $oder_id, $reference_oder_id, $trx_direction, $description)
 {
-  $cash_wallet_log = DB::table('cash_wallet_logs')->insert(
-    ['user_id' => $user_id, 'amount' => $amount, 'oder_id' => $oder_id, 'reference_oder_id' => $reference_oder_id, 'trx_direction' => $trx_direction, 'description' => $description]
-  );
+  $cashWalletLog = new cash_wallet_log;
+
+  // Set the values for the new record
+  $cashWalletLog->user_id = $user_id;
+  $cashWalletLog->amount = $amount;
+  $cashWalletLog->oder_id = $oder_id;
+  $cashWalletLog->reference_oder_id = $reference_oder_id;
+  $cashWalletLog->trx_direction = $trx_direction;
+  $cashWalletLog->description = $description;
+
+  // Save the new record to the database
+  $cashWalletLog->save();
+
+
 }
 
 //cash Wallet Update
