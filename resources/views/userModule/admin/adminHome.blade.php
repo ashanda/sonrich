@@ -33,15 +33,7 @@
                 Daily Commission
             </button>
         </div>
-        <div class="col-md-6">
-            <div class="row justify-content-center">
-                <h5 class="pr-3 my-auto">Today Dollar Rate: {{ master_data()->doller_rate }}</h5>
-                {{-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal1-sm">
-                    Change Dollar Rate
-                </button> --}}
-            </div>
-            
-        </div>
+
     </div>
     
     
@@ -71,36 +63,7 @@
         
         </div>
 
-        <div class="modal fade" id="modal1-sm" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-            <div class="modal-header">
-            <h4 class="modal-title">Change Dollar Rate</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            <p>Do your confirm Change Dollar rate</p>
-            <form id="changeRateForm" action="{{ route('change-rate') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="dollarRate">New Dollar Rate</label>
-                    <input type="text" min="100" step="0.00" name="dollarRate" id="dollarRate" value="{{ master_data()->doller_rate }}" class="form-control" required>
-                </div>
-            
-            </div>
-            <div class="modal-footer justify-content-between">
-            <button type="submit" class="btn btn-primary">Yes</button>   
-            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            </form>
-            </div>
-            </div>
-            
-            </div>
-            
-            </div>
-    
+      
     
     <div class="row">
         <div class="col-sm-6 pb-3 pt-3">
@@ -189,6 +152,84 @@
             </div>
         </div>
     </div>
+</div>
+<style type="text/css">
+
+
+
+/* Floating Social Media Bar Style Starts Here */
+
+.fl-fl {
+  background: #128143 ;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 4px;
+  width: 190px;
+  position: fixed;
+  right: -140px;
+  z-index: 1000;
+  font: normal normal 10px Arial;
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+
+.code {
+  font-size: 16px;
+  color: #fff;
+  padding: 10px 0 0 0;
+  width: 40px;
+  margin-left: 10px;
+}
+
+.float:hover {
+  right: 0;
+}
+
+.rate {
+  color: #fff !important;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 0 0 0;
+  margin-left: 15px;
+
+}
+
+.float {
+  top: 160px;
+}
+.rate-hr{
+    color: #fff !important;
+}
+.seperate{
+    color: #fff;
+    margin-top: 0;
+margin-bottom: 0;
+border: 0;
+  border-top-color: currentcolor;
+  border-top-style: none;
+  border-top-width: 0px;
+border-top: 1px solid rgba(255, 255, 255, 1);
+}
+
+</style>
+<div class="float-sm">
+    
+    <div class="fl-fl float">
+        
+        @foreach (curreny_convert() as $currency)
+        <div class="row">
+        <span class="code">{{ $currency->code }}</span>
+        <p class="rate"> {{ ' - '. $currency->convertion_rate }}</p>
+        
+        </div>
+        <hr class="seperate">
+        @endforeach
+    </div>
+    
 </div>
 
 <script>

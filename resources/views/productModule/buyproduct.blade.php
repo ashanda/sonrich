@@ -11,8 +11,11 @@
     <div class="row mb-3">
         <div class="col-md-12">
             <select name="currencySelect" id="currencySelect" class="btn btn-success">
-                <option data-currency="lkr" selected>LKR</option>
-                <option data-currency="usd">USD</option>
+                @foreach ( curreny_convert() as $currency )
+                   <option data-currency="{{ $currency->code }}" selected>{{ $currency->code }}</option>
+                @endforeach
+                
+                
             </select>
         </div>
     </div>
@@ -32,11 +35,15 @@
                             <!-- <ul class="star-rating p-0">
                                 <span class="pkg_desc">{{ $product->product_description }}</span>
                             </ul> -->
-                            <span class="price lkr">{{ 'LKR '.$product->product_face_price }}</span>
+                           
+                            @foreach ( curreny_convert() as $currency )
+                          
                             @php
-                               $dollar_value =  $product->product_face_price / master_data()->doller_rate ; 
+                                $face_value = $product->product_face_price / curreny_convert_rate($currency->id)->convertion_rate;
                             @endphp
-                            <span class="price usd">{{ 'USD '.$dollar_value }}</span>
+                               <span class="price {{ $currency->code }}">{{ $currency->code.' '.$face_value  }}</span>
+                            @endforeach
+
                             <?php /* <span class="userMsg">{{ ' (Will be charged $10 as a service charge)' }}</span>*/ ?>
                             <div>
                                 @if (user_product_count() == 0)

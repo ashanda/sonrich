@@ -54,6 +54,16 @@ $role = auth()->user()->role;
             </p>
           </a>
         </li>
+        @if ($role == 2)
+        <li class="nav-item">
+          <a href="{{ route('currencies.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-money-bill"></i>
+            <p>
+              Currencies
+            </p>
+          </a>
+        </li>
+       @endif
         <li class="nav-item">
           <a href="/kyc" class="nav-link">
             <i class="nav-icon fas fa-th"></i>

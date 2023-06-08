@@ -13,6 +13,7 @@ use App\Models\product_wallet;
 use App\Models\product_wallet_log;
 use App\Models\cash_wallet_log;
 use App\Models\oder;
+use App\Models\Currency;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -578,4 +579,15 @@ $final_result = $result_array[0]; // Get the first element of the resulting arra
 
 return $final_result;
 
+}
+
+
+function curreny_convert(){
+  $currenies = Currency::all();
+  return $currenies;
+}
+
+function curreny_convert_rate($id){
+  $currency_rate = Currency::where('id',$id)->first();
+  return $currency_rate;
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\GenealogyController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DailyCommissionLogController;
 use App\Http\Controllers\GasFeeController;
+use App\Http\Controllers\CurrencyController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +87,8 @@ Route::get('/level_report', [ReportController::class, 'level_report'])->name('le
 Route::get('/daily_report', [ReportController::class, 'daily_report'])->name('daily_report');
 Route::get('/users_report', [ReportController::class, 'users_report'])->name('users_report');
 Route::get('/users_report_daily', [ReportController::class, 'users_report_daily'])->name('users_report_daily');
-Route::post('/change_doller_rate',[HomeController::class, 'change_doller'])->name('change-rate');
+Route::resource('currencies', CurrencyController::class);
+
 
 // Route::get('/future_plan_sales', [ReportController::class, 'future_plan_sales'])->name('future_plan_sales');
 Route::get('/future_plan_sales', [ReportController::class, 'future_plan_sales'])->name('future_plan_sales');

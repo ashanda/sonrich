@@ -614,15 +614,21 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('.price.usd').hide();
+            $('.price:not(.LKR)').hide();
             
             $('#currencySelect').change(function() {
                 var currency = $(this).find(':selected').data('currency');
                 $('.price').hide();
                 $('.price.' + currency).show();
             });
+            
+            // Set initial currency selection on page load
+            var initialCurrency = $('#currencySelect').find(':selected').data('currency');
+            $('.price').hide();
+            $('.price.' + initialCurrency).show();
         });
     </script>
+    
 
 </body>
 
