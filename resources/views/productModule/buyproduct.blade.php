@@ -39,7 +39,8 @@
                             @foreach ( curreny_convert() as $currency )
                           
                             @php
-                                $face_value = $product->product_face_price / curreny_convert_rate($currency->id)->convertion_rate;
+                               $face_value = round($product->product_face_price / curreny_convert_rate($currency->id)->convertion_rate, 2);
+
                             @endphp
                                <span class="price {{ $currency->code }}">{{ $currency->code.' '.$face_value  }}</span>
                             @endforeach
