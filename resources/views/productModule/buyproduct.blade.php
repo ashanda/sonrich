@@ -47,7 +47,6 @@
 
                             <?php /* <span class="userMsg">{{ ' (Will be charged $10 as a service charge)' }}</span>*/ ?>
                             <div>
-                                
                                 @if (user_product_count() == 0)
                                 <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/real_cash')}}">
                                     @csrf
@@ -70,7 +69,7 @@
                                 @else
                              
                                 @if(isset(spilled_package(Auth::user()->id)->total_package_earnings))
-                               {{ product_wallet_balance() >= $product->product_price }}
+                               
                                
                                 @if (product_wallet_balance() >= $product->product_price && spilled_package(Auth::user()->id)->total_package_earnings >= spilled_package(Auth::user()->id)->max_value)
                                 <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/product_wallet')}}">
