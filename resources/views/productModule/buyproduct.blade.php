@@ -47,6 +47,7 @@
 
                             <?php /* <span class="userMsg">{{ ' (Will be charged $10 as a service charge)' }}</span>*/ ?>
                             <div>
+                                {{ user_product_count() }}
                                 @if (user_product_count() == 0)
                                 <form enctype="multipart/form-data" method="POST" action="{{url('buy_product/real_cash')}}">
                                     @csrf
