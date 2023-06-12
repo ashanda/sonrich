@@ -27,7 +27,7 @@
                     <div class="new-arrival-product">
                         <div class="new-arrivals-img-contnent text-center">
                             <img class="img-fluid pro_img" src="{{ asset('products/img/'.$product->product_image) }}" alt="">
-                            <img src="{{ asset('img/sample_product.png') }}" alt="" class="img-fluid pro_img">
+                            
                             <span class="pkg_duration">{{ $product->point_value }} Points</span>
                         </div>
                         <div class="new-arrival-content text-center mt-3">
