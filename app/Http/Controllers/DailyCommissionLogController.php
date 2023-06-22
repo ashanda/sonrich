@@ -59,9 +59,11 @@ class DailyCommissionLogController extends Controller
                 $daily_points = (master_data()->daily * $oder->product_value);  
             }
 
+           $user_oder_count = DB::table('user_oder_counts')->where('user_id',$oder->user_id)->first();
            
-
-
+          if($user_oder_count->count < 4  && $user_oder_count->count > 0){
+        
+            
            
        
            if( $daily_points >= ( $oder->max_value - $oder->total_package_earnings ) ){
@@ -155,7 +157,10 @@ class DailyCommissionLogController extends Controller
             }
              
          }
-         
+
+        }else{
+            continue;
+        }
            
          
        

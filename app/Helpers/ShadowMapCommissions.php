@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $direct_point, $reference_oder_id){
     
-
+  
     $currentuser_map = shadow_map::where('user_id', $current_user_id)->where('status',1)->first();
     
     $parent_node = $currentuser_map->parent_node;
@@ -23,10 +23,19 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
 
     $direct_parent = User::where('id', $current_user_id)->first();
     $direct_parent_id = $direct_parent->parent;
+    
 
+    if($current_node == NULL){
+      $current_node = shadow_map::where('id', $parent_node)->where('status',0)->latest()->first();
+      
+        //Not assigned direct commission
+        
+    }else{
 
-     //Direct Commission
-      DirectCommissionCalc($direct_parent_id, $direct_point,$reference_oder_id);
+        //Direct Commission
+        DirectCommissionCalc($direct_parent_id, $direct_point,$reference_oder_id);
+    }
+     
     
     //loop
     $i = 1;

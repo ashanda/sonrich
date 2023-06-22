@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\User;
+use App\Models\shadow_map;
+
 class OderController extends Controller
 {
     /**
@@ -124,33 +127,38 @@ class OderController extends Controller
                 'product_value' => 'required',
             ]);
     
+            
+    
+            $child_id = $request->user_id;
+           
+            //user pyrmide positions passing child id and set coodinate and save db shadow maps 
+            
+           
+            $product_value = $request->product_value;
+    
+            
+
             $package = oder::find($id);
             $package->status = $request->oder_status;
             $package->active_date = date('Y-m-d H:i:s');
-            $package->save();
-    
-    
-            $reference_oder_id = $package->id;
-    
-            $child_id = $request->user_id;
             
-            //user pyrmide positions passing child id and set coodinate and save db shadow maps 
-            
-            
-            $product_value = $request->product_value;
     
-            //Binary points current user package
-            $binary_points = $request->point_value;
     
-            //Direct 10%
-            $direct_point = (master_data()->direct * $product_value);
-    
-            //Level 1%
-            $level_points = (master_data()->level * $product_value);
-              
+            $reference_oder_id = $package->id;  
            // Call Commission helpers
            if(user_positioning($child_id) == 1){
-    
+
+
+                //Binary points current user package
+                $binary_points = $request->point_value;
+                    
+                //Direct 10%
+                $direct_point = (master_data()->direct * $product_value);
+
+                //Level 1%
+                $level_points = (master_data()->level * $product_value);
+
+                
             ShadowMapCommissions($child_id, $binary_points, $level_points, $direct_point, $reference_oder_id);
             user_oder_count_update($child_id,$reference_oder_id);
     
@@ -158,7 +166,7 @@ class OderController extends Controller
            
             
            
-           
+           $package->save();
            Alert::Alert('Success','Oder Approved Successfully!');
            return redirect()->route('oders.index');
         }
