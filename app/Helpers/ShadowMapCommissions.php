@@ -25,7 +25,7 @@ function ShadowMapCommissions($current_user_id, $binary_points, $level_points, $
     $direct_parent_id = $direct_parent->parent;
     
 
-    if($current_node == NULL){
+    if($current_node == null){
       $current_node = shadow_map::where('id', $parent_node)->where('status',0)->latest()->first();
       
         //Not assigned direct commission
