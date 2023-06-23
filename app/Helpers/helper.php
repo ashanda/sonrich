@@ -547,6 +547,11 @@ function user_data_get($user_id)
 function spilled_package($user)
 {
   $check_oder_data = DB::table('oders')->where('user_id', $user)->where('status', 1)->first();
+  if($check_oder_data == null){
+    $check_oder_data = DB::table('oders')->where('user_id', $user)->where('status', 2)->latest()->first();
+
+  }
+ 
   return $check_oder_data;
 }
 
