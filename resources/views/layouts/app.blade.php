@@ -162,7 +162,10 @@
 
     <!-- Custom script -->
     <script src="{{ asset('js/script.js') }}"></script>
-    <script>
+    @yield('script')
+        
+   
+    {{-- <script>
         $(function () {
             $("#example1")
                 .DataTable({
@@ -239,7 +242,7 @@
             
         });
 
-    </script>
+    </script> --}}
     <script>
         $(document).ready(function () {
             $("#start_date").datepicker({

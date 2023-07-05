@@ -280,13 +280,6 @@ $role = auth()->user()->role;
                 <p>Total Binary Points Reports</p>
               </a>
             </li>
-
-            <li class="nav-item">
-              <a href="/binary_report" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Total Binary Points Reports</p>
-              </a>
-            </li>
             <li class="nav-item">
               <a href="/direct_report" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>

@@ -43,10 +43,12 @@ class ReportController extends Controller
 
             $data = DB::table('binary_commission_logs')
             ->join('users', 'users.id', '=', 'binary_commission_logs.user_id')
+            ->where('binary_commission_logs.amount', '>', 0) // Add condition to filter out rows with amount 0
             ->orderBy('binary_commission_logs.created_at', 'desc')
-            ->select('users.id as uid','users.fname','users.lname','binary_commission_logs.*')
+            ->select('users.id as uid', 'users.fname', 'users.lname', 'binary_commission_logs.*')
             ->get();
-            return view('reportModule.binary',compact('data'));
+
+            return view('reportModule.binary', compact('data'));
         }
     }
 
@@ -57,6 +59,7 @@ class ReportController extends Controller
 
             $data = DB::table('direct_commission_logs')
             ->join('users', 'users.id', '=', 'direct_commission_logs.user_id')
+            ->where('direct_commission_logs.amount', '>', 0)
             ->orderBy('direct_commission_logs.created_at', 'desc')
             ->select('users.id as uid','users.fname','users.lname','direct_commission_logs.*')
             ->get();
