@@ -30,7 +30,7 @@
           @endphp
           <div class="form-group row">
             <div class="col-12 col-sm-7">
-              <input type="number" step="0" min="2" max="{{ $wallet_balance }}" name="request_amount" class="form-control" required="">
+              <input type="number" step="0" min="2" max="{{ $wallet_balance }}" name="request_amount" class="form-control" required>
             </div>
             <div class="col-12 col-sm-5 pt-3 pt-sm-0">
               <!-- <button type="submit" class="btn btn-primary">Submit Your Request</button> -->

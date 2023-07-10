@@ -8,6 +8,7 @@ use App\Models\p2p;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 class WithdrawalController extends Controller
 {
     /**
@@ -48,18 +49,28 @@ class WithdrawalController extends Controller
                 'request_amount' => 'required',     
             ]);
     
-            DB::table('p2p_transection')->insert(
-                ['user_id' => Auth::user()->id, 'request_user_id' => $request->request_user_id ,'request_amount'=>$request->request_amount,'status'=>0]
-            );
+            
             
             $last_cash_wallet = cash_wallet(Auth::user()->id);
             $wallet = cash_wallet::find($last_cash_wallet->id);  
-            $wallet->hold_amount  = ($last_cash_wallet->hold_amount + $request->request_amount);
-            $wallet->wallet_balance  = ($last_cash_wallet->wallet_balance - $request->request_amount);
-            $wallet->save();
+            if($wallet->wallet_balance >= $request->request_amount){
+                $wallet->hold_amount  = ($last_cash_wallet->hold_amount + $request->request_amount);
+                $wallet->wallet_balance  = ($last_cash_wallet->wallet_balance - $request->request_amount);
+                $wallet->save();
+
+                //insert p2p record
+                DB::table('p2p_transection')->insert(
+                    ['user_id' => Auth::user()->id, 'request_user_id' => $request->request_user_id ,'request_amount'=>$request->request_amount,'status'=>0]
+                 );
+
+                return redirect()->route('wallet')->with('success', 'P2P Request Send Success.');
+            }else{
+                Alert::error('Fail', 'Not Enough Wallet Balance.');
+                return redirect()->route('wallet');
+            }
+           
             
-            return redirect()->route('wallet')->with('success','P2P Request Send Success.');
-            
+           
         }
     }
 

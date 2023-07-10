@@ -144,7 +144,7 @@ class P2pController extends Controller
         return redirect()->route('p2p.index');
 
         }else{
-             Alert::Alert('Error','Your Holding Value Not Enough!');
+             Alert::Alert('Error','Your Sender Holding Value Not Enough This Transection!');
             return redirect()->route('p2p.index');
         }
         
