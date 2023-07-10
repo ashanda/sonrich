@@ -61,11 +61,10 @@ class P2pController extends Controller
     public function credit(p2p $p2p)
     {
 
-        $data =DB::table('p2p_transection')
-        ->join('users', 'users.id', '=', 'p2p_transection.request_user_id')
-        ->where('p2p_transection.user_id', '=', Auth::user()->id)
-        ->where('p2p_transection.status', '=', 1)
-        ->select('p2p_transection.id','users.fname','users.lname','users.id as uid','p2p_transection.request_amount','p2p_transection.status','p2p_transection.request_user_id',)
+        $data = DB::table('p2p_transection')
+        ->where('p2p_transection.request_user_id', '=', Auth::user()->id)
+        ->join('users', 'p2p_transection.user_id', '=', 'users.id')
+        ->select('p2p_transection.id', 'users.fname', 'users.lname', 'users.id as uid', 'p2p_transection.request_amount', 'p2p_transection.status', 'p2p_transection.request_user_id', 'p2p_transection.updated_at as date')
         ->get();
 
          return view('payModule.p2p_credit',compact('data'));
@@ -75,10 +74,9 @@ class P2pController extends Controller
     {
 
         $data =DB::table('p2p_transection')
-        ->join('users', 'users.id', '=', 'p2p_transection.user_id')
-        ->where('p2p_transection.request_user_id', '=', Auth::user()->id)
-        ->where('p2p_transection.status', '=', 1)
-        ->select('p2p_transection.id','users.fname','users.lname','users.id as uid','p2p_transection.request_amount','p2p_transection.status','p2p_transection.request_user_id',)
+            ->where('p2p_transection.user_id', '=', Auth::user()->id)
+            ->join('users', 'p2p_transection.request_user_id', '=', 'users.id')
+        ->select('p2p_transection.id','users.fname','users.lname','users.id as uid','p2p_transection.request_amount','p2p_transection.status as status','p2p_transection.request_user_id','p2p_transection.updated_at as date')
         ->get();
 
          return view('payModule.p2p_debit',compact('data'));
