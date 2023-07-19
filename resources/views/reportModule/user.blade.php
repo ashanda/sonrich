@@ -120,3 +120,84 @@
 </div>
 
 @endsection
+
+@section('script')
+  <script>
+        $(function () {
+            $("#example1")
+                .DataTable({
+                    responsive: true,
+                    lengthChange: true,
+                    autoWidth: false,
+                    paging: true,
+                })
+                .buttons()
+                .container()
+                .appendTo("#example1_wrapper .col-md-6:eq(0)");
+
+            $("#example3,#example4,#example5,#example6").DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                searching: true,
+                paging: true,
+            });
+
+        });
+
+        // daterange
+        var minDate, maxDate;
+
+        // Custom filtering function which will search data in column four between two values
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = minDate.val();
+                var max = maxDate.val();
+                // var date = new Date(data[5]);
+                var data;
+                var date;
+
+                if (data[5]) {
+                    date = new Date(data[5]);
+                } else if (data[4]) {
+                    date = new Date(data[4]);
+                } else if (data[0]) {
+                    date = new Date(data[0]);
+                } else {
+                    // throw an error or set date to a default value
+                    console.error("Date not found in data array");
+                }
+
+                if (
+                    (min === null && max === null) ||
+                    (min === null && date <= max) ||
+                    (min <= date && max === null) ||
+                    (min <= date && date <= max)
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+        $(document).ready(function () {
+            // Create date inputs
+            minDate = new DateTime($('#min'), {
+                format: 'MMMM Do YYYY'
+            });
+            maxDate = new DateTime($('#max'), {
+                format: 'MMMM Do YYYY'
+            });
+
+            // DataTables initialisation
+            var table = $('#example1,#example3,#example4,#example5,#example6').DataTable();
+
+            // Refilter the table
+            $('#min, #max').on('change', function () {
+                table.draw();
+            });
+            
+        });
+
+    </script>
+@endsection
