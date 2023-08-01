@@ -8,7 +8,7 @@
     {{-- <input type="hidden" id="modeSelect" value="curr1"> --}}
 
     <li class="nav-item">
-      <select class="mt-1" id="modeSelect" onchange="updateCurrency()">
+      <select class="mt-1" id="modeSelect" onchange="updateCurrency()" style="width: 100px;height: auto;font-size: 20px;">
         <option value="curr1">USD</option>
         <option value="curr2">LKR</option>
       </select>
