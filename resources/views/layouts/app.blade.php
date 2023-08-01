@@ -261,7 +261,7 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    console.log(data);
+                    
                     // Datatables
                     var i = 1;
                     $('#records').DataTable({
@@ -630,6 +630,7 @@
     <!-- Currency changing script -->
     <script>
         var programmaticallyChanged = false;
+        
         var divisionFactor = 100; // Replace with your desired value
 
         function updateCurrency() {
@@ -661,6 +662,7 @@
 
         // Call the function on page load to update the values
         window.onload = function() {
+          
             var storedValue = localStorage.getItem("selectedMode");
             if (storedValue) {
                 document.getElementById("modeSelect").value = storedValue;

@@ -7,12 +7,12 @@
 
     <input type="hidden" id="modeSelect" value="curr2">
 
-    <!-- <li class="nav-item">
+    {{-- <li class="nav-item">
       <select class="mt-1" id="modeSelect" onchange="updateCurrency()">
         <option value="curr1">Currency 1</option>
         <option value="curr2" selected>Currency 2</option>
       </select>
-    </li> -->
+    </li> --}}
 
   </ul>
 
