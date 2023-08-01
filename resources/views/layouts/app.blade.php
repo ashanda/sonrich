@@ -631,13 +631,13 @@
     
          <script>
         var programmaticallyChanged = false;
-        var divisionFactor = 100; // Replace with your desired value
+        var divisionFactor = {{ curreny_convert_rate(2)->convertion_rate }}; // Replace with your desired value
 
         function updateCurrency() {
             var x = $("#modeSelect").val();
             // Save the selected value in localStorage
             localStorage.setItem("selectedMode", x);
-
+           
             // Update the currency values based on the selected option
             if (x === "curr2") {
                 // Do not change the data in elements with class "curr-val"
@@ -661,8 +661,17 @@
 
         // Call the function on page load to update the values
         $(document).ready(function() {
+             
             var storedValue = localStorage.getItem("selectedMode");
+            console.log(storedValue);
             if (storedValue) {
+                $("#modeSelect").val(storedValue);
+                programmaticallyChanged = true;
+                updateCurrency(); // Update the elements based on the selected value and reload the page
+            }
+            
+            if (!storedValue) {
+                storedValue = "curr1";
                 $("#modeSelect").val(storedValue);
                 programmaticallyChanged = true;
                 updateCurrency(); // Update the elements based on the selected value and reload the page

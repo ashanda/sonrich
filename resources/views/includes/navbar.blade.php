@@ -5,14 +5,14 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars mt-1"></i></a>
     </li>
 
-    <input type="hidden" id="modeSelect" value="curr2">
+    {{-- <input type="hidden" id="modeSelect" value="curr1"> --}}
 
-    {{-- <li class="nav-item">
+    <li class="nav-item">
       <select class="mt-1" id="modeSelect" onchange="updateCurrency()">
-        <option value="curr1">Currency 1</option>
-        <option value="curr2" selected>Currency 2</option>
+        <option value="curr1">USD</option>
+        <option value="curr2">LKR</option>
       </select>
-    </li> --}}
+    </li>
 
   </ul>
 
