@@ -220,12 +220,14 @@ border-top: 1px solid rgba(255, 255, 255, 1);
     
     <div class="fl-fl float">
         
-        @foreach (curreny_convert() as $currency)
+        @foreach (curreny_convert() as $key => $currency)
+        @if ($key > 0)
         <div class="row">
         <span class="code">{{ $currency->code }}</span>
         <p class="rate"> {{ ' - '. $currency->convertion_rate }}</p>
         
         </div>
+        @endif
         <hr class="seperate">
         @endforeach
     </div>

@@ -39,8 +39,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>Oder Value:</strong>
-                            <input type="text" name="oder_value" readonly class="form-control" value="{{ $oder[0]->product_value }}">
+                            <strong>Oder Value:  <span class="curr-val">{{ $oder[0]->product_value }}</span></strong>
+                            {{-- oder value remove
+                            <input type="text" name="oder_value" readonly class="form-control curr-val" value="{{ $oder[0]->product_value }}"> --}}
                             @error('user_name')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
