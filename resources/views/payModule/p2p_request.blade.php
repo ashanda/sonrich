@@ -23,7 +23,7 @@
     <tr>
     <td>{{ $user_data->id }}</td>
     <td>{{ $user_data->fname.' '.$user_data->lname }}</td>
-    <td>{{ $user_data->request_amount }}</td>
+    <td><span class="curr-val">{{ $user_data->request_amount }}</span></td>
    
     <td>
         <form action="{{ route('p2p.destroy',$user_data->id) }}" method="POST">

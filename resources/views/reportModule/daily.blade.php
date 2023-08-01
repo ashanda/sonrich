@@ -50,7 +50,7 @@
             
             <td>{{ $oder->uid}}</td>
             <td>{{ $oder->fname ." ".$oder->lname}}</td>
-            <td>{{ $oder->amount}}</td>
+            <td><span class="curr-val">{{ $oder->amount}}</span></td>
             <td>{{ $oder->oder_id}}</td>
             <td>{{ $oder->created_at}}</td>
             </tr>

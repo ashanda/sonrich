@@ -72,7 +72,7 @@
                 @if (product_wallet() == null)
                     
                 @else
-                <h1 class="pb-2 pt-1">{{ product_wallet()->wallet_balance + product_wallet()->wallet_balance}}</h1>
+                <h1 class="pb-2 pt-1 curr-val">{{ product_wallet()->wallet_balance + product_wallet()->wallet_balance}}</h1>
                 @endif
                 
             </div>
@@ -84,7 +84,7 @@
                     
                 @else
                 <h6>{{ current_user_active_package()->product_title }}</h6>
-                <h3>{{ current_user_active_package()->product_value }}</h3>
+                <h3 class="curr-val">{{ current_user_active_package()->product_value }}</h3>
                 @endif
                 
             </div>

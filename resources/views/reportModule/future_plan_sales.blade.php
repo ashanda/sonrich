@@ -42,8 +42,8 @@
                         <button id="filter" class="btn btn-primary">Filter</button>
                         <button id="reset" class="btn btn-warning">Reset</button>
                         <button class="btn btn-secondary float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Key Compass
-                            </button>
+                            Key Compass
+                        </button>
                     </div>
                 </div>
             </div>
@@ -60,16 +60,16 @@
                             SF : Sponser Funds ,
                             WC : Wallet + Real Cash ,
                         </p> -->
-                        
+
                         <div class="collapse mt-2" id="collapseExample">
                             <div class="card card-body">
                                 <div class="row">
                                     <div class="col-6 border-right">
                                         <h6><b>Packages</b></h6>
-                                        <p>2 : 20,000 Package</p>
-                                        <p>3 : 30,000 Package</p>
-                                        <p>5 : 50,000 Package</p>
-                                        <p>10 : 100,000 Package</p>
+                                        <p>2 : <span class="curr-val">20000</span> Package</p>
+                                        <p>3 : <span class="curr-val">30000</span>Package</p>
+                                        <p>5 : <span class="curr-val">50000</span>Package</p>
+                                        <p>10 : <span class="curr-val">100000</span>Package</p>
                                     </div>
                                     <div class="col-6 pl-md-4">
                                         <h6><b>Abbreviations</b></h6>
@@ -79,7 +79,7 @@
                                         <p>WC : Wallet + Real Cash</p>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -142,25 +142,25 @@
                                     <tr>
                                         <th>User ID</th>
                                         <th>D Code</th>
-                                        <th class="hov-th">RC-2 <span class="hov">Real Cash <br> 20,000 Package</span></th>
-                                        <th class="hov-th">SF-2 <span class="hov">Sponser Funds <br> 20,000 Package</span></th>
-                                        <th class="hov-th">PW-2 <span class="hov">Product Wallet <br> 20,000 Package</span></th>
-                                        <th class="hov-th">WC-2 <span class="hov">Wallet + Real Cash <br> 20,000 Package</span></th>
+                                        <th class="hov-th">RC-2 <span class="hov">Real Cash <br> <span class="curr-val">20000</span> Package</span></th>
+                                        <th class="hov-th">SF-2 <span class="hov">Sponser Funds <br> <span class="curr-val">20000</span> Package</span></th>
+                                        <th class="hov-th">PW-2 <span class="hov">Product Wallet <br> <span class="curr-val">20000</span> Package</span></th>
+                                        <th class="hov-th">WC-2 <span class="hov">Wallet + Real Cash <br> <span class="curr-val">20000</span> Package</span></th>
 
-                                        <th class="hov-th">RC-3 <span class="hov">Real Cash <br> 30,000 Package</span></th>
-                                        <th class="hov-th">SF-3 <span class="hov">Sponser Funds <br> 30,000 Package</span></th>
-                                        <th class="hov-th">PW-3 <span class="hov">Product Wallet <br> 30,000 Package</span></th>
-                                        <th class="hov-th">WC-3 <span class="hov">Wallet + Real Cash <br> 30,000 Package</span></th>
+                                        <th class="hov-th">RC-3 <span class="hov">Real Cash <br> <span class="curr-val">30000</span> Package</span></th>
+                                        <th class="hov-th">SF-3 <span class="hov">Sponser Funds <br> <span class="curr-val">30000</span> Package</span></th>
+                                        <th class="hov-th">PW-3 <span class="hov">Product Wallet <br> <span class="curr-val">30000</span> Package</span></th>
+                                        <th class="hov-th">WC-3 <span class="hov">Wallet + Real Cash <br> <span class="curr-val">30000</span> Package</span></th>
 
-                                        <th class="hov-th">RC-5 <span class="hov">Real Cash <br> 50,000 Package</span></th>
-                                        <th class="hov-th">SF-5 <span class="hov">Sponser Funds <br> 50,000 Package</span></th>
-                                        <th class="hov-th">PW-5 <span class="hov">Product Wallet <br> 50,000 Package</span></th>
-                                        <th class="hov-th">WC-5 <span class="hov">Wallet + Real Cash <br> 50,000 Package</span></th>
+                                        <th class="hov-th">RC-5 <span class="hov">Real Cash <br> <span class="curr-val">50000</span> Package</span></th>
+                                        <th class="hov-th">SF-5 <span class="hov">Sponser Funds <br> <span class="curr-val">50000</span> Package</span></th>
+                                        <th class="hov-th">PW-5 <span class="hov">Product Wallet <br> <span class="curr-val">50000</span> Package</span></th>
+                                        <th class="hov-th">WC-5 <span class="hov">Wallet + Real Cash <br> <span class="curr-val">50000</span> Package</span></th>
 
-                                        <th class="hov-th">RC-10 <span class="hov">Real Cash <br> 100,000 Package</span></th>
-                                        <th class="hov-th">SF-10 <span class="hov">Sponser Funds <br> 100,000 Package</span></th>
-                                        <th class="hov-th">PW-10 <span class="hov">Product Wallet <br> 100,000 Package</span></th>
-                                        <th class="hov-th">WC-10 <span class="hov">Wallet + Real Cash <br> 100,000 Package</span></th>
+                                        <th class="hov-th">RC-10 <span class="hov">Real Cash <br> <span class="curr-val">100000</span> Package</span></th>
+                                        <th class="hov-th">SF-10 <span class="hov">Sponser Funds <br> <span class="curr-val">100000</span> Package</span></th>
+                                        <th class="hov-th">PW-10 <span class="hov">Product Wallet <br> <span class="curr-val">100000</span> Package</span></th>
+                                        <th class="hov-th">WC-10 <span class="hov">Wallet + Real Cash <br> <span class="curr-val">100000</span> Package</span></th>
                                         <th>Total</th>
                                     </tr>
                                     </tr>

@@ -10,8 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- daterange picker -->
@@ -19,11 +18,9 @@
     <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet"
-        href="{{ asset('adminlte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
@@ -35,8 +32,7 @@
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/dropzone/min/dropzone.min.css') }}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
@@ -86,7 +82,6 @@
         <footer class="main-footer">
             <strong>Copyright &copy; <script type="text/javascript">
                     document.write(new Date().getFullYear());
-
                 </script> <a href="">Company Name</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
@@ -163,8 +158,8 @@
     <!-- Custom script -->
     <script src="{{ asset('js/script.js') }}"></script>
     @yield('script')
-        
-   
+
+
     {{-- <script>
         $(function () {
             $("#example1")
@@ -244,7 +239,7 @@
 
     </script> --}}
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#start_date").datepicker({
                 "dateFormat": "yy-mm-dd"
             });
@@ -265,7 +260,7 @@
                     'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
                 },
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     console.log(data);
                     // Datatables
                     var i = 1;
@@ -275,135 +270,135 @@
                         "responsive": true,
                         "columns": [{
                                 "data": "id",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return i++;
                                 }
                             },
                             {
                                 "data": "user_id",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.user_id}`;
                                 }
                             },
                             {
                                 "data": "srr_number",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.srr_number}`;
                                 }
                             },
                             {
                                 "data": "RCT",
-                                
-                                "render": function (data, type, row, meta) {
+
+                                "render": function(data, type, row, meta) {
                                     //console.log(row.RCT);
                                     return `${row.RCT}`;
                                 }
                             },
                             {
                                 "data": "SFT",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     // console.log(typeof row.SFT);
                                     return `${row.SFT}`;
                                 }
                             },
                             {
                                 "data": "PWT",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.PWT}`;
                                 }
                             },
                             {
                                 "data": "WCT",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.WCT}`;
                                 }
                             },
                             {
                                 "data": "package1",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.package1}`;
                                 }
                             },
                             {
                                 "data": "package2",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.package2}`;
                                 }
                             },
                             {
                                 "data": "package3",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.package3}`;
                                 }
                             },
                             {
                                 "data": "package4",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.package4}`;
                                 }
                             },
 
                             {
                                 "data": "sri_number",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.sri_number}`;
                                 }
                             },
                             {
                                 "data": "fname",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.fname} ${row.lname}`;
                                 }
                             },
                             {
-                            "data": null,
-                            "defaultContent": "",
-                            "className": "dt-right",
-                            "orderable": false,
-                            "searchable": false,
-                            "render": function(data, type, row, meta) {
-                                var total = parseInt(row.RCT) + parseInt(row.SFT) + parseInt(row.PWT) + parseInt(row.WCT);
-                                return total;
-                            }
+                                "data": null,
+                                "defaultContent": "",
+                                "className": "dt-right",
+                                "orderable": false,
+                                "searchable": false,
+                                "render": function(data, type, row, meta) {
+                                    var total = parseInt(row.RCT) + parseInt(row.SFT) + parseInt(row.PWT) + parseInt(row.WCT);
+                                    return total;
+                                }
                             },
-                                                        
+
 
 
                         ],
-                        
+
                         dom: 'Bfrtip',
                         "buttons": [{
                                 extend: 'copy',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             },
                             {
                                 extend: 'csv',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             },
                             {
                                 extend: 'excel',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             },
                             {
                                 extend: 'pdf',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             },
                             {
                                 extend: 'print',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             }
@@ -417,169 +412,169 @@
                         // responsive
                         "responsive": true,
                         "columns": [
-                            
+
                             {
                                 "data": "user_id",
-                                "render": function (data, type, row, meta) {
-                                    
+                                "render": function(data, type, row, meta) {
+
                                     return `${row.user_id}`;
                                 }
                             },
-                            
+
                             {
                                 "data": "srr_number",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.srr_number}`;
                                 }
                             },
-                            
+
                             {
                                 "data": "RC1",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.RC1}`;
                                 }
                             },
                             {
                                 "data": "SF1",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.SF1}`;
                                 }
                             },
                             {
                                 "data": "PW1",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.PW1}`;
                                 }
                             },
                             {
                                 "data": "WC1",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.WC1}`;
                                 }
                             },
-                            
+
                             {
                                 "data": "RC2",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.RC2}`;
                                 }
                             },
                             {
                                 "data": "SF2",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.SF2}`;
                                 }
                             },
                             {
                                 "data": "PW2",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.PW2}`;
                                 }
                             },
                             {
                                 "data": "WC2",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.WC2}`;
                                 }
                             },
-                            
+
                             {
                                 "data": "RC3",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.RC3}`;
                                 }
                             },
                             {
                                 "data": "SF3",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.SF3}`;
                                 }
                             },
                             {
                                 "data": "PW3",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.PW3}`;
                                 }
                             },
                             {
                                 "data": "WC3",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.WC3}`;
                                 }
                             },
-                           
+
                             {
                                 "data": "RC4",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.RC4}`;
                                 }
                             },
                             {
                                 "data": "SF4",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.SF4}`;
                                 }
                             },
                             {
                                 "data": "PW4",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.PW4}`;
                                 }
                             },
                             {
                                 "data": "WC4",
-                                "render": function (data, type, row, meta) {
+                                "render": function(data, type, row, meta) {
                                     return `${row.WC4}`;
                                 }
                             },
                             {
-                            "data": null,
-                            "defaultContent": "",
-                            "className": "dt-right",
-                            "orderable": false,
-                            "searchable": false,
-                            "render": function(data, type, row, meta) {
-                                var total = parseInt(row.RC1) + parseInt(row.RC2)+ parseInt(row.RC3)+ parseInt(row.RC4)+ parseInt(row.SF1)+ parseInt(row.SF2)+ parseInt(row.SF3)+ parseInt(row.SF4)+ parseInt(row.PW1)+ parseInt(row.PW2)+ parseInt(row.PW3)+ parseInt(row.PW4)+ parseInt(row.WC1)+ parseInt(row.WC2)+ parseInt(row.WC3)+ parseInt(row.WC4);
-                                return total;
-                            }
+                                "data": null,
+                                "defaultContent": "",
+                                "className": "dt-right",
+                                "orderable": false,
+                                "searchable": false,
+                                "render": function(data, type, row, meta) {
+                                    var total = parseInt(row.RC1) + parseInt(row.RC2) + parseInt(row.RC3) + parseInt(row.RC4) + parseInt(row.SF1) + parseInt(row.SF2) + parseInt(row.SF3) + parseInt(row.SF4) + parseInt(row.PW1) + parseInt(row.PW2) + parseInt(row.PW3) + parseInt(row.PW4) + parseInt(row.WC1) + parseInt(row.WC2) + parseInt(row.WC3) + parseInt(row.WC4);
+                                    return total;
+                                }
                             },
 
                         ],
-                        
-                        
+
+
                         dom: 'Bfrtip',
                         "buttons": [{
                                 extend: 'copy',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             },
                             {
                                 extend: 'csv',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             },
                             {
                                 extend: 'excel',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             },
                             {
                                 extend: 'pdf',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             },
                             {
                                 extend: 'print',
                                 title: $('title').text(),
-                                filename: function () {
+                                filename: function() {
                                     return $('title').text().replace(/[^a-zA-Z0-9]/g, '_');
                                 }
                             }
@@ -591,7 +586,7 @@
         }
         fetch();
         // Filter
-        $(document).on("click", "#filter", function (e) {
+        $(document).on("click", "#filter", function(e) {
             e.preventDefault();
             var start_date = $("#start_date").val();
             var end_date = $("#end_date").val();
@@ -601,11 +596,11 @@
                 $('#records').DataTable().destroy();
                 $('#records_table').DataTable().destroy();
                 fetch(start_date, end_date);
-                
+
             }
         });
         // Reset
-        $(document).on("click", "#reset", function (e) {
+        $(document).on("click", "#reset", function(e) {
             e.preventDefault();
             $("#start_date").val(''); // empty value
             $("#end_date").val('');
@@ -613,25 +608,69 @@
             $('#records_table').DataTable().destroy();
             fetch();
         });
-
     </script>
     <script>
         $(document).ready(function() {
             $('.price:not(.LKR)').hide();
-            
+
             $('#currencySelect').change(function() {
                 var currency = $(this).find(':selected').data('currency');
                 $('.price').hide();
                 $('.price.' + currency).show();
             });
-            
+
             // Set initial currency selection on page load
             var initialCurrency = $('#currencySelect').find(':selected').data('currency');
             $('.price').hide();
             $('.price.' + initialCurrency).show();
         });
     </script>
-    
+
+
+    <!-- Currency changing script -->
+    <script>
+        var programmaticallyChanged = false;
+        var divisionFactor = 100; // Replace with your desired value
+
+        function updateCurrency() {
+            var x = document.getElementById("modeSelect").value;
+            // Save the selected value in localStorage
+            localStorage.setItem("selectedMode", x);
+
+            // Update the currency values based on the selected option
+            if (x === "curr1") {
+                // Do not change the data in class "curr-val"
+            } else if (x === "curr2") {
+                // Divide the data in class "curr-val" by the divisionFactor variable
+                var currValElements = document.getElementsByClassName("curr-val");
+                for (var i = 0; i < currValElements.length; i++) {
+                    var value = parseFloat(currValElements[i].textContent.replace(/,/g, ''));
+                    value = value / divisionFactor;
+                    currValElements[i].textContent = value.toFixed(2);
+                }
+            }
+
+            // Manually trigger the page reload by navigating to the same page with the updated values
+            if (!programmaticallyChanged) {
+                programmaticallyChanged = true;
+                window.location.href = window.location.href;
+            } else {
+                programmaticallyChanged = false;
+            }
+        }
+
+        // Call the function on page load to update the values
+        window.onload = function() {
+            var storedValue = localStorage.getItem("selectedMode");
+            if (storedValue) {
+                document.getElementById("modeSelect").value = storedValue;
+                programmaticallyChanged = true;
+                updateCurrency(); // Update the elements based on the selected value and reload the page
+            }
+        };
+    </script>
+
+
 
 </body>
 

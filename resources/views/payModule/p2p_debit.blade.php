@@ -28,7 +28,7 @@
     <tr>
     <td>{{ $user_data->uid }}</td>
     <td>{{ $user_data->fname.' '.$user_data->lname }}</td>
-    <td>{{ $user_data->request_amount }}</td>
+    <td><span class="curr-val">{{ $user_data->request_amount }}</span></td>
      @if($user_data->date == NULL)
     <td>{{ ' - ' }}</td>
     @else

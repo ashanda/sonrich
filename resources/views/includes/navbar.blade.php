@@ -2,10 +2,17 @@
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars mt-1"></i></a>
     </li>
 
-    </li>
+    <input type="hidden" id="modeSelect" value="curr2">
+
+    <!-- <li class="nav-item">
+      <select class="mt-1" id="modeSelect" onchange="updateCurrency()">
+        <option value="curr1">Currency 1</option>
+        <option value="curr2" selected>Currency 2</option>
+      </select>
+    </li> -->
 
   </ul>
 
@@ -35,16 +42,16 @@
 
     <!-- Messages Dropdown Menu -->
     @if (Auth::user()->role == 1)
-       <!-- Notifications Dropdown Menu -->
+    <!-- Notifications Dropdown Menu -->
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-bell"></i>
-        <span class="badge badge-warning navbar-badge"> {{  count(gas_fee_collect())}}</span>
+        <span class="badge badge-warning navbar-badge"> {{ count(gas_fee_collect())}}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-        <span class="dropdown-item dropdown-header"> {{  count(gas_fee_collect())}} Notifications</span>
+        <span class="dropdown-item dropdown-header"> {{ count(gas_fee_collect())}} Notifications</span>
         <div class="dropdown-divider"></div>
-        
+
         <div class="dropdown-divider"></div>
         @foreach ( gas_fee_collect() as $data)
         <a href="#" class="dropdown-item">
@@ -53,14 +60,14 @@
         </a>
         <div class="dropdown-divider"></div>
         @endforeach
-      
+
 
     </li>
     @endif
-   
+
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-        <i class="fas fa-expand-arrows-alt"></i>
+        <i class="fas fa-expand-arrows-alt mt-1"></i>
       </a>
     </li>
     <!-- <li class="nav-item">
@@ -74,7 +81,7 @@
     <li class="nav-item">
       <form method="POST" class="mb-0" action="{{ route('logout') }}">
         @csrf
-        <a href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="nav-link lh-1 ">{{ __('Logout') }}
+        <a href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();" class="nav-link lh-1 mt-1">{{ __('Logout') }}
         </a>
       </form>
     </li>

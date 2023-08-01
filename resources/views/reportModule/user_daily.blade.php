@@ -87,7 +87,7 @@
               @foreach ($binary_data as $user)
               <tr>
                 <td>{{ $user->created_at}}</td>
-                <td>{{ $user->amount}}</td>
+                <td><span class="curr-val">{{ $user->amount}}</span></td>
               </tr>
               @endforeach
             </tbody>
@@ -107,7 +107,7 @@
               @foreach ($daily_data as $user)
               <tr>
                 <td>{{ $user->created_at}}</td>
-                <td>{{ $user->amount}}</td>
+                <td><span class="curr-val">{{ $user->amount}}</span></td>
               </tr>
               @endforeach
             </tbody>
@@ -127,7 +127,7 @@
               @foreach ($level_data as $user)
               <tr>
                 <td>{{ $user->created_at}}</td>
-                <td>{{ $user->amount}}</td>
+                <td><span class="curr-val">{{ $user->amount}}</span></td>
               </tr>
               @endforeach
             </tbody>
@@ -147,7 +147,7 @@
               @foreach ($direct_data as $user)
               <tr>
                 <td>{{ $user->created_at}}</td>
-                <td>{{ $user->amount}}</td>
+                <td><span class="curr-val">{{ $user->amount}}</span></td>
               </tr>
               @endforeach
             </tbody>

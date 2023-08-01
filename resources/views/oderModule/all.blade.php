@@ -43,11 +43,11 @@
                             <td>{{ $oder->id}}</td>
                             <td>{{ $oder->fname ." ".$oder->lname}}</td>
                             <td>{{ $oder->sri_number}}</td>
-                            <td>{{ $oder->product_value}}</td>
-                            <td>{{ $oder->wallet_pay_amount}}</td>
-                            <td>{{ $oder->cash_pay_amount}}</td>
+                            <td><span class="curr-val">{{ $oder->product_value}}</span></td>
+                            <td><span class="curr-val">{{ $oder->wallet_pay_amount}}</span></td>
+                            <td><span class="curr-val">{{ $oder->cash_pay_amount}}</span></td>
                             <td>{{ $oder->payment_method}}</td>
-                            <td>{{ $oder->total_package_earnings}}</td>
+                            <td><span class="curr-val">{{ $oder->total_package_earnings}}</span></td>
                             <td>{{$oder->created_at}}</td>
 
                             @if ($oder->status==0)

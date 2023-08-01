@@ -31,7 +31,7 @@
                 @if (product_wallet() == null)
 
                 @else
-                <h1 class="pb-2 pt-1">{{ number_format(product_wallet()->wallet_balance + cash_wallet(Auth::user()->id)->wallet_balance, 2, '.', ',') }}</h1>
+                <h1 class="pb-2 pt-1 curr-val">{{ number_format(product_wallet()->wallet_balance + cash_wallet(Auth::user()->id)->wallet_balance, 2, '.', ',') }}</h1>
                 @endif
 
             </div>
@@ -43,7 +43,7 @@
 
                 @else
                 <h6>{{ current_user_active_package()->product_title }}</h6>
-                <h3>{{ number_format(current_user_active_package()->product_value, 2, '.', ','); }}</h3>
+                <h3 class="curr-val">{{ number_format(current_user_active_package()->product_value, 2, '.', ','); }}</h3>
                 @endif
 
             </div>

@@ -27,7 +27,7 @@
                             <th>Name</th>
                             <th>Fee</th>
                             <th>Last Earn Amount</th>
-                           
+
                         </tr>
                     </thead>
                     <tbody>
@@ -35,10 +35,10 @@
                         <tr>
                             <td>{{ $user_data->id }}</td>
                             <td>{{ $user_data->fname." ".$user_data->lname }}</td>
-                            
-                            <td>{{ $user_data->gas_fee }}</td>
 
-                            <td>{{ $user_data->last_earn }}</td>
+                            <td><span class="curr-val">{{ $user_data->gas_fee }}</span></td>
+
+                            <td><span class="curr-val">{{ $user_data->last_earn }}</span></td>
                         </tr>
                         @endforeach
 
