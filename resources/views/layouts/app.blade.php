@@ -628,49 +628,53 @@
 
 
     <!-- Currency changing script -->
-    <script>
+    
+         <script>
         var programmaticallyChanged = false;
-        
         var divisionFactor = 100; // Replace with your desired value
 
         function updateCurrency() {
-            var x = document.getElementById("modeSelect").value;
+            var x = $("#modeSelect").val();
             // Save the selected value in localStorage
             localStorage.setItem("selectedMode", x);
 
             // Update the currency values based on the selected option
-            if (x === "curr1") {
-                // Do not change the data in class "curr-val"
-            } else if (x === "curr2") {
-                // Divide the data in class "curr-val" by the divisionFactor variable
-                var currValElements = document.getElementsByClassName("curr-val");
-                for (var i = 0; i < currValElements.length; i++) {
-                    var value = parseFloat(currValElements[i].textContent.replace(/,/g, ''));
+            if (x === "curr2") {
+                // Do not change the data in elements with class "curr-val"
+            } else if (x === "curr1") {
+                // Divide the data in elements with class "curr-val" by the divisionFactor variable
+                $(".curr-val").each(function() {
+                    var value = parseFloat($(this).text().replace(/,/g, ''));
                     value = value / divisionFactor;
-                    currValElements[i].textContent = value.toFixed(2);
-                }
+                    $(this).text(value.toFixed(2));
+                });
             }
 
             // Manually trigger the page reload by navigating to the same page with the updated values
             if (!programmaticallyChanged) {
                 programmaticallyChanged = true;
-                window.location.href = window.location.href;
+                location.reload();
             } else {
                 programmaticallyChanged = false;
             }
         }
 
         // Call the function on page load to update the values
-        window.onload = function() {
-          
+        $(document).ready(function() {
             var storedValue = localStorage.getItem("selectedMode");
             if (storedValue) {
-                document.getElementById("modeSelect").value = storedValue;
+                $("#modeSelect").val(storedValue);
                 programmaticallyChanged = true;
                 updateCurrency(); // Update the elements based on the selected value and reload the page
             }
-        };
+
+            // Bind the change event of the select element to the updateCurrency function
+            $("#modeSelect").change(function() {
+                updateCurrency();
+            });
+        });
     </script>
+
 
 
 
