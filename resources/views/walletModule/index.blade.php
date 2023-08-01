@@ -22,7 +22,7 @@
                                     <h2 class="left text-bold">Total Earnings</h2>
                                 </div>
                                 <div class="col-12">
-                                    <h2 class="right text-bold">BV {{ number_format(direct_total() + level_total() + binary_total() + daily_total(), 2, '.', ',') }} </h2>
+                                    <h2 class="right text-bold">BV <span class="curr-val">{{ number_format(direct_total() + level_total() + binary_total() + daily_total(), 2, '.', ',') }}</span> </h2>
                                 </div>
 
                             </div>
@@ -39,11 +39,11 @@
                                 </div>
                                 <div class="col-5">
                                     @if (binary_point(Auth::user()->id) == null )
-                                    <span class="right">BV 0</span>
+                                    <span class="right">BV <span class="curr-val">0</span></span>
                                     @else
-                                    <span class="right">BV {{ binary_point(Auth::user()->id)->left_total*1000 }}</span>
+                                    <span class="right">BV <span class="curr-val">{{ binary_point(Auth::user()->id)->left_total*1000 }}</span></span>
                                     @endif
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -56,11 +56,11 @@
                                 </div>
                                 <div class="col-5">
                                     @if (binary_point(Auth::user()->id) == null )
-                                    <span class="right">BV 0</span>
+                                    <span class="right">BV <span class="curr-val">0</span></span>
                                     @else
-                                    <span class="right">BV {{ binary_point(Auth::user()->id)->right_total*1000 }}</span>
+                                    <span class="right">BV <span class="curr-val">{{ binary_point(Auth::user()->id)->right_total*1000 }}</span></span>
                                     @endif
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -75,11 +75,11 @@
                                 </div>
                                 <div class="col-5">
                                     @if (product_wallet() == null )
-                                    <span class="right">BV 0</span>
+                                    <span class="right">BV <span class="curr-val">0</span></span>
                                     @else
-                                    <span class="right">BV {{ product_wallet()->wallet_balance }}</span>
+                                    <span class="right">BV <span class="curr-val">{{ product_wallet()->wallet_balance }}</span></span>
                                     @endif
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -92,11 +92,11 @@
                                 </div>
                                 <div class="col-5">
                                     @if (cash_wallet(Auth::user()->id) == null )
-                                    <span class="right">BV 0</span>
+                                    <span class="right">BV <span class="curr-val">0</span></span>
                                     @else
-                                    <span class="right">BV {{ cash_wallet(Auth::user()->id)->wallet_balance }}</span>
+                                    <span class="right">BV <span class="curr-val">{{ cash_wallet(Auth::user()->id)->wallet_balance }}</span></span>
                                     @endif
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                                     <span class="left">Daily Commission</span>
                                 </div>
                                 <div class="col-5">
-                                    <span class="right">BV {{ daily_total() }}</span>
+                                    <span class="right">BV <span class="curr-val">{{ daily_total() }}</span></span>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                                     <span class="left">Binary Commission</span>
                                 </div>
                                 <div class="col-5">
-                                    <span class="right">BV {{ binary_total() }}</span>
+                                    <span class="right">BV <span class="curr-val">{{ binary_total() }}</span></span>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                                     <span class="left">Level Commission</span>
                                 </div>
                                 <div class="col-5">
-                                    <span class="right">BV {{ level_total() }}</span>
+                                    <span class="right">BV <span class="curr-val">{{ level_total() }}</span></span>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                                     <span class="left">Direct Sale Commission</span>
                                 </div>
                                 <div class="col-5">
-                                    <span class="right">BV {{ direct_total() }}</span>
+                                    <span class="right">BV <span class="curr-val">{{ direct_total() }}</span></span>
                                 </div>
                             </div>
                         </div>
@@ -207,10 +207,10 @@
                                 <td>{{ $i }}</td>
                                 <td>{{ $withdrawel->fname ." ".$withdrawel->lname }}</td>
                                 <td>{{ $withdrawel->uid }}</td>
-                                <td>BV {{ $withdrawel->request_amount }}</td>
-                                <td>BV {{ $withdrawel->company_fee}}</td>
-                                <td>BV {{ $withdrawel->tranfer_amount}}</td>
-                                
+                                <td>BV <span class="curr-val">{{ $withdrawel->request_amount }}</span></td>
+                                <td>BV <span class="curr-val">{{ $withdrawel->company_fee}}</span></td>
+                                <td>BV <span class="curr-val">{{ $withdrawel->tranfer_amount}}</span></td>
+
                                 @if ($withdrawel->status=='0')
                                 <td>{{ 'Pending' }}</td>
                                 @elseif($withdrawel->status=='1')
@@ -218,19 +218,17 @@
                                 @elseif($withdrawel->status=='2')
                                 <td>{{ 'reject' }}</td>
                                 @endif
-                                
-                               
+
+
                                 @if (Auth::user()->role == 1)
                                 <td>
-                                    @if($withdrawel->status=='0' || $withdrawel->status=='2')
                                     <form action="{{ route('withdraw.update',$withdrawel->id) }}" method="POST">
 
                                         @csrf
                                         @method('PUT')
-                                        <input type="hidden" name="request_amount" value={{ $withdrawel->request_amount}} > 
+                                        <input type="hidden" name="request_amount" value={{ $withdrawel->request_amount}}>
                                         <button type="submit" class="btn btn-danger">Approve</button>
                                     </form>
-                                     @endif
                                 </td>
                                 @endif
 
@@ -247,7 +245,5 @@
     </div>
 
 </div>
-<!--**********************************
-            Content body end
-        ***********************************-->
+
 @endsection
