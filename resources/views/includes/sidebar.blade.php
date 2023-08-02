@@ -54,7 +54,7 @@ $role = auth()->user()->role;
             </p>
           </a>
         </li>
-        @if ($role == 2)
+        @if ($role == 1)
         <li class="nav-item">
           <a href="{{ route('currencies.index') }}" class="nav-link">
             <i class="nav-icon fas fa-money-bill"></i>
