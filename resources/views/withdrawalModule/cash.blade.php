@@ -8,7 +8,7 @@
     <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{url('cash/trans')}}">
       @csrf
       <div class="form-group">
-        <label for="exampleInputEmail1">Request Amount</label>
+        <label for="exampleInputEmail1">Request Amount Only LKR</label>
       </div>
       <div class="form-group row">
 

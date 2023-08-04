@@ -11,7 +11,7 @@
           <input type="number" step="0" min="2" name="request_user_id" class="form-control" required="">
         </div>
         <div class="col-sm-6">
-          <label for="exampleInputEmail1">Amount</label>
+          <label for="exampleInputEmail1">Amount Only LKR</label>
 
           @php
           if(cash_wallet(Auth::user()->id) == NULL){
