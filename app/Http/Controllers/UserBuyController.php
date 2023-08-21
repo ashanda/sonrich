@@ -21,13 +21,13 @@ class UserBuyController extends Controller
     {
         $role=Auth::user()->role;
         if($role==0){
-            $data =DB::table('products')->get();
+            $data =DB::table('products')->orderBy('updated_at', 'asc')->get();
                 return view('productModule.buyproduct',compact('data'));
             
         }
 
         if($role==0){
-            $data =DB::table('products')->get();
+            $data =DB::table('products')->orderBy('updated_at', 'asc')->get();
                 return view('productModule.buyproduct',compact('data'));
             
         }
