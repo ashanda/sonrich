@@ -48,7 +48,7 @@ class DailyCommissionLogController extends Controller
             ->join('oders','users.id','=','oders.user_id')
             ->where('users.parent',$oder->user_id)
             ->where('oders.active_date', '>=', $register_node_date->created_at)
-            ->where('oders.status','=','1')
+            ->whereIn('oders.status', ['1', '2'])
             ->select('users.id')
             ->count();
             
