@@ -28,6 +28,7 @@ class DailyCommissionLogController extends Controller
      */
     public function daily_commission()
     {
+        //modification function
         //
          //after 7 days
          $date = date('Y-m-d H:i:s');
