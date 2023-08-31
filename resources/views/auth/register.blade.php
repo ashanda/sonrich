@@ -17,11 +17,12 @@
                     
                     <input id="parent" type="hidden" class="form-control" name="parent" value="{{ request()->get('ref_id')}}" required >
                            
-                    <input id="srr_number" type="hidden" class="form-control" name="srr_number" value="{{ request()->get('srr')}}" >
+                   
                     
 
                     
                 </div>
+              
                 <div class="input-group mb-3">
                     <input id="sri_number" type="text" class="form-control @error('sri_number') is-invalid @enderror" name="sri_number"
                         value="{{ old('sri_number') }}" required autocomplete="sri_number" autofocus placeholder="SRI Number">
@@ -31,6 +32,18 @@
                     </span>
                     @enderror
                 </div>
+
+                <!-- add srr number enter field-->
+                <div class="input-group mb-3">
+                    <input id="srr_number" type="text" class="form-control @error('srr_number') is-invalid @enderror" name="srr_number"
+                        value="{{ old('srr_number') }}" required autocomplete="srr_number" autofocus placeholder="SRS Number">
+                    @error('srr_number')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                
                 <div class="input-group mb-3">
                     <input id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname"
                         value="{{ old('fname') }}" required autocomplete="name" autofocus placeholder="First name">

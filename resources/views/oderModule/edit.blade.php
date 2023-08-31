@@ -49,6 +49,16 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
+                            @if (!empty($oder[0]->srr_number))
+                                <strong>SRS:  <span class="curr-val">{{ $oder[0]->srr_number }}</span></strong>
+                            @else
+                                <strong>You Need added SRS Click Here </strong><a class="btn btn-primary" href="{{ url('edit_user/'.$oder[0]->user_id) }}" role="button">Edit</a>
+                            @endif
+                            
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
                             <strong>Payment Methode:</strong>
                             <input type="text" name="payment_method" readonly class="form-control" value="{{ $oder[0]->payment_method }}">
                             @error('payment_method')

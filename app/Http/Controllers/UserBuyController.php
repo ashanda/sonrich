@@ -49,6 +49,8 @@ class UserBuyController extends Controller
         $oder->wallet_pay_amount = 0;
         $oder->max_value = $request->product_price*3;
         $oder->status = $request->status;
+        //new oder easy find passed 1
+        $oder->new_oder = 1;
         $oder->save();
 
 
@@ -119,6 +121,8 @@ class UserBuyController extends Controller
         $oder->payment_method = 'Wallet + Cash';
         $oder->max_value = $request->product_price*3;
         $oder->status = $request->status;
+        //new oder easy find passed 1
+        $oder->new_oder = 1;
         $oder->save();
 
         $product_wallet_balance_detils = DB::table('product_wallets')->where('user_id', Auth::user()->id)->first();
@@ -153,6 +157,8 @@ class UserBuyController extends Controller
         $oder->payment_method = 'Product Wallet';
         $oder->max_value = $request->product_price*3;
         $oder->status = $request->status;
+        //new oder easy find passed 1
+        $oder->new_oder = 1;
         $oder->save();
         
         

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Log;
 use App\Models\daily_commission_log;
 use Illuminate\Http\Request;
 use Monarobase\CountryList\CountryListFacade;
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
-
+use Carbon\Carbon;
 class DailyCommissionLogController extends Controller
 {
     /**
@@ -28,6 +28,7 @@ class DailyCommissionLogController extends Controller
      */
     public function daily_commission()
     {
+        //modification function
         //
          //after 7 days
          $date = date('Y-m-d H:i:s');
@@ -35,16 +36,45 @@ class DailyCommissionLogController extends Controller
          $date = strtotime("-9 day", $date);
          $new_date = date('Y-m-d H:i:s', $date);
  
- 
+        $current_date = Carbon::now()->toDateTimeString();
          // getting not complete 1:3 oders
          $oders = DB::table('oders')->where('status', '=', 1)->whereColumn('total_package_earnings', '<', 'max_value')->get();
+
+         // getting 24 hourse
+        $currentDate = Carbon::now();
+        $startRange = $currentDate->copy()->subDay()->setHour(9)->setMinute(0)->setSecond(0); // Previous day at 9:00 AM
+        $endRange = $currentDate->setHour(9)->setMinute(0)->setSecond(0); // Current day at 9:00 AM
+
+
+        $totalProductValue = DB::table('oders')->whereBetween('active_date', [$startRange, $endRange])->where('status', 1)->where('new_oder', 1)->sum('product_value');
+        $totalProductPoint = DB::table('oders')->where('status', 1)->where('new_oder', 1)->sum('product_point');
+        
+
          
          
          $daily_points = 0;
          foreach($oders as $oder){
            $register_node_date = DB::table('shadow_maps')->where('status', '=', 1)->where('user_id',$oder->user_id)->first(); 
-           //if need check top 7 nodes and getting direct sales 2 double of daily commission
-           $direct_sale_count=DB::table('users')
+           
+
+        //new oders check and commission generate new logic
+           if($oder->new_oder == 1){
+             $team_share = 0;
+             
+            if (!empty($oder->srr_number)) {
+                
+                $totalSRSProductValue = DB::table('oders')->whereBetween('active_date',[$startRange, $endRange])->where('status', 1)->where('new_oder', 1)->where('srr_number', $oder->srr_number)->sum('product_value');
+                $totalSRSProductPoint = DB::table('oders')->where('status', 1)->where('new_oder', 1)->where('srr_number', $oder->srr_number)->sum('product_point');
+                $team_share =  (($oder->product_point * 0.2) / $totalSRSProductPoint) * $totalSRSProductValue;
+        
+            } 
+            
+            $globle_share = (($oder->product_point * 0.2) / $totalProductPoint) * $totalProductValue;
+            $daily_points = $globle_share + $team_share;
+            
+           }else{
+
+            $direct_sale_count=DB::table('users')
             ->join('oders','users.id','=','oders.user_id')
             ->where('users.parent',$oder->user_id)
             ->where('oders.active_date', '>=', $register_node_date->created_at)
@@ -58,8 +88,13 @@ class DailyCommissionLogController extends Controller
             }else{
                 $daily_points = (master_data()->daily * $oder->product_value);  
             }
+           }
 
-           $user_oder_count = DB::table('user_oder_counts')->where('user_id',$oder->user_id)->first();
+           
+           
+           
+           
+            $user_oder_count = DB::table('user_oder_counts')->where('user_id',$oder->user_id)->first();
            
           if($user_oder_count->count < 4  && $user_oder_count->count > 0){
         
@@ -107,6 +142,8 @@ class DailyCommissionLogController extends Controller
 
              $currentorderid=0;
              $reference_oder_id = 0;
+
+             //Log::info('if - '.$daily_points.'  '.$oder->user_id);
              // 1/3 product wallet
              product_wallet_update($fixed_product_wallet_val,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
        
@@ -118,43 +155,47 @@ class DailyCommissionLogController extends Controller
          }else{
             
             $node_check = shadow_map_node_check($oder->user_id);
+                if(!empty($node_check)){
+                if(admin_head_check($node_check->id) == 1){
+                
+                }else{
+                
+                
+                
+                $oder_update = oder::find($oder->id);
+                $currentuserearningmax = $oder_update->max_value;
+                $current_user_id = $oder_update->user_id ;
+                $oder_update->total_package_earnings = $daily_points;
+                $oder_update->save(); 
+        
+                $oder_update = oder::find($oder->id);
+                $oder_update->status = 1;
+                $oder_update->total_package_earnings = ($oder->total_package_earnings + $daily_points);
+                $oder_update->save();
+        
+                $daily_commission_logs = new daily_commission_log;
+                $daily_commission_logs->user_id = $oder->user_id;
+                $daily_commission_logs->amount = $daily_points ;
+                $daily_commission_logs->oder_id = $oder->id;
+                $daily_commission_logs->save();
+        
 
-            if(admin_head_check($node_check->id) == 1){
-             
-            }else{
-             
-            
-            
-             $oder_update = oder::find($oder->id);
-             $currentuserearningmax = $oder_update->max_value;
-             $current_user_id = $oder_update->user_id ;
-             $oder_update->total_package_earnings = $daily_points;
-             $oder_update->save(); 
-       
-             $oder_update = oder::find($oder->id);
-             $oder_update->status = 1;
-             $oder_update->total_package_earnings = ($oder->total_package_earnings + $daily_points);
-             $oder_update->save();
-       
-             $daily_commission_logs = new daily_commission_log;
-             $daily_commission_logs->user_id = $oder->user_id;
-             $daily_commission_logs->amount = $daily_points ;
-             $daily_commission_logs->oder_id = $oder->id;
-             $daily_commission_logs->save();
-       
+                $description = 'Daily Commission';
+                $old_cash_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
+                $old_product_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
+                $spill = 0;
+                $currentorderid = '0';
+                $reference_oder_id= '0';
 
-             $description = 'Daily Commission';
-             $old_cash_wallet = DB::table('cash_wallets')->where('user_id',$current_user_id)->first();
-             $old_product_wallet = DB::table('product_wallets')->where('user_id',$current_user_id)->first();
-             $spill = 0;
-             $currentorderid = '0';
-             $reference_oder_id= '0';
-             // 1/3 product wallet
-             product_wallet_update($daily_points,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
-       
-             // 2/3 cash wallet
-             cash_wallet_update($daily_points,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill);
+                //Log::info('Else - '.$daily_points.'  '.$oder->user_id);
+                // 1/3 product wallet
+                product_wallet_update($daily_points,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_product_wallet,$spill);
+        
+                // 2/3 cash wallet
+                cash_wallet_update($daily_points,$oder->user_id,$currentorderid,$reference_oder_id,$description,$old_cash_wallet,$spill);
+                }
             }
+            
              
          }
 

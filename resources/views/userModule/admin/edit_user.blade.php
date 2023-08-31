@@ -44,14 +44,10 @@
                           <input type="text" class="form-control" id ="sri_number" name="sri_number" value="{{$edit_user->sri_number}}">
                         </div>
                         <div class="form-group">
-                            <label for="srs_number"><strong>SRR Number:</strong></label>
+                            <label for="srs_number"><strong>SRS Number:</strong></label>
                             <input type="text" class="form-control" id ="srr_number" style="text-transform: uppercase;" name="srr_number" value="{{$edit_user->srr_number}}">
                           </div>
-                          <div class="form-group">
-                            <label for="srs_number"><strong>Oder SRR Number:</strong></label>
-                            <p>Note: please this area use for exiting system oder update only</p>
-                            <input type="text" class="form-control" id ="oder_srr" style="text-transform: uppercase;" name="oder_srr" >
-                          </div>
+                          
                          <div class="form-group">
                              <label for="name"><strong>First Name:</strong></label>
                              <input type="text" class="form-control" id ="name" name="fname" value="{{$edit_user->fname}}" readonly>

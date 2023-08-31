@@ -98,14 +98,10 @@
             <div class="copy_text py-2">
                 <h5>Refferal Link</h5>
                 <div class="ref_content bg-secondary p-3 text-center">
-                    @if (!@empty(Auth::user()->srr_number))     
-                    <span id="refLink" class="mr-3"> {{ 'https://future.sonrich.net/register?ref_id='.Auth::user()->id.'&srr='.Auth::user()->srr_number }}
-                    </span></span>
-                        
-                    @else
+                  
+                    <!-- Remove srr number link-->
                     <span id="refLink" class="mr-3"> {{ 'https://future.sonrich.net/register?ref_id='.Auth::user()->id }}</span></span>
-                    @endif
-
+                   
                     <button class="btn btn-primary" onclick="copyContent()">Copy!</button>
                     <div id="mess" style="display: none;" class="alert alert-success py-2 px-4 ml-3" role="alert">Copied!</div>
                 </div>

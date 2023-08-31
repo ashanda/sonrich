@@ -27,6 +27,7 @@ class CreateOdersTable extends Migration
             $table->integer('max_value');
             $table->integer('total_package_earnings')->default('0');
             $table->dateTime('active_date')->nullable();
+            $table->integer('new_oder')->default('0');
             $table->timestamps();
         });
     }

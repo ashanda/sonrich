@@ -17,7 +17,7 @@ class ReportController extends Controller
     {
         $role=Auth::user()->role;
         if($role==1 || $role==2){
-            $data = DB::table('users')->where('role',0)->get();
+            $data = DB::table('users')->where('role',0)->paginate(10);;
             
         } 
         return view('reportModule.user',compact('data'));
