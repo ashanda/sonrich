@@ -45,6 +45,8 @@ class DailyCommissionLogController extends Controller
          foreach($oders as $oder){
            $register_node_date = DB::table('shadow_maps')->where('status', '=', 1)->where('user_id',$oder->user_id)->first(); 
            //if need check top 7 nodes and getting direct sales 2 double of daily commission
+
+
            $direct_sale_count=DB::table('users')
             ->join('oders','users.id','=','oders.user_id')
             ->where('users.parent',$oder->user_id)
@@ -60,7 +62,9 @@ class DailyCommissionLogController extends Controller
                 $daily_points = (master_data()->daily * $oder->product_value);  
             }
 
-           $user_oder_count = DB::table('user_oder_counts')->where('user_id',$oder->user_id)->first();
+           
+           
+            $user_oder_count = DB::table('user_oder_counts')->where('user_id',$oder->user_id)->first();
            
           if($user_oder_count->count < 4  && $user_oder_count->count > 0){
         
