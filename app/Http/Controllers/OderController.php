@@ -53,7 +53,7 @@ class OderController extends Controller
 
             $data = DB::table('oders')
             ->join('users', 'users.id', '=', 'oders.user_id')
-            ->orderBy('oders.created_at', 'desc')
+            ->orderBy('oders.id', 'desc')
             ->select('users.id as uid','users.fname','users.sri_number','users.lname','oders.*')
             ->get();
             return view('oderModule.all',compact('data'));

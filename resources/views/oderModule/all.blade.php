@@ -19,7 +19,7 @@
             @endif
             <div class="table-responsive">
                 
-                <table id="example1" class="table table-bordered table-hover">
+                <table id="example8" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th style="min-width: 50px;">User id</th>
@@ -53,7 +53,7 @@
                             @if ($oder->status==0)
                             <td>{{ 'Pending' }}</td>
                             @elseif($oder->status==1)
-                            <td>{{ 'Activate' }}</td>
+                            <td><a href="{{ route('daily_commission_status', $oder->id) }}">{{ 'Activate' }}</a></td>
                             @elseif($oder->status==2)
                             <td>{{ 'Complete' }}</td>
                             @else
