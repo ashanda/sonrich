@@ -66,9 +66,14 @@ class LoginController extends Controller
            ]);
         }
 
-        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
+        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))){
+            $user = auth()->user();
 
-        {
+            // Check the user's status
+            if ($user->status != 1) {
+                auth()->logout();
+                return redirect()->route('login')->with('error', 'Your account is inactive.');
+            }
 
             if (auth()->user()->role == 1) {
 
