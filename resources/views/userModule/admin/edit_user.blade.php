@@ -63,12 +63,12 @@
                           <div class="form-group">
                                   <label for="status"><strong>Status:</strong></label>
                                   <select class="form-control" name="status">
-                                      @if ($edit_user->status == 0)
-                                          <option value="0" selected>Active</option>
-                                          <option value="1">Deactivate</option>
-                                      @elseif ($edit_user->status == 1)
-                                          <option value="0">Active</option>
-                                          <option value="1" selected>Deactivate</option>
+                                      @if ($edit_user->status == 1)
+                                          <option value="1" selected>Active</option>
+                                          <option value="0">Deactivate</option>
+                                      @elseif ($edit_user->status == 0)
+                                          <option value="1">Active</option>
+                                          <option value="0" selected>Deactivate</option>
                                       @endif
                                   </select>
                             </div>
