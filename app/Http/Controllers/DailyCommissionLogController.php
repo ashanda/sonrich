@@ -27,6 +27,8 @@ class DailyCommissionLogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /* //old function
     public function daily_commission()
     {
         //modification function
@@ -169,11 +171,11 @@ class DailyCommissionLogController extends Controller
         alert()->success('Success','Daily Commission Shared Successfully!');
         return redirect()->route('admin');
         
-    }
+    }*/
 
 
     // new upgrade
-    /*
+    
     public function daily_commission()
     {
         //modification function
@@ -186,7 +188,7 @@ class DailyCommissionLogController extends Controller
  
         $current_date = Carbon::now()->toDateTimeString();
          // getting not complete 1:3 oders
-         $oders = DB::table('oders')->where('status', '=', 1)->whereColumn('total_package_earnings', '<', 'max_value')->get();
+         $oders = DB::table('oders')->where('status', '=', 1)->where('daily_commission', '=', 1)->whereColumn('total_package_earnings', '<', 'max_value')->get();
 
          // getting 24 hourse
         $currentDate = Carbon::now();
@@ -358,7 +360,7 @@ class DailyCommissionLogController extends Controller
         return redirect()->route('admin');
         
     }
-    */
+    
 
     /**
      * Show the form for creating a new resource.
