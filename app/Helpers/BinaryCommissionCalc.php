@@ -26,6 +26,9 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
    
     
     $oders_map = oder::where('user_id', $current_user_id)->where('status',1)->first();
+    if($oders_map !== null){
+
+    
     $currentuserearningmax = $oders_map->max_value;
     $currentuserearningtotal = $oders_map->total_package_earnings;
     $currentuser = $oders_map->user_id;
@@ -206,7 +209,7 @@ function BinaryCommissionCalc( $current_user_id, $binary_points, $reference_oder
 
 
 }
-
+}
         
 
        
