@@ -142,8 +142,27 @@ class OderController extends Controller
             $package->status = $request->oder_status;
             $package->active_date = date('Y-m-d H:i:s');
             
-    
-    
+            
+            // get current user active parent oder data
+            $oderParent = oder::where('status',1)->where('user_id',$package->parent)->first();
+            //dd($oderParent);
+            if($oderParent != null){
+            // get current user active parent oder count
+            $activeOderCount = oder::where('parent', $oderParent->user_id)->where('status',1)->count();
+
+            //check oder count
+            if($activeOderCount == 0){
+
+            }elseif($activeOderCount == 1){
+                $parentOder = oder::find($oderParent->id);
+                $parentOder->share_point = $oderParent->share_point * 2;
+                $parentOder->save();
+            }else{
+
+            }
+        }
+
+     
             $reference_oder_id = $package->id;  
            // Call Commission helpers
            if(user_positioning($child_id) == 1){
