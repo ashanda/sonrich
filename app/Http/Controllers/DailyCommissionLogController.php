@@ -194,10 +194,10 @@ class DailyCommissionLogController extends Controller
         $currentDate = Carbon::now();
         $startRange = $currentDate->copy()->subDay()->setHour(9)->setMinute(0)->setSecond(0); // Previous day at 9:00 AM
         $endRange = $currentDate->setHour(9)->setMinute(0)->setSecond(0); // Current day at 9:00 AM
-
+       // Log::info('Date'.' '.$currentDate.' '.$startRange.' '.$endRange);
 
         $totalProductValue = DB::table('oders')->whereBetween('active_date', [$startRange, $endRange])->where('status', 1)->where('new_oder', 1)->sum('product_value');
-        $totalProductPoint = DB::table('oders')->where('status', 1)->where('new_oder', 1)->sum('product_point');
+        $totalProductPoint = DB::table('oders')->where('status', 1)->where('new_oder', 1)->sum('share_point');
         
 
          
@@ -205,6 +205,7 @@ class DailyCommissionLogController extends Controller
          $daily_points = 0;
          foreach($oders as $oder){
            $register_node_date = DB::table('shadow_maps')->where('status', '=', 1)->where('user_id',$oder->user_id)->first(); 
+           
            
 
         //new oders check and commission generate new logic
@@ -214,17 +215,32 @@ class DailyCommissionLogController extends Controller
             if (!empty($oder->srr_number)) {
                 
                 $totalSRSProductValue = DB::table('oders')->whereBetween('active_date',[$startRange, $endRange])->where('status', 1)->where('new_oder', 1)->where('srr_number', $oder->srr_number)->sum('product_value');
-                $totalSRSProductPoint = DB::table('oders')->where('status', 1)->where('new_oder', 1)->where('srr_number', $oder->srr_number)->sum('product_point');
-                $team_share =  (($oder->product_point * 0.2) / $totalSRSProductPoint) * $totalSRSProductValue;
+                
+                $totalSRSProductPoint = DB::table('oders')->where('status', 1)->where('new_oder', 1)->where('srr_number', $oder->srr_number)->sum('share_point');
+                
+                $team_share =  (($oder->share_point * 0.2) / $totalSRSProductPoint) * $totalSRSProductValue;
+               //  Log::info('Team share'.' '.$oder->share_point.' '.$totalSRSProductPoint.' '.$totalSRSProductValue);
+                DB::table('team_share_log')->insert([
+                    'user_id' => $oder->user_id,
+                    'oder_id' => $oder->id,
+                    'srs_number' => $oder->srr_number,
+                    'team_share_value' => $team_share,
+                ]);
         
             } 
             
-            $globle_share = (($oder->product_point * 0.2) / $totalProductPoint) * $totalProductValue;
-            $daily_points = $globle_share + $team_share;
+                $globle_share = (($oder->share_point * 0.2) / $totalProductPoint) * $totalProductValue;
+               // Log::info('Globe share'.' '.$oder->share_point.' '.$totalProductPoint.' '.$totalProductValue);
+                 DB::table('globle_share_log')->insert([
+                    'user_id' => $oder->user_id,
+                    'oder_id' => $oder->id,
+                    'globle_share_value' => $globle_share,
+                ]);
+                $daily_points = $globle_share + $team_share;
             
            }else{
-
-            $direct_sale_count=DB::table('users')
+            //direct sale count
+             $direct_sale_count=DB::table('users')
             ->join('oders','users.id','=','oders.user_id')
             ->where('users.parent',$oder->user_id)
             ->where('oders.active_date', '>=', $register_node_date->created_at)
@@ -232,12 +248,14 @@ class DailyCommissionLogController extends Controller
             ->select('users.id')
             ->count();
             
+            
             if($direct_sale_count > 1){
                 $daily_points = ((master_data()->daily *2) * $oder->product_value);
               
             }else{
                 $daily_points = (master_data()->daily * $oder->product_value);  
             }
+
            }
 
            

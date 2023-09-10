@@ -51,6 +51,8 @@ class UserBuyController extends Controller
         $oder->status = $request->status;
         //new oder easy find passed 1
         $oder->new_oder = 1;
+        $oder->share_point = $request->product_point;
+        $oder->parent = Auth::user()->parent;
         $oder->save();
 
 
@@ -123,6 +125,8 @@ class UserBuyController extends Controller
         $oder->status = $request->status;
         //new oder easy find passed 1
         $oder->new_oder = 1;
+        $oder->share_point = $request->product_point;
+        $oder->parent = Auth::user()->parent;
         $oder->save();
 
         $product_wallet_balance_detils = DB::table('product_wallets')->where('user_id', Auth::user()->id)->first();
@@ -159,6 +163,8 @@ class UserBuyController extends Controller
         $oder->status = $request->status;
         //new oder easy find passed 1
         $oder->new_oder = 1;
+        $oder->share_point = $request->product_point;
+        $oder->parent = Auth::user()->parent;
         $oder->save();
         
         
