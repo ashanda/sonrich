@@ -84,7 +84,11 @@ if( $last_cash_wallet_rec->wallet_balance >= $request_val ){
     $oder->max_value = $product_data->product_price*3;
     $oder->status = '0';
     //new oder easy find passed 1
+
     $oder->new_oder = 1;
+    $oder->new_oder = 1;
+    $oder->share_point = $package->product_point;
+    $oder->parent = $package->parent;
     $oder->save();
 
     Alert::Alert('Success','Approved Successfully!');
