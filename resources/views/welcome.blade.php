@@ -553,9 +553,9 @@
 
     <!-- Footer-->
     <footer class="footer bg-black small text-center text-white-50">
-        <div class="container px-4 px-lg-5">Copyright &copy; Sonrich <script>
+        <div class="container px-4 px-lg-5">Copyright &copy; LUVNARICH <script>
                 document.write(new Date().getFullYear())
-            </script> Developed by <a href="https://mozita.digital/" target="_blank">Mozita Digital</a></div>
+            </script> Developed by <a href="https://luvnarich.net/" target="_blank">LUVNARICH</a></div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
