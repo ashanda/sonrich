@@ -80,6 +80,9 @@ class UserBuyController extends Controller
         if(Auth::user()->srr_number != null){
             $oder->srr_number = Auth::user()->srr_number;
         }
+        if(Auth::user()->parent != null){ 
+            $oder->parent = Auth::user()->parent;
+        }
         $oder->sponsor_id = $request->sponsor_id;
         $oder->product_id = $request->product_id;
         $oder->request_amount = $request->product_price;
