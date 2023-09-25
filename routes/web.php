@@ -98,6 +98,8 @@ Route::post('/daily_commission_status_change', [DailyCommissionLogController::cl
 Route::get('/future_plan_sales', [ReportController::class, 'future_plan_sales'])->name('future_plan_sales');
 Route::get('/future_plan_sales/records', [ReportController::class, 'future_plan_sales_records'])->name('future_plan_sales/records');
 
+Route::put('/srs_update', [OderController::class, 'srs_update'])->name('srs_update');
+
 
 Route::post('/2fa', function () {
 

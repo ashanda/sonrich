@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="mt-2">
             <div class="row">
-                <div class="col-lg-12 margin-tb">
+                <div class="col-lg-12 margin-tb pl-2" style="padding-left: 25px !important;">
                     <div class="pull-left mb-2">
                         <h2>Activate Oders</h2>
                         
@@ -23,6 +23,8 @@
                 {{ session('status') }}
             </div>
             @endif
+            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-6 col-sm-6 col-md-6">
             <form action="{{ route('oders.update',$id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -47,16 +49,21 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            @if (!empty($oder[0]->srr_number))
-                                <strong>SRS:  <span class="curr-val">{{ $oder[0]->srr_number }}</span></strong>
-                            @else
-                                <strong>You Need added SRS Click Here </strong><a class="btn btn-primary" href="{{ url('edit_user/'.$oder[0]->user_id) }}" role="button">Edit</a>
-                            @endif
-                            
-                        </div>
-                    </div>
+                    @if (!empty($oder[0]->srr_number))
+                                 <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>SRS:  {{ $oder[0]->srr_number }}</strong>
+                                        {{-- oder value remove
+                                        <input type="text" name="oder_value" readonly class="form-control curr-val" value="{{ $oder[0]->product_value }}"> --}}
+                                        @error('user_name')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                    @endif
+                   
+                    
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Payment Methode:</strong>
@@ -108,10 +115,38 @@
                 </div>
             </form>
         </div>
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            @if (!empty($oder[0]->srr_number))
+                               
+                            @else
+                                <strong>You Need added user SRS Click Here </strong><a class="btn btn-primary" href="{{ url('edit_user/'.$oder[0]->user_id) }}" role="button">Edit</a>
+
+                                
+                                <form id="innerForm" action="{{ route('srs_update') }}"  method="POST"> 
+                                @csrf 
+                                @method('PUT')   
+                                 <div class="form-group">
+                                        <strong>Oder SRS:</strong>
+                                        <input type="text" name="oder_srs" class="form-control" >
+                                        <input type="hidden" name="oderid_srs" class="form-control" value="{{ $id }}">
+                                        @error('oder_srs')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror
+                                </div>
+                                <button type="submit" onclick="submitInnerForm()" class="btn btn-primary">Update</button>
+                                </form>   
+                               
+                               
+                            @endif
+                            
+                        </div>
+                    </div>
+        </div>
     </div>
 </div>
 </div>
 <!--**********************************
             Content body end
         ***********************************-->
-@endsection       
+@endsection  

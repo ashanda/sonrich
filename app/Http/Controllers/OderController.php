@@ -212,4 +212,14 @@ class OderController extends Controller
             return redirect()->route('oders.index');
         }
     }
+
+    public function srs_update(Request $request){
+        
+        $package = oder::find($request->oderid_srs);
+        $package->srr_number = $request->oder_srs;
+        $package->save();
+        Alert::Alert('Success','Oder SRS Added Successfully!');
+        return redirect()->back();
+
+    }
 }
