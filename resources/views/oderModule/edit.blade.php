@@ -117,10 +117,13 @@
         </div>
             <div class="col-xs-6 col-sm-6 col-md-6">
                         <div class="form-group">
+                            @if ( CheckUserSRS($oder[0]->uid) == 0)
+                                <strong>You Need added user SRS Click Here </strong><a class="btn btn-primary" href="{{ url('edit_user/'.$oder[0]->user_id) }}" role="button">Edit</a> 
+                            @endif
                             @if (!empty($oder[0]->srr_number))
                                
                             @else
-                                <strong>You Need added user SRS Click Here </strong><a class="btn btn-primary" href="{{ url('edit_user/'.$oder[0]->user_id) }}" role="button">Edit</a>
+                               
 
                                 
                                 <form id="innerForm" action="{{ route('srs_update') }}"  method="POST"> 
