@@ -596,3 +596,17 @@ function curreny_convert_rate($id){
   $currency_rate = Currency::where('id',$id)->first();
   return $currency_rate;
 }
+
+function CheckUserSRS($id){
+   $data = User::where('id',$id)->first();
+   if (!is_null($data) && !is_null($data->srr_number)) {
+    
+    return 1;
+    // Now you can use $srrNumber, which holds the srr_number value.
+    // You can use it in your code as needed.
+    } else {
+
+      return 0;
+        // Handle the case where the user with the specified ID doesn't exist or srr_number is null.
+    }
+}
