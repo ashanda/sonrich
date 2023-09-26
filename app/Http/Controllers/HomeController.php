@@ -95,7 +95,7 @@ class HomeController extends Controller
 
 
      public function all_user(){
-        $all_user = User::where('status',1)->paginate(20);;
+        $all_user = User::where('status',1)->get();
         return view('userModule.admin.all_user')->with(compact('all_user'));
      }
 

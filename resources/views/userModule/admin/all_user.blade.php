@@ -132,11 +132,22 @@
         </table>
         
       </div>
-      <div class="d-flex justify-content-center mt-4">
-        {{ $all_user->render('vendor.pagination.default') }}
-    </div>
+      
     </div>
   </div>
 </div>
+
+@endsection
+
+@section('script')
+<script>
+  $(document).ready(function () {
+    $('#example1').DataTable({
+      "pageLength": 500 // Set the default number of rows to 100
+    });
+  });
+</script>
+
+
 
 @endsection
