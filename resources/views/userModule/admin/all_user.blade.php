@@ -143,7 +143,7 @@
 <script>
   $(document).ready(function () {
     $('#example1').DataTable({
-      "pageLength": 500 // Set the default number of rows to 100
+      "pageLength": 100 // Set the default number of rows to 100
     });
   });
 </script>
