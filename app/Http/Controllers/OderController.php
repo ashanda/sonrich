@@ -218,7 +218,7 @@ class OderController extends Controller
         $package = oder::find($request->oderid_srs);
         $package->srr_number = $request->oder_srs;
         $package->save();
-        Alert::Alert('Success','Oder SRS Added Successfully!');
+        Alert::Alert('Success','Oder SRS Update Successfully!');
         return redirect()->back();
 
     }
