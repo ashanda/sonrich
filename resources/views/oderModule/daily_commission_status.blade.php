@@ -94,6 +94,29 @@
                     <button type="submit" class="btn btn-primary ml-2">Change Daily Commission Status</button>
                 </div>
             </form>
+          
+            <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="form-group">
+                            @if ( CheckUserSRS($oder_data->user_id) == 0)
+                                <strong>You Need added user SRS Click Here </strong><a class="btn btn-primary" href="{{ url('edit_user/'.$oder_data->user_id) }}" role="button">Edit</a> 
+                            @endif
+                            <form id="innerForm" action="{{ route('srs_update') }}"  method="POST"> 
+                                @csrf 
+                                @method('PUT')   
+                                 <div class="form-group">
+                            @if (!empty($oder_data->srr_number))  
+                                  <strong>Oder Old SRS:</strong>
+                                        <input type="text" name="oder_srs" value="{{ $oder_data->srr_number }}" class="form-control" >
+                                        <input type="hidden" name="oderid_srs" class="form-control" value="{{ $oder_data->id }}">
+                                        @error('oder_srs')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror 
+                            @endif 
+                            </div>
+                                <button type="submit" onclick="submitInnerForm()" class="btn btn-primary">Update Oder SRS</button>
+                                </form> 
+                    </div>
+             </div>
         </div>
     </div>
 </div>
