@@ -50,7 +50,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             @if (!empty($oder_data->srr_number))
-                                <strong>SRS:  <span class="curr-val">{{ $oder_data->srr_number }}</span></strong>
+                                <strong>Current Oder SRS:  {{ $oder_data->srr_number }}</strong>
                             @else
                                 <strong>You Need added SRS Click Here </strong><a class="btn btn-primary" href="{{ url('edit_user/'.$oder_data->user_id) }}" role="button">Edit</a>
                             @endif
@@ -95,7 +95,7 @@
                 </div>
             </form>
           
-            <div class="col-xs-6 col-sm-6 col-md-6">
+           
                         <div class="form-group">
                             @if ( CheckUserSRS($oder_data->user_id) == 0)
                                 <strong>You Need added user SRS Click Here </strong><a class="btn btn-primary" href="{{ url('edit_user/'.$oder_data->user_id) }}" role="button">Edit</a> 
@@ -105,8 +105,8 @@
                                 @method('PUT')   
                                  <div class="form-group">
                             @if (!empty($oder_data->srr_number))  
-                                  <strong>Oder Old SRS:</strong>
-                                        <input type="text" name="oder_srs" value="{{ $oder_data->srr_number }}" class="form-control" >
+                                  <strong>Change Oder SRS:</strong>
+                                        <input type="text" name="oder_srs" value="{{ $oder_data->srr_number }}" class="form-control" placeholder="Enter you need new SRS number">
                                         <input type="hidden" name="oderid_srs" class="form-control" value="{{ $oder_data->id }}">
                                         @error('oder_srs')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -115,7 +115,7 @@
                             </div>
                                 <button type="submit" onclick="submitInnerForm()" class="btn btn-primary">Update Oder SRS</button>
                                 </form> 
-                    </div>
+                   
              </div>
         </div>
     </div>
