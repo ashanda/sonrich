@@ -95,7 +95,7 @@ class HomeController extends Controller
 
 
      public function all_user(){
-        $all_user = User::where('status',1)->paginate(20);;
+        $all_user = User::where('status',1)->get();
         return view('userModule.admin.all_user')->with(compact('all_user'));
      }
 
@@ -113,7 +113,8 @@ class HomeController extends Controller
             'sri_number' => array(['required','regex:/(^0{0,3}[1-9]\d*$)/u']),
             'fname' =>'required|string|max:255',
             'lname' =>'required|string|max:255',
-            'email'=>'required|email|string|max:255'
+            'email'=>'required|email|string|max:255',
+            'status'=>'required'
         ]);
 
         $user =  User::find($id);
@@ -122,6 +123,7 @@ class HomeController extends Controller
         $user->fname = $request['fname'];
         $user->lname = $request['lname'];
         $user->email = $request['email'];
+        $user->status = $request['status'];
        
         if($request['password'] != null){
             $user->password = Hash::make($request['password']);

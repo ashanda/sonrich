@@ -6,7 +6,13 @@
         <a href="../../index2.html"><b>{{ __('Login') }}</b></a>
     </div>
     <div class="card">
+        @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
         <div class="card-body login-card-body">
+            
             <p class="login-box-msg">Sign in to start your session</p>
             <form method="POST" action="{{ route('login') }}">
                 @csrf

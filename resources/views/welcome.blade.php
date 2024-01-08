@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>SONRICH</title>
+    <title>LUVNARICH</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -419,7 +419,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">SONRICH</a>
+            <a class="navbar-brand" href="#page-top">LUVNARICH</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -437,7 +437,7 @@
         <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="text-center">
-                    <h1 class="mx-auto my-0 text-uppercase wel_logo">Sonrich</h1>
+                    <h1 class="mx-auto my-0 text-uppercase wel_logo">LUVNARICH</h1>
                     <!-- <img class="img-fluid" src="{{ asset('img/logo.png') }}" alt=""> -->
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</h2>
                     <a class="btn btn-primary" href="/login">Get Started</a>
@@ -553,9 +553,9 @@
 
     <!-- Footer-->
     <footer class="footer bg-black small text-center text-white-50">
-        <div class="container px-4 px-lg-5">Copyright &copy; Sonrich <script>
+        <div class="container px-4 px-lg-5">Copyright &copy; LUVNARICH <script>
                 document.write(new Date().getFullYear())
-            </script> Developed by <a href="https://mozita.digital/" target="_blank">Mozita Digital</a></div>
+            </script> Developed by <a href="https://luvnarich.net/" target="_blank">LUVNARICH</a></div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

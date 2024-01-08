@@ -684,6 +684,18 @@
         });
     </script>
 
+<script>
+    $(document).ready(function() {
+        $('#example8').DataTable({
+            "order": [[1, "desc"]],
+             "columnDefs": [
+                { "targets": 0, "searchable": true },
+                { "targets": [1, 2, 3,4,5,6,7,8,9,10], "searchable": false } // Optional: Disable search in other columns
+            ]
+        });
+    });
+</script>
+
 
 
 

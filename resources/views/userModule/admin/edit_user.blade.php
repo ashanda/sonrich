@@ -60,6 +60,18 @@
                              <label for="email"><strong>Email:</strong></label>
                              <input type="text" class="form-control" id ="email" value="{{$edit_user->email}}" name="email" readonly>
                          </div>
+                          <div class="form-group">
+                                  <label for="status"><strong>Status:</strong></label>
+                                  <select class="form-control" name="status">
+                                      @if ($edit_user->status == 1)
+                                          <option value="1" selected>Active</option>
+                                          <option value="0">Deactivate</option>
+                                      @elseif ($edit_user->status == 0)
+                                          <option value="1">Active</option>
+                                          <option value="0" selected>Deactivate</option>
+                                      @endif
+                                  </select>
+                            </div>
 
                           <button class="btn btn-primary" type="submit">Update Profile</button>
                      </form>

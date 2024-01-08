@@ -90,10 +90,15 @@ Route::get('/users_report', [ReportController::class, 'users_report'])->name('us
 Route::get('/users_report_daily', [ReportController::class, 'users_report_daily'])->name('users_report_daily');
 Route::resource('currencies', CurrencyController::class);
 
+//daily commission status
+Route::get('/daily_commission_status/{id?}', [DailyCommissionLogController::class, 'daily_commission_status'])->name('daily_commission_status');
+Route::post('/daily_commission_status_change', [DailyCommissionLogController::class, 'daily_commission_status_change'])->name('daily_commission_status_change');
 
 // Route::get('/future_plan_sales', [ReportController::class, 'future_plan_sales'])->name('future_plan_sales');
 Route::get('/future_plan_sales', [ReportController::class, 'future_plan_sales'])->name('future_plan_sales');
 Route::get('/future_plan_sales/records', [ReportController::class, 'future_plan_sales_records'])->name('future_plan_sales/records');
+
+Route::put('/srs_update', [OderController::class, 'srs_update'])->name('srs_update');
 
 
 Route::post('/2fa', function () {

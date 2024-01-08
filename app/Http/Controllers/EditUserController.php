@@ -70,21 +70,16 @@ class EditUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'sri_number' => array(['required','regex:/(^0{0,3}[1-9]\d*$)/u']),
-            'fname' =>'required|string|max:255',
-            'lname' =>'required|string|max:255',
-            'email'=>'required|email|string|max:255'
-        ]);
+       
 
         $user =  User::find($id);
-        $user->sri_number = $request['sri_number'];
-        $user->fname = $request['fname'];
-        $user->lname = $request['lname'];
-        $user->email = $request['email'];
-       
-        if($request['password'] != null){
-            $user->password = Hash::make($request['password']);
+        $user->sri_number = $request->sri_number;
+        $user->fname = $request->fname;
+        $user->lname = $request->lname;
+        $user->email = $request->email;
+        $user->status = $request->status;
+        if($request->password != null){
+            $user->password = Hash::make($request->password);
         }
         
         $user->save();

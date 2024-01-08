@@ -55,7 +55,7 @@
             <div class="copy_text py-2">
                 <h5>Refferal Link</h5>
                 <div class="ref_content bg-secondary p-3 text-center">
-                    <span id="refLink" class="mr-3"> {{ 'https://future.sonrich.net/register?ref_id='.Auth::user()->id }}</span></span>
+                    <span id="refLink" class="mr-3"> {{ env('APP_URL') . '/register?ref_id=' . Auth::user()->id }}</span></span>
                     <button class="btn btn-primary" onclick="copyContent()">Copy!</button>
                     <div id="mess" style="display: none;" class="alert alert-success py-2 px-4 ml-3" role="alert">Copied!</div>
                 </div>

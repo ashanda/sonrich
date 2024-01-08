@@ -28,6 +28,8 @@ class CreateOdersTable extends Migration
             $table->integer('total_package_earnings')->default('0');
             $table->dateTime('active_date')->nullable();
             $table->integer('new_oder')->default('0');
+            $table->integer('share_point')->default('0');
+            $table->integer('parent')->default('0');
             $table->timestamps();
         });
     }
